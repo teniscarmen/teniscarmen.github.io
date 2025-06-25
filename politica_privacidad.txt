@@ -1,0 +1,42 @@
+
+POLÍTICA DE PRIVACIDAD
+
+Última actualización: 25 de junio de 2025
+
+Gracias por utilizar nuestra aplicación. La privacidad de tus datos es muy importante para nosotros. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos tu información.
+
+1. INFORMACIÓN QUE RECOPILAMOS
+Al iniciar sesión con tu cuenta de Google, recopilamos la siguiente información básica:
+- Nombre completo
+- Dirección de correo electrónico
+- Foto de perfil (si está disponible)
+
+2. USO DE LA INFORMACIÓN
+Utilizamos la información recopilada únicamente para:
+- Identificarte dentro de la aplicación
+- Personalizar tu experiencia de usuario
+- Garantizar el funcionamiento seguro y correcto de la plataforma
+
+3. COMPARTICIÓN DE DATOS
+No compartimos tu información personal con terceros. Los datos que proporciones se almacenan de manera segura y son utilizados exclusivamente dentro del entorno de la aplicación.
+
+4. SEGURIDAD
+Tu información está protegida mediante el uso de medidas de seguridad técnicas y administrativas, incluyendo el uso de Firebase Authentication y bases de datos seguras.
+
+5. DERECHOS DEL USUARIO
+Puedes solicitar en cualquier momento:
+- Acceso a tus datos
+- Modificación o eliminación de tu cuenta
+- Revocación de permisos de acceso desde tu cuenta de Google
+
+6. CAMBIOS EN ESTA POLÍTICA
+Nos reservamos el derecho de modificar esta política en cualquier momento. Cualquier cambio será notificado a través de la aplicación o mediante correo electrónico si así lo indicaste.
+
+7. CONTACTO
+Si tienes preguntas sobre esta política, puedes contactarnos a:
+
+Correo electrónico: teniscarmen1@gmail.com
+
+---
+
+Esta aplicación está en etapa de desarrollo/pruebas y utiliza servicios proporcionados por Firebase y Google Cloud Platform.

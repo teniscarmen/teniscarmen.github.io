@@ -1,0 +1,39 @@
+
+CONDICIONES DEL SERVICIO
+
+Última actualización: 25 de junio de 2025
+
+Por favor, lee atentamente estas condiciones antes de utilizar nuestra aplicación. Al acceder o utilizar la plataforma, aceptas estar sujeto a los siguientes términos:
+
+1. ACEPTACIÓN DE LOS TÉRMINOS
+Al utilizar esta aplicación, aceptas estas Condiciones del Servicio en su totalidad. Si no estás de acuerdo con alguna parte de los términos, no debes utilizar esta aplicación.
+
+2. DESCRIPCIÓN DEL SERVICIO
+La aplicación permite gestionar información relacionada con el control de ventas y usuarios mediante autenticación con Google, utilizando tecnologías proporcionadas por Firebase.
+
+3. USO PERMITIDO
+Te comprometes a utilizar la aplicación de manera legal, ética y responsable. No debes:
+- Realizar actividades fraudulentas o ilícitas
+- Interferir con el funcionamiento técnico del sistema
+- Acceder a cuentas de otros usuarios sin autorización
+
+4. REGISTRO Y ACCESO
+El acceso se realiza mediante autenticación con cuentas de Google. Al registrarte, garantizas que la información proporcionada es precisa y actualizada.
+
+5. DISPONIBILIDAD DEL SERVICIO
+Nos reservamos el derecho de modificar, suspender o interrumpir el servicio en cualquier momento, sin previo aviso.
+
+6. LIMITACIÓN DE RESPONSABILIDAD
+No seremos responsables por daños directos, indirectos o incidentales que puedan surgir del uso de la aplicación. El uso del servicio es bajo tu propio riesgo.
+
+7. MODIFICACIONES
+Podemos actualizar estas condiciones en cualquier momento. Te notificaremos sobre los cambios importantes a través de la aplicación o por correo electrónico.
+
+8. CONTACTO
+Si tienes dudas sobre estas condiciones, puedes escribirnos a:
+
+Correo electrónico: teniscarmen1@gmail.com
+
+---
+
+Esta aplicación está actualmente en fase de desarrollo/pruebas y puede contener errores o funciones en evolución.
