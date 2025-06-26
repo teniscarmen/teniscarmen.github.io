@@ -22,3 +22,8 @@ El código JavaScript se encuentra ahora en `js/index.js` como módulo ES. Aseg�
 ## Despliegue
 
 Se recomienda utilizar una plataforma como Firebase Hosting o GitHub Pages. Para un proceso de despliegue automatizado puedes configurar GitHub Actions.
+
+## Dashboard
+
+La página `dashboard.html` muestra indicadores de ventas y un gráfico mensual.
+Asegúrate de contar con un `js/config.js` válido y abre el archivo en tu navegador (o usa el botón **Dashboard** en la página principal).
