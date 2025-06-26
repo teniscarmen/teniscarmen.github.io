@@ -284,7 +284,7 @@ container.innerHTML = '';
 if (currentUser.displayName !== "Carmen") {
 container.innerHTML += `
 <div>
-<h4 class="font-semibold text-gray-700">Entregar a Carmen (Corte X)</h4>
+<h4 class="font-semibold text-gray-700">Entregar al supervisor (Corte X)</h4>
 <p class="text-sm text-gray-500 mb-2">Marcar todo tu dinero pendiente como entregado a Carmen.</p>
 <button id="corteXBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
 Realizar Corte X
@@ -321,7 +321,7 @@ return;
 
 const totalEntregado = abonosPendientes.reduce((sum, a) => sum + a.monto, 0);
 
-showAlert('Confirmar Corte X', `Estás a punto de entregar ${formatCurrency(totalEntregado)} a Carmen. ¿Continuar?`, 'warning', async () => {
+showAlert('Confirmar Corte X', `Estás a punto de entregar ${formatCurrency(totalEntregado)} al supervisor. ¿Continuar?`, 'warning', async () => {
 const batch = writeBatch(db);
 const corteRef = doc(collection(db, getSharedCollectionPath('cortes')));
 
@@ -411,7 +411,7 @@ ${Object.entries(comisionesPorVendedor).map(([vendedor, monto]) => `
 
 showAlert(
 'Confirmar Corte Z (Final)',
-`Se entregará un total de ${formatCurrency(totalCorte)} a Juan Ramón.`,
+`Se entregará un total de ${formatCurrency(totalCorte)} al dueño.`,
 'warning',
 async () => {
 const batch = writeBatch(db);
@@ -837,7 +837,7 @@ document.getElementById('inventarioId').value = id;
 document.getElementById('inventarioMarca').value = item.marca || '';
 document.getElementById('inventarioModelo').value = item.modelo;
 document.getElementById('inventarioTalla').value = item.talla;
-document.getElementById('inventarioTallaTipo').value = item.tallaTipo || 'US';
+document.getElementById('inventarioTallaTipo').value = item.tallaTipo || 'MX';
 document.getElementById('inventarioGenero').value = item.genero || '';
 document.getElementById('inventarioEstilo').value = item.estilo || '';
 document.getElementById('inventarioMaterial').value = item.material || '';
