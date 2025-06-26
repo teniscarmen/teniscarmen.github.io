@@ -1,10 +1,5 @@
 // Firebase Imports
 import { firebaseConfig, geminiApiKey } from "./config.js";
-import {
-  formatDate,
-  formatCurrency,
-  formatPhoneNumber,
-} from './utils.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, where, getDoc, getDocs, writeBatch, Timestamp, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -36,7 +31,21 @@ let localVentas = [];
 let localCortes = [];
 
 // --- UTILS ---
-// Utility helpers are imported from utils.js
+const formatDate = (timestamp) => {
+if (!timestamp) return 'N/A';
+return new Date(timestamp.seconds * 1000).toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+const formatCurrency = (amount) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(amount);
+const formatPhoneNumber = (phoneStr) => {
+const cleaned = ('' + phoneStr).replace(/\D/g, '');
+if(cleaned.length === 10) {
+const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+if (match) {
+return `(${match[1]}) ${match[2]} ${match[3]}`;
+}
+}
+return phoneStr;
+};
 
 // --- MODALS AND ALERTS ---
 const showModal = (modal) => {
