@@ -31,6 +31,8 @@ let localClientes = [];
 let localInventario = [];
 let localVentas = [];
 let localCortes = [];
+let ventasChartInstance;
+let abonosChartInstance;
 
 // --- UTILS ---
 const formatDate = (timestamp) => {
@@ -244,6 +246,7 @@ globalSummaryDiv.innerHTML = `
 `;
 
 renderDineroEnPosesion();
+renderFinanzasCharts();
 }
 
 function renderDineroEnPosesion() {
@@ -257,6 +260,76 @@ abonosPendientes.forEach(abono => {
 const poseedor = abono.enPosesionDe || 'Desconocido';
 if (!enPosesion[poseedor]) {
 enPosesion[poseedor] = { efectivo: 0, transferencia: 0, total: 0 };
+}
+
+function renderFinanzasCharts() {
+  const kpisContainer = document.getElementById('finanzas-kpis');
+  const ventasCanvas = document.getElementById('ventasChart');
+  const abonosCanvas = document.getElementById('abonosChart');
+
+  const startDateStr = document.getElementById('startDate').value;
+  const endDateStr = document.getElementById('endDate').value;
+  let startDate = startDateStr ? new Date(startDateStr) : null;
+  let endDate = endDateStr ? new Date(endDateStr) : null;
+  if (endDate) endDate.setHours(23, 59, 59, 999);
+
+  const ventas = localVentas.filter(v => {
+    const fecha = v.fecha ? new Date(v.fecha.seconds * 1000) : null;
+    return fecha && (!startDate || fecha >= startDate) && (!endDate || fecha <= endDate);
+  });
+  const abonos = allAbonos.filter(a => {
+    const fecha = a.fecha ? new Date(a.fecha.seconds * 1000) : null;
+    return fecha && (!startDate || fecha >= startDate) && (!endDate || fecha <= endDate);
+  });
+
+  const totalVentas = ventas.reduce((s, v) => s + (v.precioPactado || 0), 0);
+  const avgVenta = ventas.length ? totalVentas / ventas.length : 0;
+
+  kpisContainer.innerHTML = `
+    <div class="bg-white p-4 rounded-lg shadow text-center">
+      <p class="text-sm text-gray-500 mb-1">Ventas Registradas</p>
+      <p class="text-2xl font-bold">${ventas.length}</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow text-center">
+      <p class="text-sm text-gray-500 mb-1">Total Ventas</p>
+      <p class="text-2xl font-bold text-indigo-600">${formatCurrency(totalVentas)}</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow text-center">
+      <p class="text-sm text-gray-500 mb-1">Promedio por Venta</p>
+      <p class="text-2xl font-bold text-green-600">${formatCurrency(avgVenta)}</p>
+    </div>
+  `;
+
+  const ventasPorDia = {};
+  ventas.forEach(v => {
+    const d = new Date(v.fecha.seconds * 1000).toLocaleDateString('es-MX', { month: 'short', day: 'numeric' });
+    ventasPorDia[d] = (ventasPorDia[d] || 0) + (v.precioPactado || 0);
+  });
+  const abonosPorDia = {};
+  abonos.forEach(a => {
+    const d = new Date(a.fecha.seconds * 1000).toLocaleDateString('es-MX', { month: 'short', day: 'numeric' });
+    abonosPorDia[d] = (abonosPorDia[d] || 0) + (a.monto || 0);
+  });
+
+  if (ventasChartInstance) ventasChartInstance.destroy();
+  ventasChartInstance = new Chart(ventasCanvas, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(ventasPorDia),
+      datasets: [{ label: 'Ventas MXN', data: Object.values(ventasPorDia), backgroundColor: 'rgba(79,70,229,0.5)', borderColor: '#4f46e5', borderWidth: 1 }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+
+  if (abonosChartInstance) abonosChartInstance.destroy();
+  abonosChartInstance = new Chart(abonosCanvas, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(abonosPorDia),
+      datasets: [{ label: 'Abonos MXN', data: Object.values(abonosPorDia), backgroundColor: 'rgba(16,185,129,0.5)', borderColor: '#10b981', borderWidth: 1 }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
 }
 if (abono.metodoPago === 'Efectivo') {
 enPosesion[poseedor].efectivo += abono.monto;
@@ -1471,9 +1544,9 @@ cortesZContainer.classList.add('hidden');
 document.getElementById('clearInventoryFilters').addEventListener('click', () => { document.getElementById('filterMarca').value = ''; document.getElementById('filterGenero').value = ''; document.getElementById('filterTalla').value = ''; document.getElementById('sortInventario').value = 'reciente'; document.getElementById('searchInventario').value = ''; document.getElementById('clearSearchInventario').classList.add('hidden'); renderInventario(); });
 ['filterCliente', 'filterVendedor', 'filterEstadoVenta', 'sortVentas', 'searchVentas'].forEach(id => { document.getElementById(id).addEventListener('input', renderVentas); });
 document.getElementById('clearVentasFilters').addEventListener('click', () => { document.getElementById('filterCliente').value = ''; document.getElementById('filterVendedor').value = ''; document.getElementById('filterEstadoVenta').value = ''; document.getElementById('sortVentas').value = 'reciente'; document.getElementById('searchVentas').value = ''; document.getElementById('clearSearchVentas').classList.add('hidden'); renderVentas(); });
-document.getElementById('startDate').addEventListener('change', renderFinancialSummaries);
-document.getElementById('endDate').addEventListener('change', renderFinancialSummaries);
-document.getElementById('clearDateFilters').addEventListener('click', () => { document.getElementById('startDate').value = ''; document.getElementById('endDate').value = ''; renderFinancialSummaries(); });
+document.getElementById('startDate').addEventListener('change', () => { renderFinancialSummaries(); renderFinanzasCharts(); });
+document.getElementById('endDate').addEventListener('change', () => { renderFinancialSummaries(); renderFinanzasCharts(); });
+document.getElementById('clearDateFilters').addEventListener('click', () => { document.getElementById('startDate').value = ''; document.getElementById('endDate').value = ''; renderFinancialSummaries(); renderFinanzasCharts(); });
 
 // Form and Modal Listeners
 document.getElementById('inventarioForm').addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('inventarioId').value; const data = { modelo: document.getElementById('inventarioModelo').value.toUpperCase(), marca: document.getElementById('inventarioMarca').value.toUpperCase(), talla: document.getElementById('inventarioTalla').value.toUpperCase(), tallaTipo: document.getElementById('inventarioTallaTipo').value, genero: document.getElementById('inventarioGenero').value, estilo: document.getElementById('inventarioEstilo').value, material: document.getElementById('inventarioMaterial').value, descripcion: document.getElementById('inventarioDescripcion').value, foto: document.getElementById('inventarioFoto').value, costo: parseFloat(document.getElementById('inventarioCosto').value), precio: parseFloat(document.getElementById('inventarioPrecio').value), status: 'disponible', fechaRegistro: Timestamp.now() }; const path = getSharedCollectionPath('inventario'); try { if (id) { await setDoc(doc(db, path, id), data, { merge: true }); } else { await addDoc(collection(db, path), data); } hideModal(document.getElementById('inventarioModal')); } catch (error) { console.error("Error saving inventory item: ", error); showAlert('Error', 'No se pudo guardar el artículo.', 'error'); } });
@@ -1494,10 +1567,10 @@ document.getElementById('copyCobranzaBtn').addEventListener('click', () => { con
 document.getElementById('regenerateCobranzaBtn').addEventListener('click', () => { const cobranzaModal = document.getElementById('cobranzaModal'); const clienteId = cobranzaModal.dataset.clienteId; const cliente = allClientes[clienteId]; const ventasCliente = localVentas.filter(v => v.clienteId === clienteId && v.saldo > 0); generateCobranzaMessage(cliente, ventasCliente); });
 
 // Firestore snapshot listeners
-const unsubClientes = onSnapshot(collection(db, getSharedCollectionPath('clientes')), (snapshot) => { localClientes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); allClientes = localClientes.reduce((acc, c) => ({ ...acc, [c.id]: c }), {}); populateVentaFilters(localClientes, localVentas); renderClientes(localClientes); renderFinancialSummaries(); });
-const unsubInventario = onSnapshot(collection(db, getSharedCollectionPath('inventario')), (snapshot) => { localInventario = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); allInventario = localInventario.reduce((acc, i) => ({ ...acc, [i.id]: i }), {}); populateInventoryFilters(localInventario); updateInventoryHeader(localInventario); renderInventario(); renderFinancialSummaries(); });
-const unsubVentas = onSnapshot(collection(db, getSharedCollectionPath('ventas')), (snapshot) => { localVentas = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); populateVentaFilters(localClientes, localVentas); renderVentas(); renderFinancialSummaries(); });
-const unsubAbonos = onSnapshot(collection(db, getSharedCollectionPath('abonos')), (snapshot) => { allAbonos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); renderFinancialSummaries(); });
+const unsubClientes = onSnapshot(collection(db, getSharedCollectionPath('clientes')), (snapshot) => { localClientes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); allClientes = localClientes.reduce((acc, c) => ({ ...acc, [c.id]: c }), {}); populateVentaFilters(localClientes, localVentas); renderClientes(localClientes); renderFinancialSummaries(); renderFinanzasCharts(); });
+const unsubInventario = onSnapshot(collection(db, getSharedCollectionPath('inventario')), (snapshot) => { localInventario = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); allInventario = localInventario.reduce((acc, i) => ({ ...acc, [i.id]: i }), {}); populateInventoryFilters(localInventario); updateInventoryHeader(localInventario); renderInventario(); renderFinancialSummaries(); renderFinanzasCharts(); });
+const unsubVentas = onSnapshot(collection(db, getSharedCollectionPath('ventas')), (snapshot) => { localVentas = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); populateVentaFilters(localClientes, localVentas); renderVentas(); renderFinancialSummaries(); renderFinanzasCharts(); });
+const unsubAbonos = onSnapshot(collection(db, getSharedCollectionPath('abonos')), (snapshot) => { allAbonos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); renderFinancialSummaries(); renderFinanzasCharts(); });
 const unsubCortes = onSnapshot(collection(db, getSharedCollectionPath('cortes')), (snapshot) => { 
 localCortes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 const cortesX = localCortes.filter(c => c.type === 'Corte X');
