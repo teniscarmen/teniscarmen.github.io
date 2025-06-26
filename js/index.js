@@ -285,7 +285,7 @@ if (currentUser.displayName !== "Carmen") {
 container.innerHTML += `
 <div>
 <h4 class="font-semibold text-gray-700">Entregar al supervisor (Corte X)</h4>
-<p class="text-sm text-gray-500 mb-2">Marcar todo tu dinero pendiente como entregado a Carmen.</p>
+<p class="text-sm text-gray-500 mb-2">Marcará todo tu dinero pendiente como entregado.</p>
 <button id="corteXBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
 Realizar Corte X
 </button>
