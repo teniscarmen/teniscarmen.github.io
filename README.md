@@ -4,7 +4,7 @@ Aplicación web para la gestión de ventas de tenis. Este repositorio contiene u
 
 ## Configuración
 
-1. Copia localmente `js/config.example.js` a `js/config.js` y coloca tus claves de Firebase y Gemini en ese archivo.
+1. Copia `js/config.example.js` a `js/config.js` y coloca tus claves de Firebase y Gemini en ese archivo.
 2. Instala dependencias si deseas compilar Tailwind o ejecutar herramientas de desarrollo:
    ```bash
    npm install
