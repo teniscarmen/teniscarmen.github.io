@@ -5,6 +5,8 @@ import { getAuth, onAuthStateChanged, GoogleAuthProvider, signOut, setPersistenc
 import { getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, where, getDoc, getDocs, writeBatch, Timestamp, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
+const loadStartTimestamp = Date.now();
+const MIN_LOADING_TIME_MS = 5000;
 // --- CONFIGURATION ---
 
 // --- FIREBASE INITIALIZATION ---
@@ -103,6 +105,14 @@ document.getElementById('alertOkBtn').onclick = () => hideModal(alertModal);
 showModal(alertModal);
 }
 
+function hideLoadingOverlay() {
+ const elapsed = Date.now() - loadStartTimestamp;
+ const remaining = Math.max(MIN_LOADING_TIME_MS - elapsed, 0);
+ setTimeout(() => {
+ loadingOverlay.classList.add('hidden');
+ }, remaining);
+}
+
 function setupClearableSearch(inputId, clearBtnId) {
 const input = document.getElementById(inputId);
 const clearBtn = document.getElementById(clearBtnId);
@@ -131,8 +141,8 @@ if (!user) {
 unsubscribeAll();
 appContainer.classList.add('hidden');
 loginScreen.classList.remove('hidden');
-loadingOverlay.classList.add('hidden');
-return;
+  hideLoadingOverlay();
+  return;
 }
 
 const adminRef = doc(db, 'admins', user.email);
@@ -153,7 +163,7 @@ loginScreen.classList.add('hidden');
 showAlert('Acceso Denegado', `El correo <b>${user.email}</b> no tiene permiso para acceder.`, 'error');
 signOut(auth);
 }
-loadingOverlay.classList.add('hidden');
+  hideLoadingOverlay();
 }
 
 // --- LOGIN HANDLER (using Popup) ---
@@ -166,8 +176,8 @@ console.error("Error en inicio con Popup:", error);
 if (error.code !== 'auth/popup-closed-by-user') {
 showAlert('Error de Inicio de Sesión', `No se pudo completar: ${error.message}`, 'error');
 }
-loadingOverlay.classList.add('hidden');
-}
+    hideLoadingOverlay();
+  }
 };
 
 const getSharedCollectionPath = (collectionName) => `negocio-tenis/shared_data/${collectionName}`;
