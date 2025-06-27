@@ -742,7 +742,7 @@ card.innerHTML = `
 </div>
 
 <div class="w-full sm:w-auto flex-shrink-0 flex sm:flex-col justify-end gap-2 pt-2 sm:pt-0 sm:border-l sm:pl-4">
-<button class="addAbonoBtn text-sm text-white font-bold py-2 px-3 flex items-center justify-center ${v.saldo <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600'}" data-id="${v.id}" ${v.saldo <= 0 ? 'disabled' : ''} title="Abonar"><i class="fas fa-hand-holding-dollar fa-lg"></i></button>
+<button class="addAbonoBtn text-sm text-white font-bold py-2 px-3 rounded-md	 flex items-center justify-center ${v.saldo <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600'}" data-id="${v.id}" ${v.saldo <= 0 ? 'disabled' : ''} title="Abonar"><i class="fas fa-hand-holding-dollar fa-lg"></i></button>
 <button class="editVentaBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Editar Venta"><i class="fas fa-edit fa-lg"></i></button>
 <button class="deleteVentaBtn text-sm text-gray-500 hover:text-red-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Eliminar Venta"><i class="fas fa-trash fa-lg"></i></button>
 </div>
