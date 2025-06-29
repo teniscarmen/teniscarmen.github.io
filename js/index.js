@@ -1940,11 +1940,19 @@ ${comprasHtml}
       html2canvas: { scale: 2 },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
+
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.left = '-9999px';
+    container.innerHTML = ticketHtml;
+    document.body.appendChild(container);
+
     html2pdf()
-      .from(ticketHtml)
+      .from(container)
       .set(opt)
       .save()
       .then(() => {
+        document.body.removeChild(container);
         const phone = cliente.telefono.replace(/\D/g, '');
         const msg = encodeURIComponent(
           `Gracias por tu compra. Total: ${formatCurrency(total)}.`,
