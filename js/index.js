@@ -536,7 +536,7 @@ const sortMethod = document.getElementById('sortInventario').value;
 let filteredInventario = [...localInventario];
 
 if (searchTerm) {
-filteredInventario = filteredInventario.filter(i => i.modelo.toUpperCase().includes(searchTerm) || i.marca.toUpperCase().includes(searchTerm));
+filteredInventario = filteredInventario.filter(i => i.modelo.toUpperCase().includes(searchTerm) || i.marca.toUpperCase().includes(searchTerm) || (i.sku || '').toUpperCase().includes(searchTerm));
 }
 if (brand) {
 filteredInventario = filteredInventario.filter(i => i.marca === brand);
@@ -577,6 +577,7 @@ card.innerHTML = `
 </div>
 <div class="mt-2 text-sm text-gray-600 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
 <p><span class="font-semibold text-gray-500">Talla:</span> ${item.talla} ${item.tallaTipo || ''}</p>
+<p><span class="font-semibold text-gray-500">SKU:</span> ${item.sku || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Género:</span> ${item.genero || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Estilo:</span> ${item.estilo || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Material:</span> ${item.material || 'N/A'}</p>
@@ -669,7 +670,7 @@ const cliente = allClientes[v.clienteId];
 const tenis = allInventario[v.tenisId];
 const clienteMatch = cliente ? cliente.nombre.toUpperCase().includes(searchTerm) : false;
 const tenisMatch = tenis ? `${tenis.marca} ${tenis.modelo}`.toUpperCase().includes(searchTerm) : false;
-return clienteMatch || tenisMatch;
+const skuMatch = tenis ? (tenis.sku || '').toUpperCase().includes(searchTerm) : false; return clienteMatch || tenisMatch || skuMatch;
 });
 }
 if(clienteId) filteredVentas = filteredVentas.filter(v => v.clienteId === clienteId);
@@ -720,7 +721,7 @@ card.innerHTML = `
 <div class="flex justify-between items-start mb-2">
 <div>
 <h4 class="font-bold text-lg text-gray-900">${cliente ? cliente.nombre : 'CLIENTE NO ENCONTRADO'}</h4>
-<p class="text-sm text-gray-500">${tenis ? `${tenis.marca} ${tenis.modelo}` : 'Artículo no encontrado'}</p>
+<p class="text-sm text-gray-500">${tenis ? `${tenis.marca} ${tenis.modelo} (SKU: ${tenis.sku || 'N/A'})` : 'Artículo no encontrado'}</p>
 <p class="text-xs text-gray-400 mt-1">Vendido por: ${v.vendedor || 'N/A'} el ${formatDate(v.fecha)}</p>
 </div>
 </div>
@@ -846,6 +847,7 @@ if (item) {
 document.getElementById('inventarioId').value = id;
 document.getElementById('inventarioMarca').value = item.marca || '';
 document.getElementById('inventarioModelo').value = item.modelo;
+  document.getElementById("inventarioSku").value = item.sku || "";
 document.getElementById('inventarioTalla').value = item.talla;
 document.getElementById('inventarioTallaTipo').value = item.tallaTipo || 'MX';
 document.getElementById('inventarioGenero').value = item.genero || '';
@@ -958,7 +960,7 @@ saleCard.className = `p-3 rounded-lg border ${isPaid ? 'bg-green-50 border-green
 saleCard.innerHTML = `
 <div class="flex justify-between items-center">
 <div>
-<p class="font-semibold">${tenis ? `${tenis.marca} ${tenis.modelo}` : 'TENIS NO ENCONTRADO'}</p>
+<p class="font-semibold">${tenis ? `${tenis.marca} ${tenis.modelo} (SKU: ${tenis.sku || 'N/A'})` : 'TENIS NO ENCONTRADO'}</p>
 <p class="text-xs text-gray-500">${formatDate(venta.fecha)} - Vendido por: ${venta.vendedor || 'N/A'}</p>
 </div>
 <div class="text-right">
@@ -993,7 +995,7 @@ clienteSelect.innerHTML += `<option value="${c.id}">${c.nombre}</option>`;
 
 tenisSelect.innerHTML = '<option value="">Selecciona un par de tenis</option>';
 Object.values(allInventario).filter(i => i.status === 'disponible').sort((a,b) => a.modelo.localeCompare(b.modelo)).forEach(i => {
-tenisSelect.innerHTML += `<option value="${i.id}" data-precio="${i.precio}">${i.marca} ${i.modelo} - TALLA: ${i.talla} ${i.tallaTipo}</option>`;
+tenisSelect.innerHTML += `<option value="${i.id}" data-precio="${i.precio}">${i.marca} ${i.modelo} (SKU: ${i.sku || 'N/A'}) - TALLA: ${i.talla} ${i.tallaTipo}</option>`;
 });
 
 document.getElementById('ventaPrecio').value = '';
@@ -1007,7 +1009,7 @@ if (!venta) return;
 document.getElementById('editVentaId').value = id;
 
 const tenis = allInventario[venta.tenisId];
-document.getElementById('editVentaTenisInfo').textContent = tenis ? `${tenis.marca} ${tenis.modelo}` : 'Artículo no encontrado';
+document.getElementById('editVentaTenisInfo').textContent = tenis ? `${tenis.marca} ${tenis.modelo} (SKU: ${tenis.sku || 'N/A'})` : 'Artículo no encontrado';
 
 const clienteSelect = document.getElementById('editVentaCliente');
 clienteSelect.innerHTML = '';
@@ -1476,7 +1478,7 @@ document.getElementById('endDate').addEventListener('change', renderFinancialSum
 document.getElementById('clearDateFilters').addEventListener('click', () => { document.getElementById('startDate').value = ''; document.getElementById('endDate').value = ''; renderFinancialSummaries(); });
 
 // Form and Modal Listeners
-document.getElementById('inventarioForm').addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('inventarioId').value; const data = { modelo: document.getElementById('inventarioModelo').value.toUpperCase(), marca: document.getElementById('inventarioMarca').value.toUpperCase(), talla: document.getElementById('inventarioTalla').value.toUpperCase(), tallaTipo: document.getElementById('inventarioTallaTipo').value, genero: document.getElementById('inventarioGenero').value, estilo: document.getElementById('inventarioEstilo').value, material: document.getElementById('inventarioMaterial').value, descripcion: document.getElementById('inventarioDescripcion').value, foto: document.getElementById('inventarioFoto').value, costo: parseFloat(document.getElementById('inventarioCosto').value), precio: parseFloat(document.getElementById('inventarioPrecio').value), status: 'disponible', fechaRegistro: Timestamp.now() }; const path = getSharedCollectionPath('inventario'); try { if (id) { await setDoc(doc(db, path, id), data, { merge: true }); } else { await addDoc(collection(db, path), data); } hideModal(document.getElementById('inventarioModal')); } catch (error) { console.error("Error saving inventory item: ", error); showAlert('Error', 'No se pudo guardar el artículo.', 'error'); } });
+document.getElementById('inventarioForm').addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('inventarioId').value; const data = { modelo: document.getElementById('inventarioModelo').value.toUpperCase(), marca: document.getElementById('inventarioMarca').value.toUpperCase(), sku: document.getElementById('inventarioSku').value.toUpperCase(), talla: document.getElementById('inventarioTalla').value.toUpperCase(), tallaTipo: document.getElementById('inventarioTallaTipo').value, genero: document.getElementById('inventarioGenero').value, estilo: document.getElementById('inventarioEstilo').value, material: document.getElementById('inventarioMaterial').value, descripcion: document.getElementById('inventarioDescripcion').value, foto: document.getElementById('inventarioFoto').value, costo: parseFloat(document.getElementById('inventarioCosto').value), precio: parseFloat(document.getElementById('inventarioPrecio').value), status: 'disponible', fechaRegistro: Timestamp.now() }; const path = getSharedCollectionPath('inventario'); try { if (id) { await setDoc(doc(db, path, id), data, { merge: true }); } else { await addDoc(collection(db, path), data); } hideModal(document.getElementById('inventarioModal')); } catch (error) { console.error("Error saving inventory item: ", error); showAlert('Error', 'No se pudo guardar el artículo.', 'error'); } });
 document.getElementById('clienteForm').addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('clienteId').value; const data = { nombre: document.getElementById('clienteNombre').value.toUpperCase(), telefono: document.getElementById('clienteTelefono').value.replace(/\D/g, ''), observaciones: document.getElementById('clienteObservaciones').value.toUpperCase() }; const path = getSharedCollectionPath('clientes'); try { if (id) { await setDoc(doc(db, path, id), data, { merge: true }); } else { await addDoc(collection(db, path), data); } hideModal(document.getElementById('clienteModal')); } catch (error) { console.error("Error saving client: ", error); showAlert('Error', 'No se pudo guardar el cliente.', 'error'); } });
 document.getElementById('ventaForm').addEventListener('submit', async (e) => { e.preventDefault(); const clienteId = document.getElementById('ventaCliente').value; const tenisId = document.getElementById('ventaTenis').value; const precioPactado = parseFloat(document.getElementById('ventaPrecio').value); if (!clienteId || !tenisId || !precioPactado) { showAlert('Datos incompletos', 'Por favor, selecciona un cliente, un par de tenis y define un precio.', 'warning'); return; } const currentUser = auth.currentUser; if (!currentUser) { showAlert('Error', 'No se ha podido identificar al usuario. Por favor, recarga la página.', 'error'); return; } const ventaData = { clienteId: clienteId, tenisId: tenisId, precioPactado: precioPactado, saldo: precioPactado, fecha: new Date(), vendedor: currentUser.displayName, comisionPagada: false }; const batch = writeBatch(db); const ventaRef = doc(collection(db, getSharedCollectionPath('ventas'))); batch.set(ventaRef, ventaData); const inventarioRef = doc(db, getSharedCollectionPath('inventario'), tenisId); batch.update(inventarioRef, { status: "vendido" }); try { await batch.commit(); hideModal(document.getElementById('ventaModal')); showAlert('Éxito', 'Venta registrada correctamente.', 'success'); } catch(error) { console.error("Error creating sale: ", error); showAlert('Error', 'No se pudo registrar la venta.', 'error'); } });
 document.getElementById('editVentaForm').addEventListener('submit', async(e) => { e.preventDefault(); const id = document.getElementById('editVentaId').value; const nuevoClienteId = document.getElementById('editVentaCliente').value; const nuevoPrecio = parseFloat(document.getElementById('editVentaPrecio').value); const ventaOriginal = localVentas.find(v => v.id === id); if(!ventaOriginal) { showAlert('Error', 'No se encontró la venta original para actualizar.', 'error'); return; } const abonosAcumulados = ventaOriginal.precioPactado - ventaOriginal.saldo; const nuevoSaldo = nuevoPrecio - abonosAcumulados; if(nuevoSaldo < 0) { showAlert('Precio inválido', 'El nuevo precio no puede ser menor que el total ya abonado.', 'warning'); return; } const ventaRef = doc(db, getSharedCollectionPath('ventas'), id); try { await updateDoc(ventaRef, { clienteId: nuevoClienteId, precioPactado: nuevoPrecio, saldo: nuevoSaldo }); hideModal(document.getElementById('editVentaModal')); showAlert('Éxito', 'La venta ha sido actualizada correctamente.', 'success'); } catch (error) { console.error("Error updating sale: ", error); showAlert('Error', 'No se pudieron guardar los cambios en la venta.', 'error'); } });
@@ -1485,7 +1487,7 @@ document.getElementById('editAbonoForm').addEventListener('submit', async (e) =>
 document.getElementById('abonoCuentaForm').addEventListener('submit', async(e) => { e.preventDefault(); let montoTotalAbono = parseFloat(document.getElementById('abonoCuentaMonto').value); const metodoPago = document.getElementById('abonoCuentaMetodoPago').value; const clienteId = document.getElementById('abonoCuentaClienteId').value; const currentUser = auth.currentUser; if(!montoTotalAbono || montoTotalAbono <= 0 || !metodoPago) { showAlert('Datos Incompletos', 'Ingresa un monto y método de pago válidos.', 'warning'); return; } const ventasPendientes = localVentas.filter(v => v.clienteId === clienteId && v.saldo > 0).sort((a,b) => a.fecha.seconds - b.fecha.seconds); if (ventasPendientes.length === 0) { showAlert('Sin Deudas', 'Este cliente no tiene saldos pendientes.', 'info'); return; } const batch = writeBatch(db); for (const venta of ventasPendientes) { if (montoTotalAbono <= 0) break; const montoAAplicar = Math.min(montoTotalAbono, venta.saldo); const ventaRef = doc(db, getSharedCollectionPath('ventas'), venta.id); batch.update(ventaRef, { saldo: venta.saldo - montoAAplicar }); const abonoRef = doc(collection(db, getSharedCollectionPath('abonos'))); batch.set(abonoRef, { ventaId: venta.id, monto: montoAAplicar, fecha: new Date(), metodoPago: metodoPago, estado: 'pendiente', enPosesionDe: currentUser.displayName, cobradoPor: currentUser.displayName }); montoTotalAbono -= montoAAplicar; } try { await batch.commit(); hideModal(document.getElementById('abonoCuentaModal')); showAlert('Éxito', 'El abono a cuenta fue aplicado correctamente a las ventas más antiguas.', 'success'); } catch(error) { console.error("Error applying global payment:", error); showAlert('Error', 'No se pudo aplicar el abono a cuenta.', 'error'); } });
 document.getElementById('openVentaModalBtn').addEventListener('click', () => { populateVentaModal(); showModal(document.getElementById('ventaModal')); });
 document.getElementById('openClienteModalBtn').addEventListener('click', () => { document.getElementById('clienteForm').reset(); document.getElementById('clienteId').value = ''; document.getElementById('clienteModalTitle').textContent = 'Agregar Nuevo Cliente'; showModal(document.getElementById('clienteModal')); });
-document.getElementById('openInventarioModalBtn').addEventListener('click', () => { document.getElementById('inventarioForm').reset(); document.getElementById('inventarioId').value = ''; document.getElementById('inventarioModalTitle').textContent = 'Agregar Tenis al Inventario'; showModal(document.getElementById('inventarioModal')); });
+document.getElementById('openInventarioModalBtn').addEventListener('click', () => { document.getElementById('inventarioForm').reset(); document.getElementById('inventarioSku').value = ''; document.getElementById('inventarioId').value = ''; document.getElementById('inventarioModalTitle').textContent = 'Agregar Tenis al Inventario'; showModal(document.getElementById('inventarioModal')); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const openModal = document.querySelector('.modal:not(.hidden)'); if (openModal) { hideModal(openModal); } } });
 document.querySelectorAll('.modal').forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('.closeModalBtn')) { hideModal(modal); } }); });
 document.getElementById('generateDescBtn').addEventListener('click', generateProductDescription);
