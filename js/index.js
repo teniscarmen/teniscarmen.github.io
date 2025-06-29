@@ -1894,7 +1894,10 @@ ${comprasHtml}
         const desc = prod
           ? `${prod.marca} ${prod.modelo} (SKU: ${prod.sku || 'N/A'})`
           : v.tenisId;
-        return `<tr><td style="padding:8px;border-bottom:1px solid #e5e7eb;">${desc}</td><td style="padding:8px;border-bottom:1px solid #e5e7eb;text-align:right;">${formatCurrency(v.precioPactado)}</td></tr>`;
+        return `<tr>
+            <td style="padding:8px;border-bottom:1px solid #e5e7eb;word-break:break-word;">${desc}</td>
+            <td style="padding:8px;border-bottom:1px solid #e5e7eb;text-align:right;">${formatCurrency(v.precioPactado)}</td>
+        </tr>`;
       })
       .join('');
     const total = ventas.reduce((sum, v) => sum + v.precioPactado, 0);
@@ -1907,10 +1910,10 @@ ${comprasHtml}
       : new Date().toLocaleDateString('es-MX');
     const vendedor = ventas[0]?.vendedor || 'N/A';
     const ticketHtml = `
-    <div style="font-family:'Inter',sans-serif;padding:2rem;color:#1f2937;background:#ffffff;">
+    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;background:#ffffff;max-width:6.5in;margin:auto;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:1rem;">
-        <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
-        <h1 style="margin:0;font-size:1.5rem;">Ticket de Venta</h1>
+        <img src="logo.png" alt="Logo" style="width:100px;margin:auto;" />
+        <h1 style="margin:0;font-size:1.25rem;font-weight:600;">Ticket de Venta</h1>
       </div>
       <p><strong>Cliente:</strong> ${cliente.nombre} - ${formatPhoneNumber(cliente.telefono)}</p>
       <p><strong>Fecha:</strong> ${fechaVenta}</p>
@@ -1931,7 +1934,7 @@ ${comprasHtml}
     </div>
   `;
     const opt = {
-      margin: 1,
+      margin: 0.5,
       filename: `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
