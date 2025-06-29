@@ -31,6 +31,7 @@ let localClientes = [];
 let localInventario = [];
 let localVentas = [];
 let localCortes = [];
+let ventaItems = [];
 
 // --- UTILS ---
 const formatDate = (timestamp) => {
@@ -985,20 +986,88 @@ summaryDiv.innerHTML = `
 }
 
 function populateVentaModal() {
-const clienteSelect = document.getElementById('ventaCliente');
-const tenisSelect = document.getElementById('ventaTenis');
+  const clienteSelect = document.getElementById('ventaCliente');
 
-clienteSelect.innerHTML = '<option value="">Selecciona un cliente</option>';
-Object.values(allClientes).sort((a,b) => a.nombre.localeCompare(b.nombre)).forEach(c => {
-clienteSelect.innerHTML += `<option value="${c.id}">${c.nombre}</option>`;
-});
+  clienteSelect.innerHTML = '<option value="">Selecciona un cliente</option>';
+  Object.values(allClientes)
+    .sort((a, b) => a.nombre.localeCompare(b.nombre))
+    .forEach((c) => {
+      clienteSelect.innerHTML += `<option value="${c.id}">${c.nombre}</option>`;
+    });
 
-tenisSelect.innerHTML = '<option value="">Selecciona un par de tenis</option>';
-Object.values(allInventario).filter(i => i.status === 'disponible').sort((a,b) => a.modelo.localeCompare(b.modelo)).forEach(i => {
-tenisSelect.innerHTML += `<option value="${i.id}" data-precio="${i.precio}">${i.marca} ${i.modelo} (SKU: ${i.sku || 'N/A'}) - TALLA: ${i.talla} ${i.tallaTipo}</option>`;
-});
+  ventaItems = [];
+  document.getElementById('productoSearch').value = '';
+  const resultados = document.getElementById('productoResultados');
+  resultados.innerHTML = '';
+  resultados.classList.add('hidden');
+  document.getElementById('ventaItemsContainer').innerHTML = '';
+  document.getElementById('ventaTotal').value = '';
+}
 
-document.getElementById('ventaPrecio').value = '';
+function renderProductoResultados() {
+  const term = document.getElementById('productoSearch').value.toUpperCase().trim();
+  const container = document.getElementById('productoResultados');
+  container.innerHTML = '';
+  if (!term) {
+    container.classList.add('hidden');
+    return;
+  }
+  const matches = Object.values(allInventario).filter(
+    (i) =>
+      i.status === 'disponible' &&
+      ((i.marca && i.marca.toUpperCase().includes(term)) ||
+        (i.modelo && i.modelo.toUpperCase().includes(term)) ||
+        (i.descripcion && i.descripcion.toUpperCase().includes(term)) ||
+        (i.sku && i.sku.toUpperCase().includes(term)))
+  );
+  if (matches.length === 0) {
+    container.innerHTML = '<p class="p-2 text-gray-500">No se encontraron coincidencias.</p>';
+    container.classList.remove('hidden');
+    return;
+  }
+  matches.forEach((item) => {
+    const div = document.createElement('div');
+    div.className = 'flex justify-between items-center p-2 cursor-pointer hover:bg-gray-100';
+    div.innerHTML = `<span>${item.marca} ${item.modelo} (SKU: ${item.sku || 'N/A'})</span><span>${formatCurrency(item.precio)}</span>`;
+    div.addEventListener('click', () => addProductoAVenta(item.id));
+    container.appendChild(div);
+  });
+  container.classList.remove('hidden');
+}
+
+function addProductoAVenta(id) {
+  if (ventaItems.some((p) => p.id === id)) return;
+  const prod = allInventario[id];
+  if (!prod) return;
+  ventaItems.push({ id, precio: prod.precio });
+  const container = document.getElementById('ventaItemsContainer');
+  const div = document.createElement('div');
+  div.dataset.id = id;
+  div.className = 'flex items-center justify-between bg-gray-50 p-2 rounded';
+  div.innerHTML = `<span class="text-sm">${prod.marca} ${prod.modelo} (SKU: ${prod.sku || 'N/A'})</span><input type="number" step="0.01" class="venta-item-precio w-24 p-1 border rounded text-right mr-2" value="${prod.precio}"><button type="button" class="remove-item-btn text-red-500"><i class="fas fa-times"></i></button>`;
+  div.querySelector('.remove-item-btn').addEventListener('click', () => removeProductoDeVenta(id));
+  div.querySelector('.venta-item-precio').addEventListener('input', actualizarTotalVenta);
+  container.appendChild(div);
+  actualizarTotalVenta();
+}
+
+function removeProductoDeVenta(id) {
+  ventaItems = ventaItems.filter((p) => p.id !== id);
+  const div = document.querySelector(`#ventaItemsContainer [data-id="${id}"]`);
+  if (div) div.remove();
+  actualizarTotalVenta();
+}
+
+function actualizarTotalVenta() {
+  const container = document.getElementById('ventaItemsContainer');
+  let total = 0;
+  container.querySelectorAll('[data-id]').forEach((div) => {
+    const precio = parseFloat(div.querySelector('.venta-item-precio').value);
+    if (!isNaN(precio)) total += precio;
+    const item = ventaItems.find((p) => p.id === div.dataset.id);
+    if (item) item.precio = precio;
+  });
+  document.getElementById('ventaTotal').value = total.toFixed(2);
 }
 
 async function handleEditVenta(e) {
@@ -1446,6 +1515,58 @@ jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
 html2pdf().from(reportHtml).set(opt).save();
 }
 
+function generateVentaTicketPDF(cliente, ventas) {
+  const rows = ventas
+    .map((v) => {
+      const prod = allInventario[v.tenisId];
+      const desc = prod
+        ? `${prod.marca} ${prod.modelo} (SKU: ${prod.sku || 'N/A'})`
+        : v.tenisId;
+      return `<tr><td style="padding:8px;border-bottom:1px solid #e5e7eb;">${desc}</td><td style="padding:8px;border-bottom:1px solid #e5e7eb;text-align:right;">${formatCurrency(v.precioPactado)}</td></tr>`;
+    })
+    .join('');
+  const total = ventas.reduce((sum, v) => sum + v.precioPactado, 0);
+  const ticketHtml = `
+    <div style="font-family:'Inter',sans-serif;padding:2rem;color:#1f2937;background:#ffffff;">
+      <div style="text-align:center;margin-bottom:1rem;">
+        <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
+        <h1 style="margin:0;font-size:1.5rem;">Ticket de Venta</h1>
+      </div>
+      <p><strong>Cliente:</strong> ${cliente.nombre}</p>
+      <p><strong>Fecha:</strong> ${new Date().toLocaleDateString('es-MX')}</p>
+      <table style="width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.9rem;">
+        <thead style="background:#f9fafb;">
+          <tr><th style="padding:8px;text-align:left;">Producto</th><th style="padding:8px;text-align:right;">Precio</th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+        <tfoot>
+          <tr style="background:#f3f4f6;">
+            <td style="padding:8px;font-weight:600;">Total</td>
+            <td style="padding:8px;text-align:right;font-weight:600;">${formatCurrency(total)}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div style="text-align:center;margin-top:2rem;font-size:0.85rem;color:#6b7280;">Gracias por su compra.</div>
+    </div>
+  `;
+  const opt = {
+    margin: 1,
+    filename: `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+  };
+  html2pdf()
+    .from(ticketHtml)
+    .set(opt)
+    .save()
+    .then(() => {
+      const phone = cliente.telefono.replace(/\D/g, '');
+      const msg = encodeURIComponent(`Gracias por tu compra. Total: ${formatCurrency(total)}.`);
+      window.open(`https://wa.me/52${phone}?text=${msg}`, '_blank');
+    });
+}
+
 
 // --- APP INITIALIZATION ---
 function initializeAppListeners(user) {
@@ -1480,7 +1601,57 @@ document.getElementById('clearDateFilters').addEventListener('click', () => { do
 // Form and Modal Listeners
 document.getElementById('inventarioForm').addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('inventarioId').value; const data = { modelo: document.getElementById('inventarioModelo').value.toUpperCase(), marca: document.getElementById('inventarioMarca').value.toUpperCase(), sku: document.getElementById('inventarioSku').value.toUpperCase(), talla: document.getElementById('inventarioTalla').value.toUpperCase(), tallaTipo: document.getElementById('inventarioTallaTipo').value, genero: document.getElementById('inventarioGenero').value, estilo: document.getElementById('inventarioEstilo').value, material: document.getElementById('inventarioMaterial').value, descripcion: document.getElementById('inventarioDescripcion').value, foto: document.getElementById('inventarioFoto').value, costo: parseFloat(document.getElementById('inventarioCosto').value), precio: parseFloat(document.getElementById('inventarioPrecio').value), status: 'disponible', fechaRegistro: Timestamp.now() }; const path = getSharedCollectionPath('inventario'); try { if (id) { await setDoc(doc(db, path, id), data, { merge: true }); } else { await addDoc(collection(db, path), data); } hideModal(document.getElementById('inventarioModal')); } catch (error) { console.error("Error saving inventory item: ", error); showAlert('Error', 'No se pudo guardar el artículo.', 'error'); } });
 document.getElementById('clienteForm').addEventListener('submit', async (e) => { e.preventDefault(); const id = document.getElementById('clienteId').value; const data = { nombre: document.getElementById('clienteNombre').value.toUpperCase(), telefono: document.getElementById('clienteTelefono').value.replace(/\D/g, ''), observaciones: document.getElementById('clienteObservaciones').value.toUpperCase() }; const path = getSharedCollectionPath('clientes'); try { if (id) { await setDoc(doc(db, path, id), data, { merge: true }); } else { await addDoc(collection(db, path), data); } hideModal(document.getElementById('clienteModal')); } catch (error) { console.error("Error saving client: ", error); showAlert('Error', 'No se pudo guardar el cliente.', 'error'); } });
-document.getElementById('ventaForm').addEventListener('submit', async (e) => { e.preventDefault(); const clienteId = document.getElementById('ventaCliente').value; const tenisId = document.getElementById('ventaTenis').value; const precioPactado = parseFloat(document.getElementById('ventaPrecio').value); if (!clienteId || !tenisId || !precioPactado) { showAlert('Datos incompletos', 'Por favor, selecciona un cliente, un par de tenis y define un precio.', 'warning'); return; } const currentUser = auth.currentUser; if (!currentUser) { showAlert('Error', 'No se ha podido identificar al usuario. Por favor, recarga la página.', 'error'); return; } const ventaData = { clienteId: clienteId, tenisId: tenisId, precioPactado: precioPactado, saldo: precioPactado, fecha: new Date(), vendedor: currentUser.displayName, comisionPagada: false }; const batch = writeBatch(db); const ventaRef = doc(collection(db, getSharedCollectionPath('ventas'))); batch.set(ventaRef, ventaData); const inventarioRef = doc(db, getSharedCollectionPath('inventario'), tenisId); batch.update(inventarioRef, { status: "vendido" }); try { await batch.commit(); hideModal(document.getElementById('ventaModal')); showAlert('Éxito', 'Venta registrada correctamente.', 'success'); } catch(error) { console.error("Error creating sale: ", error); showAlert('Error', 'No se pudo registrar la venta.', 'error'); } });
+document.getElementById('ventaForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const clienteId = document.getElementById('ventaCliente').value;
+  if (!clienteId || ventaItems.length === 0) {
+    showAlert(
+      'Datos incompletos',
+      'Selecciona un cliente y al menos un producto.',
+      'warning'
+    );
+    return;
+  }
+  const currentUser = auth.currentUser;
+  if (!currentUser) {
+    showAlert(
+      'Error',
+      'No se ha podido identificar al usuario. Por favor, recarga la página.',
+      'error'
+    );
+    return;
+  }
+
+  const batch = writeBatch(db);
+  const ventasCreadas = [];
+  ventaItems.forEach((item) => {
+    const ventaData = {
+      clienteId,
+      tenisId: item.id,
+      precioPactado: item.precio,
+      saldo: item.precio,
+      fecha: new Date(),
+      vendedor: currentUser.displayName,
+      comisionPagada: false,
+    };
+    const ventaRef = doc(collection(db, getSharedCollectionPath('ventas')));
+    ventasCreadas.push({ data: ventaData });
+    batch.set(ventaRef, ventaData);
+    const inventarioRef = doc(db, getSharedCollectionPath('inventario'), item.id);
+    batch.update(inventarioRef, { status: 'vendido' });
+  });
+
+  try {
+    await batch.commit();
+    hideModal(document.getElementById('ventaModal'));
+    showAlert('Éxito', 'Venta registrada correctamente.', 'success');
+    const cliente = allClientes[clienteId];
+    generateVentaTicketPDF(cliente, ventasCreadas.map((v) => v.data));
+  } catch (error) {
+    console.error('Error creating sale: ', error);
+    showAlert('Error', 'No se pudo registrar la venta.', 'error');
+  }
+});
 document.getElementById('editVentaForm').addEventListener('submit', async(e) => { e.preventDefault(); const id = document.getElementById('editVentaId').value; const nuevoClienteId = document.getElementById('editVentaCliente').value; const nuevoPrecio = parseFloat(document.getElementById('editVentaPrecio').value); const ventaOriginal = localVentas.find(v => v.id === id); if(!ventaOriginal) { showAlert('Error', 'No se encontró la venta original para actualizar.', 'error'); return; } const abonosAcumulados = ventaOriginal.precioPactado - ventaOriginal.saldo; const nuevoSaldo = nuevoPrecio - abonosAcumulados; if(nuevoSaldo < 0) { showAlert('Precio inválido', 'El nuevo precio no puede ser menor que el total ya abonado.', 'warning'); return; } const ventaRef = doc(db, getSharedCollectionPath('ventas'), id); try { await updateDoc(ventaRef, { clienteId: nuevoClienteId, precioPactado: nuevoPrecio, saldo: nuevoSaldo }); hideModal(document.getElementById('editVentaModal')); showAlert('Éxito', 'La venta ha sido actualizada correctamente.', 'success'); } catch (error) { console.error("Error updating sale: ", error); showAlert('Error', 'No se pudieron guardar los cambios en la venta.', 'error'); } });
 document.getElementById('abonoForm').addEventListener('submit', async(e) => { e.preventDefault(); const ventaId = document.getElementById('abonoVentaId').value; const monto = parseFloat(document.getElementById('abonoMonto').value); const metodoPago = document.getElementById('abonoMetodoPago').value; const currentUser = auth.currentUser; if (!monto || monto <= 0 || !metodoPago) { showAlert('Datos incompletos', 'Por favor, ingresa un monto válido y selecciona un método de pago.', 'warning'); return; } const ventaRef = doc(db, getSharedCollectionPath('ventas'), ventaId); const ventaSnap = await getDoc(ventaRef); const venta = ventaSnap.data(); if (monto > venta.saldo) { showAlert('Monto Excedido', 'El abono no puede ser mayor que el saldo pendiente.', 'warning'); return; } const batch = writeBatch(db); const abonoRef = doc(collection(db, getSharedCollectionPath('abonos'))); batch.set(abonoRef, { ventaId: ventaId, monto: monto, fecha: new Date(), metodoPago: metodoPago, estado: 'pendiente', enPosesionDe: currentUser.displayName, cobradoPor: currentUser.displayName }); batch.update(ventaRef, { saldo: venta.saldo - monto }); try { await batch.commit(); hideModal(document.getElementById('abonoModal')); showAlert('Éxito', 'Abono registrado correctamente.', 'success'); } catch(error) { console.error("Error adding payment: ", error); showAlert('Error', 'No se pudo registrar el abono.', 'error'); } });
 document.getElementById('editAbonoForm').addEventListener('submit', async (e) => { e.preventDefault(); const abonoId = document.getElementById('editAbonoId').value; const ventaId = document.getElementById('editAbonoVentaId').value; const originalMonto = parseFloat(document.getElementById('editAbonoOriginalMonto').value); const nuevoMonto = parseFloat(document.getElementById('editAbonoMonto').value); const nuevoMetodo = document.getElementById('editAbonoMetodoPago').value; const nuevaFechaStr = document.getElementById('editAbonoFecha').value; if (!nuevoMonto || nuevoMonto <= 0 || !nuevaFechaStr) { showAlert('Datos incompletos', 'Asegúrate de que el monto y la fecha sean válidos.', 'warning'); return; } const nuevaFecha = new Date(nuevaFechaStr); const userTimezoneOffset = nuevaFecha.getTimezoneOffset() * 60000; const correctedDate = new Date(nuevaFecha.getTime() + userTimezoneOffset); const ventaRef = doc(db, getSharedCollectionPath('ventas'), ventaId); const abonoRef = doc(db, getSharedCollectionPath('abonos'), abonoId); const batch = writeBatch(db); try { const ventaSnap = await getDoc(ventaRef); const ventaData = ventaSnap.data(); const diferencia = nuevoMonto - originalMonto; const nuevoSaldo = ventaData.saldo - diferencia; if (nuevoSaldo < 0) { showAlert('Monto Excedido', 'El nuevo monto hace que el total pagado supere el precio de la venta. Por favor, ajústalo.', 'warning'); return; } batch.update(abonoRef, { monto: nuevoMonto, metodoPago: nuevoMetodo, fecha: Timestamp.fromDate(correctedDate) }); batch.update(ventaRef, { saldo: nuevoSaldo }); await batch.commit(); hideModal(document.getElementById('editAbonoModal')); if (!document.getElementById('abonoModal').classList.contains('hidden')) { hideModal(document.getElementById('abonoModal')); } showAlert('Éxito', 'El abono ha sido actualizado correctamente.', 'success'); } catch (error) { console.error("Error updating payment:", error); showAlert('Error', 'No se pudieron guardar los cambios en el abono.', 'error'); } });
@@ -1491,7 +1662,8 @@ document.getElementById('openInventarioModalBtn').addEventListener('click', () =
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const openModal = document.querySelector('.modal:not(.hidden)'); if (openModal) { hideModal(openModal); } } });
 document.querySelectorAll('.modal').forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('.closeModalBtn')) { hideModal(modal); } }); });
 document.getElementById('generateDescBtn').addEventListener('click', generateProductDescription);
-document.getElementById('ventaTenis').addEventListener('change', (e) => { const selectedOption = e.target.options[e.target.selectedIndex]; const precio = selectedOption.dataset.precio; document.getElementById('ventaPrecio').value = precio || ''; });
+document.getElementById('productoSearch').addEventListener('input', renderProductoResultados);
+setupClearableSearch('productoSearch', 'clearSearchProducto');
 document.getElementById('copyCobranzaBtn').addEventListener('click', () => { const messageTextarea = document.getElementById('cobranzaMessage'); messageTextarea.select(); document.execCommand('copy'); showAlert('Copiado', 'Mensaje copiado al portapapeles.', 'success'); });
 document.getElementById('regenerateCobranzaBtn').addEventListener('click', () => { const cobranzaModal = document.getElementById('cobranzaModal'); const clienteId = cobranzaModal.dataset.clienteId; const cliente = allClientes[clienteId]; const ventasCliente = localVentas.filter(v => v.clienteId === clienteId && v.saldo > 0); generateCobranzaMessage(cliente, ventasCliente); });
 
