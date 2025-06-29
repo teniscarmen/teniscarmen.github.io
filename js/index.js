@@ -518,10 +518,10 @@ datalist.innerHTML += `<option value="${brand}">`;
 }
 
 function updateInventoryHeader(inventario) {
-const totalValue = inventario
-.filter(item => item.status === 'disponible')
-.reduce((sum, item) => sum + (item.precio || 0), 0);
+const disponibles = inventario.filter(item => item.status === 'disponible');
+const totalValue = disponibles.reduce((sum, item) => sum + (item.precio || 0), 0);
 document.getElementById('valor-total-inventario').textContent = formatCurrency(totalValue);
+document.getElementById('cantidad-total-productos').textContent = `${disponibles.length} productos`;
 }
 
 function renderInventario() {
