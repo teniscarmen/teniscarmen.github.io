@@ -2039,12 +2039,17 @@ ${comprasHtml}
       grouped[cat][gen].push(item);
     });
 
-    let catalogHtml = `
-    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
+    const today = new Date().toLocaleDateString('es-MX');
+    const headerHtml = `
       <div style="text-align:center;margin-bottom:1rem;">
         <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
-        <h1 style="margin-top:0.5rem;font-size:1.5rem;font-weight:600;">Catálogo de Productos Disponibles</h1>
-      </div>
+        <h1 style="margin-top:0.5rem;font-size:1.5rem;font-weight:600;">Productos Disponibles</h1>
+        <p style="margin:0;font-size:0.9rem;">${today}</p>
+      </div>`;
+
+    let catalogHtml = `
+    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
+      ${headerHtml}
     `;
     let itemCount = 0;
     Object.keys(grouped).forEach((cat) => {
@@ -2054,7 +2059,10 @@ ${comprasHtml}
         catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
         genders[gen].forEach((item) => {
           if (itemCount > 0 && itemCount % 7 === 0) {
-            catalogHtml += '</ul><div style="page-break-after:always;"></div><ul style="list-style:none;padding-left:0;">';
+            catalogHtml +=
+              '</ul></div><div style="page-break-after:always;"></div><div style="font-family:\'Inter\',sans-serif;padding:1rem;color:#1f2937;">' +
+              headerHtml +
+              '<ul style="list-style:none;padding-left:0;">';
           }
           catalogHtml += `
           <li style="display:flex;gap:0.5rem;margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
