@@ -1,6 +1,6 @@
 # Tenis Carmen
 
-Aplicación web para la gestión de ventas de tenis. Este repositorio contiene una página estática con integración a Firebase y Gemini API.
+Aplicación web para la gestión de ventas de tenis, ropa y accesorios. Este repositorio contiene una página estática con integración a Firebase y Gemini API.
 
 ## Desarrollo
 

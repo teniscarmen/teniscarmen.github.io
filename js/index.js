@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let localCortes = [];
   let ventaItems = [];
 
+  const categorias = ['Tenis', 'Ropa', 'Accesorios'];
+
   // --- UTILS ---
   const formatDate = (timestamp) => {
     if (!timestamp) return 'N/A';
@@ -655,6 +657,14 @@ ${Object.entries(comisionesPorVendedor)
     });
     brandFilter.value = currentBrand;
 
+    const categoriaFilter = document.getElementById('filterCategoria');
+    const currentCategoria = categoriaFilter.value;
+    categoriaFilter.innerHTML = '<option value="">Todas</option>';
+    categorias.forEach((cat) => {
+      categoriaFilter.innerHTML += `<option value="${cat}">${cat}</option>`;
+    });
+    categoriaFilter.value = currentCategoria;
+
     const datalist = document.getElementById('marcasList');
     datalist.innerHTML = '';
     brands.forEach((brand) => {
@@ -685,6 +695,7 @@ ${Object.entries(comisionesPorVendedor)
       .value.toUpperCase()
       .trim();
     const brand = document.getElementById('filterMarca').value;
+    const categoria = document.getElementById('filterCategoria').value;
     const gender = document.getElementById('filterGenero').value;
     const size = document
       .getElementById('filterTalla')
@@ -704,6 +715,11 @@ ${Object.entries(comisionesPorVendedor)
     }
     if (brand) {
       filteredInventario = filteredInventario.filter((i) => i.marca === brand);
+    }
+    if (categoria) {
+      filteredInventario = filteredInventario.filter(
+        (i) => (i.categoria || 'Tenis') === categoria,
+      );
     }
     if (gender) {
       filteredInventario = filteredInventario.filter(
@@ -738,7 +754,7 @@ ${Object.entries(comisionesPorVendedor)
     }
 
     if (filteredInventario.length === 0) {
-      list.innerHTML = `<p class="text-center text-gray-500 py-8">No se encontraron tenis que coincidan con los filtros.</p>`;
+      list.innerHTML = `<p class="text-center text-gray-500 py-8">No se encontraron productos que coincidan con los filtros.</p>`;
       return;
     }
 
@@ -763,6 +779,7 @@ ${Object.entries(comisionesPorVendedor)
 <div class="mt-2 text-sm text-gray-600 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
 <p><span class="font-semibold text-gray-500">Talla:</span> ${item.talla} ${item.tallaTipo || ''}</p>
 <p><span class="font-semibold text-gray-500">SKU:</span> ${item.sku || 'N/A'}</p>
+<p><span class="font-semibold text-gray-500">Categoría:</span> ${item.categoria || 'Tenis'}</p>
 <p><span class="font-semibold text-gray-500">Género:</span> ${item.genero || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Estilo:</span> ${item.estilo || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Material:</span> ${item.material || 'N/A'}</p>
@@ -1127,6 +1144,8 @@ ${obsHtml}
       document.getElementById('inventarioMarca').value = item.marca || '';
       document.getElementById('inventarioModelo').value = item.modelo;
       document.getElementById('inventarioSku').value = item.sku || '';
+      document.getElementById('inventarioCategoria').value =
+        item.categoria || 'Tenis';
       document.getElementById('inventarioTalla').value = item.talla;
       document.getElementById('inventarioTallaTipo').value =
         item.tallaTipo || 'MX';
@@ -1139,7 +1158,7 @@ ${obsHtml}
       document.getElementById('inventarioCosto').value = item.costo;
       document.getElementById('inventarioPrecio').value = item.precio;
       document.getElementById('inventarioModalTitle').textContent =
-        'Editar Tenis';
+        'Editar Producto';
       showModal(document.getElementById('inventarioModal'));
     }
   }
@@ -2028,6 +2047,7 @@ ${comprasHtml}
     // Filter listeners
     [
       'filterMarca',
+      'filterCategoria',
       'filterGenero',
       'filterTalla',
       'sortInventario',
@@ -2039,6 +2059,7 @@ ${comprasHtml}
       .getElementById('clearInventoryFilters')
       .addEventListener('click', () => {
         document.getElementById('filterMarca').value = '';
+        document.getElementById('filterCategoria').value = '';
         document.getElementById('filterGenero').value = '';
         document.getElementById('filterTalla').value = '';
         document.getElementById('sortInventario').value = 'reciente';
@@ -2112,6 +2133,7 @@ ${comprasHtml}
             .getElementById('inventarioModelo')
             .value.toUpperCase(),
           marca: document.getElementById('inventarioMarca').value.toUpperCase(),
+          categoria: document.getElementById('inventarioCategoria').value,
           sku: skuValue,
           talla: document.getElementById('inventarioTalla').value.toUpperCase(),
           tallaTipo: document.getElementById('inventarioTallaTipo').value,
@@ -2479,8 +2501,9 @@ ${comprasHtml}
         document.getElementById('inventarioForm').reset();
         document.getElementById('inventarioSku').value = '';
         document.getElementById('inventarioId').value = '';
+        document.getElementById('inventarioCategoria').value = '';
         document.getElementById('inventarioModalTitle').textContent =
-          'Agregar Tenis al Inventario';
+          'Agregar Producto al Inventario';
         showModal(document.getElementById('inventarioModal'));
       });
     document.addEventListener('keydown', (e) => {
