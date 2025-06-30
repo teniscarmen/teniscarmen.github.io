@@ -2046,19 +2046,26 @@ ${comprasHtml}
         <h1 style="margin-top:0.5rem;font-size:1.5rem;font-weight:600;">Catálogo de Productos Disponibles</h1>
       </div>
     `;
+    let itemCount = 0;
     Object.keys(grouped).forEach((cat) => {
       catalogHtml += `<h2 style="font-size:1.3rem;margin-top:1rem;border-bottom:1px solid #e5e7eb;">${cat}</h2>`;
       const genders = grouped[cat];
       Object.keys(genders).forEach((gen) => {
         catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
         genders[gen].forEach((item) => {
+          if (itemCount > 0 && itemCount % 5 === 0) {
+            catalogHtml += '</ul><div style="page-break-after:always;"></div><ul style="list-style:none;padding-left:0;">';
+          }
           catalogHtml += `
-          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
-            <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
-            Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
-            Precio: ${formatCurrency(item.precio || 0)}<br>
-            ${item.descripcion ? `<span style="font-size:0.9rem;color:#4b5563;">${item.descripcion}</span>` : ''}
+          <li style="display:flex;gap:0.5rem;margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
+            <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:60px;height:60px;object-fit:cover;border-radius:4px;" onerror="this.onerror=null;this.src='tenis_default.jpg';">
+            <div>
+              <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
+              Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
+              Precio: ${formatCurrency(item.precio || 0)}
+            </div>
           </li>`;
+          itemCount += 1;
         });
         catalogHtml += '</ul>';
       });
