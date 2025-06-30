@@ -1880,7 +1880,6 @@ teniscarmen1@gmail.com
 <tr>
 <th style="padding: 10px; text-align: left;">Cliente</th>
 <th style="padding: 10px; text-align: left;">Teléfono</th>
-<th style="padding: 10px; text-align: left;">ID de Cliente</th>
 </tr>
 </thead>
 <tbody>
