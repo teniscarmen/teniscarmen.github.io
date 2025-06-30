@@ -1940,17 +1940,29 @@ ${comprasHtml}
       html2canvas: { scale: 2 },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
-    html2pdf()
-      .from(ticketHtml)
-      .set(opt)
-      .save()
-      .then(() => {
-        const phone = cliente.telefono.replace(/\D/g, '');
-        const msg = encodeURIComponent(
-          `Gracias por tu compra. Total: ${formatCurrency(total)}.`,
-        );
-        window.open(`https://wa.me/52${phone}?text=${msg}`, '_blank');
-      });
+
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '0';
+    container.style.left = '-9999px';
+    container.style.visibility = 'hidden';
+    container.innerHTML = ticketHtml;
+    document.body.appendChild(container);
+
+    setTimeout(() => {
+      html2pdf()
+        .from(container)
+        .set(opt)
+        .save()
+        .then(() => {
+          document.body.removeChild(container);
+          const phone = cliente.telefono.replace(/\D/g, '');
+          const msg = encodeURIComponent(
+            `Gracias por tu compra. Total: ${formatCurrency(total)}.`,
+          );
+          window.open(`https://wa.me/52${phone}?text=${msg}`, '_blank');
+        });
+    }, 100);
   }
 
   // --- APP INITIALIZATION ---
