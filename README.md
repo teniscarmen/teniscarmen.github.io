@@ -22,3 +22,10 @@ El código JavaScript se encuentra ahora en `js/index.js` como módulo ES. Aseg�
 ## Despliegue
 
 Se recomienda utilizar una plataforma como Firebase Hosting o GitHub Pages. Para un proceso de despliegue automatizado puedes configurar GitHub Actions.
+
+## Solución de Problemas
+
+Si al generar el ticket de venta el PDF aparece en blanco:
+
+1. Verifica que abras la aplicación desde un servidor local y no directamente con `file://`. Puedes usar `npx serve .` o la extensión *Live Server*.
+2. Asegúrate de que las librerías externas se cargaron correctamente antes de generar el ticket.
