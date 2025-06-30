@@ -22,3 +22,11 @@ El código JavaScript se encuentra ahora en `js/index.js` como módulo ES. Aseg�
 ## Despliegue
 
 Se recomienda utilizar una plataforma como Firebase Hosting o GitHub Pages. Para un proceso de despliegue automatizado puedes configurar GitHub Actions.
+
+## Problemas comunes
+
+Si al generar los archivos PDF notas que las imágenes o estilos no se cargan correctamente, asegúrate de abrir la aplicación mediante un servidor local y no directamente con el archivo `index.html`.
+
+```bash
+npx serve .
+```

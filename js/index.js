@@ -1936,7 +1936,7 @@ ${comprasHtml}
       margin: 1,
       filename: `Estado_de_Cuenta_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
     html2pdf().from(reportHtml).set(opt).save();
@@ -1992,7 +1992,7 @@ ${comprasHtml}
       margin: 0.5,
       filename: `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
 
