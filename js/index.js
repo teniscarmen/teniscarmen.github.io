@@ -2017,6 +2017,69 @@ ${comprasHtml}
     html2pdf().from(ticketHtml).set(opt).save();
   }
 
+  function generateCatalogPDF() {
+    const disponibles = localInventario.filter(
+      (item) => item.status === 'disponible',
+    );
+    if (disponibles.length === 0) {
+      showAlert(
+        'Sin Productos',
+        'No hay artículos disponibles para generar el catálogo.',
+        'info',
+      );
+      return;
+    }
+
+    const grouped = {};
+    disponibles.forEach((item) => {
+      const cat = item.categoria || 'Otros';
+      const gen = item.genero || 'General';
+      if (!grouped[cat]) grouped[cat] = {};
+      if (!grouped[cat][gen]) grouped[cat][gen] = [];
+      grouped[cat][gen].push(item);
+    });
+
+    let catalogHtml = `
+    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
+      <div style="text-align:center;margin-bottom:1rem;">
+        <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
+        <h1 style="margin-top:0.5rem;font-size:1.5rem;font-weight:600;">Catálogo de Productos Disponibles</h1>
+      </div>
+    `;
+    Object.keys(grouped).forEach((cat) => {
+      catalogHtml += `<h2 style="font-size:1.3rem;margin-top:1rem;border-bottom:1px solid #e5e7eb;">${cat}</h2>`;
+      const genders = grouped[cat];
+      Object.keys(genders).forEach((gen) => {
+        catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
+        genders[gen].forEach((item) => {
+          catalogHtml += `
+          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
+            <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
+            Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
+            Precio: ${formatCurrency(item.precio || 0)}<br>
+            ${item.descripcion ? `<span style="font-size:0.9rem;color:#4b5563;">${item.descripcion}</span>` : ''}
+          </li>`;
+        });
+        catalogHtml += '</ul>';
+      });
+    });
+    catalogHtml += '</div>';
+
+    const opt = {
+      margin: 0.5,
+      filename: `Catalogo_${new Date().toLocaleDateString('es-MX')}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    };
+
+    html2pdf().from(catalogHtml).set(opt).save();
+  }
+
+  function handleDownloadCatalog() {
+    generateCatalogPDF();
+  }
+
   // --- APP INITIALIZATION ---
   function initializeAppListeners(user) {
     unsubscribeAll();
@@ -2506,6 +2569,9 @@ ${comprasHtml}
           'Agregar Producto al Inventario';
         showModal(document.getElementById('inventarioModal'));
       });
+    document
+      .getElementById('downloadCatalogBtn')
+      .addEventListener('click', handleDownloadCatalog);
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const openModal = document.querySelector('.modal:not(.hidden)');
