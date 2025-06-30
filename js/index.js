@@ -985,6 +985,8 @@ ${obsHtml}
 
 <div class="w-full sm:w-auto flex-shrink-0 flex sm:flex-col justify-end gap-2 pt-2 sm:pt-0 sm:border-l sm:pl-4">
 <button class="addAbonoBtn text-sm text-white font-bold py-2 px-3 rounded-md	 flex items-center justify-center ${v.saldo <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600'}" data-id="${v.id}" ${v.saldo <= 0 ? 'disabled' : ''} title="Abonar"><i class="fas fa-hand-holding-dollar fa-lg"></i></button>
+<button class="ticketVentaBtn text-sm text-gray-500 hover:text-teal-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Ticket PDF"><i class="fas fa-file-pdf fa-lg"></i></button>
+<button class="whatsappVentaBtn text-sm text-gray-500 hover:text-green-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Enviar WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></button>
 <button class="editVentaBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Editar Venta"><i class="fas fa-edit fa-lg"></i></button>
 <button class="deleteVentaBtn text-sm text-gray-500 hover:text-red-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Eliminar Venta"><i class="fas fa-trash fa-lg"></i></button>
 </div>
@@ -1001,6 +1003,12 @@ ${obsHtml}
     document
       .querySelectorAll('.editVentaBtn')
       .forEach((btn) => btn.addEventListener('click', handleEditVenta));
+    document
+      .querySelectorAll('.ticketVentaBtn')
+      .forEach((btn) => btn.addEventListener('click', handleGenerateVentaTicket));
+    document
+      .querySelectorAll('.whatsappVentaBtn')
+      .forEach((btn) => btn.addEventListener('click', handleSendVentaWhatsapp));
   }
 
   function renderCortesXHistory(cortes) {
@@ -1579,6 +1587,53 @@ ${obsHtml}
     showModal(document.getElementById('abonoCuentaModal'));
   }
 
+  function getVentaGrupo(venta) {
+    return localVentas.filter(
+      (v) =>
+        v.clienteId === venta.clienteId &&
+        v.vendedor === venta.vendedor &&
+        v.fecha.seconds === venta.fecha.seconds,
+    );
+  }
+
+  function handleGenerateVentaTicket(e) {
+    const ventaId = e.currentTarget.closest('[data-id]').dataset.id;
+    const venta = localVentas.find((v) => v.id === ventaId);
+    if (!venta) return;
+    const cliente = allClientes[venta.clienteId];
+    if (!cliente) return;
+    const grupo = getVentaGrupo(venta);
+    generateVentaTicketPDF(cliente, grupo);
+  }
+
+  function handleSendVentaWhatsapp(e) {
+    const ventaId = e.currentTarget.closest('[data-id]').dataset.id;
+    const venta = localVentas.find((v) => v.id === ventaId);
+    if (!venta) return;
+    const cliente = allClientes[venta.clienteId];
+    if (!cliente) return;
+    const grupo = getVentaGrupo(venta);
+    const fechaVenta = new Date(venta.fecha.seconds * 1000).toLocaleDateString(
+      'es-MX',
+    );
+    const vendedor = venta.vendedor || 'N/A';
+    const detalles = grupo
+      .map((v) => {
+        const prod = allInventario[v.tenisId];
+        const desc = prod
+          ? `${prod.marca} ${prod.modelo}`
+          : v.tenisId;
+        return `- ${desc}: ${formatCurrency(v.precioPactado)}`;
+      })
+      .join('\n');
+    const total = grupo.reduce((sum, v) => sum + v.precioPactado, 0);
+    const msg = `Compra ${fechaVenta}\nVendedor: ${vendedor}\n${detalles}\nTotal: ${formatCurrency(
+      total,
+    )}`;
+    const phone = cliente.telefono.replace(/\D/g, '');
+    window.open(`https://wa.me/52${phone}?text=${encodeURIComponent(msg)}`);
+  }
+
   async function handleOpenCobranzaModal(e) {
     const clienteId = e.currentTarget.dataset.id;
     if (!clienteId) return;
@@ -1953,11 +2008,6 @@ ${comprasHtml}
       .save()
       .then(() => {
         document.body.removeChild(container);
-        const phone = cliente.telefono.replace(/\D/g, '');
-        const msg = encodeURIComponent(
-          `Gracias por tu compra. Total: ${formatCurrency(total)}.`,
-        );
-        window.open(`https://wa.me/52${phone}?text=${msg}`, '_blank');
       });
   }
 
@@ -2180,11 +2230,6 @@ ${comprasHtml}
           await batch.commit();
           hideModal(document.getElementById('ventaModal'));
           showAlert('Éxito', 'Venta registrada correctamente.', 'success');
-          const cliente = allClientes[clienteId];
-          generateVentaTicketPDF(
-            cliente,
-            ventasCreadas.map((v) => v.data),
-          );
         } catch (error) {
           console.error('Error creating sale: ', error);
           showAlert('Error', 'No se pudo registrar la venta.', 'error');
