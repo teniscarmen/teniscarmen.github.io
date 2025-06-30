@@ -2053,7 +2053,7 @@ ${comprasHtml}
       Object.keys(genders).forEach((gen) => {
         catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
         genders[gen].forEach((item) => {
-          if (itemCount > 0 && itemCount % 5 === 0) {
+          if (itemCount > 0 && itemCount % 8 === 0) {
             catalogHtml += '</ul><div style="page-break-after:always;"></div><ul style="list-style:none;padding-left:0;">';
           }
           catalogHtml += `
