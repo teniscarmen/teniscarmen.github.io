@@ -1005,7 +1005,9 @@ ${obsHtml}
       .forEach((btn) => btn.addEventListener('click', handleEditVenta));
     document
       .querySelectorAll('.ticketVentaBtn')
-      .forEach((btn) => btn.addEventListener('click', handleGenerateVentaTicket));
+      .forEach((btn) =>
+        btn.addEventListener('click', handleGenerateVentaTicket),
+      );
     document
       .querySelectorAll('.whatsappVentaBtn')
       .forEach((btn) => btn.addEventListener('click', handleSendVentaWhatsapp));
@@ -1620,9 +1622,7 @@ ${obsHtml}
     const detalles = grupo
       .map((v) => {
         const prod = allInventario[v.tenisId];
-        const desc = prod
-          ? `${prod.marca} ${prod.modelo}`
-          : v.tenisId;
+        const desc = prod ? `${prod.marca} ${prod.modelo}` : v.tenisId;
         return `- ${desc}: ${formatCurrency(v.precioPactado)}`;
       })
       .join('\n');
@@ -1996,19 +1996,7 @@ ${comprasHtml}
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
 
-    const container = document.createElement('div');
-    container.style.position = 'fixed';
-    container.style.left = '-9999px';
-    container.innerHTML = ticketHtml;
-    document.body.appendChild(container);
-
-    html2pdf()
-      .from(container)
-      .set(opt)
-      .save()
-      .then(() => {
-        document.body.removeChild(container);
-      });
+    html2pdf().from(ticketHtml).set(opt).save();
   }
 
   // --- APP INITIALIZATION ---
