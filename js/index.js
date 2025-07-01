@@ -2259,6 +2259,13 @@ ${comprasHtml}
       cortesZContainer.classList.add('hidden');
     }
 
+    const exportDataSection = document.getElementById('export-data-section');
+    if (user && user.displayName === 'Alfredo Cuellar') {
+      exportDataSection.classList.remove('hidden');
+    } else {
+      exportDataSection.classList.add('hidden');
+    }
+
     // Filter listeners
     [
       'filterMarca',
