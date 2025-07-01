@@ -118,6 +118,108 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.removeChild(link);
   };
 
+  const backupDatabase = async () => {
+    const collections = [
+      'clientes',
+      'inventario',
+      'ventas',
+      'abonos',
+      'cortes',
+    ];
+    const backup = {};
+    try {
+      for (const col of collections) {
+        const snap = await getDocs(
+          collection(db, getSharedCollectionPath(col)),
+        );
+        backup[col] = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      }
+      const blob = new Blob([JSON.stringify(backup, null, 2)], {
+        type: 'application/json;charset=utf-8;',
+      });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `backup_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error creating backup:', error);
+      showAlert('Error', 'No se pudo generar el respaldo.', 'error');
+    }
+  };
+
+  const restoreDatabase = (file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      let data;
+      try {
+        data = JSON.parse(e.target.result);
+      } catch (err) {
+        console.error('Invalid backup file:', err);
+        showAlert('Error', 'Archivo de respaldo inválido.', 'error');
+        return;
+      }
+
+      const reviveTimestamps = (obj) => {
+        if (obj && typeof obj === 'object') {
+          if (
+            Object.keys(obj).length === 2 &&
+            typeof obj.seconds === 'number' &&
+            typeof obj.nanoseconds === 'number'
+          ) {
+            return new Timestamp(obj.seconds, obj.nanoseconds);
+          }
+          Object.keys(obj).forEach((k) => {
+            obj[k] = reviveTimestamps(obj[k]);
+          });
+        }
+        return obj;
+      };
+
+      showAlert(
+        'Confirmar Restauración',
+        'Esto reemplazará los datos actuales con los del respaldo seleccionado. ¿Continuar?',
+        'warning',
+        async () => {
+          try {
+            const batch = writeBatch(db);
+            const collections = [
+              'clientes',
+              'inventario',
+              'ventas',
+              'abonos',
+              'cortes',
+            ];
+            for (const col of collections) {
+              const docsArr = Array.isArray(data[col]) ? data[col] : [];
+              docsArr.forEach((docData) => {
+                const { id, ...rest } = docData;
+                const restored = reviveTimestamps({ ...rest });
+                batch.set(doc(db, getSharedCollectionPath(col), id), restored);
+              });
+            }
+            await batch.commit();
+            showAlert(
+              'Éxito',
+              'La base de datos ha sido restaurada.',
+              'success',
+            );
+          } catch (err) {
+            console.error('Error restoring backup:', err);
+            showAlert(
+              'Error',
+              'No se pudo restaurar la base de datos.',
+              'error',
+            );
+          }
+        },
+      );
+    };
+    reader.readAsText(file);
+  };
+
   // --- MODALS AND ALERTS ---
   const showModal = (modal) => {
     modal.classList.remove('hidden');
@@ -2642,6 +2744,23 @@ ${comprasHtml}
       .addEventListener('click', () =>
         exportArrayToCSV(allAbonos, 'abonos.csv'),
       );
+    document
+      .getElementById('backupDbBtn')
+      .addEventListener('click', backupDatabase);
+    document
+      .getElementById('restoreDbBtn')
+      .addEventListener('click', () =>
+        document.getElementById('restoreFileInput').click(),
+      );
+    document
+      .getElementById('restoreFileInput')
+      .addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          restoreDatabase(file);
+        }
+        e.target.value = '';
+      });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const openModal = document.querySelector('.modal:not(.hidden)');
