@@ -1883,7 +1883,7 @@ ${abonosHtml}
 <p style="font-size: 0.85rem; color: #6b7280; line-height: 1.4;">
 www.tenischidos.xyz<br>
 Aguascalientes, Ags.<br>
-teniscarmen1@gmail.com
+carmen@tenischidos.xyz
 </p>
 </div>
 <div style="text-align: right;">
