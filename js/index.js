@@ -1711,7 +1711,7 @@ ${obsHtml}
       })
       .join('\n');
 
-    const prompt = `Actúa como un asistente de cobranza para un negocio de venta de tenis. Escribe un mensaje de WhatsApp para el cliente "${cliente.nombre}". El mensaje debe ser en un tono amigable. El objetivo es recordarle amablemente sobre su saldo pendiente total de ${formatCurrency(saldoTotal)}. Menciona sutilmente los artículos que tiene pendientes de pago. Los artículos son:\n${detallesArticulos}\n\nOfrece opciones para que pueda realizar su pago. El mensaje debe ser conciso y no agresivo.`;
+    const prompt = `Actúa como un asistente de cobranza para un negocio de venta de tenis, ropa y accesorios de moda. Escribe un mensaje de WhatsApp para el cliente "${cliente.nombre}". El mensaje debe ser en un tono amigable. El objetivo es recordarle amablemente sobre su saldo pendiente total de ${formatCurrency(saldoTotal)}. Menciona sutilmente los artículos que tiene pendientes de pago. Los artículos son:\n${detallesArticulos}\n\nRecordandole que puede realizar sus abonos mediante pagos en efectivo o transferencia bancaraia a la tarjeta BANORTE N° 4189 1430 5770 2998 a nomre de Carmen Reyes Nuñez. El mensaje debe ser conciso y no agresivo.`;
 
     try {
       let chatHistory = [{ role: 'user', parts: [{ text: prompt }] }];
@@ -1881,7 +1881,7 @@ ${abonosHtml}
 <div style="text-align: left;">
 <img src="logo.png" alt="Logo del Negocio" style="width: 140px; margin-bottom: 0.5rem;">
 <p style="font-size: 0.85rem; color: #6b7280; line-height: 1.4;">
-Venta de Tenis<br>
+www.tenischidos.xyz<br>
 Aguascalientes, Ags.<br>
 teniscarmen1@gmail.com
 </p>
