@@ -2260,7 +2260,7 @@ ${comprasHtml}
     }
 
     const exportDataSection = document.getElementById('export-data-section');
-    if (user && user.displayName === 'Alfredo Cuellar') {
+    if (user && user.displayName === 'Juan Alfredo Cuellar Piedra') {
       exportDataSection.classList.remove('hidden');
     } else {
       exportDataSection.classList.add('hidden');
