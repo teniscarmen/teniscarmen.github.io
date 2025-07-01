@@ -83,6 +83,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     return phoneStr;
   };
 
+  const exportArrayToCSV = (arr, filename) => {
+    if (!Array.isArray(arr) || arr.length === 0) {
+      showAlert('Sin datos', 'No hay información para exportar.', 'info');
+      return;
+    }
+    const headers = Object.keys(arr[0]);
+    const csv = [headers.join(',')];
+    arr.forEach((item) => {
+      const row = headers
+        .map((h) => {
+          let val = item[h];
+          if (val === null || val === undefined) return '';
+          if (typeof val === 'object') {
+            if ('seconds' in val) {
+              val = new Date(val.seconds * 1000).toISOString();
+            } else {
+              val = JSON.stringify(val);
+            }
+          }
+          return `"${String(val).replace(/"/g, '""')}"`;
+        })
+        .join(',');
+      csv.push(row);
+    });
+    const blob = new Blob([csv.join('\n')], {
+      type: 'text/csv;charset=utf-8;',
+    });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // --- MODALS AND ALERTS ---
   const showModal = (modal) => {
     modal.classList.remove('hidden');
@@ -2587,6 +2622,26 @@ ${comprasHtml}
     document
       .getElementById('downloadCatalogBtn')
       .addEventListener('click', handleDownloadCatalog);
+    document
+      .getElementById('exportClientesBtn')
+      .addEventListener('click', () =>
+        exportArrayToCSV(localClientes, 'clientes.csv'),
+      );
+    document
+      .getElementById('exportInventarioBtn')
+      .addEventListener('click', () =>
+        exportArrayToCSV(localInventario, 'inventario.csv'),
+      );
+    document
+      .getElementById('exportVentasBtn')
+      .addEventListener('click', () =>
+        exportArrayToCSV(localVentas, 'ventas.csv'),
+      );
+    document
+      .getElementById('exportAbonosBtn')
+      .addEventListener('click', () =>
+        exportArrayToCSV(allAbonos, 'abonos.csv'),
+      );
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const openModal = document.querySelector('.modal:not(.hidden)');
