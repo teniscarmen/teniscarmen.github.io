@@ -3,7 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebas
 import {
   initializeFirestore,
   collection,
-  onSnapshot,
+  getDocs,
   query,
   where,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
@@ -43,6 +43,8 @@ let searchTerm = '';
 let sortOrder = '';
 
 const INVENTORY_CACHE_KEY = 'inventoryCache';
+const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
+const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 1 day
 
 function loadInventory() {
   const container = document.getElementById('productsContainer');
@@ -50,6 +52,10 @@ function loadInventory() {
     '<p class="col-span-full text-center text-gray-500">Cargando...</p>';
 
   const cached = localStorage.getItem(INVENTORY_CACHE_KEY);
+  const cachedTime = localStorage.getItem(INVENTORY_CACHE_TS_KEY);
+  const now = Date.now();
+  const cacheValid =
+    cached && cachedTime && now - Number(cachedTime) < CACHE_TTL_MS;
   if (cached) {
     try {
       allProducts = JSON.parse(cached);
@@ -60,26 +66,27 @@ function loadInventory() {
     }
   }
 
+  if (cacheValid) return;
+
   const q = query(
     collection(db, 'negocio-tenis/shared_data/inventario'),
     where('status', '==', 'disponible'),
   );
-  onSnapshot(
-    q,
-    (snap) => {
+  getDocs(q)
+    .then((snap) => {
       allProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       localStorage.setItem(INVENTORY_CACHE_KEY, JSON.stringify(allProducts));
+      localStorage.setItem(INVENTORY_CACHE_TS_KEY, String(now));
       renderFilters(allProducts);
       applyFilters();
-    },
-    (err) => {
+    })
+    .catch((err) => {
       console.error('Error cargando productos', err);
       if (!cached) {
         container.innerHTML =
           '<p class="col-span-full text-center text-gray-500">Error cargando productos</p>';
       }
-    },
-  );
+    });
 }
 
 function renderFilters(products) {
