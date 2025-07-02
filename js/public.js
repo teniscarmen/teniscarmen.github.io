@@ -95,11 +95,15 @@ function renderProducts(products) {
         )}</p>`
       : `<p class="text-indigo-600 font-bold">${formatCurrency(p.precio)}</p>`;
     card.innerHTML = `
-      <img src="${
+      <a href="${
         p.foto || 'tenis_default.jpg'
-      }" data-full="${p.foto || 'tenis_default.jpg'}" class="product-img w-full h-40 object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
-        p.modelo
-      }">
+      }" data-lightbox="products" data-title="${p.marca} ${p.modelo}">
+        <img src="${
+          p.foto || 'tenis_default.jpg'
+        }" class="product-img w-full h-40 object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
+          p.modelo
+        }" />
+      </a>
       <h3 class="mt-2 font-semibold">${p.marca} ${p.modelo}</h3>
       <p class="text-sm text-gray-500">SKU: ${p.sku || 'N/A'}</p>
       <p class="text-sm text-gray-500">Género: ${p.genero || 'N/A'}</p>
@@ -150,18 +154,6 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 document.getElementById('sortSelect').addEventListener('change', (e) => {
   sortOrder = e.target.value;
   applyFilters();
-});
-
-document.getElementById('productsContainer').addEventListener('click', (e) => {
-  const img = e.target.closest('.product-img');
-  if (!img) return;
-  const modal = document.getElementById('imageModal');
-  modal.querySelector('img').src = img.dataset.full;
-  modal.classList.remove('hidden');
-});
-
-document.getElementById('imageModal').addEventListener('click', () => {
-  document.getElementById('imageModal').classList.add('hidden');
 });
 
 const scrollBtn = document.getElementById('scrollTopBtn');
