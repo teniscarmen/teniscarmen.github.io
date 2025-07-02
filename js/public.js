@@ -35,15 +35,20 @@ async function signIn() {
 
 document.getElementById('loginPublicBtn').addEventListener('click', signIn);
 
+let allProducts = [];
+let currentCategory = '';
+let searchTerm = '';
+let sortOrder = '';
+
 async function loadInventory() {
   const q = query(
     collection(db, 'negocio-tenis/shared_data/inventario'),
     where('status', '==', 'disponible'),
   );
   const snap = await getDocs(q);
-  const products = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-  renderFilters(products);
-  renderProducts(products);
+  allProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  renderFilters(allProducts);
+  applyFilters();
 }
 
 function renderFilters(products) {
@@ -66,11 +71,8 @@ function renderFilters(products) {
       .querySelectorAll('.cat-btn')
       .forEach((b) => b.classList.remove('bg-indigo-600', 'text-white'));
     btn.classList.add('bg-indigo-600', 'text-white');
-    const cat = btn.dataset.cat;
-    const filtered = cat
-      ? products.filter((p) => (p.categoria || 'Tenis') === cat)
-      : products;
-    renderProducts(filtered);
+    currentCategory = btn.dataset.cat;
+    applyFilters();
   });
 }
 
@@ -95,15 +97,80 @@ function renderProducts(products) {
     card.innerHTML = `
       <img src="${
         p.foto || 'tenis_default.jpg'
-      }" class="w-full h-40 object-cover rounded" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
+      }" data-full="${p.foto || 'tenis_default.jpg'}" class="product-img w-full h-40 object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
         p.modelo
       }">
       <h3 class="mt-2 font-semibold">${p.marca} ${p.modelo}</h3>
-      <p class="text-sm text-gray-500">${p.talla}</p>
+      <p class="text-sm text-gray-500">SKU: ${p.sku || 'N/A'}</p>
+      <p class="text-sm text-gray-500">Género: ${p.genero || 'N/A'}</p>
+      <p class="text-sm text-gray-500">Estilo: ${p.estilo || 'N/A'}</p>
+      <p class="text-sm text-gray-500">Talla: ${p.talla}</p>
       ${priceHtml}
     `;
     container.appendChild(card);
   });
 }
+
+function applyFilters() {
+  let filtered = allProducts;
+  if (currentCategory) {
+    filtered = filtered.filter(
+      (p) => (p.categoria || 'Tenis') === currentCategory,
+    );
+  }
+  if (searchTerm) {
+    const term = searchTerm.toLowerCase();
+    filtered = filtered.filter(
+      (p) =>
+        `${p.marca} ${p.modelo}`.toLowerCase().includes(term) ||
+        (p.sku || '').toLowerCase().includes(term),
+    );
+  }
+  if (sortOrder === 'precio-asc') {
+    filtered = filtered.slice().sort((a, b) => {
+      const pa = a.precioOferta ?? a.precio;
+      const pb = b.precioOferta ?? b.precio;
+      return pa - pb;
+    });
+  } else if (sortOrder === 'precio-desc') {
+    filtered = filtered.slice().sort((a, b) => {
+      const pa = a.precioOferta ?? a.precio;
+      const pb = b.precioOferta ?? b.precio;
+      return pb - pa;
+    });
+  }
+  renderProducts(filtered);
+}
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchTerm = e.target.value;
+  applyFilters();
+});
+
+document.getElementById('sortSelect').addEventListener('change', (e) => {
+  sortOrder = e.target.value;
+  applyFilters();
+});
+
+document.getElementById('productsContainer').addEventListener('click', (e) => {
+  const img = e.target.closest('.product-img');
+  if (!img) return;
+  const modal = document.getElementById('imageModal');
+  modal.querySelector('img').src = img.dataset.full;
+  modal.classList.remove('hidden');
+});
+
+document.getElementById('imageModal').addEventListener('click', () => {
+  document.getElementById('imageModal').classList.add('hidden');
+});
+
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) scrollBtn.classList.remove('hidden');
+  else scrollBtn.classList.add('hidden');
+});
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 loadInventory();
