@@ -40,7 +40,10 @@ document.getElementById('loginPublicBtn').addEventListener('click', signIn);
 let allProducts = [];
 let currentCategory = '';
 let searchTerm = '';
-let sortOrder = '';
+let sortOrder = 'precio-desc';
+
+// Set default sort selection
+document.getElementById('sortSelect').value = sortOrder;
 
 const INVENTORY_CACHE_KEY = 'inventoryCache';
 const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
@@ -92,6 +95,15 @@ function loadInventory() {
 function renderFilters(products) {
   const container = document.getElementById('categoryFilters');
   container.innerHTML = '';
+
+  currentCategory = '';
+
+  const allBtn = document.createElement('button');
+  allBtn.textContent = 'Todos';
+  allBtn.dataset.cat = '';
+  allBtn.className = 'cat-btn bg-indigo-600 text-white px-3 py-1 rounded-full';
+  container.appendChild(allBtn);
+
   const categories = Array.from(
     new Set(products.map((p) => p.categoria || 'Tenis')),
   );
