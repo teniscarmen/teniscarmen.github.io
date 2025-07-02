@@ -11,7 +11,7 @@ import {
   signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
 import {
-  getFirestore,
+  initializeFirestore,
   collection,
   doc,
   addDoc,
@@ -34,7 +34,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // --- FIREBASE INITIALIZATION ---
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  const db = initializeFirestore(app, {
+    experimentalAutoDetectLongPolling: true,
+  });
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
   let unsubscribeListeners = [];
