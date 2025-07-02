@@ -144,10 +144,11 @@ function renderProducts(products) {
     const priceHtml = p.precioOferta
       ? `<p class="text-sm line-through text-gray-400">${formatCurrency(
           p.precio,
-        )}</p><p class="text-indigo-600 font-bold">${formatCurrency(
-          p.precioOferta,
         )}</p>`
-      : `<p class="text-indigo-600 font-bold">${formatCurrency(p.precio)}</p>`;
+      : '';
+    const mainPriceHtml = p.precioOferta
+      ? `${formatCurrency(p.precioOferta)}`
+      : `${formatCurrency(p.precio)}`;
     const priceDisplay = formatCurrency(p.precioOferta ?? p.precio);
     const waMsg = encodeURIComponent(
       `Hola, quisiera información sobre la disponibilidad del producto:\nModelo: ${
@@ -167,9 +168,12 @@ function renderProducts(products) {
       <p class="text-sm text-gray-500">Estilo: ${p.estilo || 'N/A'}</p>
       <p class="text-sm text-gray-500">Talla: ${p.talla}</p>
       ${priceHtml}
-      <a href="${waLink}" target="_blank" class="mt-2 self-end text-green-600 hover:text-green-700" aria-label="Consultar disponibilidad">
-        <i class="fab fa-whatsapp text-2xl"></i>
-      </a>
+      <div class="mt-2 flex items-center gap-2">
+        <p class="text-indigo-600 font-bold">${mainPriceHtml}</p>
+        <a href="${waLink}" target="_blank" class="text-green-600 hover:text-green-700" aria-label="Consultar disponibilidad">
+          <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+      </div>
     `;
     container.appendChild(card);
   });
