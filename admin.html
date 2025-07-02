@@ -1,0 +1,1358 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aplicación para gestionar ventas de tenis, ropa y accesorios en la tienda CyJ"
+    />
+    <title>Tenis Chidos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f3f4f6;
+      }
+      .tab-button.active {
+        border-bottom-color: #4f46e5;
+        color: #4f46e5;
+        font-weight: 600;
+      }
+      .modal {
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        transition: transform 0.3s ease;
+      }
+      .search-clear-btn {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .search-clear-btn:hover {
+        color: #374151;
+      }
+    </style>
+  </head>
+  <body class="antialiased text-gray-800">
+    <div
+      id="loading-overlay"
+      class="fixed inset-0 bg-white bg-opacity-75 z-50 flex items-center justify-center"
+    >
+      <div class="flex flex-col items-center">
+        <img
+          src="logo.png"
+          alt="Cargando..."
+          class="w-24 h-24 animate-spin duration-[5000ms]"
+          onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=Logo';"
+        />
+        <p class="mt-4 text-lg font-semibold text-gray-700">
+          Cargando Sistema...
+        </p>
+      </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div
+      id="login-screen"
+      class="fixed inset-0 bg-gray-100 z-40 flex items-center justify-center hidden"
+    >
+      <div
+        class="text-center p-8 bg-white shadow-2xl rounded-xl max-w-sm w-full"
+      >
+        <img
+          src="logo.png"
+          alt="Logotipo"
+          class="w-24 h-24 mx-auto mb-4"
+          onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=Logo';"
+        />
+        <h1 class="text-2xl font-bold text-gray-800 mt-4">Tenis Chidos</h1>
+
+        <button
+          id="loginBtn"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg shadow-md flex items-center justify-center transition-colors"
+        >
+          <i class="fab fa-google text-xl mr-3"></i>
+          Acceder con Google
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div
+      id="app-container"
+      class="container mx-auto p-4 md:p-6 max-w-7xl hidden"
+    >
+      <!-- Header -->
+      <header class="mb-6">
+        <img
+          src="banner.jpg"
+          alt="Banner de venta"
+          class="w-full h-auto max-h-48 md:max-h-96 object-contain rounded-xl shadow-xl"
+          onerror="this.onerror=null;this.src='https://placehold.co/1600x400/334155/e2e8f0?text=banner.jpg+no+encontrado';"
+        />
+        <div
+          class="mt-4 flex flex-col md:flex-row justify-between items-center"
+        >
+          <div class="flex items-center space-x-4">
+            <img
+              src="logo.png"
+              alt="Logotipo"
+              class="w-16 h-16 object-contain"
+              onerror="this.onerror=null;this.src='https://placehold.co/64x64/e2e8f0/64748b?text=Logo';"
+            />
+            <div>
+              <h1 class="text-3xl font-bold text-gray-900">Tenis Chidos</h1>
+            </div>
+          </div>
+          <div
+            id="user-info"
+            class="mt-4 md:mt-0 text-sm p-2 rounded-lg flex items-center space-x-3 bg-white shadow-sm border"
+          >
+            <!-- User info will be injected here -->
+          </div>
+        </div>
+      </header>
+
+      <!-- Tabs -->
+      <div class="border-b border-gray-200 mb-6">
+        <nav class="flex space-x-4 -mb-px" id="tabs">
+          <button
+            data-tab="ventas"
+            class="tab-button active py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          >
+            <i class="fas fa-dollar-sign mr-2"></i>Ventas
+          </button>
+          <button
+            data-tab="inventario"
+            class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          >
+            <i class="fas fa-box mr-2"></i>Inventario
+          </button>
+          <button
+            data-tab="clientes"
+            class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          >
+            <i class="fas fa-users mr-2"></i>Clientes
+          </button>
+          <button
+            data-tab="finanzas"
+            class="tab-button py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          >
+            <i class="fas fa-chart-line mr-2"></i>Finanzas
+          </button>
+        </nav>
+      </div>
+
+      <!-- Content Area -->
+      <main id="tab-content">
+        <!-- Ventas Content -->
+        <div id="ventas-content" class="space-y-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4"
+          >
+            <div class="relative w-full md:w-1/2">
+              <span
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                ><i class="fas fa-search"></i
+              ></span>
+              <input
+                type="text"
+                id="searchVentas"
+                placeholder="Buscar por cliente, artículo o SKU..."
+                class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <button
+                id="clearSearchVentas"
+                class="search-clear-btn hidden"
+                title="Limpiar búsqueda"
+              >
+                <i class="fas fa-times-circle"></i>
+              </button>
+            </div>
+            <button
+              id="openVentaModalBtn"
+              class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex-shrink-0"
+            >
+              <i class="fas fa-plus mr-2"></i>Nueva Venta
+            </button>
+          </div>
+
+          <div
+            id="ventas-summary-header"
+            class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center"
+          >
+            <!-- Sales summary injected here -->
+          </div>
+
+          <div class="bg-white p-4 rounded-xl shadow-md border">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              <!-- Filtros -->
+              <div>
+                <label
+                  for="filterCliente"
+                  class="block text-sm font-medium text-gray-700"
+                  >Cliente</label
+                >
+                <select
+                  id="filterCliente"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                ></select>
+              </div>
+              <div>
+                <label
+                  for="filterVendedor"
+                  class="block text-sm font-medium text-gray-700"
+                  >Vendedor</label
+                >
+                <select
+                  id="filterVendedor"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                ></select>
+              </div>
+              <div>
+                <label
+                  for="filterEstadoVenta"
+                  class="block text-sm font-medium text-gray-700"
+                  >Estado</label
+                >
+                <select
+                  id="filterEstadoVenta"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="">Todos</option>
+                  <option value="con_saldo">Con Saldo</option>
+                  <option value="liquidado">Liquidado</option>
+                </select>
+              </div>
+              <!-- Ordenar -->
+              <div>
+                <label
+                  for="sortVentas"
+                  class="block text-sm font-medium text-gray-700"
+                  >Ordenar por</label
+                >
+                <select
+                  id="sortVentas"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="reciente">Más Recientes</option>
+                  <option value="antigua">Más Antiguas</option>
+                  <option value="saldo_desc">Mayor Saldo</option>
+                  <option value="saldo_asc">Menor Saldo</option>
+                  <option value="cliente_az">Cliente (A-Z)</option>
+                  <option value="cliente_za">Cliente (Z-A)</option>
+                </select>
+              </div>
+              <div class="flex items-end">
+                <button
+                  id="clearVentasFilters"
+                  class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg"
+                >
+                  <i class="fas fa-times mr-2"></i>Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="ventas-list" class="space-y-3">
+            <!-- Sales items will be dynamically injected here as a list -->
+          </div>
+        </div>
+
+        <!-- Inventario Content -->
+        <div id="inventario-content" class="hidden space-y-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4"
+          >
+            <div class="relative w-full md:w-1/2">
+              <span
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                ><i class="fas fa-search"></i
+              ></span>
+              <input
+                type="text"
+                id="searchInventario"
+                placeholder="Buscar por modelo, marca o SKU..."
+                class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <button
+                id="clearSearchInventario"
+                class="search-clear-btn hidden"
+                title="Limpiar búsqueda"
+              >
+                <i class="fas fa-times-circle"></i>
+              </button>
+            </div>
+            <button
+              id="downloadCatalogBtn"
+              class="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex-shrink-0"
+            >
+              <i class="fas fa-file-pdf mr-2"></i>Catálogo PDF
+            </button>
+            <button
+              id="openInventarioModalBtn"
+              class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex-shrink-0"
+            >
+              <i class="fas fa-plus mr-2"></i>Agregar Producto
+            </button>
+          </div>
+
+          <div
+            class="bg-indigo-600 text-white p-4 rounded-xl shadow-lg flex justify-between items-center"
+          >
+            <h3 class="text-lg font-bold">
+              Valor Total del Inventario Disponible:
+            </h3>
+            <div class="text-right">
+              <p id="valor-total-inventario" class="text-2xl font-bold">
+                Calculando...
+              </p>
+              <p id="cantidad-total-productos" class="text-sm">Calculando...</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-xl shadow-md border">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"
+            >
+              <!-- Filtros -->
+              <div>
+                <label
+                  for="filterMarca"
+                  class="block text-sm font-medium text-gray-700"
+                  >Marca</label
+                >
+                <select
+                  id="filterMarca"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                ></select>
+              </div>
+              <div>
+                <label
+                  for="filterCategoria"
+                  class="block text-sm font-medium text-gray-700"
+                  >Categoría</label
+                >
+                <select
+                  id="filterCategoria"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="">Todas</option>
+                  <option value="Tenis">Tenis</option>
+                  <option value="Ropa">Ropa</option>
+                  <option value="Accesorios">Accesorios</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="filterGenero"
+                  class="block text-sm font-medium text-gray-700"
+                  >Género</label
+                >
+                <select
+                  id="filterGenero"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="">Todos</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Unisex">Unisex</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="filterTalla"
+                  class="block text-sm font-medium text-gray-700"
+                  >Talla</label
+                >
+                <input
+                  type="text"
+                  id="filterTalla"
+                  placeholder="Ej: 9.5"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+              </div>
+              <!-- Ordenar -->
+              <div>
+                <label
+                  for="sortInventario"
+                  class="block text-sm font-medium text-gray-700"
+                  >Ordenar por</label
+                >
+                <select
+                  id="sortInventario"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="reciente">Más Recientes</option>
+                  <option value="precio_asc">Precio (Menor a Mayor)</option>
+                  <option value="precio_desc">Precio (Mayor a Menor)</option>
+                  <option value="marca_asc">Marca (A-Z)</option>
+                  <option value="marca_desc">Marca (Z-A)</option>
+                </select>
+              </div>
+              <div class="flex items-end">
+                <button
+                  id="clearInventoryFilters"
+                  class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg"
+                >
+                  <i class="fas fa-times mr-2"></i>Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="inventario-list" class="space-y-3">
+            <!-- Inventory items will be dynamically injected here as a list -->
+          </div>
+        </div>
+
+        <!-- Clientes Content -->
+        <div id="clientes-content" class="hidden space-y-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4"
+          >
+            <div class="relative w-full md:w-1/2">
+              <span
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                ><i class="fas fa-search"></i
+              ></span>
+              <input
+                type="text"
+                id="searchClientes"
+                placeholder="Buscar cliente por nombre..."
+                class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <button
+                id="clearSearchClientes"
+                class="search-clear-btn hidden"
+                title="Limpiar búsqueda"
+              >
+                <i class="fas fa-times-circle"></i>
+              </button>
+            </div>
+            <button
+              id="openClienteModalBtn"
+              class="w-full md:w-auto bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex-shrink-0"
+            >
+              <i class="fas fa-user-plus mr-2"></i>Nuevo Cliente
+            </button>
+          </div>
+          <div
+            id="clientes-list"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <!-- Client cards will be dynamically injected here -->
+          </div>
+        </div>
+
+        <!-- Finanzas Content -->
+        <div id="finanzas-content" class="hidden space-y-8">
+          <!-- Filtros -->
+          <div class="bg-white p-6 rounded-xl shadow-md border">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-filter text-indigo-500 mr-3"></i>Filtrar Periodo
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+              <div>
+                <label
+                  for="startDate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Desde</label
+                >
+                <input
+                  type="date"
+                  id="startDate"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+              </div>
+              <div>
+                <label
+                  for="endDate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Hasta</label
+                >
+                <input
+                  type="date"
+                  id="endDate"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+              </div>
+              <div class="flex items-end">
+                <button
+                  id="clearDateFilters"
+                  class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg"
+                >
+                  <i class="fas fa-times mr-2"></i>Limpiar Fechas
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Columna Principal -->
+            <div class="lg:col-span-2 space-y-8">
+              <div class="bg-white p-6 rounded-xl shadow-md border">
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i class="fas fa-calendar-day text-indigo-500 mr-3"></i
+                  >Resumen del Periodo
+                </h3>
+                <div
+                  id="finanzas-summary"
+                  class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                >
+                  <!-- Summary cards injected here -->
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl shadow-md border">
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i
+                    class="fas fa-hands-holding-circle text-indigo-500 mr-3"
+                  ></i
+                  >Dinero en Posesión (Pendiente de Corte)
+                </h3>
+                <div id="dinero-en-posesion" class="space-y-3">
+                  <!-- Pending money by seller injected here -->
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl shadow-md border">
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i class="fas fa-receipt text-blue-500 mr-3"></i>Historial de
+                  Cortes X (Entregas)
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-100">
+                      <tr>
+                        <th class="px-4 py-3 font-semibold text-gray-600">
+                          Fecha
+                        </th>
+                        <th class="px-4 py-3 font-semibold text-gray-600">
+                          Vendedor
+                        </th>
+                        <th
+                          class="px-4 py-3 font-semibold text-gray-600 text-right"
+                        >
+                          Total Entregado
+                        </th>
+                        <th
+                          class="px-4 py-3 font-semibold text-gray-600 text-center"
+                        >
+                          Acciones
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="cortes-x-history-list"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div
+                id="cortes-z-container"
+                class="bg-white p-6 rounded-xl shadow-md border hidden"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i class="fas fa-crown text-red-500 mr-3"></i>Historial de
+                  Cortes Z (Finales)
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-100">
+                      <tr>
+                        <th class="px-4 py-3 font-semibold text-gray-600">
+                          Fecha
+                        </th>
+                        <th
+                          class="px-4 py-3 font-semibold text-gray-600 text-right"
+                        >
+                          Total Entregado
+                        </th>
+                        <th
+                          class="px-4 py-3 font-semibold text-gray-600 text-right"
+                        >
+                          Comisiones Pagadas
+                        </th>
+                        <th class="px-4 py-3 font-semibold text-gray-600">
+                          Realizado por
+                        </th>
+                        <th
+                          class="px-4 py-3 font-semibold text-gray-600 text-center"
+                        >
+                          Acciones
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="cortes-z-history-list"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Lateral -->
+            <div class="space-y-8">
+              <div
+                class="bg-white p-6 rounded-xl shadow-md border flex flex-col justify-center items-center text-center"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i class="fas fa-globe-americas text-red-500 mr-3"></i>Saldo
+                  Global Total
+                </h3>
+                <div id="saldo-global-summary" class="text-center"></div>
+              </div>
+              <div class="bg-white p-6 rounded-xl shadow-md border">
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i class="fas fa-dolly text-indigo-500 mr-3"></i>Acciones de
+                  Caja
+                </h3>
+                <div id="caja-actions" class="space-y-4"></div>
+              </div>
+              <div
+                id="export-data-section"
+                class="bg-white p-6 rounded-xl shadow-md border hidden"
+              >
+                <h3
+                  class="text-xl font-bold text-gray-800 mb-4 flex items-center"
+                >
+                  <i class="fas fa-file-csv text-green-500 mr-3"></i>Exportar
+                  Datos
+                </h3>
+                <div class="grid gap-2">
+                  <button
+                    id="exportClientesBtn"
+                    class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-lg"
+                  >
+                    <i class="fas fa-users mr-2"></i>Clientes
+                  </button>
+                  <button
+                    id="exportInventarioBtn"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+                  >
+                    <i class="fas fa-box-open mr-2"></i>Inventario
+                  </button>
+                  <button
+                    id="exportVentasBtn"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg"
+                  >
+                    <i class="fas fa-shopping-cart mr-2"></i>Ventas
+                  </button>
+                  <button
+                    id="exportAbonosBtn"
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
+                  >
+                    <i class="fas fa-coins mr-2"></i>Abonos
+                  </button>
+                  <button
+                    id="backupDbBtn"
+                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg"
+                  >
+                    <i class="fas fa-database mr-2"></i>Respaldar Base de Datos
+                  </button>
+                  <button
+                    id="restoreDbBtn"
+                    class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-4 rounded-lg"
+                  >
+                    <i class="fas fa-upload mr-2"></i>Restaurar Base de Datos
+                  </button>
+                  <input
+                    type="file"
+                    id="restoreFileInput"
+                    accept="application/json"
+                    class="hidden"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modals -->
+    <div
+      id="inventarioModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-lg p-6 transform scale-95"
+      >
+        <h3 id="inventarioModalTitle" class="text-xl font-bold mb-4">
+          Agregar Producto al Inventario
+        </h3>
+        <form id="inventarioForm">
+          <input type="hidden" id="inventarioId" />
+          <div class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                id="inventarioMarca"
+                list="marcasList"
+                placeholder="Marca (ej. NIKE)"
+                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                required
+              />
+              <datalist id="marcasList"></datalist>
+              <input
+                type="text"
+                id="inventarioModelo"
+                placeholder="Modelo (Ej. AIR FORCE 1)"
+                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                required
+              />
+            </div>
+            <input
+              type="text"
+              id="inventarioSku"
+              placeholder="Código SKU"
+              class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+            />
+            <select
+              id="inventarioCategoria"
+              class="w-full p-3 border border-gray-300 rounded-lg"
+              required
+            >
+              <option value="" disabled selected>Categoría...</option>
+              <option value="Tenis">Tenis</option>
+              <option value="Ropa">Ropa</option>
+              <option value="Accesorios">Accesorios</option>
+            </select>
+            <div class="flex items-center space-x-2">
+              <input
+                type="text"
+                id="inventarioTalla"
+                placeholder="Talla"
+                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                required
+              />
+              <select
+                id="inventarioTallaTipo"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              >
+                <option value="US">US</option>
+                <option value="MX">MX (cm)</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <select
+                id="inventarioGenero"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              >
+                <option value="" disabled selected>Género...</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Unisex">Unisex</option>
+              </select>
+              <select
+                id="inventarioEstilo"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              >
+                <option value="" disabled selected>Estilo...</option>
+                <option value="Deportivo">Deportivo</option>
+                <option value="Casual">Casual</option>
+              </select>
+            </div>
+            <select
+              id="inventarioMaterial"
+              class="w-full p-3 border border-gray-300 rounded-lg"
+              required
+            >
+              <option value="" disabled selected>Material Principal...</option>
+              <option value="Gamuza">Gamuza</option>
+              <option value="Piel">Piel</option>
+              <option value="Tela">Tela</option>
+            </select>
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label
+                  for="inventarioDescripcion"
+                  class="block text-sm font-medium text-gray-700"
+                  >Descripción</label
+                >
+                <button
+                  type="button"
+                  id="generateDescBtn"
+                  class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-1 rounded-md hover:bg-indigo-200"
+                >
+                  ✨ Generar con IA
+                </button>
+              </div>
+              <textarea
+                id="inventarioDescripcion"
+                placeholder="Descripción atractiva del producto..."
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                rows="3"
+              ></textarea>
+            </div>
+            <input
+              type="text"
+              id="inventarioFoto"
+              placeholder="URL de la foto (ej. https://.../foto.jpg)"
+              class="w-full p-3 border border-gray-300 rounded-lg"
+            />
+            <div class="flex space-x-4">
+              <input
+                type="number"
+                step="0.01"
+                id="inventarioCosto"
+                placeholder="Costo (USD)"
+                class="w-1/2 p-3 border border-gray-300 rounded-lg"
+                required
+              />
+              <input
+                type="number"
+                step="0.01"
+                id="inventarioPrecio"
+                placeholder="Precio Venta (MXN)"
+                class="w-1/2 p-3 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            >
+              Guardar Producto
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="editVentaModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform scale-95"
+      >
+        <h3 class="text-xl font-bold mb-4">Editar Venta</h3>
+        <form id="editVentaForm">
+          <input type="hidden" id="editVentaId" />
+          <input type="hidden" id="editVentaTenisId" />
+          <div class="space-y-4">
+            <div>
+              <label
+                for="editVentaTenisInfo"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Artículo Vendido</label
+              >
+              <div
+                id="editVentaTenisInfo"
+                class="w-full p-3 bg-gray-100 border border-gray-200 rounded-lg"
+              ></div>
+            </div>
+            <div>
+              <label
+                for="editVentaCliente"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Cliente</label
+              >
+              <select
+                id="editVentaCliente"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              ></select>
+            </div>
+            <div>
+              <label
+                for="editVentaPrecio"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Nuevo Precio de Venta (MXN)</label
+              >
+              <input
+                type="number"
+                step="0.01"
+                id="editVentaPrecio"
+                placeholder="Precio final acordado"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
+              Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="clienteModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform scale-95"
+      >
+        <h3 id="clienteModalTitle" class="text-xl font-bold mb-4">
+          Agregar Nuevo Cliente
+        </h3>
+        <form id="clienteForm">
+          <input type="hidden" id="clienteId" />
+          <div class="space-y-4">
+            <input
+              type="text"
+              id="clienteNombre"
+              placeholder="Nombre completo"
+              class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+              required
+            />
+            <input
+              type="tel"
+              id="clienteTelefono"
+              placeholder="Teléfono"
+              class="w-full p-3 border border-gray-300 rounded-lg"
+              required
+            />
+            <textarea
+              id="clienteObservaciones"
+              placeholder="Observaciones (domicilio, referencias, etc.)"
+              class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700"
+            >
+              Guardar Cliente
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="ventaModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform scale-95"
+      >
+        <h3 class="text-xl font-bold mb-4">Registrar Nueva Venta</h3>
+        <form id="ventaForm">
+          <div class="space-y-4">
+            <div>
+              <label
+                for="ventaCliente"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Cliente</label
+              >
+              <select
+                id="ventaCliente"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              ></select>
+            </div>
+            <div>
+              <label
+                for="productoSearch"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Buscar Producto</label
+              >
+              <div class="relative">
+                <span
+                  class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  ><i class="fas fa-search"></i
+                ></span>
+                <input
+                  type="text"
+                  id="productoSearch"
+                  placeholder="Marca, modelo, descripción o SKU..."
+                  class="w-full p-3 pl-10 pr-10 border border-gray-300 rounded-lg"
+                />
+                <button
+                  id="clearSearchProducto"
+                  class="search-clear-btn hidden"
+                  title="Limpiar búsqueda"
+                >
+                  <i class="fas fa-times-circle"></i>
+                </button>
+              </div>
+              <div
+                id="productoResultados"
+                class="max-h-40 overflow-y-auto mt-2 text-sm border border-gray-200 rounded-lg hidden"
+              ></div>
+            </div>
+            <div id="ventaItemsContainer" class="space-y-2"></div>
+            <div>
+              <label
+                for="ventaTotal"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Total</label
+              >
+              <input
+                type="number"
+                id="ventaTotal"
+                class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
+              Crear Venta
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="abonoModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform scale-95"
+      >
+        <h3 class="text-xl font-bold mb-4">Registrar Abono</h3>
+        <form id="abonoForm">
+          <input type="hidden" id="abonoVentaId" />
+          <div
+            id="abonoInfo"
+            class="mb-4 p-3 bg-gray-100 rounded-lg text-sm"
+          ></div>
+          <div class="space-y-4">
+            <input
+              type="number"
+              step="0.01"
+              id="abonoMonto"
+              placeholder="Monto del abono (MXN)"
+              class="w-full p-3 border border-gray-300 rounded-lg"
+              required
+            />
+            <div>
+              <label
+                for="abonoMetodoPago"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Método de Pago</label
+              >
+              <select
+                id="abonoMetodoPago"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              >
+                <option value="" disabled selected>Selecciona un método</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+              </select>
+            </div>
+          </div>
+          <div id="abonosAnteriores" class="mt-6 max-h-40 overflow-y-auto">
+            <h4 class="font-semibold text-sm mb-2">Historial de Abonos:</h4>
+            <ul class="text-sm text-gray-600 space-y-2"></ul>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+            >
+              Registrar Abono
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="editAbonoModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform scale-95"
+      >
+        <h3 class="text-xl font-bold mb-4">Editar Abono</h3>
+        <form id="editAbonoForm">
+          <input type="hidden" id="editAbonoId" />
+          <input type="hidden" id="editAbonoVentaId" />
+          <input type="hidden" id="editAbonoOriginalMonto" />
+          <div class="space-y-4">
+            <div>
+              <label
+                for="editAbonoFecha"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Fecha del Abono</label
+              >
+              <input
+                type="date"
+                id="editAbonoFecha"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="editAbonoMonto"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Monto (MXN)</label
+              >
+              <input
+                type="number"
+                step="0.01"
+                id="editAbonoMonto"
+                placeholder="Monto del abono"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="editAbonoMetodoPago"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Método de Pago</label
+              >
+              <select
+                id="editAbonoMetodoPago"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              >
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
+              Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="abonoCuentaModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 transform scale-95"
+      >
+        <h3 id="abonoCuentaTitle" class="text-xl font-bold mb-4">
+          Abono a Cuenta
+        </h3>
+        <form id="abonoCuentaForm">
+          <input type="hidden" id="abonoCuentaClienteId" />
+          <div
+            id="abonoCuentaInfo"
+            class="mb-4 p-3 bg-gray-100 rounded-lg text-sm"
+          ></div>
+          <div class="space-y-4">
+            <input
+              type="number"
+              step="0.01"
+              id="abonoCuentaMonto"
+              placeholder="Monto total del abono (MXN)"
+              class="w-full p-3 border border-gray-300 rounded-lg"
+              required
+            />
+            <div>
+              <label
+                for="abonoCuentaMetodoPago"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Método de Pago</label
+              >
+              <select
+                id="abonoCuentaMetodoPago"
+                class="w-full p-3 border border-gray-300 rounded-lg"
+                required
+              >
+                <option value="" disabled selected>Selecciona un método</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex justify-end mt-6 space-x-3">
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+            >
+              Aplicar Abono
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="clientHistoryModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-40"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-2xl p-6 transform scale-95"
+      >
+        <h3 id="clientHistoryTitle" class="text-xl font-bold mb-2"></h3>
+        <div
+          id="clientHistorySummary"
+          class="mb-4 p-3 bg-indigo-50 rounded-lg text-sm grid grid-cols-2 gap-4"
+        ></div>
+        <div
+          id="clientHistorySalesList"
+          class="max-h-96 overflow-y-auto space-y-3"
+        ></div>
+        <div class="flex justify-end mt-6">
+          <button
+            type="button"
+            class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="cobranzaModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-50"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-lg p-6 transform scale-95"
+      >
+        <h3 class="text-xl font-bold mb-2 flex items-center">
+          ✨ Sugerencia de Mensaje de Cobranza
+        </h3>
+        <p class="text-sm text-gray-500 mb-4">
+          Generado por IA para <b id="cobranzaClientName"></b>
+        </p>
+        <div id="cobranzaMessageContainer" class="relative">
+          <textarea
+            id="cobranzaMessage"
+            rows="8"
+            class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
+            placeholder="Generando mensaje..."
+          ></textarea>
+          <div
+            id="cobranzaLoader"
+            class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center rounded-lg hidden"
+          >
+            <i class="fas fa-spinner fa-spin text-2xl text-indigo-500"></i>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <button
+            id="regenerateCobranzaBtn"
+            class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 flex items-center gap-2"
+          >
+            <i class="fas fa-rotate-right"></i>Regenerar
+          </button>
+          <div class="flex gap-2">
+            <button
+              id="copyCobranzaBtn"
+              class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center gap-2"
+            >
+              <i class="fas fa-copy"></i>Copiar
+            </button>
+            <button
+              type="button"
+              class="closeModalBtn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="alertModal"
+      class="modal fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-50"
+    >
+      <div
+        class="modal-content bg-white rounded-lg shadow-xl w-full max-w-sm p-6 text-center transform scale-95"
+      >
+        <div id="alertIcon" class="mx-auto mb-4"></div>
+        <h3 id="alertTitle" class="text-lg font-semibold text-gray-900"></h3>
+        <p id="alertMessage" class="text-sm text-gray-600 mt-2"></p>
+        <div id="alertButtons" class="mt-6 flex justify-center space-x-3"></div>
+      </div>
+    </div>
+
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>
