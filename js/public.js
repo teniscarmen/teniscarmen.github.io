@@ -148,6 +148,13 @@ function renderProducts(products) {
           p.precioOferta,
         )}</p>`
       : `<p class="text-indigo-600 font-bold">${formatCurrency(p.precio)}</p>`;
+    const priceDisplay = formatCurrency(p.precioOferta ?? p.precio);
+    const waMsg = encodeURIComponent(
+      `Hola, quisiera información sobre la disponibilidad del producto:\nModelo: ${
+        p.modelo
+      }\nMarca: ${p.marca}\nSKU: ${p.sku ?? 'N/A'}\nPrecio: ${priceDisplay}`,
+    );
+    const waLink = `https://wa.me/5214491952828?text=${waMsg}`;
     card.innerHTML = `
       <img src="${
         p.foto || 'tenis_default.jpg'
@@ -160,6 +167,9 @@ function renderProducts(products) {
       <p class="text-sm text-gray-500">Estilo: ${p.estilo || 'N/A'}</p>
       <p class="text-sm text-gray-500">Talla: ${p.talla}</p>
       ${priceHtml}
+      <a href="${waLink}" target="_blank" class="mt-2 self-end text-green-600 hover:text-green-700" aria-label="Consultar disponibilidad">
+        <i class="fab fa-whatsapp text-2xl"></i>
+      </a>
     `;
     container.appendChild(card);
   });
