@@ -41,14 +41,23 @@ let searchTerm = '';
 let sortOrder = '';
 
 async function loadInventory() {
-  const q = query(
-    collection(db, 'negocio-tenis/shared_data/inventario'),
-    where('status', '==', 'disponible'),
-  );
-  const snap = await getDocs(q);
-  allProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-  renderFilters(allProducts);
-  applyFilters();
+  const container = document.getElementById('productsContainer');
+  container.innerHTML =
+    '<p class="col-span-full text-center text-gray-500">Cargando...</p>';
+  try {
+    const q = query(
+      collection(db, 'negocio-tenis/shared_data/inventario'),
+      where('status', '==', 'disponible'),
+    );
+    const snap = await getDocs(q);
+    allProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    renderFilters(allProducts);
+    applyFilters();
+  } catch (err) {
+    console.error('Error cargando productos', err);
+    container.innerHTML =
+      '<p class="col-span-full text-center text-gray-500">Error cargando productos</p>';
+  }
 }
 
 function renderFilters(products) {
