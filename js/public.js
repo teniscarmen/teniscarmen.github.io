@@ -3,7 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebas
 import {
   initializeFirestore,
   collection,
-  onSnapshot,
+  getDocs,
   query,
   where,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
@@ -64,22 +64,20 @@ function loadInventory() {
     collection(db, 'negocio-tenis/shared_data/inventario'),
     where('status', '==', 'disponible'),
   );
-  onSnapshot(
-    q,
-    (snap) => {
+  getDocs(q)
+    .then((snap) => {
       allProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       localStorage.setItem(INVENTORY_CACHE_KEY, JSON.stringify(allProducts));
       renderFilters(allProducts);
       applyFilters();
-    },
-    (err) => {
+    })
+    .catch((err) => {
       console.error('Error cargando productos', err);
       if (!cached) {
         container.innerHTML =
           '<p class="col-span-full text-center text-gray-500">Error cargando productos</p>';
       }
-    },
-  );
+    });
 }
 
 function renderFilters(products) {
