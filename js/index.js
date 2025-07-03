@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('caja-actions');
     container.innerHTML = '';
 
-    if (currentUser.displayName !== 'Carmen') {
+    if (currentUser.displayName !== 'Carmen Reyes') {
       container.innerHTML += `
 <div>
 <h4 class="font-semibold text-gray-700">Entregar al supervisor (Corte X)</h4>
@@ -513,7 +513,7 @@ Realizar Corte X
         .addEventListener('click', handleCorteX);
     }
 
-    if (currentUser.displayName === 'Carmen') {
+    if (currentUser.displayName === 'Carmen Reyes') {
       container.innerHTML += `
 <div>
 <h4 class="font-semibold text-gray-700">Corte Z (Final)</h4>
