@@ -145,11 +145,26 @@ function renderCarousel(products) {
   }
   container.classList.remove('hidden');
   valid.forEach((p) => {
+    const slide = document.createElement('div');
+    slide.className = 'relative w-full h-60 flex-shrink-0';
+
     const img = document.createElement('img');
     img.src = p.foto;
     img.alt = p.modelo;
-    img.className = 'w-full h-60 object-cover flex-shrink-0';
-    slides.appendChild(img);
+    img.className = 'w-full h-full object-cover';
+    slide.appendChild(img);
+
+    const info = document.createElement('div');
+    info.className =
+      'absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1';
+    const price = formatCurrency(p.precioOferta ?? p.precio);
+    info.innerHTML = `
+      <p><strong>${p.marca}</strong> ${p.modelo}</p>
+      <p>SKU: ${p.sku || 'N/A'} | Talla: ${p.talla} | Género: ${p.genero || 'N/A'} | Precio: ${price}</p>
+    `;
+    slide.appendChild(info);
+
+    slides.appendChild(slide);
   });
   let index = 0;
   function update() {
