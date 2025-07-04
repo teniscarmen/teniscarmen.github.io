@@ -23,3 +23,13 @@ En la sección de Finanzas encontrarás los botones **Respaldar Base de Datos** 
 - **Restaurar Base de Datos** permite seleccionar un archivo generado por el respaldo e insertarlo de nuevo en Firestore. Se mostrará una confirmación antes de sobrescribir la información existente.
 
 Es necesario haber iniciado sesión con una cuenta autorizada para realizar estas operaciones. Ten en cuenta que el respaldo solo incluye los documentos de Firestore; no contiene configuraciones de índices ni información de autenticación de Firebase.
+
+## Limpieza de Fotos
+
+Para eliminar la URL de la foto de todos los productos disponibles y restablecer la imagen por defecto en Firestore se incluye el script `clear-fotos`. Necesitas un archivo de credenciales de servicio de Firebase para ejecutarlo:
+
+```bash
+npm run clear-fotos -- path/to/serviceAccount.json
+```
+
+El script actualizará la colección `inventario` bajo `negocio-tenis/shared_data` y establecerá el campo `foto` como vacío en cada documento.

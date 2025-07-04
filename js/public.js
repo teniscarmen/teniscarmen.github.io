@@ -76,10 +76,19 @@ function loadInventory() {
     cached && cachedTime && now - Number(cachedTime) < CACHE_TTL_MS;
   if (cached) {
     try {
-      allProducts = JSON.parse(cached);
-      renderFilters(allProducts);
-      renderCarousel(allProducts);
-      applyFilters();
+      const parsed = JSON.parse(cached);
+      const hasFotos = parsed.some(
+        (p) => p.foto && !p.foto.includes('tenis_default.jpg'),
+      );
+      if (hasFotos) {
+        localStorage.removeItem(INVENTORY_CACHE_KEY);
+        localStorage.removeItem(INVENTORY_CACHE_TS_KEY);
+      } else {
+        allProducts = parsed;
+        renderFilters(allProducts);
+        renderCarousel(allProducts);
+        applyFilters();
+      }
     } catch (err) {
       console.error('Error leyendo cache de inventario', err);
     }
