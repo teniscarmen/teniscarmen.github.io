@@ -8,10 +8,6 @@ export default [
       ecmaVersion: 12,
       sourceType: 'module'
     },
-    env: {
-      browser: true,
-      es2021: true
-    },
     rules: {}
   }
 ];

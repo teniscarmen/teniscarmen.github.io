@@ -228,9 +228,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Remove style tags and inline font families that pdfMake can't handle
     doc.querySelectorAll('style').forEach((el) => el.remove());
     doc.querySelectorAll('[style]').forEach((el) => {
-      const cleaned = el
+      let cleaned = el
         .getAttribute('style')
         .replace(/font-family:[^;]+;?/gi, '');
+      cleaned = cleaned.replace(
+        /([\d.]+)rem/g,
+        (_, n) => `${parseFloat(n) * 16}px`,
+      );
+      cleaned = cleaned.replace(
+        /([\d.]+)em/g,
+        (_, n) => `${parseFloat(n) * 16}px`,
+      );
       if (cleaned.trim()) {
         el.setAttribute('style', cleaned);
       } else {
