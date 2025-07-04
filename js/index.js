@@ -1,5 +1,9 @@
 // Firebase Imports
-import { firebaseConfig, geminiApiKey } from './config.js';
+import {
+  firebaseConfig,
+  geminiApiKey,
+  inventoryExportEndpoint,
+} from './config.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
 import {
   getAuth,
@@ -220,6 +224,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
     };
     reader.readAsText(file);
+  };
+
+  const updatePublicInventory = async () => {
+    try {
+      const res = await fetch(inventoryExportEndpoint, { method: 'POST' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      showAlert(
+        'Inventario Actualizado',
+        'Se generó el archivo público de inventario.',
+        'success',
+      );
+    } catch (error) {
+      console.error('Error updating public inventory:', error);
+      showAlert(
+        'Error',
+        'No se pudo actualizar el inventario público.',
+        'error',
+      );
+    }
   };
 
   const fetchImageWithProxy = async (url) => {
@@ -2892,6 +2915,9 @@ ${comprasHtml}
       .addEventListener('click', () =>
         exportArrayToCSV(allAbonos, 'abonos.csv'),
       );
+    document
+      .getElementById('updatePublicInventoryBtn')
+      .addEventListener('click', updatePublicInventory);
     document
       .getElementById('backupDbBtn')
       .addEventListener('click', backupDatabase);
