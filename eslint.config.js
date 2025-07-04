@@ -6,7 +6,24 @@ export default [
   {
     languageOptions: {
       ecmaVersion: 12,
-      sourceType: 'module'
+      sourceType: 'module',
+      globals: {
+        document: 'readonly',
+        window: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        Intl: 'readonly',
+        Blob: 'readonly',
+        FileReader: 'readonly',
+        DOMParser: 'readonly',
+        fetch: 'readonly',
+        Event: 'readonly',
+        URL: 'readonly',
+        localStorage: 'readonly',
+        alert: 'readonly',
+        pdfMake: 'readonly',
+        htmlToPdfmake: 'readonly'
+      }
     },
     rules: {}
   }

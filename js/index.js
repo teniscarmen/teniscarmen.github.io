@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         /([\d.]+)in/g,
         (_, n) => `${parseFloat(n) * 96}px`,
       );
+      cleaned = cleaned.replace(/:\s*auto\b/g, ':0');
       if (cleaned.trim()) {
         el.setAttribute('style', cleaned);
       } else {
@@ -707,7 +708,6 @@ Realizar Corte Z
     const ventasLiquidadas = [];
 
     for (const ventaId in ventasAfectadas) {
-      const info = ventasAfectadas[ventaId];
       const ventaOriginal = localVentas.find((v) => v.id === ventaId);
       const saldoPostAbonos = ventaOriginal.saldo; // Saldo ya actualizado por los abonos
 
@@ -1900,8 +1900,7 @@ ${obsHtml}
 
   async function generateCobranzaMessage(
     cliente,
-    ventas,
-    tono = 'amable y profesional',
+    ventas
   ) {
     if (geminiApiKey === 'TU_API_KEY_AQUÍ' || !geminiApiKey) {
       showAlert(
