@@ -33,3 +33,12 @@ npm run clear-fotos -- path/to/serviceAccount.json
 ```
 
 El script actualizará la colección `inventario` bajo `negocio-tenis/shared_data` y establecerá el campo `foto` como vacío en cada documento.
+
+## Exportar Inventario para la sección pública
+
+El script `export-inventory` genera un archivo `inventory.json` con los productos disponibles. Esta memoria intermedia permite que la página pública funcione sin credenciales de Firebase.
+
+```bash
+npm run export-inventory -- path/to/serviceAccount.json
+```
+

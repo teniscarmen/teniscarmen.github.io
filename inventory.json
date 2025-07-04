@@ -1,0 +1,18 @@
+[
+  {
+    "id": "demo1",
+    "marca": "Ejemplo",
+    "modelo": "ABC123",
+    "talla": "26",
+    "precio": 1000,
+    "status": "disponible"
+  },
+  {
+    "id": "demo2",
+    "marca": "Muestra",
+    "modelo": "XYZ789",
+    "talla": "27",
+    "precio": 1200,
+    "status": "disponible"
+  }
+]
