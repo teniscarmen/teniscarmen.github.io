@@ -225,6 +225,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   const convertImagesToDataUrls = async (html) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
+    // Remove style tags and inline font families that pdfMake can't handle
+    doc.querySelectorAll('style').forEach((el) => el.remove());
+    doc.querySelectorAll('[style]').forEach((el) => {
+      const cleaned = el
+        .getAttribute('style')
+        .replace(/font-family:[^;]+;?/gi, '');
+      if (cleaned.trim()) {
+        el.setAttribute('style', cleaned);
+      } else {
+        el.removeAttribute('style');
+      }
+    });
     const imgs = doc.querySelectorAll('img');
     for (const img of imgs) {
       const src = img.getAttribute('src');
