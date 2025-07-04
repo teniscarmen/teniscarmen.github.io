@@ -230,12 +230,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         throw new Error(`Invalid image response: HTTP ${res.status} ${type}`);
       }
       return res.blob();
-    };
-    const proxies = [
-      url,
-      `https://corsproxy.io/?${encodeURIComponent(url)}`,
-      `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`,
-    ];
+  };
+  const proxies = [
+    url,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`,
+  ];
     for (const p of proxies) {
       try {
         return await attempt(p);
@@ -245,6 +245,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     throw new Error('All image fetch attempts failed');
   };
+
+  const blobToPngDataUrl = (blob) =>
+    new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(blob);
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        resolve(canvas.toDataURL('image/png'));
+      };
+      img.onerror = (err) => {
+        URL.revokeObjectURL(url);
+        reject(err);
+      };
+      img.src = url;
+    });
 
   const convertImagesToDataUrls = async (html) => {
     const parser = new DOMParser();
@@ -280,12 +299,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (src && !src.startsWith('data:')) {
         try {
           const blob = await fetchImageWithProxy(src);
-          const dataUrl = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          });
+          const dataUrl = await blobToPngDataUrl(blob);
           img.setAttribute('src', dataUrl);
         } catch (err) {
           console.error('Image load error:', src, err);
