@@ -22,7 +22,8 @@ export default [
         localStorage: 'readonly',
         alert: 'readonly',
         pdfMake: 'readonly',
-        htmlToPdfmake: 'readonly'
+        htmlToPdfmake: 'readonly',
+        Image: 'readonly'
       }
     },
     rules: {}

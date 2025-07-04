@@ -2315,8 +2315,7 @@ ${comprasHtml}
               '<ul style="list-style:none;padding-left:0;">';
           }
           catalogHtml += `
-          <li style="display:flex;gap:0.5rem;margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
-            <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:60px;height:60px;object-fit:cover;border-radius:4px;" onerror="this.onerror=null;this.src='tenis_default.jpg';">
+          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
             <div>
               <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
               Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
