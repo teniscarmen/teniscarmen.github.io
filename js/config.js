@@ -9,3 +9,7 @@ export const firebaseConfig = {
 };
 
 export const geminiApiKey = "AIzaSyDlYPXBYtJQ_CNGcuijTdX9yIpBZdoepD4";
+
+// URL de la Cloud Function que genera `inventory.json`
+export const inventoryExportEndpoint =
+  "https://us-central1-tenis-1baf2.cloudfunctions.net/exportInventory";
