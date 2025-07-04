@@ -220,6 +220,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
     };
     reader.readAsText(file);
+
+    const fetchImageWithProxy = async (url) => {
+      const attempt = async (u) => {
+        const res = await fetch(u);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.blob();
+      };
+      try {
+        return await attempt(url);
+      } catch (err) {
+        console.warn('Retrying via CORS proxy:', url, err);
+        return attempt(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+      }
+    };
   };
 
   const convertImagesToDataUrls = async (html) => {
@@ -255,9 +269,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const src = img.getAttribute('src');
       if (src && !src.startsWith('data:')) {
         try {
-          const res = await fetch(src);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const blob = await res.blob();
+          const blob = await fetchImageWithProxy(src);
           const dataUrl = await new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result);
@@ -1898,10 +1910,7 @@ ${obsHtml}
     await generateCobranzaMessage(cliente, ventasCliente);
   }
 
-  async function generateCobranzaMessage(
-    cliente,
-    ventas
-  ) {
+  async function generateCobranzaMessage(cliente, ventas) {
     if (geminiApiKey === 'TU_API_KEY_AQUÍ' || !geminiApiKey) {
       showAlert(
         'Clave de API Faltante',
