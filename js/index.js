@@ -225,7 +225,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const fetchImageWithProxy = async (url) => {
     const attempt = async (u) => {
       const res = await fetch(u);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const type = res.headers.get('content-type') || '';
+      if (!res.ok || !type.startsWith('image/')) {
+        throw new Error(`Invalid image response: HTTP ${res.status} ${type}`);
+      }
       return res.blob();
     };
     try {
