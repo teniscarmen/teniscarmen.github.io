@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "eslint js/*.js --config eslint.config.js",
     "format": "prettier --write js/*.js",
-    "clear-fotos": "node scripts/clear-fotos.js"
+    "clear-fotos": "node scripts/clear-fotos.js",
+    "export-inventory": "node scripts/export-inventory.js"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

@@ -1,22 +1,12 @@
 import { firebaseConfig } from './config.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
 import {
-  initializeFirestore,
-  collection,
-  getDocs,
-  query,
-  where,
-} from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
-import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
 
 const app = initializeApp(firebaseConfig);
-const db = initializeFirestore(app, {
-  experimentalAutoDetectLongPolling: true,
-});
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
@@ -96,13 +86,13 @@ function loadInventory() {
 
   if (cacheValid) return;
 
-  const q = query(
-    collection(db, 'negocio-tenis/shared_data/inventario'),
-    where('status', '==', 'disponible'),
-  );
-  getDocs(q)
-    .then((snap) => {
-      allProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  fetch('inventory.json')
+    .then((res) => {
+      if (!res.ok) throw new Error('Fetch failed');
+      return res.json();
+    })
+    .then((data) => {
+      allProducts = data;
       localStorage.setItem(INVENTORY_CACHE_KEY, JSON.stringify(allProducts));
       localStorage.setItem(INVENTORY_CACHE_TS_KEY, String(now));
       renderFilters(allProducts);
@@ -378,9 +368,18 @@ const convertImagesToDataUrls = async (html) => {
   doc.querySelectorAll('style').forEach((el) => el.remove());
   doc.querySelectorAll('[style]').forEach((el) => {
     let cleaned = el.getAttribute('style').replace(/font-family:[^;]+;?/gi, '');
-    cleaned = cleaned.replace(/([\d.]+)rem/g, (_, n) => `${parseFloat(n) * 16}px`);
-    cleaned = cleaned.replace(/([\d.]+)em/g, (_, n) => `${parseFloat(n) * 16}px`);
-    cleaned = cleaned.replace(/([\d.]+)in/g, (_, n) => `${parseFloat(n) * 96}px`);
+    cleaned = cleaned.replace(
+      /([\d.]+)rem/g,
+      (_, n) => `${parseFloat(n) * 16}px`,
+    );
+    cleaned = cleaned.replace(
+      /([\d.]+)em/g,
+      (_, n) => `${parseFloat(n) * 16}px`,
+    );
+    cleaned = cleaned.replace(
+      /([\d.]+)in/g,
+      (_, n) => `${parseFloat(n) * 96}px`,
+    );
     cleaned = cleaned.replace(/:\s*auto\b/g, ':0');
     if (cleaned.trim()) {
       el.setAttribute('style', cleaned);
@@ -442,7 +441,9 @@ const downloadPdfFromHtml = async (
 };
 
 async function generateCatalogPDF() {
-  const disponibles = allProducts.filter((item) => item.status === 'disponible');
+  const disponibles = allProducts.filter(
+    (item) => item.status === 'disponible',
+  );
   if (disponibles.length === 0) {
     alert('No hay artículos disponibles para generar el catálogo.');
     return;
