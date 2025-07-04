@@ -67,6 +67,29 @@
         </button>
       </div>
       <div
+        id="carouselContainer"
+        class="relative w-full overflow-hidden mb-4 hidden"
+      >
+        <div
+          id="carouselSlides"
+          class="flex transition-transform duration-500"
+        ></div>
+        <button
+          id="carouselPrev"
+          class="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-75 rounded-full p-2 shadow"
+          aria-label="Anterior"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button
+          id="carouselNext"
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-75 rounded-full p-2 shadow"
+          aria-label="Siguiente"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div
         id="productsContainer"
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       ></div>

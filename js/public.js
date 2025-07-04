@@ -63,6 +63,7 @@ function loadInventory() {
     try {
       allProducts = JSON.parse(cached);
       renderFilters(allProducts);
+      renderCarousel(allProducts);
       applyFilters();
     } catch (err) {
       console.error('Error leyendo cache de inventario', err);
@@ -81,6 +82,7 @@ function loadInventory() {
       localStorage.setItem(INVENTORY_CACHE_KEY, JSON.stringify(allProducts));
       localStorage.setItem(INVENTORY_CACHE_TS_KEY, String(now));
       renderFilters(allProducts);
+      renderCarousel(allProducts);
       applyFilters();
     })
     .catch((err) => {
@@ -128,6 +130,40 @@ function renderFilters(products) {
     });
     container.dataset.listenerAttached = 'true';
   }
+}
+
+function renderCarousel(products) {
+  const container = document.getElementById('carouselContainer');
+  const slides = document.getElementById('carouselSlides');
+  slides.innerHTML = '';
+  const valid = products.filter(
+    (p) => p.foto && !p.foto.includes('tenis_default.jpg'),
+  );
+  if (valid.length === 0) {
+    container.classList.add('hidden');
+    return;
+  }
+  container.classList.remove('hidden');
+  valid.forEach((p) => {
+    const img = document.createElement('img');
+    img.src = p.foto;
+    img.alt = p.modelo;
+    img.className = 'w-full h-60 object-cover flex-shrink-0';
+    slides.appendChild(img);
+  });
+  let index = 0;
+  function update() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }
+  document.getElementById('carouselPrev').onclick = () => {
+    index = (index - 1 + valid.length) % valid.length;
+    update();
+  };
+  document.getElementById('carouselNext').onclick = () => {
+    index = (index + 1) % valid.length;
+    update();
+  };
+  update();
 }
 
 function renderProducts(products) {
