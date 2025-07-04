@@ -239,6 +239,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         /([\d.]+)em/g,
         (_, n) => `${parseFloat(n) * 16}px`,
       );
+      cleaned = cleaned.replace(
+        /([\d.]+)in/g,
+        (_, n) => `${parseFloat(n) * 96}px`,
+      );
       if (cleaned.trim()) {
         el.setAttribute('style', cleaned);
       } else {
