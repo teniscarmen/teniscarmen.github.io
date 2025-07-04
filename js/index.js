@@ -231,12 +231,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       return res.blob();
     };
-    try {
-      return await attempt(url);
-    } catch (err) {
-      console.warn('Retrying via CORS proxy:', url, err);
-      return attempt(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+    const proxies = [
+      url,
+      `https://corsproxy.io/?${encodeURIComponent(url)}`,
+      `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`,
+    ];
+    for (const p of proxies) {
+      try {
+        return await attempt(p);
+      } catch (err) {
+        console.warn('Image fetch failed for', p, err);
+      }
     }
+    throw new Error('All image fetch attempts failed');
   };
 
   const convertImagesToDataUrls = async (html) => {
