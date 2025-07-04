@@ -328,13 +328,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     html,
     filename,
     orientation = 'portrait',
+    headerHtml = null,
   ) => {
     const processedHtml = await convertImagesToDataUrls(html);
     const pdfContent = htmlToPdfmake(processedHtml, { window });
+    let header = undefined;
+    if (headerHtml) {
+      const processedHeader = await convertImagesToDataUrls(headerHtml);
+      header = htmlToPdfmake(processedHeader, { window });
+    }
     const docDefinition = {
       pageOrientation: orientation,
       content: pdfContent,
     };
+    if (header) {
+      docDefinition.header = header;
+    }
     pdfMake.createPdf(docDefinition).download(filename);
   };
 
@@ -2206,6 +2215,7 @@ ${comprasHtml}
       reportHtml,
       `Estado_de_Cuenta_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
       'portrait',
+      null,
     );
   }
 
@@ -2218,7 +2228,7 @@ ${comprasHtml}
           : v.tenisId;
         return `<tr>
             <td style="padding:8px;border-bottom:1px solid #e5e7eb;word-break:break-word;">${desc}</td>
-            <td style="padding:8px;border-bottom:1px solid #e5e7eb;text-align:right;">${formatCurrency(v.precioPactado)}</td>
+            <td style="padding:8px;border-bottom:1px solid #e5e7eb;">${formatCurrency(v.precioPactado)}</td>
         </tr>`;
       })
       .join('');
@@ -2235,7 +2245,7 @@ ${comprasHtml}
 
     const ticketHtml = `
     <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
-    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;background:#ffffff;max-width:6.5in;margin:auto;box-sizing:border-box;">
+    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;background:#ffffff;max-width:6.5in;margin:auto;box-sizing:border-box;text-align:center;">
       <div style="text-align:center;margin-bottom:1rem;">
         <img src="logo.png" alt="Logo" style="width:100px;margin:auto;" />
         <h1 style="margin:0;font-size:1.25rem;font-weight:600;">Ticket de Venta</h1>
@@ -2245,13 +2255,13 @@ ${comprasHtml}
       <p><strong>Vendedor:</strong> ${vendedor}</p>
       <table style="width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.9rem;">
         <thead style="background:#f9fafb;">
-          <tr><th style="padding:8px;text-align:left;">Producto</th><th style="padding:8px;text-align:right;">Precio</th></tr>
+          <tr><th style="padding:8px;">Producto</th><th style="padding:8px;">Precio</th></tr>
         </thead>
         <tbody>${rows}</tbody>
         <tfoot>
           <tr style="background:#f3f4f6;">
             <td style="padding:8px;font-weight:600;">Total</td>
-            <td style="padding:8px;text-align:right;font-weight:600;">${formatCurrency(total)}</td>
+            <td style="padding:8px;font-weight:600;">${formatCurrency(total)}</td>
           </tr>
         </tfoot>
       </table>
@@ -2263,6 +2273,7 @@ ${comprasHtml}
       ticketHtml,
       `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
       'portrait',
+      null,
     );
   }
 
@@ -2299,30 +2310,21 @@ ${comprasHtml}
     let catalogHtml = `
     <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
     <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
-      ${headerHtml}
     `;
-    let itemCount = 0;
     Object.keys(grouped).forEach((cat) => {
       catalogHtml += `<h2 style="font-size:1.3rem;margin-top:1rem;border-bottom:1px solid #e5e7eb;">${cat}</h2>`;
       const genders = grouped[cat];
       Object.keys(genders).forEach((gen) => {
         catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
         genders[gen].forEach((item) => {
-          if (itemCount > 0 && itemCount % 7 === 0) {
-            catalogHtml +=
-              '</ul></div><div style="page-break-after:always;"></div><div style="font-family:\'Inter\',sans-serif;padding:1rem;color:#1f2937;">' +
-              headerHtml +
-              '<ul style="list-style:none;padding-left:0;">';
-          }
           catalogHtml += `
-          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;">
+          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;page-break-inside:avoid;">
             <div>
               <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
               Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
               Precio: ${formatCurrency(item.precio || 0)}
             </div>
           </li>`;
-          itemCount += 1;
         });
         catalogHtml += '</ul>';
       });
@@ -2333,6 +2335,7 @@ ${comprasHtml}
       catalogHtml,
       `Catalogo_${new Date().toLocaleDateString('es-MX')}.pdf`,
       'portrait',
+      headerHtml,
     );
   }
 
