@@ -42,3 +42,18 @@ El script `export-inventory` genera un archivo `inventory.json` con los producto
 npm run export-inventory -- path/to/serviceAccount.json
 ```
 
+En producción se puede generar automáticamente mediante una **Cloud Function**.
+Además, en la sección **Finanzas** existe el botón **Actualizar Inventario
+Público** que invoca dicha función manualmente.
+
+
+## Automatización en Firestore con Cloud Functions
+
+1. Desde tu proyecto ejecuta `firebase init functions` y selecciona Node.js.
+2. Copia los archivos de la carpeta `functions` de este repositorio dentro de la carpeta generada.
+3. Instala las dependencias con `npm install` dentro de `functions`.
+4. Despliega las funciones con `firebase deploy --only functions`.
+5. En la consola de Firebase ve a Storage y confirma que el bucket contenga un archivo `inventory.json` público.
+6. Copia la URL del endpoint HTTPS `exportInventory` y colócala en `js/config.js` como `inventoryExportEndpoint`.
+7. Cada modificación en la colección `inventario` ejecutará `exportInventoryOnChange` para regenerar `inventory.json`.
+8. El botón **Actualizar Inventario Público** envía una solicitud POST a `exportInventory` para forzar la generación manualmente.
