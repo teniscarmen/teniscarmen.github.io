@@ -2152,8 +2152,13 @@ ${comprasHtml}
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
-
-    html2pdf().from(ticketHtml).set(opt).save();
+    const container = document.createElement('div');
+    container.innerHTML = ticketHtml;
+    html2pdf()
+      .from(container)
+      .set(opt)
+      .save()
+      .then(() => container.remove());
   }
 
   function generateCatalogPDF() {
