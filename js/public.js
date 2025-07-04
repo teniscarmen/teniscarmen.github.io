@@ -49,10 +49,25 @@ const INVENTORY_CACHE_KEY = 'inventoryCache';
 const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 1 day
 
+function showSkeleton(count = 8) {
+  const container = document.getElementById('productsContainer');
+  container.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const card = document.createElement('div');
+    card.className =
+      'skeleton-card space-y-2 p-4 rounded-xl shadow animate-pulse';
+    card.innerHTML = `
+      <div class="h-40 w-full"></div>
+      <div class="h-4 w-3/4"></div>
+      <div class="h-4 w-1/2"></div>
+    `;
+    container.appendChild(card);
+  }
+}
+
 function loadInventory() {
   const container = document.getElementById('productsContainer');
-  container.innerHTML =
-    '<p class="col-span-full text-center text-gray-500">Cargando...</p>';
+  showSkeleton();
 
   const cached = localStorage.getItem(INVENTORY_CACHE_KEY);
   const cachedTime = localStorage.getItem(INVENTORY_CACHE_TS_KEY);
@@ -103,7 +118,8 @@ function renderFilters(products) {
   const allBtn = document.createElement('button');
   allBtn.textContent = 'Todos';
   allBtn.dataset.cat = '';
-  allBtn.className = 'cat-btn bg-indigo-600 text-white px-3 py-1 rounded-full';
+  allBtn.className =
+    'cat-btn bg-indigo-600 text-white px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500';
   container.appendChild(allBtn);
 
   const categories = Array.from(
@@ -114,7 +130,7 @@ function renderFilters(products) {
     btn.textContent = cat;
     btn.dataset.cat = cat;
     btn.className =
-      'cat-btn bg-gray-200 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-300';
+      'cat-btn bg-gray-200 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500';
     container.appendChild(btn);
   });
   if (!container.dataset.listenerAttached) {
@@ -191,7 +207,8 @@ function renderProducts(products) {
   }
   products.forEach((p) => {
     const card = document.createElement('div');
-    card.className = 'relative bg-white rounded-lg shadow p-4 flex flex-col';
+    card.className =
+      'relative bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 p-4 flex flex-col';
     const computedOferta =
       p.precioOferta ??
       (p.descuentoActivo
