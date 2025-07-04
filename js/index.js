@@ -2114,6 +2114,7 @@ ${comprasHtml}
         </tr>`;
       })
       .join('');
+
     const total = ventas.reduce((sum, v) => sum + v.precioPactado, 0);
     const fechaVenta = ventas[0]?.fecha
       ? new Date(
@@ -2123,6 +2124,7 @@ ${comprasHtml}
         ).toLocaleDateString('es-MX')
       : new Date().toLocaleDateString('es-MX');
     const vendedor = ventas[0]?.vendedor || 'N/A';
+
     const ticketHtml = `
     <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
     <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;background:#ffffff;max-width:6.5in;margin:auto;box-sizing:border-box;">
@@ -2148,6 +2150,7 @@ ${comprasHtml}
       <div style="text-align:center;margin-top:2rem;font-size:0.85rem;color:#6b7280;">Gracias por su compra.</div>
     </div>
   `;
+
     const opt = {
       margin: 0.5,
       filename: `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
@@ -2155,8 +2158,15 @@ ${comprasHtml}
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
+
+    // Append hidden container so html2canvas gets proper dimensions
     const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.left = '-9999px';
+    container.style.top = '0';
     container.innerHTML = ticketHtml;
+    document.body.appendChild(container);
+
     html2pdf()
       .from(container)
       .set(opt)
