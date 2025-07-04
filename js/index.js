@@ -2013,7 +2013,9 @@ ${abonosHtml}
 `;
     });
 
+    const fontStyles = `<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>`;
     const reportHtml = `
+${fontStyles}
 <div style="font-family: 'Inter', sans-serif; padding: 2rem; color: #1f2937; background-color: #ffffff;">
 <!-- Encabezado -->
 <div style="display: flex; justify-content: space-between; align-items: start; border-bottom: 3px solid #d1d5db; padding-bottom: 1rem; margin-bottom: 2rem;">
@@ -2122,6 +2124,7 @@ ${comprasHtml}
       : new Date().toLocaleDateString('es-MX');
     const vendedor = ventas[0]?.vendedor || 'N/A';
     const ticketHtml = `
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
     <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;background:#ffffff;max-width:6.5in;margin:auto;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:1rem;">
         <img src="logo.png" alt="Logo" style="width:100px;margin:auto;" />
@@ -2192,6 +2195,7 @@ ${comprasHtml}
       </div>`;
 
     let catalogHtml = `
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
     <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
       ${headerHtml}
     `;
