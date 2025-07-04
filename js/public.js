@@ -328,4 +328,181 @@ scrollBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+async function fetchImageWithProxy(url) {
+  const attempt = async (u) => {
+    const res = await fetch(u);
+    const type = res.headers.get('content-type') || '';
+    if (!res.ok || !type.startsWith('image/')) {
+      throw new Error(`Invalid image response: HTTP ${res.status} ${type}`);
+    }
+    return res.blob();
+  };
+  const proxies = [
+    url,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`,
+  ];
+  for (const p of proxies) {
+    try {
+      return await attempt(p);
+    } catch (err) {
+      console.warn('Image fetch failed for', p, err);
+    }
+  }
+  throw new Error('All image fetch attempts failed');
+}
+
+const blobToPngDataUrl = (blob) =>
+  new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(blob);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = (err) => {
+      URL.revokeObjectURL(url);
+      reject(err);
+    };
+    img.src = url;
+  });
+
+const convertImagesToDataUrls = async (html) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  doc.querySelectorAll('style').forEach((el) => el.remove());
+  doc.querySelectorAll('[style]').forEach((el) => {
+    let cleaned = el.getAttribute('style').replace(/font-family:[^;]+;?/gi, '');
+    cleaned = cleaned.replace(/([\d.]+)rem/g, (_, n) => `${parseFloat(n) * 16}px`);
+    cleaned = cleaned.replace(/([\d.]+)em/g, (_, n) => `${parseFloat(n) * 16}px`);
+    cleaned = cleaned.replace(/([\d.]+)in/g, (_, n) => `${parseFloat(n) * 96}px`);
+    cleaned = cleaned.replace(/:\s*auto\b/g, ':0');
+    if (cleaned.trim()) {
+      el.setAttribute('style', cleaned);
+    } else {
+      el.removeAttribute('style');
+    }
+  });
+  const imgs = doc.querySelectorAll('img');
+  for (const img of imgs) {
+    const src = img.getAttribute('src');
+    if (src && !src.startsWith('data:')) {
+      try {
+        const blob = await fetchImageWithProxy(src);
+        const dataUrl = await blobToPngDataUrl(blob);
+        img.setAttribute('src', dataUrl);
+      } catch (err) {
+        console.error('Image load error:', src, err);
+        try {
+          const res = await fetch('tenis_default.jpg');
+          const blob = await res.blob();
+          const placeholderUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+          img.setAttribute('src', placeholderUrl);
+        } catch (placeholderErr) {
+          console.error('Placeholder load error:', placeholderErr);
+          img.remove();
+        }
+      }
+    }
+  }
+  return doc.body.innerHTML;
+};
+
+const downloadPdfFromHtml = async (
+  html,
+  filename,
+  orientation = 'portrait',
+  headerHtml = null,
+) => {
+  const processedHtml = await convertImagesToDataUrls(html);
+  const pdfContent = htmlToPdfmake(processedHtml, { window });
+  let header = undefined;
+  if (headerHtml) {
+    const processedHeader = await convertImagesToDataUrls(headerHtml);
+    header = htmlToPdfmake(processedHeader, { window });
+  }
+  const docDefinition = {
+    pageOrientation: orientation,
+    content: pdfContent,
+  };
+  if (header) {
+    docDefinition.header = header;
+  }
+  pdfMake.createPdf(docDefinition).download(filename);
+};
+
+async function generateCatalogPDF() {
+  const disponibles = allProducts.filter((item) => item.status === 'disponible');
+  if (disponibles.length === 0) {
+    alert('No hay artículos disponibles para generar el catálogo.');
+    return;
+  }
+
+  const grouped = {};
+  disponibles.forEach((item) => {
+    const cat = item.categoria || 'Otros';
+    const gen = item.genero || 'General';
+    if (!grouped[cat]) grouped[cat] = {};
+    if (!grouped[cat][gen]) grouped[cat][gen] = [];
+    grouped[cat][gen].push(item);
+  });
+
+  const today = new Date().toLocaleDateString('es-MX');
+  const headerHtml = `
+      <div style="text-align:center;margin-bottom:1rem;">
+        <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
+        <h1 style="margin-top:0.5rem;font-size:1.5rem;font-weight:600;">Productos Disponibles</h1>
+        <p style="margin:0;font-size:0.9rem;">${today}</p>
+      </div>`;
+
+  let catalogHtml = `
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
+    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
+    `;
+  Object.keys(grouped).forEach((cat) => {
+    catalogHtml += `<h2 style="font-size:1.3rem;margin-top:1rem;border-bottom:1px solid #e5e7eb;">${cat}</h2>`;
+    const genders = grouped[cat];
+    Object.keys(genders).forEach((gen) => {
+      catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
+      genders[gen].forEach((item) => {
+        catalogHtml += `
+          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;page-break-inside:avoid;">
+            <div>
+              <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
+              Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
+              Precio: ${formatCurrency(item.precio || 0)}
+            </div>
+          </li>`;
+      });
+      catalogHtml += '</ul>';
+    });
+  });
+  catalogHtml += '</div>';
+
+  await downloadPdfFromHtml(
+    catalogHtml,
+    `Catalogo_${new Date().toLocaleDateString('es-MX')}.pdf`,
+    'portrait',
+    headerHtml,
+  );
+}
+
+async function handleDownloadCatalog() {
+  await generateCatalogPDF();
+}
+
+document
+  .getElementById('downloadCatalogBtn')
+  .addEventListener('click', handleDownloadCatalog);
+
 loadInventory();
