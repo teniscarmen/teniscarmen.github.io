@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (src && !src.startsWith('data:')) {
         try {
           const res = await fetch(src);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const blob = await res.blob();
           const dataUrl = await new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -253,6 +254,20 @@ document.addEventListener('DOMContentLoaded', async () => {
           img.setAttribute('src', dataUrl);
         } catch (err) {
           console.error('Image load error:', src, err);
+          try {
+            const res = await fetch('tenis_default.jpg');
+            const blob = await res.blob();
+            const placeholderUrl = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(blob);
+            });
+            img.setAttribute('src', placeholderUrl);
+          } catch (placeholderErr) {
+            console.error('Placeholder load error:', placeholderErr);
+            img.remove();
+          }
         }
       }
     }
