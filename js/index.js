@@ -230,12 +230,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         throw new Error(`Invalid image response: HTTP ${res.status} ${type}`);
       }
       return res.blob();
-  };
-  const proxies = [
-    url,
-    `https://corsproxy.io/?${encodeURIComponent(url)}`,
-    `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`,
-  ];
+    };
+    const proxies = [
+      url,
+      `https://corsproxy.io/?${encodeURIComponent(url)}`,
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+      `https://images.weserv.nl/?url=${url.replace(/^https?:\/\//, '')}`,
+    ];
     for (const p of proxies) {
       try {
         return await attempt(p);
