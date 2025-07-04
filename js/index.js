@@ -222,6 +222,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   };
 
+  const convertImagesToDataUrls = async (html) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const imgs = doc.querySelectorAll('img');
+    for (const img of imgs) {
+      const src = img.getAttribute('src');
+      if (src && !src.startsWith('data:')) {
+        try {
+          const res = await fetch(src);
+          const blob = await res.blob();
+          const dataUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+          img.setAttribute('src', dataUrl);
+        } catch (err) {
+          console.error('Image load error:', src, err);
+        }
+      }
+    }
+    return doc.body.innerHTML;
+  };
+
+  const downloadPdfFromHtml = async (
+    html,
+    filename,
+    orientation = 'portrait',
+  ) => {
+    const processedHtml = await convertImagesToDataUrls(html);
+    const pdfContent = htmlToPdfmake(processedHtml, { window });
+    const docDefinition = {
+      pageOrientation: orientation,
+      content: pdfContent,
+    };
+    pdfMake.createPdf(docDefinition).download(filename);
+  };
+
   // --- MODALS AND ALERTS ---
   const showModal = (modal) => {
     modal.classList.remove('hidden');
@@ -1756,14 +1795,14 @@ ${obsHtml}
     );
   }
 
-  function handleGenerateVentaTicket(e) {
+  async function handleGenerateVentaTicket(e) {
     const ventaId = e.currentTarget.closest('[data-id]').dataset.id;
     const venta = localVentas.find((v) => v.id === ventaId);
     if (!venta) return;
     const cliente = allClientes[venta.clienteId];
     if (!cliente) return;
     const grupo = getVentaGrupo(venta);
-    generateVentaTicketPDF(cliente, grupo);
+    await generateVentaTicketPDF(cliente, grupo);
   }
 
   function handleSendVentaWhatsapp(e) {
@@ -2091,17 +2130,14 @@ ${comprasHtml}
 </div>
 `;
 
-    const opt = {
-      margin: 1,
-      filename: `Estado_de_Cuenta_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
-    html2pdf().from(reportHtml).set(opt).save();
+    await downloadPdfFromHtml(
+      reportHtml,
+      `Estado_de_Cuenta_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
+      'portrait',
+    );
   }
 
-  function generateVentaTicketPDF(cliente, ventas) {
+  async function generateVentaTicketPDF(cliente, ventas) {
     const rows = ventas
       .map((v) => {
         const prod = allInventario[v.tenisId];
@@ -2151,30 +2187,14 @@ ${comprasHtml}
     </div>
   `;
 
-    const opt = {
-      margin: 0.5,
-      filename: `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
-
-    // Append hidden container so html2canvas gets proper dimensions
-    const container = document.createElement('div');
-    container.style.position = 'fixed';
-    container.style.left = '-9999px';
-    container.style.top = '0';
-    container.innerHTML = ticketHtml;
-    document.body.appendChild(container);
-
-    html2pdf()
-      .from(container)
-      .set(opt)
-      .save()
-      .then(() => container.remove());
+    await downloadPdfFromHtml(
+      ticketHtml,
+      `Ticket_${cliente.nombre.replace(/\s/g, '_')}.pdf`,
+      'portrait',
+    );
   }
 
-  function generateCatalogPDF() {
+  async function generateCatalogPDF() {
     const disponibles = localInventario.filter(
       (item) => item.status === 'disponible',
     );
@@ -2238,19 +2258,15 @@ ${comprasHtml}
     });
     catalogHtml += '</div>';
 
-    const opt = {
-      margin: 0.5,
-      filename: `Catalogo_${new Date().toLocaleDateString('es-MX')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    };
-
-    html2pdf().from(catalogHtml).set(opt).save();
+    await downloadPdfFromHtml(
+      catalogHtml,
+      `Catalogo_${new Date().toLocaleDateString('es-MX')}.pdf`,
+      'portrait',
+    );
   }
 
-  function handleDownloadCatalog() {
-    generateCatalogPDF();
+  async function handleDownloadCatalog() {
+    await generateCatalogPDF();
   }
 
   // --- APP INITIALIZATION ---
