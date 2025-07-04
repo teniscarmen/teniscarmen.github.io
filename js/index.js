@@ -1028,11 +1028,19 @@ ${Object.entries(comisionesPorVendedor)
           : 'bg-red-100 text-red-800';
       const statusText =
         item.status === 'disponible' ? 'Disponible' : 'Vendido';
+      const discountActive = item.descuentoActivo;
+      const precioFinal = discountActive
+        ? (item.precioOferta ??
+          item.precio * (1 - (item.porcentajeDescuento || 0) / 100))
+        : item.precio;
+      const ribbon = discountActive
+        ? '<span class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg">Descuento</span>'
+        : '';
       const card = document.createElement('div');
       card.className =
-        'bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex flex-col sm:flex-row gap-4 items-start';
+        'relative bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex flex-col sm:flex-row gap-4 items-start';
 
-      card.innerHTML = `
+      card.innerHTML = `${ribbon}
 <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="w-full sm:w-24 h-24 object-cover rounded-lg flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
 <div class="flex-grow">
 <div class="flex justify-between items-start">
@@ -1049,7 +1057,10 @@ ${Object.entries(comisionesPorVendedor)
 </div>
 <div class="mt-3 pt-3 border-t flex justify-between items-center">
 <p class="text-gray-500 text-sm">Costo: <span class="font-semibold">${formatCurrency(item.costo || 0)}</span></p>
-<p class="text-indigo-600 font-bold text-xl">${formatCurrency(item.precio || 0)}</p>
+<div class="text-right">
+${discountActive ? `<p class="text-sm line-through text-gray-400">${formatCurrency(item.precio)}</p>` : ''}
+<p class="text-indigo-600 font-bold text-xl">${formatCurrency(precioFinal || 0)}</p>
+</div>
 </div>
 </div>
 <div class="w-full sm:w-auto flex-shrink-0 flex sm:flex-col justify-end gap-2 pt-2 sm:pt-0 sm:border-l sm:pl-4">
@@ -1418,6 +1429,10 @@ ${obsHtml}
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
       document.getElementById('inventarioFoto').value = item.foto;
+      document.getElementById('inventarioDescuentoActivo').checked =
+        item.descuentoActivo || false;
+      document.getElementById('inventarioPorcentajeDescuento').value =
+        item.porcentajeDescuento ?? '';
       document.getElementById('inventarioCosto').value = item.costo;
       document.getElementById('inventarioPrecio').value = item.precio;
       document.getElementById('inventarioModalTitle').textContent =
@@ -2477,9 +2492,22 @@ ${comprasHtml}
           foto: document.getElementById('inventarioFoto').value,
           costo: parseFloat(document.getElementById('inventarioCosto').value),
           precio: parseFloat(document.getElementById('inventarioPrecio').value),
+          descuentoActivo: document.getElementById('inventarioDescuentoActivo')
+            .checked,
+          porcentajeDescuento:
+            parseFloat(
+              document.getElementById('inventarioPorcentajeDescuento').value,
+            ) || 0,
           status: 'disponible',
           fechaRegistro: Timestamp.now(),
         };
+        if (data.descuentoActivo) {
+          data.precioOferta = Number(
+            (data.precio * (1 - data.porcentajeDescuento / 100)).toFixed(2),
+          );
+        } else {
+          data.precioOferta = null;
+        }
         const path = getSharedCollectionPath('inventario');
         try {
           if (id) {
@@ -2835,6 +2863,8 @@ ${comprasHtml}
         document.getElementById('inventarioSku').value = '';
         document.getElementById('inventarioId').value = '';
         document.getElementById('inventarioCategoria').value = '';
+        document.getElementById('inventarioDescuentoActivo').checked = false;
+        document.getElementById('inventarioPorcentajeDescuento').value = '';
         document.getElementById('inventarioModalTitle').textContent =
           'Agregar Producto al Inventario';
         showModal(document.getElementById('inventarioModal'));

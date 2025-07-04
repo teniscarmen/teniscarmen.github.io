@@ -191,16 +191,25 @@ function renderProducts(products) {
   }
   products.forEach((p) => {
     const card = document.createElement('div');
-    card.className = 'bg-white rounded-lg shadow p-4 flex flex-col';
-    const priceHtml = p.precioOferta
+    card.className = 'relative bg-white rounded-lg shadow p-4 flex flex-col';
+    const computedOferta =
+      p.precioOferta ??
+      (p.descuentoActivo
+        ? p.precio * (1 - (p.porcentajeDescuento || 0) / 100)
+        : null);
+    const ribbon =
+      p.descuentoActivo || p.precioOferta
+        ? '<span class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg">Descuento</span>'
+        : '';
+    const priceHtml = computedOferta
       ? `<p class="text-sm line-through text-gray-400">${formatCurrency(
           p.precio,
         )}</p>`
       : '';
-    const mainPriceHtml = p.precioOferta
-      ? `${formatCurrency(p.precioOferta)}`
+    const mainPriceHtml = computedOferta
+      ? `${formatCurrency(computedOferta)}`
       : `${formatCurrency(p.precio)}`;
-    const priceDisplay = formatCurrency(p.precioOferta ?? p.precio);
+    const priceDisplay = formatCurrency(computedOferta ?? p.precio);
     const waMsg = encodeURIComponent(
       `Hola, quisiera información sobre la disponibilidad del producto:\nModelo: ${
         p.modelo
@@ -208,6 +217,7 @@ function renderProducts(products) {
     );
     const waLink = `https://wa.me/5214491952828?text=${waMsg}`;
     card.innerHTML = `
+      ${ribbon}
       <img src="${
         p.foto || 'tenis_default.jpg'
       }" data-full="${p.foto || 'tenis_default.jpg'}" class="product-img w-full h-40 object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
