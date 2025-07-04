@@ -46,3 +46,18 @@ En producción se puede generar automáticamente mediante una **Cloud Function**
 Además, en la sección **Finanzas** existe el botón **Actualizar Inventario
 Público** que invoca dicha función manualmente.
 
+### Desplegar `exportInventory`
+
+Este repositorio incluye un ejemplo de Cloud Function en `functions/index.js`
+que genera el inventario y responde con los encabezados CORS necesarios. Para
+habilitarla debes desplegarla en tu proyecto de Firebase:
+
+```bash
+cd functions
+npm install
+firebase deploy --only functions:exportInventory
+```
+
+Al usarla desde `admin.html`, la respuesta incluirá `Access-Control-Allow-Origin`
+para evitar errores de CORS.
+
