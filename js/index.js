@@ -2117,7 +2117,7 @@ ${
   cliente.observaciones
     ? `
 <tr>
-<td colspan="3" style="padding: 10px; font-size: 0.88rem; color: #4b5563; background-color: #f9fafb;">
+<td colspan="2" style="padding: 10px; font-size: 0.88rem; color: #4b5563; background-color: #f9fafb;">
 <strong>Observaciones:</strong> ${cliente.observaciones}
 </td>
 </tr>`
