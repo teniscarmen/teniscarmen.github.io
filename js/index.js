@@ -220,20 +220,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
     };
     reader.readAsText(file);
+  };
 
-    const fetchImageWithProxy = async (url) => {
-      const attempt = async (u) => {
-        const res = await fetch(u);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.blob();
-      };
-      try {
-        return await attempt(url);
-      } catch (err) {
-        console.warn('Retrying via CORS proxy:', url, err);
-        return attempt(`https://corsproxy.io/?${encodeURIComponent(url)}`);
-      }
+  const fetchImageWithProxy = async (url) => {
+    const attempt = async (u) => {
+      const res = await fetch(u);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.blob();
     };
+    try {
+      return await attempt(url);
+    } catch (err) {
+      console.warn('Retrying via CORS proxy:', url, err);
+      return attempt(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+    }
   };
 
   const convertImagesToDataUrls = async (html) => {
