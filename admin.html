@@ -818,18 +818,25 @@
                   ✨ Generar con IA
                 </button>
               </div>
-              <textarea
-                id="inventarioDescripcion"
-                placeholder="Descripción atractiva del producto..."
-                class="w-full p-3 border border-gray-300 rounded-lg"
-                rows="3"
-              ></textarea>
-            </div>
-            <input
-              type="text"
-              id="inventarioFoto"
-              placeholder="URL de la foto (ej. https://.../foto.jpg)"
+            <textarea
+              id="inventarioDescripcion"
+              placeholder="Descripción atractiva del producto..."
               class="w-full p-3 border border-gray-300 rounded-lg"
+              rows="3"
+            ></textarea>
+          </div>
+          <input
+            type="file"
+            id="inventarioFotoFile"
+            accept="image/*"
+            capture="environment"
+            class="w-full p-3 border border-gray-300 rounded-lg"
+          />
+          <input
+            type="text"
+            id="inventarioFoto"
+            placeholder="URL de la foto (ej. https://.../foto.jpg)"
+            class="w-full p-3 border border-gray-300 rounded-lg"
             />
             <div class="flex space-x-4">
               <input
