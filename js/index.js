@@ -1078,9 +1078,10 @@ ${Object.entries(comisionesPorVendedor)
 <span class="flex-shrink-0 text-xs font-medium px-2 py-1 rounded-full ${statusColor}">${statusText}</span>
 </div>
 <div class="mt-2 text-sm text-gray-600 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
-<p><span class="font-semibold text-gray-500">Talla:</span> ${item.talla} ${item.tallaTipo || ''}</p>
-<p><span class="font-semibold text-gray-500">SKU:</span> ${item.sku || 'N/A'}</p>
-<p><span class="font-semibold text-gray-500">Categoría:</span> ${item.categoria || 'Tenis'}</p>
+      <p><span class="font-semibold text-gray-500">Talla:</span> ${item.talla} ${item.tallaTipo || ''}</p>
+      <p><span class="font-semibold text-gray-500">SKU:</span> ${item.sku || 'N/A'}</p>
+      <p><span class="font-semibold text-gray-500">Nº de Modelo:</span> ${item.numeroModelo || 'N/A'}</p>
+      <p><span class="font-semibold text-gray-500">Categoría:</span> ${item.categoria || 'Tenis'}</p>
 <p><span class="font-semibold text-gray-500">Género:</span> ${item.genero || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Estilo:</span> ${item.estilo || 'N/A'}</p>
 <p><span class="font-semibold text-gray-500">Material:</span> ${item.material || 'N/A'}</p>
@@ -1447,6 +1448,8 @@ ${obsHtml}
       document.getElementById('inventarioId').value = id;
       document.getElementById('inventarioMarca').value = item.marca || '';
       document.getElementById('inventarioModelo').value = item.modelo;
+      document.getElementById('inventarioNumeroModelo').value =
+        item.numeroModelo || '';
       document.getElementById('inventarioSku').value = item.sku || '';
       document.getElementById('inventarioCategoria').value =
         item.categoria || 'Tenis';
@@ -2510,6 +2513,9 @@ ${comprasHtml}
         const skuValue = document
           .getElementById('inventarioSku')
           .value.toUpperCase();
+        const numeroModelo = document
+          .getElementById('inventarioNumeroModelo')
+          .value.toUpperCase();
 
         if (skuValue) {
           const isDuplicate = localInventario.some(
@@ -2530,6 +2536,7 @@ ${comprasHtml}
           modelo: document
             .getElementById('inventarioModelo')
             .value.toUpperCase(),
+          numeroModelo: numeroModelo,
           marca: document.getElementById('inventarioMarca').value.toUpperCase(),
           categoria: document.getElementById('inventarioCategoria').value,
           sku: skuValue,
