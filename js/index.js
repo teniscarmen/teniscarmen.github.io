@@ -1069,6 +1069,11 @@ ${Object.entries(comisionesPorVendedor)
       card.className =
         'relative bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex flex-col sm:flex-row gap-4 items-start';
 
+      const editButtonHtml =
+        item.status === 'vendido'
+          ? ''
+          : `<button class="editInventarioBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${item.id}" title="Editar"><i class="fas fa-edit fa-lg"></i></button>`;
+
       card.innerHTML = `${ribbon}
 <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="w-full sm:w-24 h-24 object-cover rounded-lg flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
 <div class="flex-grow">
@@ -1094,7 +1099,7 @@ ${discountActive ? `<p class="text-sm line-through text-gray-400">${formatCurren
 </div>
 </div>
 <div class="w-full sm:w-auto flex-shrink-0 flex sm:flex-col justify-end gap-2 pt-2 sm:pt-0 sm:border-l sm:pl-4">
-<button class="editInventarioBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${item.id}" title="Editar"><i class="fas fa-edit fa-lg"></i></button>
+${editButtonHtml}
 <button class="deleteInventarioBtn text-sm text-gray-500 hover:text-red-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${item.id}" title="Eliminar"><i class="fas fa-trash fa-lg"></i></button>
 </div>
 `;
@@ -1450,6 +1455,14 @@ ${obsHtml}
     const id = e.currentTarget.closest('[data-id]').dataset.id;
     const item = allInventario[id];
     if (item) {
+      if (item.status === 'vendido') {
+        showAlert(
+          'Acción no permitida',
+          'No se puede editar un tenis que ya ha sido vendido. Primero debe eliminar la venta asociada.',
+          'error',
+        );
+        return;
+      }
       document.getElementById('inventarioId').value = id;
       document.getElementById('inventarioMarca').value = item.marca || '';
       document.getElementById('inventarioModelo').value = item.modelo;
