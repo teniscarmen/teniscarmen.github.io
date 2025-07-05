@@ -426,6 +426,24 @@ const downloadPdfFromHtml = async (
 ) => {
   const processedHtml = await convertImagesToDataUrls(html);
   const pdfContent = htmlToPdfmake(processedHtml, { window });
+  const applyUnbreakable = (node) => {
+    if (Array.isArray(node)) {
+      node.forEach(applyUnbreakable);
+      return;
+    }
+    if (!node || typeof node !== 'object') return;
+    if (node.pageBreakInside === 'avoid') {
+      node.unbreakable = true;
+    }
+    if (node.stack) applyUnbreakable(node.stack);
+    if (node.ul) applyUnbreakable(node.ul);
+    if (node.ol) applyUnbreakable(node.ol);
+    if (node.table && node.table.body) {
+      node.table.body.forEach(applyUnbreakable);
+    }
+    if (node.columns) applyUnbreakable(node.columns);
+  };
+  applyUnbreakable(pdfContent);
   let header = undefined;
   if (headerHtml) {
     const processedHeader = await convertImagesToDataUrls(headerHtml);
@@ -433,6 +451,7 @@ const downloadPdfFromHtml = async (
   }
   const docDefinition = {
     pageOrientation: orientation,
+    pageMargins: [40, 120, 40, 60],
     content: pdfContent,
   };
   if (header) {
