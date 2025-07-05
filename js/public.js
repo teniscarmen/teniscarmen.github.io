@@ -482,7 +482,7 @@ async function generateCatalogPDF() {
             <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.25rem;" />
             <div>
               <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
-              Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
+              Talla: ${item.talla} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
               Precio: ${formatCurrency(item.precio || 0)}
             </div>
           </li>`;

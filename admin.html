@@ -387,7 +387,7 @@
                 <input
                   type="text"
                   id="filterTalla"
-                  placeholder="Ej: 9.5"
+                  placeholder="Ej: 27.5"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -760,7 +760,7 @@
               <option value="Ropa">Ropa</option>
               <option value="Accesorios">Accesorios</option>
             </select>
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center">
               <input
                 type="text"
                 id="inventarioTalla"
@@ -768,14 +768,6 @@
                 class="w-full p-3 border border-gray-300 rounded-lg uppercase"
                 required
               />
-              <select
-                id="inventarioTallaTipo"
-                class="w-full p-3 border border-gray-300 rounded-lg"
-                required
-              >
-                <option value="US">US</option>
-                <option value="MX">MX (cm)</option>
-              </select>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select
@@ -838,12 +830,6 @@
             capture="environment"
             class="w-full p-3 border border-gray-300 rounded-lg"
           />
-          <input
-            type="text"
-            id="inventarioFoto"
-            placeholder="URL de la foto (ej. https://.../foto.jpg)"
-            class="w-full p-3 border border-gray-300 rounded-lg"
-            />
             <div class="flex space-x-4">
               <input
                 type="number"

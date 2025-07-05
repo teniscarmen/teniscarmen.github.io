@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let localVentas = [];
   let localCortes = [];
   let ventaItems = [];
+  let uploadedFotoUrl = '';
 
   const categorias = ['Tenis', 'Ropa', 'Accesorios'];
 
@@ -1078,7 +1079,7 @@ ${Object.entries(comisionesPorVendedor)
 <span class="flex-shrink-0 text-xs font-medium px-2 py-1 rounded-full ${statusColor}">${statusText}</span>
 </div>
 <div class="mt-2 text-sm text-gray-600 grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1">
-      <p><span class="font-semibold text-gray-500">Talla:</span> ${item.talla} ${item.tallaTipo || ''}</p>
+      <p><span class="font-semibold text-gray-500">Talla:</span> ${item.talla}</p>
       <p><span class="font-semibold text-gray-500">SKU:</span> ${item.sku || 'N/A'}</p>
       <p><span class="font-semibold text-gray-500">Nº de Modelo:</span> ${item.numeroModelo || 'N/A'}</p>
       <p><span class="font-semibold text-gray-500">Categoría:</span> ${item.categoria || 'Tenis'}</p>
@@ -1454,14 +1455,12 @@ ${obsHtml}
       document.getElementById('inventarioCategoria').value =
         item.categoria || 'Tenis';
       document.getElementById('inventarioTalla').value = item.talla;
-      document.getElementById('inventarioTallaTipo').value =
-        item.tallaTipo || 'MX';
       document.getElementById('inventarioGenero').value = item.genero || '';
       document.getElementById('inventarioEstilo').value = item.estilo || '';
       document.getElementById('inventarioMaterial').value = item.material || '';
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
-      document.getElementById('inventarioFoto').value = item.foto;
+      uploadedFotoUrl = item.foto || '';
       document.getElementById('inventarioDescuentoActivo').checked =
         item.descuentoActivo || false;
       document.getElementById('inventarioPorcentajeDescuento').value =
@@ -2370,7 +2369,7 @@ ${comprasHtml}
             <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.25rem;" />
             <div>
               <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
-              Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
+              Talla: ${item.talla} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
               Precio: ${formatCurrency(item.precio || 0)}
             </div>
           </li>`;
@@ -2497,7 +2496,7 @@ ${comprasHtml}
         const ref = storageRef(storage, path);
         await uploadBytes(ref, file);
         const url = await getDownloadURL(ref);
-        document.getElementById('inventarioFoto').value = url;
+        uploadedFotoUrl = url;
       } catch (err) {
         console.error('Error uploading image: ', err);
         showAlert('Error', 'No se pudo subir la imagen.', 'error');
@@ -2541,12 +2540,11 @@ ${comprasHtml}
           categoria: document.getElementById('inventarioCategoria').value,
           sku: skuValue,
           talla: document.getElementById('inventarioTalla').value.toUpperCase(),
-          tallaTipo: document.getElementById('inventarioTallaTipo').value,
           genero: document.getElementById('inventarioGenero').value,
           estilo: document.getElementById('inventarioEstilo').value,
           material: document.getElementById('inventarioMaterial').value,
           descripcion: document.getElementById('inventarioDescripcion').value,
-          foto: document.getElementById('inventarioFoto').value,
+          foto: uploadedFotoUrl,
           costo: parseFloat(document.getElementById('inventarioCosto').value),
           precio: parseFloat(document.getElementById('inventarioPrecio').value),
           descuentoActivo: document.getElementById('inventarioDescuentoActivo')
@@ -2922,6 +2920,7 @@ ${comprasHtml}
         document.getElementById('inventarioCategoria').value = '';
         document.getElementById('inventarioDescuentoActivo').checked = false;
         document.getElementById('inventarioPorcentajeDescuento').value = '';
+        uploadedFotoUrl = '';
         document.getElementById('inventarioModalTitle').textContent =
           'Agregar Producto al Inventario';
         showModal(document.getElementById('inventarioModal'));
