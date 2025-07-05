@@ -561,11 +561,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       endDate.setHours(23, 59, 59, 999);
     }
 
+    const currentUserName = auth.currentUser?.displayName || '';
+
     let totalVentasPeriodo = 0;
     let totalAbonosPeriodo = 0;
     let totalPendienteGlobal = 0;
 
     const ventasEnPeriodo = localVentas.filter((v) => {
+      if (v.vendedor !== currentUserName) return false;
       if (!v.fecha) return false;
       const fechaVenta = new Date(v.fecha.seconds * 1000);
       return !startDate || (fechaVenta >= startDate && fechaVenta <= endDate);
@@ -576,6 +579,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     );
 
     const abonosEnPeriodo = allAbonos.filter((a) => {
+      if (a.cobradoPor !== currentUserName) return false;
       if (!a.fecha) return false;
       const fechaAbono = new Date(a.fecha.seconds * 1000);
       return !startDate || (fechaAbono >= startDate && fechaAbono <= endDate);
@@ -585,10 +589,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       0,
     );
 
-    totalPendienteGlobal = localVentas.reduce(
-      (acc, v) => acc + (v.saldo || 0),
-      0,
-    );
+    totalPendienteGlobal = localVentas
+      .filter((v) => v.vendedor === currentUserName)
+      .reduce((acc, v) => acc + (v.saldo || 0), 0);
 
     periodSummaryDiv.innerHTML = `
 <div class="bg-gray-50 p-4 rounded-lg text-center">
@@ -606,48 +609,43 @@ document.addEventListener('DOMContentLoaded', async () => {
 <p class="text-4xl font-bold text-red-600">${formatCurrency(totalPendienteGlobal)}</p>
 `;
 
-    renderDineroEnPosesion();
+    renderDineroEnPosesion(currentUserName);
   }
 
-  function renderDineroEnPosesion() {
+  function renderDineroEnPosesion(userName) {
     const container = document.getElementById('dinero-en-posesion');
     container.innerHTML = '';
 
-    const abonosPendientes = allAbonos.filter((a) => a.estado === 'pendiente');
+    const abonosPendientes = allAbonos.filter(
+      (a) => a.estado === 'pendiente' && a.enPosesionDe === userName,
+    );
 
-    const enPosesion = {};
+    const totales = { efectivo: 0, transferencia: 0, total: 0 };
     abonosPendientes.forEach((abono) => {
-      const poseedor = abono.enPosesionDe || 'Desconocido';
-      if (!enPosesion[poseedor]) {
-        enPosesion[poseedor] = { efectivo: 0, transferencia: 0, total: 0 };
-      }
       if (abono.metodoPago === 'Efectivo') {
-        enPosesion[poseedor].efectivo += abono.monto;
+        totales.efectivo += abono.monto;
       } else if (abono.metodoPago === 'Transferencia') {
-        enPosesion[poseedor].transferencia += abono.monto;
+        totales.transferencia += abono.monto;
       }
-      enPosesion[poseedor].total += abono.monto;
+      totales.total += abono.monto;
     });
 
-    if (Object.keys(enPosesion).length === 0) {
-      container.innerHTML = `<p class="text-center text-gray-500 col-span-full">No hay dinero pendiente en posesión de vendedores.</p>`;
+    if (abonosPendientes.length === 0) {
+      container.innerHTML = `<p class="text-center text-gray-500 col-span-full">No hay dinero pendiente en tu posesión.</p>`;
       return;
     }
 
-    for (const persona in enPosesion) {
-      const data = enPosesion[persona];
-      const card = `
+    const card = `
 <div class="bg-gray-50 p-3 rounded-lg border">
-<p class="font-bold text-gray-800">${persona}</p>
+<p class="font-bold text-gray-800">${userName}</p>
 <div class="mt-2 text-sm space-y-1">
-<div class="flex justify-between"><span>Efectivo:</span> <span class="font-medium text-green-600">${formatCurrency(data.efectivo)}</span></div>
-<div class="flex justify-between"><span>Transferencia:</span> <span class="font-medium text-blue-600">${formatCurrency(data.transferencia)}</span></div>
-<div class="flex justify-between border-t mt-1 pt-1"><strong>Total:</strong> <strong class="text-indigo-600">${formatCurrency(data.total)}</strong></div>
+<div class="flex justify-between"><span>Efectivo:</span> <span class="font-medium text-green-600">${formatCurrency(totales.efectivo)}</span></div>
+<div class="flex justify-between"><span>Transferencia:</span> <span class="font-medium text-blue-600">${formatCurrency(totales.transferencia)}</span></div>
+<div class="flex justify-between border-t mt-1 pt-1"><strong>Total:</strong> <strong class="text-indigo-600">${formatCurrency(totales.total)}</strong></div>
 </div>
 </div>
 `;
-      container.innerHTML += card;
-    }
+    container.innerHTML = card;
   }
 
   function renderCajaActions(currentUser) {
@@ -1279,6 +1277,7 @@ ${obsHtml}
       const tenis = allInventario[v.tenisId];
       const abonosAcumulados = v.precioPactado - v.saldo;
       const card = document.createElement('div');
+      const isOwner = v.vendedor === auth.currentUser?.displayName;
       card.className = `bg-white rounded-xl shadow-sm border p-4 flex flex-col sm:flex-row gap-4 items-start ${v.saldo <= 0 ? 'border-green-200' : 'border-gray-200'}`;
       card.innerHTML = `
 <div class="flex-grow">
@@ -1315,6 +1314,10 @@ ${obsHtml}
 </div>
 `;
       list.appendChild(card);
+      if (!isOwner) {
+        card.querySelector('.editVentaBtn')?.remove();
+        card.querySelector('.deleteVentaBtn')?.remove();
+      }
     });
 
     document
@@ -1336,16 +1339,17 @@ ${obsHtml}
       .forEach((btn) => btn.addEventListener('click', handleSendVentaWhatsapp));
   }
 
-  function renderCortesXHistory(cortes) {
+  function renderCortesXHistory(cortes, userName) {
     const list = document.getElementById('cortes-x-history-list');
     list.innerHTML = '';
+    const ownCortes = cortes.filter((c) => c.realizadoPor === userName);
 
-    if (cortes.length === 0) {
+    if (ownCortes.length === 0) {
       list.innerHTML = `<tr><td colspan="4" class="text-center text-gray-500 py-4">No hay Cortes X registrados.</td></tr>`;
       return;
     }
 
-    const sortedCortes = cortes.sort(
+    const sortedCortes = ownCortes.sort(
       (a, b) => b.fecha.seconds - a.fecha.seconds,
     );
 
@@ -1711,6 +1715,14 @@ ${obsHtml}
     const id = e.currentTarget.closest('[data-id]').dataset.id;
     const venta = localVentas.find((v) => v.id === id);
     if (!venta) return;
+    if (venta.vendedor !== auth.currentUser?.displayName) {
+      showAlert(
+        'Acceso Denegado',
+        'No puedes editar ventas de otro vendedor.',
+        'error',
+      );
+      return;
+    }
 
     document.getElementById('editVentaId').value = id;
 
@@ -1735,6 +1747,15 @@ ${obsHtml}
 
   function handleDeleteVenta(e) {
     const id = e.currentTarget.closest('[data-id]').dataset.id;
+    const venta = localVentas.find((v) => v.id === id);
+    if (!venta || venta.vendedor !== auth.currentUser?.displayName) {
+      showAlert(
+        'Acceso Denegado',
+        'No puedes eliminar ventas de otro vendedor.',
+        'error',
+      );
+      return;
+    }
     showAlert(
       'Confirmar Eliminación',
       'Esto eliminará la venta y todos sus abonos. El tenis volverá a estar disponible. ¿Continuar?',
@@ -1822,14 +1843,16 @@ ${obsHtml}
           const li = document.createElement('li');
           li.className =
             'flex justify-between items-center bg-gray-50 p-2 rounded';
+          const isOwnerAbono =
+            abono.cobradoPor === auth.currentUser?.displayName;
           li.innerHTML = `
 <div>
 <span>${formatDate(abono.fecha)} - ${formatCurrency(abono.monto)}</span>
 <span class="ml-2 text-xs font-medium px-2 py-0.5 rounded-full ${metodoClass}">${metodoText}</span>
 </div>
 <div class="flex items-center space-x-3">
-<button class="editAbonoBtn text-xs text-gray-500 hover:text-indigo-600" data-id="${abono.id}" data-monto="${abono.monto}" data-metodo="${abono.metodoPago}" data-fecha='${JSON.stringify(abono.fecha)}' data-ventaid="${abono.ventaId}"><i class="fas fa-edit"></i></button>
-<button class="deleteAbonoBtn text-xs text-red-400 hover:text-red-600" data-id="${abono.id}" data-monto="${abono.monto}" data-ventaid="${abono.ventaId}"><i class="fas fa-times"></i></button>
+${isOwnerAbono ? `<button class="editAbonoBtn text-xs text-gray-500 hover:text-indigo-600" data-id="${abono.id}" data-monto="${abono.monto}" data-metodo="${abono.metodoPago}" data-fecha='${JSON.stringify(abono.fecha)}' data-ventaid="${abono.ventaId}"><i class="fas fa-edit"></i></button>` : ''}
+${isOwnerAbono ? `<button class="deleteAbonoBtn text-xs text-red-400 hover:text-red-600" data-id="${abono.id}" data-monto="${abono.monto}" data-ventaid="${abono.ventaId}"><i class="fas fa-times"></i></button>` : ''}
 </div>
 `;
           abonosList.appendChild(li);
@@ -1851,6 +1874,16 @@ ${obsHtml}
     const abonoId = e.currentTarget.dataset.id;
     const monto = parseFloat(e.currentTarget.dataset.monto);
     const ventaId = e.currentTarget.dataset.ventaid;
+
+    const abono = allAbonos.find((a) => a.id === abonoId);
+    if (!abono || abono.cobradoPor !== auth.currentUser?.displayName) {
+      showAlert(
+        'Acceso Denegado',
+        'No puedes eliminar abonos de otro vendedor.',
+        'error',
+      );
+      return;
+    }
 
     showAlert(
       'Confirmar Eliminación',
@@ -1885,6 +1918,16 @@ ${obsHtml}
     const metodo = btn.dataset.metodo;
     const fechaTimestamp = JSON.parse(btn.dataset.fecha);
     const fecha = new Date(fechaTimestamp.seconds * 1000);
+
+    const abono = allAbonos.find((a) => a.id === abonoId);
+    if (!abono || abono.cobradoPor !== auth.currentUser?.displayName) {
+      showAlert(
+        'Acceso Denegado',
+        'No puedes editar abonos de otro vendedor.',
+        'error',
+      );
+      return;
+    }
 
     document.getElementById('editAbonoId').value = abonoId;
     document.getElementById('editAbonoVentaId').value = ventaId;
@@ -2679,6 +2722,14 @@ ${comprasHtml}
           );
           return;
         }
+        if (ventaOriginal.vendedor !== auth.currentUser?.displayName) {
+          showAlert(
+            'Acceso Denegado',
+            'No puedes modificar ventas de otro vendedor.',
+            'error',
+          );
+          return;
+        }
         const abonosAcumulados =
           ventaOriginal.precioPactado - ventaOriginal.saldo;
         const nuevoSaldo = nuevoPrecio - abonosAcumulados;
@@ -2793,6 +2844,18 @@ ${comprasHtml}
         const abonoRef = doc(db, getSharedCollectionPath('abonos'), abonoId);
         const batch = writeBatch(db);
         try {
+          const abonoOrig = allAbonos.find((a) => a.id === abonoId);
+          if (
+            !abonoOrig ||
+            abonoOrig.cobradoPor !== auth.currentUser?.displayName
+          ) {
+            showAlert(
+              'Acceso Denegado',
+              'No puedes modificar abonos de otro vendedor.',
+              'error',
+            );
+            return;
+          }
           const ventaSnap = await getDoc(ventaRef);
           const ventaData = ventaSnap.data();
           const diferencia = nuevoMonto - originalMonto;
@@ -3070,7 +3133,7 @@ ${comprasHtml}
         }));
         const cortesX = localCortes.filter((c) => c.type === 'Corte X');
         const cortesZ = localCortes.filter((c) => c.type === 'Corte Z');
-        renderCortesXHistory(cortesX);
+        renderCortesXHistory(cortesX, user.displayName);
         if (user && user.displayName === 'Carmen') {
           renderCortesZHistory(cortesZ);
         }
