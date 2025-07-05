@@ -1,18 +1,850 @@
 [
   {
-    "id": "demo1",
-    "marca": "Ejemplo",
-    "modelo": "ABC123",
-    "talla": "26",
-    "precio": 1000,
+    "id": "0vK203X9U3vhvaLNDMhO",
+    "marca": "NIKE",
+    "modelo": "SB BLAZER MID",
+    "talla": 26.5,
+    "precio": 2000,
     "status": "disponible"
   },
   {
-    "id": "demo2",
-    "marca": "Muestra",
-    "modelo": "XYZ789",
-    "talla": "27",
-    "precio": 1200,
+    "id": "17y6RUKPPkJQ17WCfwiA",
+    "marca": "NIKE",
+    "modelo": "ALPHA HUARACHE ELITE 3 LOW",
+    "talla": 25.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "1NkDKkNnZQPPjHiXgY5z",
+    "marca": "NIKE",
+    "modelo": "COURT LAGACY NEXT NATURE ",
+    "talla": 25.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "1l8c0ajcEdGPtwaaKUd4",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 07 LV8",
+    "talla": 28.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "1t7uOJ28vyMYmFc3mbo6",
+    "marca": "NIKE",
+    "modelo": "FREE RUN 2",
+    "talla": 24.0,
+    "precio": 1500,
+    "status": "disponible"
+  },
+  {
+    "id": "3SMRc8lT6f31WkWGSepH",
+    "marca": "NIKE",
+    "modelo": "FORCE ZOOM TROUT 7 PRO - MEN'S METAL CLEATS SHOES",
+    "talla": 25.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "4EsjD8wrWSoYVwQggu0p",
+    "marca": "NIKE",
+    "modelo": "REVOLUTION",
+    "talla": 23.5,
+    "precio": 1500,
+    "status": "disponible"
+  },
+  {
+    "id": "4OWnbZ6xpbbpV7ZXYf7q",
+    "marca": "NIKE",
+    "modelo": "LEGACY",
+    "talla": 25.0,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "524IZh36ae96AEAHwRpy",
+    "marca": "NIKE",
+    "modelo": "SB SHANE T",
+    "talla": 26.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "53REoC9jvFk7V5G9DDg1",
+    "marca": "JORDAN",
+    "modelo": "JORDAN FADEAWAY LOBO GRIS ",
+    "talla": 27.5,
+    "precio": 2300,
+    "status": "disponible"
+  },
+  {
+    "id": "5YUPXwTQ8Tpxz5pKZHuu",
+    "marca": "NIKE",
+    "modelo": "SB BRUIN HIGH",
+    "talla": 23.5,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "5fPMfWDJNACH2LWLGFsc",
+    "marca": "NIKE",
+    "modelo": "AIR JORDAN 1 HIGH ZOOM CMFT",
+    "talla": 24.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "5krRApVojFHYd4J3IlwC",
+    "marca": "JORDAN",
+    "modelo": "JORDAN 11 CMFT LOW CEMENT TOPAZ GOLD",
+    "talla": 28.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "5sbhT1n48z9sMPdndI0E",
+    "marca": "NIKE",
+    "modelo": "AIR FLIGHT 89 WHITE OBSIDIAN",
+    "talla": 27.5,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "65THoFsjsfo86QRSNRxt",
+    "marca": "NIKE",
+    "modelo": "COMFORT INSOLE",
+    "talla": 26.5,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "6OQO5Hd6ARIuBLQ7rrdi",
+    "marca": "NIKE",
+    "modelo": "COURT VISION MID",
+    "talla": 23.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "6b8Lb8m5aaxIrruJPazO",
+    "marca": "NIKE",
+    "modelo": "BOLSA",
+    "talla": 0.0,
+    "precio": 700,
+    "status": "disponible"
+  },
+  {
+    "id": "6cIw3xr3JzWdQkZJmG0h",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 SHADOW",
+    "talla": 25.0,
+    "precio": 2500,
+    "status": "vendido"
+  },
+  {
+    "id": "7Gfz9QthYRxwtUPrySwx",
+    "marca": "NIKE",
+    "modelo": "BOLSA CANGURERA",
+    "talla": 0.0,
+    "precio": 800,
+    "status": "vendido"
+  },
+  {
+    "id": "7ySmHM9SarNDaz2IOXYd",
+    "marca": "NIKE",
+    "modelo": "GAMMA FORCE BLANCO/PHANTOM-LIGHT BONE",
+    "talla": 25.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "88zCieUNL4GcLacweJlD",
+    "marca": "PUMA",
+    "modelo": "SOFTFOAM OPTIMAL COMFORT",
+    "talla": 28.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "8S1RgfOh6JeAMRS3iySa",
+    "marca": "NIKE",
+    "modelo": "GOLF AIR PEGASUS 89",
+    "talla": 29.0,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "8SmKwcj14z7sqps6v0Rz",
+    "marca": "NIKE",
+    "modelo": "ZOOM VERONA",
+    "talla": 28.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "9PPgX7XuGc9QwR1eBjVV",
+    "marca": "NIKE",
+    "modelo": "CRATER REMIXA",
+    "talla": 27.0,
+    "precio": 2300,
+    "status": "disponible"
+  },
+  {
+    "id": "BASCA48d88ntrrtc4Irq",
+    "marca": "NIKE",
+    "modelo": "DUNK LOW APRICOT AGATE",
+    "talla": 24.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "BUMAuuoJQQuu1IFiVUo6",
+    "marca": "NIKE",
+    "modelo": "ALPHA HUARACHE ELITE 3 LOW 'BLACK WHITE'",
+    "talla": 25.5,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "BZcwEUvHgzSuy9qX3JxY",
+    "marca": "NIKE",
+    "modelo": "ALPHA HUARACHE ELITE 4 TURF",
+    "talla": 27.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "BpLfqoO799L2Zj52zHSW",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1",
+    "talla": 23.5,
+    "precio": 2500,
+    "status": "vendido"
+  },
+  {
+    "id": "C1CY1q91KOg0PZq2NlI3",
+    "marca": "NIKE",
+    "modelo": "JORDAN - GORRO",
+    "talla": 0.0,
+    "precio": 600,
+    "status": "disponible"
+  },
+  {
+    "id": "C7a1aZDDlBx3P7SBgUyJ",
+    "marca": "NIKE",
+    "modelo": "NIKE LEBRON 19 BAJO HAWÁI",
+    "talla": 29.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "CZNR5j80FD5qv7eJC9i8",
+    "marca": "NIKE",
+    "modelo": "JORDAN 1 MID COSMIC CLAY",
+    "talla": 24.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "Drk2kMW6IcPoBlEJuh4W",
+    "marca": "NIKE",
+    "modelo": "DUNK LOW NEXT NATURE",
+    "talla": 24.5,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "ECgMmjf0l0t0y5OSZ6C9",
+    "marca": "JORDAN",
+    "modelo": "FLIGHT",
+    "talla": 29.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "F1klMGysahR4CEH3Okc2",
+    "marca": "NIKE",
+    "modelo": "FIELD GENERAL",
+    "talla": 30.0,
+    "precio": 2000,
+    "status": "vendido"
+  },
+  {
+    "id": "FJumAXsQvJ1PX30D3Fjw",
+    "marca": "JORDAN",
+    "modelo": "AIR JORDAN LOW 1",
+    "talla": 30.0,
+    "precio": 2800,
+    "status": "vendido"
+  },
+  {
+    "id": "G8uhyL7n8ypQgBo4osFf",
+    "marca": "NIKE",
+    "modelo": "RETRO GTS 97 GIMNASIO ROJO",
+    "talla": 27.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "GU4YAL1C4470WJTvHxTs",
+    "marca": "JORDAN",
+    "modelo": "AIR JORDAN 1 HIGH OG YELLOW OCHRE",
+    "talla": 28.5,
+    "precio": 3000,
+    "status": "disponible"
+  },
+  {
+    "id": "GwDWb9wpWNoLWte7whuv",
+    "marca": "NIKE",
+    "modelo": "COURT VISION LOW NEXT NATURE DH3158-102",
+    "talla": 25.0,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "I14rUcih1goqvqa23ffj",
+    "marca": "ADIDAS",
+    "modelo": "SWIFT RUN X",
+    "talla": 27.5,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "IZzknNKdwTuoJBK90UwG",
+    "marca": "ADIDAS",
+    "modelo": "LITE RACER ADAPT 5",
+    "talla": 26.5,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "IhFdMqRCXphZBJ3cC8fB",
+    "marca": "ADIDAS",
+    "modelo": "RUNFALCON",
+    "talla": 23.5,
+    "precio": 1600,
+    "status": "disponible"
+  },
+  {
+    "id": "IluZPwFGAZzVjGUYQFdU",
+    "marca": "NIKE",
+    "modelo": "RETRO HIGH OG CRAFT EN MARFIL",
+    "talla": 28.0,
+    "precio": 3000,
+    "status": "disponible"
+  },
+  {
+    "id": "IozLE9hWzZ7K5BtZDnvn",
+    "marca": "NIKE",
+    "modelo": "ALPHA HUARACHE ELITE 3 LOW",
+    "talla": 25.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "JJiVPOXf27ssFG4HBdRW",
+    "marca": "NIKE",
+    "modelo": "GORRA - JORDAN",
+    "talla": 0.0,
+    "precio": 600,
+    "status": "vendido"
+  },
+  {
+    "id": "Kp4faST1HMILpTJnb1L2",
+    "marca": "NIKE",
+    "modelo": "AIR MAX NUAXIS",
+    "talla": 25.5,
+    "precio": 1700,
+    "status": "vendido"
+  },
+  {
+    "id": "KqsGsE1w7h8afk3pdV9x",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 HIGH MOVING COMPANY",
+    "talla": 27.5,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "Kt8yfuAzpp7CKcTUqEqL",
+    "marca": "NIKE",
+    "modelo": "COURT LEGACY NEXT NATURE",
+    "talla": 24.0,
+    "precio": 1800,
+    "status": "vendido"
+  },
+  {
+    "id": "M8JtWUdvJrQGlumSkaq4",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1",
+    "talla": 24.5,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "MjFEbL0KXztuoXZTuH9S",
+    "marca": "NIKE",
+    "modelo": "WMNS AIR FORCE 1 '07 LV8",
+    "talla": 26.5,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "NNP0h1r2udvo8kpdxwOt",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 MID ",
+    "talla": 28.0,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "NZllc9xmOcyKAL5Wo9DC",
+    "marca": "JORDAN",
+    "modelo": "PRO STRONG",
+    "talla": 25.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "NwYIG6SBZBgu4HhXtE7f",
+    "marca": "NIKE",
+    "modelo": "HYPERDIAMOND 4 ELITE",
+    "talla": 22.0,
+    "precio": 1500,
+    "status": "disponible"
+  },
+  {
+    "id": "OIJqtoAwgJ0yAh4zlEjv",
+    "marca": "NIKE",
+    "modelo": "BLAZER LOW PLATFORM",
+    "talla": 25.0,
+    "precio": 1900,
+    "status": "vendido"
+  },
+  {
+    "id": "PLJkt9AtwHAXNiDK2LyM",
+    "marca": "NIKE",
+    "modelo": "FORCE ZOOM TROUT 9 PRO FÚTBOL GRIS MEDIANOCHE AZUL MARINO",
+    "talla": 29.5,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "PM0oeuqVkXRNhnrZww94",
+    "marca": "NIKE",
+    "modelo": "COURT VISION MID",
+    "talla": 27.0,
+    "precio": 2300,
+    "status": "disponible"
+  },
+  {
+    "id": "PNkVgIO3OtfHwPND50jX",
+    "marca": "NIKE",
+    "modelo": "AIR JORDAN 1 HIGH OG “RARE AIR”",
+    "talla": 28.5,
+    "precio": 3000,
+    "status": "disponible"
+  },
+  {
+    "id": "PRGDIXfZEpwq4RuDFfjm",
+    "marca": "NIKE",
+    "modelo": "METCON",
+    "talla": 25.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "PY9c3ZIB83A6GxVUPNjf",
+    "marca": "NIKE",
+    "modelo": "ZOOM BLAZER MID SB 'BROWN ADOBE'",
+    "talla": 24.5,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "PvbqwpvtTUdzfrYXpMNh",
+    "marca": "NIKE",
+    "modelo": "ALPHA HUARACHE 3 VARSITY LOW 'BLACK",
+    "talla": 25.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "TjUzMAh7iett7R9HvKTU",
+    "marca": "NIKE",
+    "modelo": "SB BLAZER COURT MID",
+    "talla": 27.5,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "UqMqULOnheuzefvRa8PG",
+    "marca": "NIKE",
+    "modelo": "JORDAN DEAR 2003",
+    "talla": 27.5,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "UvquNgkluJoLotTRUYZf",
+    "marca": "ADIDAS",
+    "modelo": "U_PATH",
+    "talla": 26.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "VRBJBSlQ0RusXcY6dERH",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 LOW",
+    "talla": 24.0,
+    "precio": 2500,
+    "status": "vendido"
+  },
+  {
+    "id": "VbT2UmvuWuc5sXU6GOtS",
+    "marca": "JORDAN",
+    "modelo": "MAX AURA 2",
+    "talla": 28.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "Whla7dvZwPIWIO70fkFl",
+    "marca": "NIKE",
+    "modelo": "COURT LEGACY LIFT BEIGE FV5526-101 ",
+    "talla": 24.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "XJ1hry16rzjvEdG6TxQ6",
+    "marca": "NIKE",
+    "modelo": "GAMMA FORCE",
+    "talla": 25.5,
+    "precio": 2400,
+    "status": "disponible"
+  },
+  {
+    "id": "XQGPIb0HekU87pPxEMI2",
+    "marca": "NIKE",
+    "modelo": "LONCHERA",
+    "talla": 0.0,
+    "precio": 500,
+    "status": "disponible"
+  },
+  {
+    "id": "YlF5d8JmQcFHO4Onk8dx",
+    "marca": "NIKE",
+    "modelo": "DUNK HIGH DESERT CAMO",
+    "talla": 25.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "ZTAnhm0qgWgNsxRGbyho",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1",
+    "talla": 28.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "ZnynZrvdAFHMYIWWmEYL",
+    "marca": "NIKE",
+    "modelo": "GORRO ACG",
+    "talla": 0.0,
+    "precio": 600,
+    "status": "vendido"
+  },
+  {
+    "id": "aHJuZY2mwF6bBa8Kgca2",
+    "marca": "NIKE",
+    "modelo": "GAMMA FORCE",
+    "talla": 25.0,
+    "precio": 2000,
+    "status": "vendido"
+  },
+  {
+    "id": "bxdnCMS1Coy8pHb4A5cb",
+    "marca": "NIKE",
+    "modelo": "GT JUMP",
+    "talla": 27.5,
+    "precio": 2200,
+    "status": "disponible"
+  },
+  {
+    "id": "cGfICCmjptbK8YXy2a0s",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 MID '07 TRIPLE WHITE CW2289-111",
+    "talla": 24.0,
+    "precio": 2300,
+    "status": "disponible"
+  },
+  {
+    "id": "cjpf7lWwFNu3IlHM04hX",
+    "marca": "JORDAN",
+    "modelo": "JORDAN 11 CMFT LOW BLANCO SAFETY ANARANJADO HYPER AZUL REAL (GS)",
+    "talla": 24.5,
+    "precio": 2300,
+    "status": "disponible"
+  },
+  {
+    "id": "dKTkE95wMe5f41ATweaC",
+    "marca": "NIKE",
+    "modelo": "COMFORT INSOLE ",
+    "talla": 24.0,
+    "precio": 2000,
+    "status": "vendido"
+  },
+  {
+    "id": "dUtnIHSlx8x5t6r40vq4",
+    "marca": "NIKE",
+    "modelo": "FORCE ZOOM TROUT 7 PRO - BOTAS DE BÉISBOL",
+    "talla": 26.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "dW6NZpszdXcYH9C6nSt9",
+    "marca": "NIKE",
+    "modelo": "SB BLAZER COURT MID",
+    "talla": 26.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "doDAlqwMUlhiu0YhxqXp",
+    "marca": "NIKE",
+    "modelo": "COURT ROYALE AC AO2810-111",
+    "talla": 24.0,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "e7xBw4Yccx8pRvl83mGq",
+    "marca": "NIKE",
+    "modelo": "HYPERDIAMOND 4 ELITE",
+    "talla": 22.5,
+    "precio": 1500,
+    "status": "disponible"
+  },
+  {
+    "id": "eVHQqsBCzwBIZCJDRRoZ",
+    "marca": "NIKE",
+    "modelo": "COURT VISION LOW",
+    "talla": 24.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "fZ01Z1OiePtqGEH7N6E8",
+    "marca": "NIKE",
+    "modelo": "LONCHERA",
+    "talla": 0.0,
+    "precio": 500,
+    "status": "disponible"
+  },
+  {
+    "id": "glI3tIPhzmRzo3u2EOVB",
+    "marca": "NIKE",
+    "modelo": "COURT VISION LOW NEXT NATURE",
+    "talla": 25.0,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "hKhainovqnrnQWC34wtr",
+    "marca": "NIKE",
+    "modelo": "FIELD GENERAL",
+    "talla": 25.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "itNARQicBaQeGl9FlGcx",
+    "marca": "NIKE",
+    "modelo": "LEBRON 19 HAWAII",
+    "talla": 28.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "klgAIaoYh8a1eU06VFoK",
+    "marca": "NIKE",
+    "modelo": "COURT LEGACY LIFT",
+    "talla": 24.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "l6GFcDmwOr3vq7ovtA2P",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1",
+    "talla": 25.0,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "ls1jjVQMma0WsWUdHItv",
+    "marca": "JORDAN",
+    "modelo": "MAX AURA ",
+    "talla": 28.0,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "mXmJAexVsJEqekjc2maw",
+    "marca": "NIKE",
+    "modelo": "WMNS NIKE COURT VISION LOW ORIGINAL",
+    "talla": 25.0,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "n1j4gwCS6aAx8IHdqV2k",
+    "marca": "JORDAN",
+    "modelo": "DUB ZERO ",
+    "talla": 29.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "o7M5fTdk7Z6SrGKkEVIB",
+    "marca": "PUMA",
+    "modelo": "SOFTFOAM OPTIMAL COMFORT",
+    "talla": 26.5,
+    "precio": 1600,
+    "status": "disponible"
+  },
+  {
+    "id": "oVO4ZB1WW2yTCMY7zmi2",
+    "marca": "NIKE",
+    "modelo": "GT GRAND TAYLOR",
+    "talla": 27.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "pDd11i0pL0VylR7G0QFd",
+    "marca": "NIKE",
+    "modelo": "SB BLAZER MID ",
+    "talla": 25.5,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "pZuwRnUDcG7WJWwnSVe8",
+    "marca": "PUMA",
+    "modelo": "RS RUNNING SYSTEM",
+    "talla": 26.0,
+    "precio": 2200,
+    "status": "disponible"
+  },
+  {
+    "id": "penS84Vh8v2AdQDu8i8K",
+    "marca": "ADIDAS",
+    "modelo": "NIZZA RF SLIP",
+    "talla": 27.0,
+    "precio": 1700,
+    "status": "disponible"
+  },
+  {
+    "id": "qy7nNBOcOXVe0CXBTKmP",
+    "marca": "NIKE",
+    "modelo": "DAAN VANDER LINDEN",
+    "talla": 25.0,
+    "precio": 1300,
+    "status": "disponible"
+  },
+  {
+    "id": "r9BsUJsT3fmEHcFAcaUx",
+    "marca": "NIKE",
+    "modelo": "COURT ROYALE 2 MID",
+    "talla": 24.5,
+    "precio": 2000,
+    "status": "disponible"
+  },
+  {
+    "id": "rOoR73zwyuJP335bXzML",
+    "marca": "NIKE",
+    "modelo": "GORRO - ACG",
+    "talla": 0.0,
+    "precio": 600,
+    "status": "disponible"
+  },
+  {
+    "id": "sx5U8kiIfg0KYSyl91WN",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 LOW '07 OLYMPIC",
+    "talla": 24.0,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "tZ5gvIpstjYhZ2fHpIaF",
+    "marca": "NIKE",
+    "modelo": "NIKE COURT BOROUGH LOW PREMIUM 'ARMORY BLUE' 861533-400",
+    "talla": 26.5,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "u5dGAM3QgjJ3ffy5iFQ4",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1 SHADOW",
+    "talla": 25.5,
+    "precio": 2500,
+    "status": "disponible"
+  },
+  {
+    "id": "vNLG3qnEUkQ8xlA7NAER",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1",
+    "talla": 24.5,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "w9eXSfJNsWuMyJgXI72K",
+    "marca": "NIKE",
+    "modelo": "AIR FORCE 1",
+    "talla": 28.0,
+    "precio": 2800,
+    "status": "disponible"
+  },
+  {
+    "id": "xv6QApkJP9Sr33lyg6m1",
+    "marca": "ADIDAS",
+    "modelo": "SWIFT RUN 22",
+    "talla": 23.5,
+    "precio": 1900,
+    "status": "disponible"
+  },
+  {
+    "id": "y4twgvTKegLuN8CBVkzY",
+    "marca": "NIKE",
+    "modelo": "PHANTOM",
+    "talla": 24.0,
+    "precio": 1400,
+    "status": "disponible"
+  },
+  {
+    "id": "yp2FPtE2uCS91WOl88ZO",
+    "marca": "NIKE",
+    "modelo": "ALPHA HUARACHE ELITE 4 TURF",
+    "talla": 27.0,
+    "precio": 1800,
+    "status": "disponible"
+  },
+  {
+    "id": "zEsiOjNZ4U0JHqlJVxgJ",
+    "marca": "NIKE",
+    "modelo": "GAMMA FORCE",
+    "talla": 24.5,
+    "precio": 2500,
     "status": "disponible"
   }
 ]
