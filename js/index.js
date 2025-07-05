@@ -2363,7 +2363,8 @@ ${comprasHtml}
         catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
         genders[gen].forEach((item) => {
           catalogHtml += `
-          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;page-break-inside:avoid;">
+          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;page-break-inside:avoid;display:flex;gap:0.5rem;align-items:center;">
+            <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.25rem;" />
             <div>
               <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
               Talla: ${item.talla} ${item.tallaTipo || ''} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
