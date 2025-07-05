@@ -5,7 +5,10 @@
     "modelo": "SB BLAZER MID",
     "talla": 26.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 553,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "17y6RUKPPkJQ17WCfwiA",
@@ -13,7 +16,10 @@
     "modelo": "ALPHA HUARACHE ELITE 3 LOW",
     "talla": 25.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 262,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "1NkDKkNnZQPPjHiXgY5z",
@@ -21,7 +27,10 @@
     "modelo": "COURT LAGACY NEXT NATURE ",
     "talla": 25.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 58,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "1l8c0ajcEdGPtwaaKUd4",
@@ -29,7 +38,10 @@
     "modelo": "AIR FORCE 1 07 LV8",
     "talla": 28.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 814,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "1t7uOJ28vyMYmFc3mbo6",
@@ -37,7 +49,10 @@
     "modelo": "FREE RUN 2",
     "talla": 24.0,
     "precio": 1500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 44,
+    "genero": "Mujer",
+    "estilo": "Deportivo"
   },
   {
     "id": "3SMRc8lT6f31WkWGSepH",
@@ -45,7 +60,10 @@
     "modelo": "FORCE ZOOM TROUT 7 PRO - MEN'S METAL CLEATS SHOES",
     "talla": 25.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 260,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "4EsjD8wrWSoYVwQggu0p",
@@ -53,7 +71,10 @@
     "modelo": "REVOLUTION",
     "talla": 23.5,
     "precio": 1500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 64,
+    "genero": "Mujer",
+    "estilo": "Deportivo"
   },
   {
     "id": "4OWnbZ6xpbbpV7ZXYf7q",
@@ -61,7 +82,10 @@
     "modelo": "LEGACY",
     "talla": 25.0,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 921,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "524IZh36ae96AEAHwRpy",
@@ -69,7 +93,10 @@
     "modelo": "SB SHANE T",
     "talla": 26.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 38,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "53REoC9jvFk7V5G9DDg1",
@@ -77,7 +104,10 @@
     "modelo": "JORDAN FADEAWAY LOBO GRIS ",
     "talla": 27.5,
     "precio": 2300,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 627,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "5YUPXwTQ8Tpxz5pKZHuu",
@@ -85,7 +115,10 @@
     "modelo": "SB BRUIN HIGH",
     "talla": 23.5,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 521,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "5fPMfWDJNACH2LWLGFsc",
@@ -93,7 +126,10 @@
     "modelo": "AIR JORDAN 1 HIGH ZOOM CMFT",
     "talla": 24.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 815,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "5krRApVojFHYd4J3IlwC",
@@ -101,7 +137,10 @@
     "modelo": "JORDAN 11 CMFT LOW CEMENT TOPAZ GOLD",
     "talla": 28.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 817,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "5sbhT1n48z9sMPdndI0E",
@@ -109,7 +148,10 @@
     "modelo": "AIR FLIGHT 89 WHITE OBSIDIAN",
     "talla": 27.5,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 631,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "65THoFsjsfo86QRSNRxt",
@@ -117,7 +159,10 @@
     "modelo": "COMFORT INSOLE",
     "talla": 26.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 305,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "6OQO5Hd6ARIuBLQ7rrdi",
@@ -125,7 +170,10 @@
     "modelo": "COURT VISION MID",
     "talla": 23.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 925,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "6b8Lb8m5aaxIrruJPazO",
@@ -133,7 +181,10 @@
     "modelo": "BOLSA",
     "talla": 0.0,
     "precio": 700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 656,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "6cIw3xr3JzWdQkZJmG0h",
@@ -141,7 +192,10 @@
     "modelo": "AIR FORCE 1 SHADOW",
     "talla": 25.0,
     "precio": 2500,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 933,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "7Gfz9QthYRxwtUPrySwx",
@@ -149,7 +203,10 @@
     "modelo": "BOLSA CANGURERA",
     "talla": 0.0,
     "precio": 800,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 274,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "7ySmHM9SarNDaz2IOXYd",
@@ -157,7 +214,10 @@
     "modelo": "GAMMA FORCE BLANCO/PHANTOM-LIGHT BONE",
     "talla": 25.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 914,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "88zCieUNL4GcLacweJlD",
@@ -165,7 +225,10 @@
     "modelo": "SOFTFOAM OPTIMAL COMFORT",
     "talla": 28.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 224,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "8S1RgfOh6JeAMRS3iySa",
@@ -173,7 +236,10 @@
     "modelo": "GOLF AIR PEGASUS 89",
     "talla": 29.0,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 803,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "8SmKwcj14z7sqps6v0Rz",
@@ -181,7 +247,10 @@
     "modelo": "ZOOM VERONA",
     "talla": 28.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 95,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "9PPgX7XuGc9QwR1eBjVV",
@@ -189,7 +258,10 @@
     "modelo": "CRATER REMIXA",
     "talla": 27.0,
     "precio": 2300,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 75,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "BASCA48d88ntrrtc4Irq",
@@ -197,7 +269,10 @@
     "modelo": "DUNK LOW APRICOT AGATE",
     "talla": 24.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 917,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "BUMAuuoJQQuu1IFiVUo6",
@@ -205,7 +280,10 @@
     "modelo": "ALPHA HUARACHE ELITE 3 LOW 'BLACK WHITE'",
     "talla": 25.5,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 134,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "BZcwEUvHgzSuy9qX3JxY",
@@ -213,7 +291,10 @@
     "modelo": "ALPHA HUARACHE ELITE 4 TURF",
     "talla": 27.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 588,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "BpLfqoO799L2Zj52zHSW",
@@ -221,7 +302,10 @@
     "modelo": "AIR FORCE 1",
     "talla": 23.5,
     "precio": 2500,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 907,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "C1CY1q91KOg0PZq2NlI3",
@@ -229,7 +313,10 @@
     "modelo": "JORDAN - GORRO",
     "talla": 0.0,
     "precio": 600,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 927,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "C7a1aZDDlBx3P7SBgUyJ",
@@ -237,7 +324,10 @@
     "modelo": "NIKE LEBRON 19 BAJO HAWÁI",
     "talla": 29.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 526,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "CZNR5j80FD5qv7eJC9i8",
@@ -245,7 +335,10 @@
     "modelo": "JORDAN 1 MID COSMIC CLAY",
     "talla": 24.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 811,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "Drk2kMW6IcPoBlEJuh4W",
@@ -253,7 +346,10 @@
     "modelo": "DUNK LOW NEXT NATURE",
     "talla": 24.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 918,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "ECgMmjf0l0t0y5OSZ6C9",
@@ -261,7 +357,10 @@
     "modelo": "FLIGHT",
     "talla": 29.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 813,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "F1klMGysahR4CEH3Okc2",
@@ -269,7 +368,10 @@
     "modelo": "FIELD GENERAL",
     "talla": 30.0,
     "precio": 2000,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 926,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "FJumAXsQvJ1PX30D3Fjw",
@@ -277,7 +379,10 @@
     "modelo": "AIR JORDAN LOW 1",
     "talla": 30.0,
     "precio": 2800,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 910,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "G8uhyL7n8ypQgBo4osFf",
@@ -285,7 +390,10 @@
     "modelo": "RETRO GTS 97 GIMNASIO ROJO",
     "talla": 27.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 583,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "GU4YAL1C4470WJTvHxTs",
@@ -293,7 +401,10 @@
     "modelo": "AIR JORDAN 1 HIGH OG YELLOW OCHRE",
     "talla": 28.5,
     "precio": 3000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 822,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "GwDWb9wpWNoLWte7whuv",
@@ -301,7 +412,10 @@
     "modelo": "COURT VISION LOW NEXT NATURE DH3158-102",
     "talla": 25.0,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 923,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "I14rUcih1goqvqa23ffj",
@@ -309,7 +423,10 @@
     "modelo": "SWIFT RUN X",
     "talla": 27.5,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 103,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "IZzknNKdwTuoJBK90UwG",
@@ -317,7 +434,10 @@
     "modelo": "LITE RACER ADAPT 5",
     "talla": 26.5,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 204,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "IhFdMqRCXphZBJ3cC8fB",
@@ -325,7 +445,10 @@
     "modelo": "RUNFALCON",
     "talla": 23.5,
     "precio": 1600,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 34,
+    "genero": "Mujer",
+    "estilo": "Deportivo"
   },
   {
     "id": "IluZPwFGAZzVjGUYQFdU",
@@ -333,7 +456,10 @@
     "modelo": "RETRO HIGH OG CRAFT EN MARFIL",
     "talla": 28.0,
     "precio": 3000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 823,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "IozLE9hWzZ7K5BtZDnvn",
@@ -341,7 +467,10 @@
     "modelo": "ALPHA HUARACHE ELITE 3 LOW",
     "talla": 25.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 259,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "JJiVPOXf27ssFG4HBdRW",
@@ -349,7 +478,10 @@
     "modelo": "GORRA - JORDAN",
     "talla": 0.0,
     "precio": 600,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 930,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "Kp4faST1HMILpTJnb1L2",
@@ -357,7 +489,10 @@
     "modelo": "AIR MAX NUAXIS",
     "talla": 25.5,
     "precio": 1700,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 900,
+    "genero": "Mujer",
+    "estilo": "Deportivo"
   },
   {
     "id": "KqsGsE1w7h8afk3pdV9x",
@@ -365,7 +500,10 @@
     "modelo": "AIR FORCE 1 HIGH MOVING COMPANY",
     "talla": 27.5,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 533,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "Kt8yfuAzpp7CKcTUqEqL",
@@ -373,7 +511,10 @@
     "modelo": "COURT LEGACY NEXT NATURE",
     "talla": 24.0,
     "precio": 1800,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 924,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "M8JtWUdvJrQGlumSkaq4",
@@ -381,7 +522,10 @@
     "modelo": "AIR FORCE 1",
     "talla": 24.5,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 905,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "MjFEbL0KXztuoXZTuH9S",
@@ -389,7 +533,10 @@
     "modelo": "WMNS AIR FORCE 1 '07 LV8",
     "talla": 26.5,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 539,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "NNP0h1r2udvo8kpdxwOt",
@@ -397,7 +544,10 @@
     "modelo": "AIR FORCE 1 MID ",
     "talla": 28.0,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 632,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "NZllc9xmOcyKAL5Wo9DC",
@@ -405,7 +555,10 @@
     "modelo": "PRO STRONG",
     "talla": 25.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 531,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "NwYIG6SBZBgu4HhXtE7f",
@@ -413,7 +566,10 @@
     "modelo": "HYPERDIAMOND 4 ELITE",
     "talla": 22.0,
     "precio": 1500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 934,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "OIJqtoAwgJ0yAh4zlEjv",
@@ -421,7 +577,10 @@
     "modelo": "BLAZER LOW PLATFORM",
     "talla": 25.0,
     "precio": 1900,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 922,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "PLJkt9AtwHAXNiDK2LyM",
@@ -429,7 +588,10 @@
     "modelo": "FORCE ZOOM TROUT 9 PRO FÚTBOL GRIS MEDIANOCHE AZUL MARINO",
     "talla": 29.5,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 932,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "PM0oeuqVkXRNhnrZww94",
@@ -437,7 +599,10 @@
     "modelo": "COURT VISION MID",
     "talla": 27.0,
     "precio": 2300,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 626,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "PNkVgIO3OtfHwPND50jX",
@@ -445,7 +610,10 @@
     "modelo": "AIR JORDAN 1 HIGH OG “RARE AIR”",
     "talla": 28.5,
     "precio": 3000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 821,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "PRGDIXfZEpwq4RuDFfjm",
@@ -453,7 +621,10 @@
     "modelo": "METCON",
     "talla": 25.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 93,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "PY9c3ZIB83A6GxVUPNjf",
@@ -461,7 +632,10 @@
     "modelo": "ZOOM BLAZER MID SB 'BROWN ADOBE'",
     "talla": 24.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 555,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "PvbqwpvtTUdzfrYXpMNh",
@@ -469,7 +643,10 @@
     "modelo": "ALPHA HUARACHE 3 VARSITY LOW 'BLACK",
     "talla": 25.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 130,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "TjUzMAh7iett7R9HvKTU",
@@ -477,7 +654,10 @@
     "modelo": "SB BLAZER COURT MID",
     "talla": 27.5,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 586,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "UqMqULOnheuzefvRa8PG",
@@ -485,7 +665,10 @@
     "modelo": "JORDAN DEAR 2003",
     "talla": 27.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 211,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "UvquNgkluJoLotTRUYZf",
@@ -493,7 +676,10 @@
     "modelo": "U_PATH",
     "talla": 26.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 94,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "VRBJBSlQ0RusXcY6dERH",
@@ -501,7 +687,10 @@
     "modelo": "AIR FORCE 1 LOW",
     "talla": 24.0,
     "precio": 2500,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 902,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "VbT2UmvuWuc5sXU6GOtS",
@@ -509,7 +698,10 @@
     "modelo": "MAX AURA 2",
     "talla": 28.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 819,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "Whla7dvZwPIWIO70fkFl",
@@ -517,7 +709,10 @@
     "modelo": "COURT LEGACY LIFT BEIGE FV5526-101 ",
     "talla": 24.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 912,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "XJ1hry16rzjvEdG6TxQ6",
@@ -525,7 +720,10 @@
     "modelo": "GAMMA FORCE",
     "talla": 25.5,
     "precio": 2400,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 804,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "XQGPIb0HekU87pPxEMI2",
@@ -533,7 +731,10 @@
     "modelo": "LONCHERA",
     "talla": 0.0,
     "precio": 500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 648,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "YlF5d8JmQcFHO4Onk8dx",
@@ -541,7 +742,10 @@
     "modelo": "DUNK HIGH DESERT CAMO",
     "talla": 25.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 524,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "ZTAnhm0qgWgNsxRGbyho",
@@ -549,7 +753,10 @@
     "modelo": "AIR FORCE 1",
     "talla": 28.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 810,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "ZnynZrvdAFHMYIWWmEYL",
@@ -557,7 +764,10 @@
     "modelo": "GORRO ACG",
     "talla": 0.0,
     "precio": 600,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 928,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "aHJuZY2mwF6bBa8Kgca2",
@@ -565,7 +775,10 @@
     "modelo": "GAMMA FORCE",
     "talla": 25.0,
     "precio": 2000,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 915,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "bxdnCMS1Coy8pHb4A5cb",
@@ -573,7 +786,10 @@
     "modelo": "GT JUMP",
     "talla": 27.5,
     "precio": 2200,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 718,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "cGfICCmjptbK8YXy2a0s",
@@ -581,7 +797,10 @@
     "modelo": "AIR FORCE 1 MID '07 TRIPLE WHITE CW2289-111",
     "talla": 24.0,
     "precio": 2300,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 629,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "cjpf7lWwFNu3IlHM04hX",
@@ -589,7 +808,10 @@
     "modelo": "JORDAN 11 CMFT LOW BLANCO SAFETY ANARANJADO HYPER AZUL REAL (GS)",
     "talla": 24.5,
     "precio": 2300,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 624,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "dKTkE95wMe5f41ATweaC",
@@ -597,7 +819,10 @@
     "modelo": "COMFORT INSOLE ",
     "talla": 24.0,
     "precio": 2000,
-    "status": "vendido"
+    "status": "vendido",
+    "sku": 913,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "dUtnIHSlx8x5t6r40vq4",
@@ -605,7 +830,10 @@
     "modelo": "FORCE ZOOM TROUT 7 PRO - BOTAS DE BÉISBOL",
     "talla": 26.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 131,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "dW6NZpszdXcYH9C6nSt9",
@@ -613,7 +841,10 @@
     "modelo": "SB BLAZER COURT MID",
     "talla": 26.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 317,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "doDAlqwMUlhiu0YhxqXp",
@@ -621,7 +852,10 @@
     "modelo": "COURT ROYALE AC AO2810-111",
     "talla": 24.0,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 800,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "e7xBw4Yccx8pRvl83mGq",
@@ -629,7 +863,10 @@
     "modelo": "HYPERDIAMOND 4 ELITE",
     "talla": 22.5,
     "precio": 1500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 135,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "eVHQqsBCzwBIZCJDRRoZ",
@@ -637,7 +874,10 @@
     "modelo": "COURT VISION LOW",
     "talla": 24.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 703,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "fZ01Z1OiePtqGEH7N6E8",
@@ -645,7 +885,10 @@
     "modelo": "LONCHERA",
     "talla": 0.0,
     "precio": 500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 652,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "glI3tIPhzmRzo3u2EOVB",
@@ -653,7 +896,10 @@
     "modelo": "COURT VISION LOW NEXT NATURE",
     "talla": 25.0,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 920,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "hKhainovqnrnQWC34wtr",
@@ -661,7 +907,10 @@
     "modelo": "FIELD GENERAL",
     "talla": 25.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 916,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "itNARQicBaQeGl9FlGcx",
@@ -669,7 +918,10 @@
     "modelo": "LEBRON 19 HAWAII",
     "talla": 28.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 525,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "klgAIaoYh8a1eU06VFoK",
@@ -677,7 +929,10 @@
     "modelo": "COURT LEGACY LIFT",
     "talla": 24.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 911,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "l6GFcDmwOr3vq7ovtA2P",
@@ -685,7 +940,10 @@
     "modelo": "AIR FORCE 1",
     "talla": 25.0,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 560,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "ls1jjVQMma0WsWUdHItv",
@@ -693,7 +951,10 @@
     "modelo": "MAX AURA ",
     "talla": 28.0,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 630,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "mXmJAexVsJEqekjc2maw",
@@ -701,7 +962,10 @@
     "modelo": "WMNS NIKE COURT VISION LOW ORIGINAL",
     "talla": 25.0,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 919,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "n1j4gwCS6aAx8IHdqV2k",
@@ -709,7 +973,10 @@
     "modelo": "DUB ZERO ",
     "talla": 29.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 529,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "o7M5fTdk7Z6SrGKkEVIB",
@@ -717,7 +984,10 @@
     "modelo": "SOFTFOAM OPTIMAL COMFORT",
     "talla": 26.5,
     "precio": 1600,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 66,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "oVO4ZB1WW2yTCMY7zmi2",
@@ -725,7 +995,10 @@
     "modelo": "GT GRAND TAYLOR",
     "talla": 27.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 345,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "pDd11i0pL0VylR7G0QFd",
@@ -733,7 +1006,10 @@
     "modelo": "SB BLAZER MID ",
     "talla": 25.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 101,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "pZuwRnUDcG7WJWwnSVe8",
@@ -741,7 +1017,10 @@
     "modelo": "RS RUNNING SYSTEM",
     "talla": 26.0,
     "precio": 2200,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 350,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "penS84Vh8v2AdQDu8i8K",
@@ -749,7 +1028,10 @@
     "modelo": "NIZZA RF SLIP",
     "talla": 27.0,
     "precio": 1700,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 39,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "qy7nNBOcOXVe0CXBTKmP",
@@ -757,7 +1039,10 @@
     "modelo": "DAAN VANDER LINDEN",
     "talla": 25.0,
     "precio": 1300,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 107,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "r9BsUJsT3fmEHcFAcaUx",
@@ -765,7 +1050,10 @@
     "modelo": "COURT ROYALE 2 MID",
     "talla": 24.5,
     "precio": 2000,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 616,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "rOoR73zwyuJP335bXzML",
@@ -773,7 +1061,10 @@
     "modelo": "GORRO - ACG",
     "talla": 0.0,
     "precio": 600,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 929,
+    "genero": "Unisex",
+    "estilo": "Deportivo"
   },
   {
     "id": "sx5U8kiIfg0KYSyl91WN",
@@ -781,7 +1072,10 @@
     "modelo": "AIR FORCE 1 LOW '07 OLYMPIC",
     "talla": 24.0,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 906,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "tZ5gvIpstjYhZ2fHpIaF",
@@ -789,7 +1083,10 @@
     "modelo": "NIKE COURT BOROUGH LOW PREMIUM 'ARMORY BLUE' 861533-400",
     "talla": 26.5,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 575,
+    "genero": "Unisex",
+    "estilo": "Casual"
   },
   {
     "id": "u5dGAM3QgjJ3ffy5iFQ4",
@@ -797,7 +1094,10 @@
     "modelo": "AIR FORCE 1 SHADOW",
     "talla": 25.5,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 908,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "vNLG3qnEUkQ8xlA7NAER",
@@ -805,7 +1105,10 @@
     "modelo": "AIR FORCE 1",
     "talla": 24.5,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 807,
+    "genero": "Mujer",
+    "estilo": "Casual"
   },
   {
     "id": "w9eXSfJNsWuMyJgXI72K",
@@ -813,7 +1116,10 @@
     "modelo": "AIR FORCE 1",
     "talla": 28.0,
     "precio": 2800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 818,
+    "genero": "Hombre",
+    "estilo": "Casual"
   },
   {
     "id": "xv6QApkJP9Sr33lyg6m1",
@@ -821,7 +1127,10 @@
     "modelo": "SWIFT RUN 22",
     "talla": 23.5,
     "precio": 1900,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 49,
+    "genero": "Mujer",
+    "estilo": "Deportivo"
   },
   {
     "id": "y4twgvTKegLuN8CBVkzY",
@@ -829,7 +1138,10 @@
     "modelo": "PHANTOM",
     "talla": 24.0,
     "precio": 1400,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 13,
+    "genero": "Mujer",
+    "estilo": "Deportivo"
   },
   {
     "id": "yp2FPtE2uCS91WOl88ZO",
@@ -837,7 +1149,10 @@
     "modelo": "ALPHA HUARACHE ELITE 4 TURF",
     "talla": 27.0,
     "precio": 1800,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 589,
+    "genero": "Hombre",
+    "estilo": "Deportivo"
   },
   {
     "id": "zEsiOjNZ4U0JHqlJVxgJ",
@@ -845,6 +1160,9 @@
     "modelo": "GAMMA FORCE",
     "talla": 24.5,
     "precio": 2500,
-    "status": "disponible"
+    "status": "disponible",
+    "sku": 801,
+    "genero": "Mujer",
+    "estilo": "Casual"
   }
 ]
