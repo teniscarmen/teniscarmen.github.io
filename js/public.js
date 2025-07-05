@@ -241,6 +241,7 @@ function renderProducts(products) {
       }">
       <h3 class="mt-2 font-semibold">${p.marca} ${p.modelo}</h3>
       <p class="text-sm text-gray-500">SKU: ${p.sku || 'N/A'}</p>
+      <p class="text-sm text-gray-500">Nº de Modelo: ${p.numeroModelo || 'N/A'}</p>
       <p class="text-sm text-gray-500">Género: ${p.genero || 'N/A'}</p>
       <p class="text-sm text-gray-500">Estilo: ${p.estilo || 'N/A'}</p>
       <p class="text-sm text-gray-500">Talla: ${p.talla}</p>
