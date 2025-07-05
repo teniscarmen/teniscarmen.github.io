@@ -30,6 +30,12 @@ import {
   Timestamp,
   updateDoc,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const loadStartTimestamp = Date.now();
@@ -42,6 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     experimentalAutoDetectLongPolling: true,
   });
   const auth = getAuth(app);
+  const storage = getStorage(app);
   const provider = new GoogleAuthProvider();
   let unsubscribeListeners = [];
 
@@ -2473,6 +2480,25 @@ ${comprasHtml}
         document.getElementById('endDate').value = '';
         renderFinancialSummaries();
       });
+
+    document
+      .getElementById('inventarioFotoFile')
+      .addEventListener('change', handleFotoUpload);
+
+    async function handleFotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const path = `inventario/${Date.now()}_${file.name}`;
+      try {
+        const ref = storageRef(storage, path);
+        await uploadBytes(ref, file);
+        const url = await getDownloadURL(ref);
+        document.getElementById('inventarioFoto').value = url;
+      } catch (err) {
+        console.error('Error uploading image: ', err);
+        showAlert('Error', 'No se pudo subir la imagen.', 'error');
+      }
+    }
 
     // Form and Modal Listeners
     document
