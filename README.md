@@ -82,7 +82,7 @@ Crea un archivo `cors.json` con el siguiente contenido y ejecútalo usando `gsut
 Luego establece la configuración:
 
 ```bash
-gsutil cors set cors.json gs://tenis-1baf2.appspot.com
+gsutil cors set cors.json gs://tenischidos
 ```
 
 Tras unos minutos, las solicitudes de subida funcionarán desde tu sitio.
