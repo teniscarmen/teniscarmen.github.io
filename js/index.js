@@ -1101,7 +1101,7 @@ ${Object.entries(comisionesPorVendedor)
           : `<button class="editInventarioBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${item.id}" title="Editar"><i class="fas fa-edit fa-lg"></i></button>`;
 
       card.innerHTML = `${ribbon}
-<img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="w-full sm:w-24 h-24 object-cover rounded-lg flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
+<img src="${item.foto || 'tenis_default.jpg'}" data-full="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="product-img w-full sm:w-24 h-24 object-cover rounded-lg flex-shrink-0 cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
 <div class="flex-grow">
 <div class="flex justify-between items-start">
 <h4 class="font-bold text-lg text-gray-900">${item.marca} - ${item.modelo}</h4>
@@ -1135,9 +1135,19 @@ ${editButtonHtml}
     document
       .querySelectorAll('.editInventarioBtn')
       .forEach((btn) => btn.addEventListener('click', handleEditInventario));
-    document
+  document
       .querySelectorAll('.deleteInventarioBtn')
       .forEach((btn) => btn.addEventListener('click', handleDeleteInventario));
+
+    document
+      .querySelectorAll('.product-img')
+      .forEach((img) =>
+        img.addEventListener('click', () => {
+          const modal = document.getElementById('imageModal');
+          modal.querySelector('img').src = img.dataset.full;
+          showModal(modal);
+        }),
+      );
   }
 
   function renderClientes(clientes, searchTerm = '') {
