@@ -35,6 +35,7 @@ import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
+  deleteObject,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const appContainer = document.getElementById('app-container');
   const loginBtn = document.getElementById('loginBtn');
   const userInfoDiv = document.getElementById('user-info');
+  document.getElementById('removeFotoBtn').style.display = 'none';
 
   // --- STATE ---
   let allClientes = {};
@@ -418,6 +420,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     setTimeout(() => {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
+      if (modal.id === 'inventarioModal') {
+        document.getElementById('inventarioFotoFile').value = '';
+        document.getElementById('removeFotoBtn').style.display = 'none';
+        uploadedFotoUrl = '';
+      }
     }, 300);
   };
   const showAlert = (title, message, type = 'info', onConfirm = null) => {
@@ -1497,6 +1504,9 @@ ${obsHtml}
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
       uploadedFotoUrl = item.foto || '';
+      document.getElementById('inventarioFotoFile').value = '';
+      document.getElementById('removeFotoBtn').style.display =
+        uploadedFotoUrl ? 'block' : 'none';
       document.getElementById('inventarioDescuentoActivo').checked =
         item.descuentoActivo || false;
       document.getElementById('inventarioPorcentajeDescuento').value =
@@ -2563,6 +2573,10 @@ ${comprasHtml}
       .getElementById('inventarioFotoFile')
       .addEventListener('change', handleFotoUpload);
 
+    document
+      .getElementById('removeFotoBtn')
+      .addEventListener('click', handleFotoRemove);
+
     async function handleFotoUpload(e) {
       const file = e.target.files[0];
       if (!file) return;
@@ -2575,6 +2589,21 @@ ${comprasHtml}
       } catch (err) {
         console.error('Error uploading image: ', err);
         showAlert('Error', 'No se pudo subir la imagen.', 'error');
+      }
+    }
+
+    async function handleFotoRemove() {
+      if (!uploadedFotoUrl) return;
+      try {
+        const path = decodeURIComponent(
+          uploadedFotoUrl.split('/o/')[1].split('?')[0],
+        );
+        await deleteObject(storageRef(storage, path));
+        uploadedFotoUrl = '';
+        document.getElementById('inventarioFotoFile').value = '';
+      } catch (err) {
+        console.error('Error deleting image: ', err);
+        showAlert('Error', 'No se pudo eliminar la imagen.', 'error');
       }
     }
 
@@ -3016,6 +3045,8 @@ ${comprasHtml}
         document.getElementById('inventarioDescuentoActivo').checked = false;
         document.getElementById('inventarioPorcentajeDescuento').value = '';
         uploadedFotoUrl = '';
+        document.getElementById('inventarioFotoFile').value = '';
+        document.getElementById('removeFotoBtn').style.display = 'none';
         document.getElementById('inventarioModalTitle').textContent =
           'Agregar Producto al Inventario';
         showModal(document.getElementById('inventarioModal'));
