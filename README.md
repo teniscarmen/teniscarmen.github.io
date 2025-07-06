@@ -61,3 +61,28 @@ firebase deploy --only functions:exportInventory
 Al usarla desde `admin.html`, la respuesta incluirá `Access-Control-Allow-Origin`
 para evitar errores de CORS.
 
+
+### Configurar CORS en Firebase Storage
+
+Si al subir imágenes aparecen errores de CORS como `Response to preflight request doesn't pass access control check`, necesitas permitir tu dominio en el bucket de Firebase Storage.
+
+Crea un archivo `cors.json` con el siguiente contenido y ejecútalo usando `gsutil`:
+
+```json
+[
+  {
+    "origin": ["http://tenischidos.xyz"],
+    "method": ["GET", "POST", "PUT", "DELETE"],
+    "responseHeader": ["Content-Type"],
+    "maxAgeSeconds": 3600
+  }
+]
+```
+
+Luego establece la configuración:
+
+```bash
+gsutil cors set cors.json gs://tenis-1baf2.appspot.com
+```
+
+Tras unos minutos, las solicitudes de subida funcionarán desde tu sitio.
