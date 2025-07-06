@@ -12,6 +12,7 @@ export default [
         window: 'readonly',
         console: 'readonly',
         setTimeout: 'readonly',
+        setInterval: 'readonly',
         Intl: 'readonly',
         Blob: 'readonly',
         FileReader: 'readonly',

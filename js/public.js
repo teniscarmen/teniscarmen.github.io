@@ -193,6 +193,10 @@ function renderCarousel(products) {
     index = (index + 1) % valid.length;
     update();
   };
+  setInterval(() => {
+    index = (index + 1) % valid.length;
+    update();
+  }, 3000);
   update();
 }
 
