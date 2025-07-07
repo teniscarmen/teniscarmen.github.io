@@ -388,19 +388,19 @@
     "status": "disponible",
     "tallaTipo": "MX",
     "precio": 1800,
-    "modelo": "SOFTFOAM OPTIMAL COMFORT",
     "costo": 50,
     "porcentajeDescuento": 50,
-    "descripcion": "Pisa con estilo y confort inigualable con los nuevos PUMA Softfoam optimal comfort para hombre. Su diseño casual en tela te brinda la máxima comodidad en cada paso, gracias a su plantilla Softfoam que se adapta a tu pie. ¡El complemento perfecto para tu día a día!\n",
     "talla": "28",
     "descuentoActivo": false,
     "precioOferta": null,
-    "foto": "https://firebasestorage.googleapis.com/v0/b/tenischidos/o/inventario%2F1751766256476_puma%20el%20rey%20ii.jpg?alt=media&token=6cbb3100-d3bc-4174-8d90-1ab935125740",
+    "numeroModelo": "",
+    "modelo": "EL REY II",
+    "descripcion": "Domina las calles con estilo y comodidad inigualable. Los **PUMA EL REY II** son los tenis casuales perfectos para el hombre moderno. Fabricados en tela de alta calidad, te ofrecen frescura y un look impecable que te hará destacar a donde vayas. ¡Adquiere los tuyos hoy y siente la diferencia!\n",
+    "foto": "https://firebasestorage.googleapis.com/v0/b/tenischidos/o/inventario%2F1751857045386_Untitled%20design.png?alt=media&token=d35e7089-fe61-4ff6-9b75-9e947e10bfb1",
     "fechaRegistro": {
-      "_seconds": 1751766259,
-      "_nanoseconds": 58000000
-    },
-    "numeroModelo": ""
+      "_seconds": 1751857066,
+      "_nanoseconds": 728000000
+    }
   },
   {
     "id": "8S1RgfOh6JeAMRS3iySa",
@@ -1686,15 +1686,19 @@
     "estilo": "Casual",
     "material": "Tela",
     "descripcion": "Domina las calles con el estilo effortless de los Nike Daan vander linden. Estos tenis casuales para hombre, confeccionados en tela ligera, ofrecen comodidad y un look impecable para el día a día. ¡Eleva tu outfit con la herencia y calidad que solo Nike puede brindar!\n",
-    "foto": "",
     "costo": 30,
     "precio": 1300,
     "status": "disponible",
+    "categoria": "Tenis",
+    "descuentoActivo": true,
+    "foto": "https://firebasestorage.googleapis.com/v0/b/tenischidos/o/inventario%2F1751859654236_Disen%CC%83o%20sin%20ti%CC%81tulo.jpg?alt=media&token=929f2543-13a7-410d-a97c-f07729340e34",
+    "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1751312700,
-      "_nanoseconds": 215000000
+      "_seconds": 1751859660,
+      "_nanoseconds": 271000000
     },
-    "categoria": "Tenis"
+    "numeroModelo": "",
+    "precioOferta": 650
   },
   {
     "id": "r9BsUJsT3fmEHcFAcaUx",
