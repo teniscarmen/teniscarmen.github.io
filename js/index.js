@@ -236,22 +236,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   };
 
-  const updatePublicInventory = async () => {
+  const updatePublicInventory = async (silent = false) => {
     try {
       const res = await fetch(inventoryExportEndpoint, { method: 'POST' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      showAlert(
-        'Inventario Actualizado',
-        'Se generó el archivo público de inventario.',
-        'success',
-      );
+      if (!silent) {
+        showAlert(
+          'Inventario Actualizado',
+          'Se generó el archivo público de inventario.',
+          'success',
+        );
+      }
     } catch (error) {
       console.error('Error updating public inventory:', error);
-      showAlert(
-        'Error',
-        'No se pudo actualizar el inventario público.',
-        'error',
-      );
+      if (!silent) {
+        showAlert(
+          'Error',
+          'No se pudo actualizar el inventario público.',
+          'error',
+        );
+      }
     }
   };
 
@@ -1549,6 +1553,7 @@ ${obsHtml}
       async () => {
         try {
           await deleteDoc(doc(db, getSharedCollectionPath('inventario'), id));
+          await updatePublicInventory(true);
         } catch (error) {
           console.error('Error deleting item:', error);
           showAlert('Error', 'No se pudo eliminar el artículo.', 'error');
@@ -1842,6 +1847,7 @@ ${obsHtml}
             'La venta ha sido eliminada y el tenis ha sido restaurado al inventario.',
             'success',
           );
+          await updatePublicInventory(true);
         } catch (error) {
           console.error('Error deleting sale: ', error);
           showAlert('Error', 'Ocurrió un error al eliminar la venta.', 'error');
@@ -2685,6 +2691,7 @@ ${comprasHtml}
             await addDoc(collection(db, path), data);
           }
           hideModal(document.getElementById('inventarioModal'));
+          await updatePublicInventory(true);
         } catch (error) {
           console.error('Error saving inventory item: ', error);
           showAlert('Error', 'No se pudo guardar el artículo.', 'error');
@@ -2769,6 +2776,7 @@ ${comprasHtml}
           await batch.commit();
           hideModal(document.getElementById('ventaModal'));
           showAlert('Éxito', 'Venta registrada correctamente.', 'success');
+          await updatePublicInventory(true);
         } catch (error) {
           console.error('Error creating sale: ', error);
           showAlert('Error', 'No se pudo registrar la venta.', 'error');
