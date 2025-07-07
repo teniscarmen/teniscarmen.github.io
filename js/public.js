@@ -162,7 +162,7 @@ function renderCarousel(products) {
   container.classList.remove('hidden');
   valid.forEach((p) => {
     const slide = document.createElement('div');
-    slide.className = 'relative w-full h-60 flex-shrink-0';
+    slide.className = 'cover-slide w-3/4 sm:w-1/2 h-full';
 
     const img = document.createElement('img');
     img.src = p.foto;
@@ -184,7 +184,19 @@ function renderCarousel(products) {
   });
   let index = 0;
   function update() {
-    slides.style.transform = `translateX(-${index * 100}%)`;
+    const elems = slides.children;
+    for (let i = 0; i < elems.length; i++) {
+      const offset = i - index;
+      const abs = Math.abs(offset);
+      const rotate = offset * -45;
+      const translate = offset * 60;
+      const scale = offset === 0 ? 1 : 0.7;
+      const z = 100 - abs;
+      elems[i].style.transform =
+        `translateX(${translate}%) rotateY(${rotate}deg) scale(${scale})`;
+      elems[i].style.zIndex = z;
+      elems[i].style.opacity = abs > 3 ? 0 : 1;
+    }
   }
   document.getElementById('carouselPrev').onclick = () => {
     index = (index - 1 + valid.length) % valid.length;
