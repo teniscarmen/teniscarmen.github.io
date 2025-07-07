@@ -193,7 +193,7 @@ function renderCarousel(products) {
       const scale = offset === 0 ? 1 : 0.7;
       const z = 100 - abs;
       elems[i].style.transform =
-        `translateX(${translate}%) rotateY(${rotate}deg) scale(${scale})`;
+        `translateX(-50%) translateX(${translate}%) rotateY(${rotate}deg) scale(${scale})`;
       elems[i].style.zIndex = z;
       elems[i].style.opacity = abs > 3 ? 0 : 1;
     }
