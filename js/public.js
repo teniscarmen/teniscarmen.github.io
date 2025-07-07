@@ -37,7 +37,8 @@ document.getElementById('sortSelect').value = sortOrder;
 
 const INVENTORY_CACHE_KEY = 'inventoryCache';
 const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 1 day
+// Reduce cache TTL so public inventory refreshes quickly
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
 function showSkeleton(count = 8) {
   const container = document.getElementById('productsContainer');
