@@ -516,31 +516,42 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    const adminRef = doc(db, 'admins', user.email);
-    const adminSnap = await getDoc(adminRef);
+    try {
+      const adminRef = doc(db, 'admins', user.email);
+      const adminSnap = await getDoc(adminRef);
 
-    if (adminSnap.exists()) {
-      userInfoDiv.innerHTML = `
-<img src="${user.photoURL}" alt="${user.displayName}" class="w-8 h-8 rounded-full border-2 border-gray-200">
-<span class="font-semibold hidden md:inline text-gray-800">${user.displayName}</span>
-<button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg text-xs">Salir</button>
-`;
-      document
-        .getElementById('logoutBtn')
-        .addEventListener('click', () => signOut(auth));
-      initializeAppListeners(user);
-      renderCajaActions(user);
-      appContainer.classList.remove('hidden');
-      loginScreen.classList.add('hidden');
-    } else {
+      if (adminSnap.exists()) {
+        userInfoDiv.innerHTML = `
+  <img src="${user.photoURL}" alt="${user.displayName}" class="w-8 h-8 rounded-full border-2 border-gray-200">
+  <span class="font-semibold hidden md:inline text-gray-800">${user.displayName}</span>
+  <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-lg text-xs">Salir</button>
+  `;
+        document
+          .getElementById('logoutBtn')
+          .addEventListener('click', () => signOut(auth));
+        initializeAppListeners(user);
+        renderCajaActions(user);
+        appContainer.classList.remove('hidden');
+        loginScreen.classList.add('hidden');
+      } else {
+        showAlert(
+          'Acceso Denegado',
+          `El correo <b>${user.email}</b> no tiene permiso para acceder.`,
+          'error',
+        );
+        signOut(auth);
+      }
+    } catch (error) {
+      console.error('Error verifying admin user:', error);
       showAlert(
         'Acceso Denegado',
         `El correo <b>${user.email}</b> no tiene permiso para acceder.`,
         'error',
       );
       signOut(auth);
+    } finally {
+      hideLoadingOverlay();
     }
-    hideLoadingOverlay();
   }
 
   // --- LOGIN HANDLER (using Popup) ---
