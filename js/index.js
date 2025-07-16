@@ -3105,6 +3105,21 @@ ${comprasHtml}
     document
       .getElementById('generateDescBtn')
       .addEventListener('click', generateProductDescription);
+    document
+      .getElementById('searchImageBtn')
+      .addEventListener('click', () => {
+        const numModelo = document.getElementById('inventarioNumeroModelo').value;
+        if (numModelo) {
+          const query = encodeURIComponent(numModelo);
+          window.open(`https://www.google.com/search?tbm=isch&q=${query}`, '_blank');
+        } else {
+          showAlert(
+            'Número de Modelo vacío',
+            'Ingresa un número de modelo para buscar imágenes.',
+            'info',
+          );
+        }
+      });
     skuInput.addEventListener('input', updateFotoLink);
     document
       .getElementById('productoSearch')
