@@ -30,13 +30,7 @@ import {
   Timestamp,
   updateDoc,
 } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
-import {
-  getStorage,
-  ref as storageRef,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js';
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   const loadStartTimestamp = Date.now();
@@ -49,7 +43,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     experimentalAutoDetectLongPolling: true,
   });
   const auth = getAuth(app);
-  const storage = getStorage(app);
   const provider = new GoogleAuthProvider();
   let unsubscribeListeners = [];
 
@@ -59,8 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const appContainer = document.getElementById('app-container');
   const loginBtn = document.getElementById('loginBtn');
   const userInfoDiv = document.getElementById('user-info');
-  document.getElementById('removeFotoBtn').style.display = 'none';
-
   // --- STATE ---
   let allClientes = {};
   let allInventario = {};
@@ -70,7 +61,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   let localVentas = [];
   let localCortes = [];
   let ventaItems = [];
-  let uploadedFotoUrl = '';
 
   const categorias = ['Tenis', 'Ropa', 'Accesorios'];
 
@@ -425,9 +415,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       if (modal.id === 'inventarioModal') {
-        document.getElementById('inventarioFotoFile').value = '';
-        document.getElementById('removeFotoBtn').style.display = 'none';
-        uploadedFotoUrl = '';
+        document.getElementById('inventarioForm').reset();
       }
     }, 300);
   };
@@ -1528,10 +1516,6 @@ ${obsHtml}
       document.getElementById('inventarioMaterial').value = item.material || '';
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
-      uploadedFotoUrl = item.foto || '';
-      document.getElementById('inventarioFotoFile').value = '';
-      document.getElementById('removeFotoBtn').style.display =
-        uploadedFotoUrl ? 'block' : 'none';
       document.getElementById('inventarioDescuentoActivo').checked =
         item.descuentoActivo || false;
       document.getElementById('inventarioPorcentajeDescuento').value =
@@ -2596,43 +2580,7 @@ ${comprasHtml}
         renderFinancialSummaries();
       });
 
-    document
-      .getElementById('inventarioFotoFile')
-      .addEventListener('change', handleFotoUpload);
-
-    document
-      .getElementById('removeFotoBtn')
-      .addEventListener('click', handleFotoRemove);
-
-    async function handleFotoUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const path = `inventario/${Date.now()}_${file.name}`;
-      try {
-        const ref = storageRef(storage, path);
-        await uploadBytes(ref, file);
-        const url = await getDownloadURL(ref);
-        uploadedFotoUrl = url;
-      } catch (err) {
-        console.error('Error uploading image: ', err);
-        showAlert('Error', 'No se pudo subir la imagen.', 'error');
-      }
-    }
-
-    async function handleFotoRemove() {
-      if (!uploadedFotoUrl) return;
-      try {
-        const path = decodeURIComponent(
-          uploadedFotoUrl.split('/o/')[1].split('?')[0],
-        );
-        await deleteObject(storageRef(storage, path));
-        uploadedFotoUrl = '';
-        document.getElementById('inventarioFotoFile').value = '';
-      } catch (err) {
-        console.error('Error deleting image: ', err);
-        showAlert('Error', 'No se pudo eliminar la imagen.', 'error');
-      }
-    }
+    // Las imágenes se asignan automáticamente, no se requiere carga manual
 
     // Form and Modal Listeners
     document
@@ -2675,7 +2623,7 @@ ${comprasHtml}
           estilo: document.getElementById('inventarioEstilo').value,
           material: document.getElementById('inventarioMaterial').value,
           descripcion: document.getElementById('inventarioDescripcion').value,
-          foto: uploadedFotoUrl,
+          foto: `https://teniscarmen.github.io/Galeria/${skuValue}.jpg`,
           costo: parseFloat(document.getElementById('inventarioCosto').value),
           precio: parseFloat(document.getElementById('inventarioPrecio').value),
           descuentoActivo: document.getElementById('inventarioDescuentoActivo')
@@ -3073,9 +3021,6 @@ ${comprasHtml}
         document.getElementById('inventarioCategoria').value = '';
         document.getElementById('inventarioDescuentoActivo').checked = false;
         document.getElementById('inventarioPorcentajeDescuento').value = '';
-        uploadedFotoUrl = '';
-        document.getElementById('inventarioFotoFile').value = '';
-        document.getElementById('removeFotoBtn').style.display = 'none';
         document.getElementById('inventarioModalTitle').textContent =
           'Agregar Producto al Inventario';
         showModal(document.getElementById('inventarioModal'));
