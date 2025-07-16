@@ -1114,9 +1114,11 @@ ${Object.entries(comisionesPorVendedor)
           ? ''
           : `<button class="editInventarioBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${item.id}" title="Editar"><i class="fas fa-edit fa-lg"></i></button>`;
 
-      card.innerHTML = `${ribbon}
-<img src="${item.foto || 'tenis_default.jpg'}" data-full="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="product-img w-full sm:w-24 h-24 object-cover rounded-lg flex-shrink-0 cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
-<div class="flex-grow">
+      card.innerHTML = `<div class="relative flex-shrink-0">
+  ${ribbon}
+  <img src="${item.foto || 'tenis_default.jpg'}" data-full="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="product-img w-full sm:w-24 h-24 object-cover rounded-lg cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
+</div>
+  <div class="flex-grow">
 <div class="flex justify-between items-start">
 <h4 class="font-bold text-lg text-gray-900">${item.marca} - ${item.modelo}</h4>
 <span class="flex-shrink-0 text-xs font-medium px-2 py-1 rounded-full ${statusColor}">${statusText}</span>
