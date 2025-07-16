@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const appContainer = document.getElementById('app-container');
   const loginBtn = document.getElementById('loginBtn');
   const userInfoDiv = document.getElementById('user-info');
+  const skuInput = document.getElementById('inventarioSku');
+  const fotoInput = document.getElementById('inventarioFoto');
   // --- STATE ---
   let allClientes = {};
   let allInventario = {};
@@ -63,6 +65,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   let ventaItems = [];
 
   const categorias = ['Tenis', 'Ropa', 'Accesorios'];
+
+  const updateFotoLink = () => {
+    const sku = skuInput.value.toUpperCase();
+    if (sku) {
+      fotoInput.value = `https://teniscarmen.github.io/Galeria/${sku}.jpg`;
+    } else {
+      fotoInput.value = '';
+    }
+  };
 
   // --- UTILS ---
   const formatDate = (timestamp) => {
@@ -1516,6 +1527,8 @@ ${obsHtml}
       document.getElementById('inventarioMaterial').value = item.material || '';
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
+      document.getElementById('inventarioFoto').value = item.foto ||
+        `https://teniscarmen.github.io/Galeria/${item.sku}.jpg`;
       document.getElementById('inventarioDescuentoActivo').checked =
         item.descuentoActivo || false;
       document.getElementById('inventarioPorcentajeDescuento').value =
@@ -2623,7 +2636,9 @@ ${comprasHtml}
           estilo: document.getElementById('inventarioEstilo').value,
           material: document.getElementById('inventarioMaterial').value,
           descripcion: document.getElementById('inventarioDescripcion').value,
-          foto: `https://teniscarmen.github.io/Galeria/${skuValue}.jpg`,
+          foto:
+            document.getElementById('inventarioFoto').value ||
+            `https://teniscarmen.github.io/Galeria/${skuValue}.jpg`,
           costo: parseFloat(document.getElementById('inventarioCosto').value),
           precio: parseFloat(document.getElementById('inventarioPrecio').value),
           descuentoActivo: document.getElementById('inventarioDescuentoActivo')
@@ -3017,12 +3032,14 @@ ${comprasHtml}
       .addEventListener('click', () => {
         document.getElementById('inventarioForm').reset();
         document.getElementById('inventarioSku').value = '';
+        document.getElementById('inventarioFoto').value = '';
         document.getElementById('inventarioId').value = '';
         document.getElementById('inventarioCategoria').value = '';
         document.getElementById('inventarioDescuentoActivo').checked = false;
         document.getElementById('inventarioPorcentajeDescuento').value = '';
         document.getElementById('inventarioModalTitle').textContent =
           'Agregar Producto al Inventario';
+        updateFotoLink();
         showModal(document.getElementById('inventarioModal'));
       });
     document
@@ -3086,6 +3103,7 @@ ${comprasHtml}
     document
       .getElementById('generateDescBtn')
       .addEventListener('click', generateProductDescription);
+    skuInput.addEventListener('input', updateFotoLink);
     document
       .getElementById('productoSearch')
       .addEventListener('input', renderProductoResultados);
