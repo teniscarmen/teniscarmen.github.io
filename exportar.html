@@ -49,11 +49,11 @@
 
       try {
         const res = await fetch("https://us-central1-tenis-1baf2.cloudfunctions.net/exportInventory", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
 
         if (!res.ok) throw new Error("Error en la respuesta");
 
