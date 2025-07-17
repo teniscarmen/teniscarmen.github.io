@@ -58,8 +58,19 @@
         if (!res.ok) throw new Error("Error en la respuesta");
 
         const data = await res.json();
-        inventarioGlobal = data;
-        salida.textContent = JSON.stringify(data, null, 2);
+        inventarioGlobal = data.map((item) => {
+          const sku = String(item.sku || '').toUpperCase();
+          if (!item.foto) {
+            item.foto = `Galeria/${sku}.jpg`;
+          } else {
+            item.foto = item.foto.replace(
+              /^https?:\/\/[^/]+\/Galeria\//,
+              'Galeria/',
+            );
+          }
+          return item;
+        });
+        salida.textContent = JSON.stringify(inventarioGlobal, null, 2);
       } catch (err) {
         salida.textContent = "❌ Error: " + err.message;
       }
