@@ -48,7 +48,7 @@ function showSkeleton(count = 8) {
     card.className =
       'skeleton-card space-y-2 p-4 rounded-xl shadow animate-pulse';
     card.innerHTML = `
-      <div class="h-40 w-full"></div>
+      <div class="w-full aspect-[3/4]"></div>
       <div class="h-4 w-3/4"></div>
       <div class="h-4 w-1/2"></div>
     `;
@@ -253,7 +253,7 @@ function renderProducts(products) {
       ${ribbon}
       <img src="${
         p.foto || 'tenis_default.jpg'
-      }" data-full="${p.foto || 'tenis_default.jpg'}" class="product-img w-full h-40 object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
+      }" data-full="${p.foto || 'tenis_default.jpg'}" class="product-img w-full aspect-[3/4] object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
         p.modelo
       }">
       <h3 class="mt-2 font-semibold">${p.marca} ${p.modelo}</h3>
