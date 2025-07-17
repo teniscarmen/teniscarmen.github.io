@@ -499,7 +499,7 @@ async function generateCatalogPDF() {
   const headerHtml = `
       <div style="text-align:center;margin-bottom:1rem;">
         <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
-        <h1 style="margin-top:0.5rem;font-size:1.5rem;font-weight:600;">Productos Disponibles</h1>
+        <p style="margin:0;font-size:1rem;font-weight:600;">www.tenischidos.xyz</p>
         <p style="margin:0;font-size:0.9rem;">${today}</p>
       </div>`;
 
@@ -514,12 +514,17 @@ async function generateCatalogPDF() {
       catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
       genders[gen].forEach((item) => {
         catalogHtml += `
-          <li style="margin-bottom:0.7rem;border-bottom:1px dashed #d1d5db;padding-bottom:0.5rem;page-break-inside:avoid;display:flex;gap:0.5rem;align-items:center;">
-            <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.25rem;" />
-            <div>
-              <strong>${item.marca} ${item.modelo}</strong> (SKU: ${item.sku || 'N/A'})<br>
-              Talla: ${item.talla} | Estilo: ${item.estilo || 'N/A'} | Material: ${item.material || 'N/A'}<br>
-              Precio: ${formatCurrency(item.precio || 0)}
+          <li style="margin:0 auto 0.7rem;width:80%;background:#fff;border:1px solid #e5e7eb;border-radius:0.75rem;box-shadow:0 1px 2px rgba(0,0,0,0.05);padding:0.75rem;page-break-inside:avoid;display:flex;gap:0.75rem;align-items:flex-start;">
+            <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.5rem;" />
+            <div style="font-size:0.9rem;color:#374151;flex-grow:1;">
+              <div style="font-weight:600;font-size:1rem;color:#111827;margin-bottom:0.25rem;">${item.marca} ${item.modelo}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.25rem 1rem;">
+                <span>Talla: ${item.talla}</span>
+                <span>SKU: ${item.sku || 'N/A'}</span>
+                <span>Estilo: ${item.estilo || 'N/A'}</span>
+                <span>Material: ${item.material || 'N/A'}</span>
+              </div>
+              <div style="margin-top:0.5rem;font-weight:bold;color:#1f2937;">${formatCurrency(item.precio || 0)}</div>
             </div>
           </li>`;
       });
