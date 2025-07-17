@@ -28,23 +28,6 @@
         border-radius: 0.375rem;
         height: 0.75rem;
       }
-      /* Coverflow carousel styles */
-      #carouselContainer {
-        perspective: 1000px;
-      }
-      #carouselSlides {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        transform-style: preserve-3d;
-      }
-      .cover-slide {
-        transition: transform 0.5s, opacity 0.5s;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform-origin: center center;
-      }
     </style>
   </head>
   <body class="font-[Inter] bg-gray-100 text-gray-800">
@@ -120,29 +103,6 @@
           class="cat-btn bg-indigo-600 text-white px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           Todos
-        </button>
-      </div>
-      <div
-        id="carouselContainer"
-        class="relative w-full h-60 overflow-hidden mb-4 hidden"
-      >
-        <div
-          id="carouselSlides"
-          class="relative h-full w-full"
-        ></div>
-        <button
-          id="carouselPrev"
-          class="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-75 rounded-full p-2 shadow"
-          aria-label="Anterior"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button
-          id="carouselNext"
-          class="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-75 rounded-full p-2 shadow"
-          aria-label="Siguiente"
-        >
-          <i class="fas fa-chevron-right"></i>
         </button>
       </div>
       <section class="bg-white rounded-xl shadow-2xl p-4 mb-4">
