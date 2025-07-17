@@ -2473,13 +2473,19 @@ ${comprasHtml}
         catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
         genders[gen].forEach((item) => {
           catalogHtml += `
-          <li style="margin:0 auto 0.7rem;width:80%;background:#fff;border:1px solid #e5e7eb;border-radius:0.75rem;box-shadow:0 1px 2px rgba(0,0,0,0.05);padding:0.75rem;page-break-inside:avoid;display:flex;gap:0.75rem;align-items:flex-start;">
-            <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.5rem;" />
-            <div style="font-size:0.9rem;color:#374151;line-height:1.2;">
-              <div style="font-weight:600;">${item.marca} | ${item.modelo} | (SKU:${item.sku || 'N/A'})</div>
-              <div>N° de Modelo: ${item.numeroModelo || 'N/A'} | Talla: ${item.talla} | Material: ${item.material || 'N/A'} | Estilo: ${item.estilo || 'N/A'}</div>
-              <div style="font-weight:600;">Precio: ${formatCurrency(item.precio || 0)}</div>
-            </div>
+          <li style="margin:0 auto 0.7rem;width:80%;background:#fff;border:1px solid #e5e7eb;border-radius:0.75rem;box-shadow:0 1px 2px rgba(0,0,0,0.05);padding:0.75rem;page-break-inside:avoid;">
+            <table style="width:100%;border-collapse:collapse;">
+              <tr>
+                <td style="width:80px;vertical-align:top;">
+                  <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.5rem;" />
+                </td>
+                <td style="font-size:0.9rem;color:#374151;line-height:1.2;vertical-align:top;">
+                  <div style="font-weight:600;">${item.marca} | ${item.modelo} | (SKU:${item.sku || 'N/A'})</div>
+                  <div>N° de Modelo: ${item.numeroModelo || 'N/A'} | Talla: ${item.talla} | Material: ${item.material || 'N/A'} | Estilo: ${item.estilo || 'N/A'}</div>
+                  <div style="font-weight:600;">Precio: ${formatCurrency(item.precio || 0)}</div>
+                </td>
+              </tr>
+            </table>
           </li>`;
         });
         catalogHtml += '</ul>';
