@@ -1116,7 +1116,7 @@ ${Object.entries(comisionesPorVendedor)
 
       card.innerHTML = `<div class="relative flex-shrink-0">
   ${ribbon}
-  <img src="${item.foto || 'tenis_default.jpg'}" data-full="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="product-img w-full sm:w-24 aspect-[3/4] object-cover rounded-lg cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
+  <img src="${item.foto || 'tenis_default.jpg'}" data-full="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" class="product-img w-full sm:w-24 aspect-square object-cover rounded-lg cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/96x96/e2e8f0/64748b?text=N/A';">
 </div>
   <div class="flex-grow">
 <div class="flex justify-between items-start">
