@@ -61,11 +61,11 @@
         inventarioGlobal = data.map((item) => {
           const sku = String(item.sku || '').toUpperCase();
           if (!item.foto) {
-            item.foto = `Galeria/${sku}.jpg`;
+            item.foto = `https://teniscarmen.github.io/Galeria/${sku}.jpg`;
           } else {
             item.foto = item.foto.replace(
               /^https?:\/\/[^/]+\/Galeria\//,
-              'Galeria/',
+              'https://teniscarmen.github.io/Galeria/',
             );
           }
           return item;

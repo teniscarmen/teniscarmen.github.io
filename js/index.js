@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const updateFotoLink = () => {
     const sku = skuInput.value.toUpperCase();
     if (sku) {
-      fotoInput.value = `Galeria/${sku}.jpg`;
+      fotoInput.value = `https://teniscarmen.github.io/Galeria/${sku}.jpg`;
     } else {
       fotoInput.value = '';
     }
@@ -1527,7 +1527,8 @@ ${obsHtml}
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
       document.getElementById('inventarioFoto').value =
-        item.foto || `Galeria/${item.sku}.jpg`;
+        item.foto ||
+        `https://teniscarmen.github.io/Galeria/${item.sku}.jpg`;
       document.getElementById('inventarioDescuentoActivo').checked =
         item.descuentoActivo || false;
       document.getElementById('inventarioPorcentajeDescuento').value =
@@ -2570,7 +2571,7 @@ ${comprasHtml}
           descripcion: document.getElementById('inventarioDescripcion').value,
           foto:
             document.getElementById('inventarioFoto').value ||
-            `Galeria/${skuValue}.jpg`,
+            `https://teniscarmen.github.io/Galeria/${skuValue}.jpg`,
           costo: parseFloat(document.getElementById('inventarioCosto').value),
           precio: parseFloat(document.getElementById('inventarioPrecio').value),
           descuentoActivo: document.getElementById('inventarioDescuentoActivo')
