@@ -10,15 +10,19 @@
     "estilo": "Casual",
     "material": "Gamuza",
     "descripcion": "Eleva tu estilo casual con los icónicos Nike SB Blazer Mid. Su diseño clásico en gamuza premium te ofrece confort y durabilidad, mientras que su silueta atemporal te asegura un look impecable en cualquier ocasión. ¡Hazte con ellos y domina el asfalto con la legendaria actitud Nike!\n",
-    "foto": "",
     "costo": 40,
     "precio": 2000,
     "status": "disponible",
+    "categoria": "Tenis",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/553.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312730,
-      "_nanoseconds": 30000000
+      "_seconds": 1752716904,
+      "_nanoseconds": 221000000
     },
-    "categoria": "Tenis"
+    "numeroModelo": "864349-010",
+    "precioOferta": null
   },
   {
     "id": "17y6RUKPPkJQ17WCfwiA",
@@ -52,15 +56,19 @@
     "estilo": "Casual",
     "material": "Tela",
     "descripcion": "**Eleva tu estilo casual con los Nike Court Legacy Next Nature para mujer.** Fabricados con tela suave y un diseño icónico, estos tenis te brindan comodidad duradera y un look moderno que complementa cualquier outfit. ¡Atrévete a lucir increíble mientras cuidas el planeta!\n",
-    "foto": "",
     "costo": 30,
     "precio": 1700,
     "status": "disponible",
+    "categoria": "Tenis",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/058.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312717,
-      "_nanoseconds": 343000000
+      "_seconds": 1752716732,
+      "_nanoseconds": 533000000
     },
-    "categoria": "Tenis"
+    "numeroModelo": "CZ0294-002",
+    "precioOferta": null
   },
   {
     "id": "1l8c0ajcEdGPtwaaKUd4",
@@ -76,12 +84,16 @@
     "costo": 70,
     "precio": 2800,
     "status": "disponible",
-    "fechaRegistro": {
-      "_seconds": 1751312509,
-      "_nanoseconds": 994000000
-    },
     "categoria": "Tenis",
-    "foto": ""
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/814.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717650,
+      "_nanoseconds": 702000000
+    },
+    "numeroModelo": "FD2592-002",
+    "precioOferta": null
   },
   {
     "id": "1t7uOJ28vyMYmFc3mbo6",
@@ -195,19 +207,23 @@
     "marca": "JORDAN",
     "modelo": "JORDAN FADEAWAY LOBO GRIS ",
     "talla": "27.5",
-    "fechaRegistro": {
-      "_seconds": 1751312497,
-      "_nanoseconds": 721000000
-    },
     "status": "disponible",
     "sku": "627",
-    "foto": "",
     "categoria": "Tenis",
     "estilo": "Casual",
     "descripcion": "Eleva tu estilo urbano con los **Nike Jordan Fadeaway Lobo Gris**. Confeccionados en gamuza premium y el inconfundible sello Jordan, estos tenis casuales para hombre te ofrecen un look sofisticado y comodidad excepcional para destacar en cualquier ocasión. ¡No esperes más, domina la calle con un clásico renovado!\n",
     "tallaTipo": "MX",
     "costo": 50,
-    "genero": "Hombre"
+    "genero": "Hombre",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/627.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752718224,
+      "_nanoseconds": 127000000
+    },
+    "numeroModelo": "AO1329-060",
+    "precioOferta": null
   },
   {
     "id": "5YUPXwTQ8Tpxz5pKZHuu",
@@ -260,17 +276,21 @@
     "costo": 60,
     "descripcion": "Domina las calles con el estilo inconfundible de las Jordan 11 CMFT Low \"Cement Topaz Gold\". Confeccionadas en piel premium y un diseño deportivo icónico, estos tenis para hombre te brindan comodidad superior y un look ganador que hará que todos te admiren. ¡Eleva tu juego y hazte con un par hoy mismo!\n",
     "sku": "817",
-    "foto": "",
     "categoria": "Tenis",
     "estilo": "Deportivo",
     "tallaTipo": "MX",
     "status": "disponible",
     "genero": "Hombre",
+    "material": "Piel",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/817.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312537,
-      "_nanoseconds": 809000000
+      "_seconds": 1752718188,
+      "_nanoseconds": 472000000
     },
-    "material": "Piel"
+    "numeroModelo": "CW0784-107",
+    "precioOferta": null
   },
   {
     "id": "5sbhT1n48z9sMPdndI0E",
@@ -285,19 +305,22 @@
     "tallaTipo": "MX",
     "descripcion": "Revive la leyenda del baloncesto con los icónicos Nike Air Flight 89 en blanco y azul marino. Fabricados en piel premium para un estilo impecable y confort duradero, estos tenis deportivos para hombre te impulsarán tanto en la cancha como en la calle. ¡Eleva tu juego y haz una declaración audaz con este clásico atemporal!\n",
     "talla": "27.5",
-    "foto": "",
-    "fechaRegistro": {
-      "_seconds": 1751312627,
-      "_nanoseconds": 135000000
-    },
     "estilo": "Deportivo",
-    "costo": 70
+    "costo": 70,
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/631.jpg",
+    "porcentajeDescuento": 0,
+    "numeroModelo": "306252-116",
+    "precioOferta": null,
+    "fechaRegistro": {
+      "_seconds": 1752715863,
+      "_nanoseconds": 837000000
+    }
   },
   {
     "id": "65THoFsjsfo86QRSNRxt",
     "marca": "NIKE",
     "categoria": "Tenis",
-    "foto": "",
     "tallaTipo": "MX",
     "status": "disponible",
     "material": "Tela",
@@ -309,10 +332,15 @@
     "descripcion": "**Experimenta la comodidad que mereces con los nuevos Nike Comfort Insole para hombre.** Fabricados en tela suave y ligera, estos tenis casuales te brindarán un confort superior durante todo el día. ¡Eleva tu estilo y disfruta cada paso con Nike Comfort Insole!\n",
     "sku": "305",
     "genero": "Hombre",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/305.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312491,
-      "_nanoseconds": 890000000
-    }
+      "_seconds": 1752719255,
+      "_nanoseconds": 735000000
+    },
+    "numeroModelo": "DD0161-100",
+    "precioOferta": null
   },
   {
     "id": "6OQO5Hd6ARIuBLQ7rrdi",
@@ -441,10 +469,10 @@
     "numeroModelo": "",
     "modelo": "EL REY II",
     "foto": "https://teniscarmen.github.io/Galeria/224.jpg",
-    "descripcion": "Domina las calles con estilo y comodidad inigualable. Los **PUMA EL REY II** son los tenis casuales perfectos para el hombre moderno. Fabricados en tela de alta calidad, te ofrecen frescura y un look impecable que te hará destacar a donde vayas. ¡Adquiere los tuyos hoy y siente la diferencia!",
+    "descripcion": "Domina las calles con estilo y comodidad inigualable. Los **PUMA EL REY II** son los tenis casuales perfectos para el hombre moderno. Fabricados en tela de alta calidad, te ofrecen frescura y un look impecable que te hará destacar a donde vayas. ¡Adquiere los tuyos hoy y siente la diferencia!   \n",
     "fechaRegistro": {
-      "_seconds": 1752697809,
-      "_nanoseconds": 408000000
+      "_seconds": 1752704187,
+      "_nanoseconds": 638000000
     }
   },
   {
@@ -454,7 +482,6 @@
     "precio": 2500,
     "genero": "Hombre",
     "categoria": "Tenis",
-    "foto": "",
     "estilo": "Deportivo",
     "tallaTipo": "MX",
     "marca": "NIKE",
@@ -463,10 +490,15 @@
     "costo": 50,
     "modelo": "GOLF AIR PEGASUS 89",
     "material": "Gamuza",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/803.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312503,
-      "_nanoseconds": 634000000
-    }
+      "_seconds": 1752719308,
+      "_nanoseconds": 989000000
+    },
+    "numeroModelo": "FJ2245-102",
+    "precioOferta": null
   },
   {
     "id": "8SmKwcj14z7sqps6v0Rz",
@@ -499,16 +531,20 @@
     "talla": "27",
     "genero": "Hombre",
     "marca": "NIKE",
-    "foto": "",
     "status": "disponible",
     "material": "Tela",
     "precio": 2300,
     "modelo": "CRATER REMIXA",
+    "costo": 40,
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/075.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312515,
-      "_nanoseconds": 721000000
+      "_seconds": 1752717374,
+      "_nanoseconds": 927000000
     },
-    "costo": 40
+    "numeroModelo": "DC6916-001",
+    "precioOferta": null
   },
   {
     "id": "BASCA48d88ntrrtc4Irq",
@@ -534,13 +570,8 @@
   {
     "id": "BUMAuuoJQQuu1IFiVUo6",
     "categoria": "Tenis",
-    "fechaRegistro": {
-      "_seconds": 1751312251,
-      "_nanoseconds": 974000000
-    },
     "descripcion": "Domina el diamante con los Nike ALPHA HUARACHE ELITE 3 LOW 'BLACK WHITE'. Diseñados para el máximo rendimiento, su tejido ligero y transpirable te ofrece comodidad y agilidad incomparables, permitiéndote alcanzar tu máximo potencial en cada jugada. ¡Conviértete en leyenda con estos tenis de béisbol!\n",
     "sku": "134",
-    "foto": "",
     "estilo": "Deportivo",
     "precio": 1700,
     "marca": "NIKE",
@@ -550,7 +581,16 @@
     "modelo": "ALPHA HUARACHE ELITE 3 LOW 'BLACK WHITE'",
     "genero": "Hombre",
     "status": "disponible",
-    "talla": "25.5"
+    "talla": "25.5",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/134.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717097,
+      "_nanoseconds": 889000000
+    },
+    "numeroModelo": "CX0746-001",
+    "precioOferta": null
   },
   {
     "id": "BZcwEUvHgzSuy9qX3JxY",
@@ -624,20 +664,24 @@
     "precio": 2800,
     "material": "Tela",
     "marca": "NIKE",
-    "foto": "",
     "sku": "526",
     "genero": "Hombre",
     "talla": "29.5",
     "estilo": "Deportivo",
     "categoria": "Tenis",
-    "fechaRegistro": {
-      "_seconds": 1751312615,
-      "_nanoseconds": 944000000
-    },
     "modelo": "NIKE LEBRON 19 BAJO HAWÁI",
     "costo": 60,
     "descripcion": "Siente el poder y la frescura del verano con los Nike LeBron 19 Bajo Hawái para hombre. Diseñados para un rendimiento explosivo en la cancha y un estilo relajado fuera de ella, estos tenis deportivos de tela te brindarán comodidad y un look impactante inspirado en las playas hawaianas. ¡Domina tu juego y luce increíble con el espíritu de LeBron!\n",
-    "status": "disponible"
+    "status": "disponible",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/526.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752718092,
+      "_nanoseconds": 847000000
+    },
+    "numeroModelo": "DQ8344-600",
+    "precioOferta": null
   },
   {
     "id": "CZNR5j80FD5qv7eJC9i8",
@@ -688,22 +732,26 @@
     "id": "ECgMmjf0l0t0y5OSZ6C9",
     "genero": "Hombre",
     "sku": "813",
-    "fechaRegistro": {
-      "_seconds": 1751312608,
-      "_nanoseconds": 727000000
-    },
     "modelo": "FLIGHT",
     "talla": "29",
     "precio": 2800,
     "status": "disponible",
     "categoria": "Tenis",
     "descripcion": "Eleva tu juego con los icónicos Jordan Flight. Fabricados en piel premium para una durabilidad y estilo inigualables, estos tenis deportivos para hombre te impulsarán al siguiente nivel en la cancha y en las calles. ¡Siente la leyenda en cada paso y domina tu vuelo!\n",
-    "foto": "",
     "costo": 70,
     "tallaTipo": "MX",
     "material": "Piel",
     "estilo": "Deportivo",
-    "marca": "JORDAN"
+    "marca": "JORDAN",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/813.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717831,
+      "_nanoseconds": 774000000
+    },
+    "numeroModelo": "FB1396-101",
+    "precioOferta": null
   },
   {
     "id": "F1klMGysahR4CEH3Okc2",
@@ -756,15 +804,10 @@
   {
     "id": "G8uhyL7n8ypQgBo4osFf",
     "estilo": "Casual",
-    "foto": "",
     "talla": "27",
     "marca": "NIKE",
     "status": "disponible",
     "precio": 1800,
-    "fechaRegistro": {
-      "_seconds": 1751312339,
-      "_nanoseconds": 989000000
-    },
     "categoria": "Tenis",
     "costo": 40,
     "sku": "583",
@@ -772,7 +815,16 @@
     "modelo": "RETRO GTS 97 GIMNASIO ROJO",
     "genero": "Hombre",
     "material": "Tela",
-    "tallaTipo": "MX"
+    "tallaTipo": "MX",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/583.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752716678,
+      "_nanoseconds": 232000000
+    },
+    "numeroModelo": "DA1446-600",
+    "precioOferta": null
   },
   {
     "id": "GU4YAL1C4470WJTvHxTs",
@@ -886,14 +938,9 @@
   {
     "id": "IluZPwFGAZzVjGUYQFdU",
     "tallaTipo": "MX",
-    "fechaRegistro": {
-      "_seconds": 1751312595,
-      "_nanoseconds": 792000000
-    },
     "marca": "NIKE",
     "descripcion": "Eleva tu estilo casual con los icónicos Nike Retro High OG Craft en un elegante marfil. Fabricados en gamuza premium, estos tenis para hombre te brindan comodidad y un toque retro inigualable. ¡Añade un clásico instantáneo a tu colección y marca la diferencia con cada paso!\n",
     "status": "disponible",
-    "foto": "",
     "sku": "823",
     "estilo": "Casual",
     "genero": "Hombre",
@@ -902,7 +949,16 @@
     "precio": 3000,
     "material": "Gamuza",
     "categoria": "Tenis",
-    "modelo": "RETRO HIGH OG CRAFT EN MARFIL"
+    "modelo": "RETRO HIGH OG CRAFT EN MARFIL",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/823.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717329,
+      "_nanoseconds": 558000000
+    },
+    "numeroModelo": "FD8636-011",
+    "precioOferta": null
   },
   {
     "id": "IozLE9hWzZ7K5BtZDnvn",
@@ -976,20 +1032,24 @@
     "tallaTipo": "MX",
     "sku": "533",
     "costo": 70,
-    "foto": "",
     "material": "Tela",
     "estilo": "Casual",
     "precio": 2500,
-    "fechaRegistro": {
-      "_seconds": 1751312585,
-      "_nanoseconds": 328000000
-    },
     "modelo": "AIR FORCE 1 HIGH MOVING COMPANY",
     "genero": "Hombre",
     "marca": "NIKE",
     "talla": "27.5",
     "categoria": "Tenis",
-    "status": "disponible"
+    "status": "disponible",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/533.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717983,
+      "_nanoseconds": 253000000
+    },
+    "numeroModelo": "DV0790-001",
+    "precioOferta": null
   },
   {
     "id": "Kt8yfuAzpp7CKcTUqEqL",
@@ -1048,17 +1108,18 @@
     "estilo": "Casual",
     "material": "Piel",
     "descripcion": "Eleva tu estilo casual con los icónicos Nike WMNS Air Force 1 '07 LV8. Fabricados en piel premium para una durabilidad excepcional y un look impecable, estos tenis te brindarán comodidad y un toque de sofisticación que te harán destacar en cada paso. ¡Hazte con ellos y redefine tu estilo urbano!\n",
-    "foto": "",
     "costo": 50,
     "precio": 2500,
     "descuentoActivo": false,
     "porcentajeDescuento": 0,
     "status": "disponible",
+    "precioOferta": null,
+    "foto": "https://teniscarmen.github.io/Galeria/539.jpg",
     "fechaRegistro": {
-      "_seconds": 1751685154,
-      "_nanoseconds": 984000000
+      "_seconds": 1752716629,
+      "_nanoseconds": 968000000
     },
-    "precioOferta": null
+    "numeroModelo": "FJ4559-133"
   },
   {
     "id": "NNP0h1r2udvo8kpdxwOt",
@@ -1066,20 +1127,24 @@
     "sku": "632",
     "marca": "NIKE",
     "status": "disponible",
-    "foto": "",
     "descripcion": "Domina las calles con el estilo atemporal de los Nike Air Force 1 Mid. Fabricados en piel premium para una durabilidad excepcional y un look impecable, estos tenis casuales para hombre te ofrecen comodidad y un toque urbano que nunca pasa de moda. ¡Eleva tu juego de estilo y hazlos tuyos hoy mismo!\n",
     "costo": 50,
     "genero": "Hombre",
     "categoria": "Tenis",
     "precio": 2500,
     "talla": "28",
-    "fechaRegistro": {
-      "_seconds": 1751312621,
-      "_nanoseconds": 791000000
-    },
     "estilo": "Casual",
     "material": "Piel",
-    "modelo": "AIR FORCE 1 MID "
+    "modelo": "AIR FORCE 1 MID ",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/632.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752718359,
+      "_nanoseconds": 601000000
+    },
+    "numeroModelo": "FB8881-200",
+    "precioOferta": null
   },
   {
     "id": "NZllc9xmOcyKAL5Wo9DC",
@@ -1094,16 +1159,17 @@
     "talla": "25",
     "categoria": "Tenis",
     "precio": 2800,
-    "fechaRegistro": {
-      "_seconds": 1751658445,
-      "_nanoseconds": 766000000
-    },
     "descuentoActivo": false,
-    "foto": "",
     "porcentajeDescuento": 0,
     "material": "Piel",
     "modelo": "PRO STRONG",
-    "sku": "531"
+    "sku": "531",
+    "foto": "https://teniscarmen.github.io/Galeria/531.jpg",
+    "numeroModelo": "DC7911-062",
+    "fechaRegistro": {
+      "_seconds": 1752716851,
+      "_nanoseconds": 112000000
+    }
   },
   {
     "id": "NwYIG6SBZBgu4HhXtE7f",
@@ -1114,17 +1180,21 @@
     "talla": "22",
     "costo": 20,
     "status": "disponible",
-    "foto": "",
     "modelo": "HYPERDIAMOND 4 ELITE",
     "precio": 1500,
     "categoria": "Tenis",
     "descripcion": "Domina el juego con los Nike Hyperdiamond 4 Elite. Fabricados con piel de alta calidad para una durabilidad y comodidad excepcionales, estos tenis deportivos unisex te impulsarán a rendir al máximo en cada movimiento. ¡Experimenta la potencia y el estilo que solo Nike puede ofrecer, consigue los tuyos ahora!\n",
     "sku": "934",
+    "estilo": "Deportivo",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/934.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312148,
-      "_nanoseconds": 129000000
+      "_seconds": 1752717219,
+      "_nanoseconds": 341000000
     },
-    "estilo": "Deportivo"
+    "numeroModelo": "CZ5917-101",
+    "precioOferta": null
   },
   {
     "id": "OIJqtoAwgJ0yAh4zlEjv",
@@ -1174,10 +1244,6 @@
   {
     "id": "PM0oeuqVkXRNhnrZww94",
     "costo": 50,
-    "fechaRegistro": {
-      "_seconds": 1751312532,
-      "_nanoseconds": 9000000
-    },
     "tallaTipo": "MX",
     "categoria": "Tenis",
     "modelo": "COURT VISION MID",
@@ -1186,21 +1252,24 @@
     "status": "disponible",
     "talla": "27",
     "descripcion": "Eleva tu estilo urbano con los **Nike Court Vision Mid**. Inspirados en el baloncesto retro, estos tenis de piel ofrecen un look impecable y durabilidad para tu día a día. ¡Consigue el confort y el estilo que necesitas para dominar la calle!\n",
-    "foto": "",
     "estilo": "Casual",
     "precio": 2300,
     "sku": "626",
-    "material": "Piel"
+    "material": "Piel",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/626.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717899,
+      "_nanoseconds": 894000000
+    },
+    "numeroModelo": "DR7882-002",
+    "precioOferta": null
   },
   {
     "id": "PNkVgIO3OtfHwPND50jX",
-    "foto": "",
     "descripcion": "**Eleva tu juego con los icónicos Nike Air Jordan 1 High OG \"Rare Air\".** Fabricados con piel premium para un estilo casual y duradero, estos tenis te garantizan un look legendario y comodidad excepcional en cada paso. ¡Atrévete a destacar con esta edición única y siente la historia del baloncesto en tus pies!\n",
     "talla": "28.5",
-    "fechaRegistro": {
-      "_seconds": 1751312465,
-      "_nanoseconds": 755000000
-    },
     "marca": "NIKE",
     "precio": 3000,
     "sku": "821",
@@ -1211,7 +1280,16 @@
     "categoria": "Tenis",
     "estilo": "Casual",
     "modelo": "AIR JORDAN 1 HIGH OG “RARE AIR”",
-    "status": "disponible"
+    "status": "disponible",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/821.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752718285,
+      "_nanoseconds": 761000000
+    },
+    "numeroModelo": "DZ5485-105",
+    "precioOferta": null
   },
   {
     "id": "PRGDIXfZEpwq4RuDFfjm",
@@ -1305,18 +1383,22 @@
     "estilo": "Casual",
     "costo": 50,
     "modelo": "JORDAN DEAR 2003",
-    "foto": "",
     "genero": "Hombre",
-    "fechaRegistro": {
-      "_seconds": 1751312372,
-      "_nanoseconds": 787000000
-    },
     "material": "Gamuza",
     "categoria": "Tenis",
     "tallaTipo": "MX",
     "status": "disponible",
     "precio": 2000,
-    "marca": "NIKE"
+    "marca": "NIKE",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/211.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752715756,
+      "_nanoseconds": 791000000
+    },
+    "numeroModelo": "DM1681-781",
+    "precioOferta": null
   },
   {
     "id": "UvquNgkluJoLotTRUYZf",
@@ -1368,18 +1450,22 @@
     "sku": "819",
     "status": "disponible",
     "marca": "JORDAN",
-    "fechaRegistro": {
-      "_seconds": 1751312478,
-      "_nanoseconds": 482000000
-    },
     "modelo": "MAX AURA 2",
     "tallaTipo": "MX",
-    "foto": "",
     "precio": 2800,
     "talla": "28.5",
     "costo": 70,
     "genero": "Hombre",
-    "descripcion": "Eleva tu juego con los **Jordan Max Aura 2**.  Confeccionados en gamuza premium y con el ADN de la leyenda, estos tenis deportivos para hombre te brindan comodidad superior y un estilo inconfundible. ¡Domina la cancha y las calles, ordénalos ahora!\n"
+    "descripcion": "Eleva tu juego con los **Jordan Max Aura 2**.  Confeccionados en gamuza premium y con el ADN de la leyenda, estos tenis deportivos para hombre te brindan comodidad superior y un estilo inconfundible. ¡Domina la cancha y las calles, ordénalos ahora!\n",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/819.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717519,
+      "_nanoseconds": 319000000
+    },
+    "numeroModelo": "CK6636-012",
+    "precioOferta": null
   },
   {
     "id": "Whla7dvZwPIWIO70fkFl",
@@ -1473,11 +1559,6 @@
     "costo": 60,
     "estilo": "Casual",
     "status": "disponible",
-    "foto": "",
-    "fechaRegistro": {
-      "_seconds": 1751312565,
-      "_nanoseconds": 664000000
-    },
     "genero": "Hombre",
     "modelo": "AIR FORCE 1",
     "marca": "NIKE",
@@ -1487,7 +1568,16 @@
     "talla": "28.5",
     "categoria": "Tenis",
     "descripcion": "**Eleva tu estilo urbano con los legendarios Nike Air Force 1.** Confeccionados en piel premium, estos tenis para hombre te brindan comodidad duradera y un look icónico que nunca pasa de moda. **Domina las calles con la herencia y el confort inigualable de Air Force 1. ¡Consigue los tuyos ahora!**\n",
-    "precio": 2800
+    "precio": 2800,
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/810.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717575,
+      "_nanoseconds": 146000000
+    },
+    "numeroModelo": "HQ4987-010",
+    "precioOferta": null
   },
   {
     "id": "ZnynZrvdAFHMYIWWmEYL",
@@ -1540,11 +1630,6 @@
     "sku": "718",
     "tallaTipo": "MX",
     "modelo": "GT JUMP",
-    "foto": "",
-    "fechaRegistro": {
-      "_seconds": 1751312471,
-      "_nanoseconds": 754000000
-    },
     "genero": "Hombre",
     "costo": 60,
     "estilo": "Deportivo",
@@ -1553,7 +1638,16 @@
     "categoria": "Tenis",
     "material": "Tela",
     "status": "disponible",
-    "descripcion": "Domina la cancha y eleva tu juego con los nuevos Nike GT Jump para hombre. Diseñados para el atleta explosivo, estos tenis deportivos de tela te brindarán la sujeción y la amortiguación que necesitas para saltar más alto y moverte con agilidad. ¡No esperes más, libera tu potencial y conquista la victoria!\n"
+    "descripcion": "Domina la cancha y eleva tu juego con los nuevos Nike GT Jump para hombre. Diseñados para el atleta explosivo, estos tenis deportivos de tela te brindarán la sujeción y la amortiguación que necesitas para saltar más alto y moverte con agilidad. ¡No esperes más, libera tu potencial y conquista la victoria!\n",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/718.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717792,
+      "_nanoseconds": 568000000
+    },
+    "numeroModelo": "DJ9431-602",
+    "precioOferta": null
   },
   {
     "id": "cGfICCmjptbK8YXy2a0s",
@@ -1842,10 +1936,6 @@
     "tallaTipo": "MX",
     "talla": "28",
     "status": "disponible",
-    "fechaRegistro": {
-      "_seconds": 1751312577,
-      "_nanoseconds": 664000000
-    },
     "material": "Tela",
     "precio": 2800,
     "costo": 60,
@@ -1855,8 +1945,16 @@
     "marca": "NIKE",
     "sku": "525",
     "descripcion": "Domina la cancha con el estilo explosivo de los NIKE Lebron 19 Hawaii. Diseñados para el rey, estos tenis de tela ofrecen comodidad superior y tracción imparable, llevando tu juego al siguiente nivel con un toque tropical único. ¡No esperes más, siente el poder y la frescura de Hawaii en cada paso!\n",
-    "foto": "",
-    "categoria": "Tenis"
+    "categoria": "Tenis",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/525.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752715920,
+      "_nanoseconds": 597000000
+    },
+    "numeroModelo": "DQ8344-600",
+    "precioOferta": null
   },
   {
     "id": "j5K9aO7TrRZsxjqurXfT",
@@ -1905,13 +2003,8 @@
   },
   {
     "id": "l6GFcDmwOr3vq7ovtA2P",
-    "fechaRegistro": {
-      "_seconds": 1751312601,
-      "_nanoseconds": 415000000
-    },
     "genero": "Unisex",
     "descripcion": "**Domina el asfalto con el inconfundible estilo de los Nike Air Force 1.** Un clásico reinventado en piel premium para ofrecerte comodidad y durabilidad, sin importar tu estilo. ¡Eleva tu look diario con este ícono unisex, un must-have para cualquier sneakerhead!\n",
-    "foto": "",
     "talla": "25",
     "material": "Piel",
     "estilo": "Casual",
@@ -1920,9 +2013,18 @@
     "status": "disponible",
     "costo": 40,
     "marca": "NIKE",
-    "modelo": "AIR FORCE 1",
     "sku": "560",
-    "precio": 2000
+    "precio": 2000,
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/560.jpg",
+    "porcentajeDescuento": 0,
+    "numeroModelo": "DH2943-001",
+    "precioOferta": null,
+    "fechaRegistro": {
+      "_seconds": 1752719971,
+      "_nanoseconds": 568000000
+    },
+    "modelo": "AIR FORCE 1 HIGH LE 'TRIPLE BLACK' (GS)"
   },
   {
     "id": "ls1jjVQMma0WsWUdHItv",
@@ -1936,14 +2038,18 @@
     "genero": "Hombre",
     "sku": "630",
     "marca": "JORDAN",
-    "fechaRegistro": {
-      "_seconds": 1751312244,
-      "_nanoseconds": 678000000
-    },
-    "foto": "",
     "categoria": "Tenis",
     "talla": "28",
-    "descripcion": "Domina las calles con el estilo inconfundible y la comodidad premium de los Nike Max Aura Sapatilla. Su diseño deportivo, potenciado por la elegancia de la gamuza, te asegura una pisada suave y un look impecable. ¡Eleva tu juego, ordena los tuyos hoy mismo!\n"
+    "descripcion": "Domina las calles con el estilo inconfundible y la comodidad premium de los Nike Max Aura Sapatilla. Su diseño deportivo, potenciado por la elegancia de la gamuza, te asegura una pisada suave y un look impecable. ¡Eleva tu juego, ordena los tuyos hoy mismo!\n",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/630.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717473,
+      "_nanoseconds": 475000000
+    },
+    "numeroModelo": "AQ9084-004",
+    "precioOferta": null
   },
   {
     "id": "mXmJAexVsJEqekjc2maw",
@@ -1972,20 +2078,24 @@
     "sku": "529",
     "status": "disponible",
     "modelo": "DUB ZERO ",
-    "foto": "",
     "material": "Piel",
     "estilo": "Deportivo",
     "genero": "Hombre",
     "descripcion": "**JORDAN Dub Zero Blanco Varsity Rojo: Domina las calles con el legado de MJ.** Estos tenis de piel premium, diseñados para hombres que exigen estilo y rendimiento, fusionan la leyenda JORDAN con un diseño impactante. ¡Eleva tu juego y hazte con un par antes de que desaparezcan!\n",
     "costo": 70,
-    "fechaRegistro": {
-      "_seconds": 1751312264,
-      "_nanoseconds": 998000000
-    },
     "marca": "JORDAN",
     "talla": "29.5",
     "precio": 2800,
-    "tallaTipo": "MX"
+    "tallaTipo": "MX",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/529.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717416,
+      "_nanoseconds": 58000000
+    },
+    "numeroModelo": "311046-160",
+    "precioOferta": null
   },
   {
     "id": "o7M5fTdk7Z6SrGKkEVIB",
@@ -2018,16 +2128,20 @@
     "estilo": "Casual",
     "material": "Tela",
     "descripcion": "Cod 345\n**Domina las calles con estilo y comodidad.** Los Nike GT Grand Taylor, diseñados para el hombre moderno, combinan la icónica herencia Nike con un confort superior gracias a su suave construcción en tela. Eleva tu look casual y siente la diferencia en cada paso. ¡Hazte con ellos ahora!\n",
-    "foto": "",
     "costo": 50,
     "precio": 1700,
     "status": "disponible",
     "sku": "345",
+    "categoria": "Tenis",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/345.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312742,
-      "_nanoseconds": 45000000
+      "_seconds": 1752716775,
+      "_nanoseconds": 851000000
     },
-    "categoria": "Tenis"
+    "numeroModelo": "DO9398-002",
+    "precioOferta": null
   },
   {
     "id": "pDd11i0pL0VylR7G0QFd",
@@ -2247,10 +2361,6 @@
     "id": "w9eXSfJNsWuMyJgXI72K",
     "talla": "28",
     "categoria": "Tenis",
-    "fechaRegistro": {
-      "_seconds": 1751312570,
-      "_nanoseconds": 920000000
-    },
     "estilo": "Casual",
     "genero": "Hombre",
     "costo": 60,
@@ -2262,7 +2372,15 @@
     "modelo": "AIR FORCE 1",
     "descripcion": "**Desata tu estilo urbano con los icónicos Nike Air Force 1.** Fabricados en suave gamuza premium, estos tenis para hombre ofrecen un look casual sofisticado y una comodidad legendaria que te acompañará a donde vayas. ¡Eleva tu juego de zapatillas y haz una declaración de moda audaz con los AF1!\n",
     "precio": 2800,
-    "foto": ""
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/818.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752718138,
+      "_nanoseconds": 709000000
+    },
+    "numeroModelo": "FZ5222-300",
+    "precioOferta": null
   },
   {
     "id": "xv6QApkJP9Sr33lyg6m1",
@@ -2312,20 +2430,24 @@
     "estilo": "Deportivo",
     "descripcion": "Domina el terreno de juego con los Nike Alpha Huarache Elite 4 TF Turf. Fabricados en piel para una durabilidad superior y un ajuste perfecto, estos tenis deportivos para hombre te darán la agilidad y el control que necesitas para superar a la competencia. ¡Eleva tu juego y hazte con los tuyos hoy mismo!\n",
     "talla": "27",
-    "fechaRegistro": {
-      "_seconds": 1751312182,
-      "_nanoseconds": 807000000
-    },
     "costo": 20,
     "precio": 1800,
-    "foto": "",
-    "material": "Tela",
     "marca": "NIKE",
     "genero": "Hombre",
     "sku": "589",
     "modelo": "ALPHA HUARACHE ELITE 4 TURF",
     "tallaTipo": "MX",
-    "status": "disponible"
+    "status": "disponible",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/589.jpg",
+    "material": "Piel",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752717021,
+      "_nanoseconds": 513000000
+    },
+    "numeroModelo": "FD2743-100",
+    "precioOferta": null
   },
   {
     "id": "zEsiOjNZ4U0JHqlJVxgJ",
