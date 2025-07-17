@@ -32,18 +32,22 @@
     "estilo": "Deportivo",
     "sku": "262",
     "precio": 1800,
-    "fechaRegistro": {
-      "_seconds": 1751312167,
-      "_nanoseconds": 409000000
-    },
     "modelo": "ALPHA HUARACHE ELITE 3 LOW",
     "marca": "NIKE",
     "descripcion": "Domina el campo con los Nike Alpha Huarache Elite 3 Low. Diseñados para el máximo rendimiento, estos tenis deportivos de piel para hombre te ofrecen comodidad, sujeción y estilo imbatible. ¡Eleva tu juego y hazte con ellos ahora!\n",
     "genero": "Hombre",
     "costo": 20,
-    "foto": "",
     "material": "Piel",
-    "status": "disponible"
+    "status": "disponible",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/262.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752721847,
+      "_nanoseconds": 320000000
+    },
+    "numeroModelo": "CK0746-001",
+    "precioOferta": null
   },
   {
     "id": "1NkDKkNnZQPPjHiXgY5z",
@@ -130,12 +134,16 @@
     "costo": 20,
     "precio": 1800,
     "status": "disponible",
-    "fechaRegistro": {
-      "_seconds": 1751312137,
-      "_nanoseconds": 89000000
-    },
     "categoria": "Tenis",
-    "foto": ""
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/260.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752721946,
+      "_nanoseconds": 391000000
+    },
+    "numeroModelo": "CQ7224-101",
+    "precioOferta": null
   },
   {
     "id": "4EsjD8wrWSoYVwQggu0p",
@@ -599,19 +607,23 @@
     "sku": "588",
     "material": "Tela",
     "status": "disponible",
-    "fechaRegistro": {
-      "_seconds": 1751312257,
-      "_nanoseconds": 935000000
-    },
     "marca": "NIKE",
     "tallaTipo": "MX",
     "modelo": "ALPHA HUARACHE ELITE 4 TURF",
-    "foto": "",
     "precio": 1800,
     "talla": "27",
     "costo": 45,
     "genero": "Hombre",
-    "descripcion": "Domina el juego en cada entrenamiento con los NIKE Alpha Huarache Elite 4 Turf para hombre. Diseñados con una tela resistente y un estilo deportivo impecable, estos tenis te brindan la tracción y comodidad necesarias para un rendimiento superior. ¡Eleva tu juego al máximo nivel, cómpralos ahora!\n"
+    "descripcion": "Domina el juego en cada entrenamiento con los NIKE Alpha Huarache Elite 4 Turf para hombre. Diseñados con una tela resistente y un estilo deportivo impecable, estos tenis te brindan la tracción y comodidad necesarias para un rendimiento superior. ¡Eleva tu juego al máximo nivel, cómpralos ahora!\n",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/588.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752722147,
+      "_nanoseconds": 116000000
+    },
+    "numeroModelo": "FD2743-100",
+    "precioOferta": null
   },
   {
     "id": "BpLfqoO799L2Zj52zHSW",
@@ -971,15 +983,19 @@
     "sku": "259",
     "descripcion": "Domina el diamante con los Nike Alpha Huarache Elite 3 Low para hombre. Confeccionados en piel premium para un ajuste y durabilidad excepcionales, estos tenis deportivos te ofrecen la comodidad y tracción que necesitas para rendir al máximo. ¡Eleva tu juego y hazte con los tuyos ahora!\n",
     "status": "disponible",
-    "fechaRegistro": {
-      "_seconds": 1751312274,
-      "_nanoseconds": 190000000
-    },
     "categoria": "Tenis",
     "material": "Piel",
     "talla": "25",
-    "foto": "",
-    "precio": 1800
+    "precio": 1800,
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/259.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752722046,
+      "_nanoseconds": 422000000
+    },
+    "numeroModelo": "CV3552-104",
+    "precioOferta": null
   },
   {
     "id": "JJiVPOXf27ssFG4HBdRW",
@@ -1229,17 +1245,21 @@
     "material": "Tela",
     "modelo": "FORCE ZOOM TROUT 9 PRO FÚTBOL GRIS MEDIANOCHE AZUL MARINO",
     "genero": "Hombre",
-    "fechaRegistro": {
-      "_seconds": 1751312237,
-      "_nanoseconds": 951000000
-    },
-    "foto": "",
     "status": "disponible",
     "categoria": "Tenis",
     "descripcion": "Domina el terreno de juego con los Nike Force Zoom Trout 9 Pro. Su diseño deportivo en tela, con la combinación de colores blanco, Hyper Azul real, Fútbol Gris y Medianoche Azul marino, te dará un estilo impecable mientras disfrutas del confort y rendimiento que solo Nike puede ofrecer. ¡Eleva tu juego y hazte con ellos ahora!\n",
     "sku": "932",
     "tallaTipo": "MX",
-    "precio": 1800
+    "precio": 1800,
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/932.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752721886,
+      "_nanoseconds": 899000000
+    },
+    "numeroModelo": "FB2907-103",
+    "precioOferta": null
   },
   {
     "id": "PM0oeuqVkXRNhnrZww94",
@@ -1342,17 +1362,21 @@
     "talla": "25",
     "costo": 20,
     "status": "disponible",
-    "foto": "",
     "modelo": "ALPHA HUARACHE 3 VARSITY LOW 'BLACK",
     "precio": 1700,
     "categoria": "Tenis",
     "sku": "130",
     "descripcion": "Domina el campo con los Nike Alpha Huarache 3 Varsity Low 'Black'. Diseñados para el máximo rendimiento con piel duradera y confort superior, estos tenis deportivos te impulsarán a superar tus límites. ¡Siente la potencia y hazte con ellos ahora!\n",
+    "estilo": "Deportivo",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/130.jpg",
+    "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1751312280,
-      "_nanoseconds": 606000000
+      "_seconds": 1752721799,
+      "_nanoseconds": 507000000
     },
-    "estilo": "Deportivo"
+    "numeroModelo": "CT0829-003",
+    "precioOferta": null
   },
   {
     "id": "TjUzMAh7iett7R9HvKTU",
@@ -1723,15 +1747,19 @@
     "estilo": "Deportivo",
     "modelo": "FORCE ZOOM TROUT 7 PRO - BOTAS DE BÉISBOL",
     "genero": "Hombre",
-    "foto": "",
     "marca": "NIKE",
-    "fechaRegistro": {
-      "_seconds": 1751312175,
-      "_nanoseconds": 761000000
-    },
     "costo": 40,
     "talla": "26",
-    "descripcion": "Domina el diamante con las **Nike Force Zoom Trout 7 Pro**. Diseñadas para el máximo rendimiento, estas botas de béisbol para hombre, con su duradera confección en piel y tecnología Zoom Air, te impulsarán a alcanzar velocidades explosivas y una comodidad superior en cada jugada. ¡Hazte con ellas y conviértete en la leyenda del campo!\n"
+    "descripcion": "Domina el diamante con las **Nike Force Zoom Trout 7 Pro**. Diseñadas para el máximo rendimiento, estas botas de béisbol para hombre, con su duradera confección en piel y tecnología Zoom Air, te impulsarán a alcanzar velocidades explosivas y una comodidad superior en cada jugada. ¡Hazte con ellas y conviértete en la leyenda del campo!\n",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/131.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752722105,
+      "_nanoseconds": 231000000
+    },
+    "numeroModelo": "CQ7224-101",
+    "precioOferta": null
   },
   {
     "id": "dW6NZpszdXcYH9C6nSt9",
@@ -1783,18 +1811,22 @@
     "marca": "NIKE",
     "material": "Piel",
     "costo": 20,
-    "foto": "",
     "genero": "Unisex",
     "status": "disponible",
-    "fechaRegistro": {
-      "_seconds": 1751312190,
-      "_nanoseconds": 135000000
-    },
     "precio": 1500,
     "tallaTipo": "MX",
     "modelo": "HYPERDIAMOND 4 ELITE",
     "talla": "22.5",
-    "sku": "135"
+    "sku": "135",
+    "descuentoActivo": false,
+    "foto": "https://teniscarmen.github.io/Galeria/135.jpg",
+    "porcentajeDescuento": 0,
+    "fechaRegistro": {
+      "_seconds": 1752722003,
+      "_nanoseconds": 109000000
+    },
+    "numeroModelo": "CZ5917-101",
+    "precioOferta": null
   },
   {
     "id": "e8lCNPFx5ZXFt4AtyvgG",
