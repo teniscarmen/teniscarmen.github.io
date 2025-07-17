@@ -715,27 +715,27 @@
         <form id="inventarioForm">
           <input type="hidden" id="inventarioId" />
           <div class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex flex-wrap gap-4">
               <input
                 type="text"
                 id="inventarioMarca"
                 list="marcasList"
                 placeholder="Marca (ej. NIKE)"
-                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                class="w-[33%] p-3 border border-gray-300 rounded-lg uppercase"
                 required
               />
               <input
                 type="text"
                 id="inventarioModelo"
                 placeholder="Modelo (Ej. AIR FORCE 1)"
-                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                class="w-[66%] p-3 border border-gray-300 rounded-lg uppercase"
                 required
               />
               <input
                 type="text"
                 id="inventarioNumeroModelo"
                 placeholder="Nº de Modelo"
-                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                class="w-[40%] p-3 border border-gray-300 rounded-lg uppercase"
               />
             </div>
             <datalist id="marcasList"></datalist>
@@ -743,11 +743,11 @@
               type="text"
               id="inventarioSku"
               placeholder="Código SKU"
-              class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+              class="w-[30%] p-3 border border-gray-300 rounded-lg uppercase"
             />
             <select
               id="inventarioCategoria"
-              class="w-full p-3 border border-gray-300 rounded-lg"
+              class="w-[50%] p-3 border border-gray-300 rounded-lg"
               required
             >
               <option value="" disabled selected>Categoría...</option>
@@ -760,7 +760,7 @@
                 type="text"
                 id="inventarioTalla"
                 placeholder="Talla"
-                class="w-full p-3 border border-gray-300 rounded-lg uppercase"
+                class="w-[30%] p-3 border border-gray-300 rounded-lg uppercase"
                 required
               />
             </div>
@@ -787,7 +787,7 @@
             </div>
             <select
               id="inventarioMaterial"
-              class="w-full p-3 border border-gray-300 rounded-lg"
+              class="w-[50%] p-3 border border-gray-300 rounded-lg"
               required
             >
               <option value="" disabled selected>Material Principal...</option>
