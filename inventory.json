@@ -15,7 +15,7 @@
     "status": "disponible",
     "categoria": "Tenis",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/553.jpg",
+    "foto": "Galeria/553.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752716904,
@@ -40,7 +40,7 @@
     "material": "Piel",
     "status": "disponible",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/262.jpg",
+    "foto": "Galeria/262.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752721847,
@@ -65,7 +65,7 @@
     "status": "disponible",
     "categoria": "Tenis",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/058.jpg",
+    "foto": "Galeria/058.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752716732,
@@ -90,7 +90,7 @@
     "status": "disponible",
     "categoria": "Tenis",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/814.jpg",
+    "foto": "Galeria/814.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717650,
@@ -136,7 +136,7 @@
     "status": "disponible",
     "categoria": "Tenis",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/260.jpg",
+    "foto": "Galeria/260.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752721946,
@@ -224,7 +224,7 @@
     "costo": 50,
     "genero": "Hombre",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/627.jpg",
+    "foto": "Galeria/627.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752718224,
@@ -291,7 +291,7 @@
     "genero": "Hombre",
     "material": "Piel",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/817.jpg",
+    "foto": "Galeria/817.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752718188,
@@ -316,7 +316,7 @@
     "estilo": "Deportivo",
     "costo": 70,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/631.jpg",
+    "foto": "Galeria/631.jpg",
     "porcentajeDescuento": 0,
     "numeroModelo": "306252-116",
     "precioOferta": null,
@@ -341,7 +341,7 @@
     "sku": "305",
     "genero": "Hombre",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/305.jpg",
+    "foto": "Galeria/305.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752719255,
@@ -476,7 +476,7 @@
     "precioOferta": null,
     "numeroModelo": "",
     "modelo": "EL REY II",
-    "foto": "https://teniscarmen.github.io/Galeria/224.jpg",
+    "foto": "Galeria/224.jpg",
     "descripcion": "Domina las calles con estilo y comodidad inigualable. Los **PUMA EL REY II** son los tenis casuales perfectos para el hombre moderno. Fabricados en tela de alta calidad, te ofrecen frescura y un look impecable que te hará destacar a donde vayas. ¡Adquiere los tuyos hoy y siente la diferencia!   \n",
     "fechaRegistro": {
       "_seconds": 1752704187,
@@ -499,7 +499,7 @@
     "modelo": "GOLF AIR PEGASUS 89",
     "material": "Gamuza",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/803.jpg",
+    "foto": "Galeria/803.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752719308,
@@ -545,7 +545,7 @@
     "modelo": "CRATER REMIXA",
     "costo": 40,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/075.jpg",
+    "foto": "Galeria/075.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717374,
@@ -591,7 +591,7 @@
     "status": "disponible",
     "talla": "25.5",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/134.jpg",
+    "foto": "Galeria/134.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717097,
@@ -616,7 +616,7 @@
     "genero": "Hombre",
     "descripcion": "Domina el juego en cada entrenamiento con los NIKE Alpha Huarache Elite 4 Turf para hombre. Diseñados con una tela resistente y un estilo deportivo impecable, estos tenis te brindan la tracción y comodidad necesarias para un rendimiento superior. ¡Eleva tu juego al máximo nivel, cómpralos ahora!\n",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/588.jpg",
+    "foto": "Galeria/588.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752722147,
@@ -686,7 +686,7 @@
     "descripcion": "Siente el poder y la frescura del verano con los Nike LeBron 19 Bajo Hawái para hombre. Diseñados para un rendimiento explosivo en la cancha y un estilo relajado fuera de ella, estos tenis deportivos de tela te brindarán comodidad y un look impactante inspirado en las playas hawaianas. ¡Domina tu juego y luce increíble con el espíritu de LeBron!\n",
     "status": "disponible",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/526.jpg",
+    "foto": "Galeria/526.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752718092,
@@ -756,7 +756,7 @@
     "estilo": "Deportivo",
     "marca": "JORDAN",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/813.jpg",
+    "foto": "Galeria/813.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717831,
@@ -829,7 +829,7 @@
     "material": "Tela",
     "tallaTipo": "MX",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/583.jpg",
+    "foto": "Galeria/583.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752716678,
@@ -855,7 +855,7 @@
     "descuentoActivo": false,
     "porcentajeDescuento": 0,
     "precioOferta": null,
-    "foto": "https://teniscarmen.github.io/Galeria/822.jpg",
+    "foto": "Galeria/822.jpg",
     "descripcion": "Domina las calles con un clásico renovado. Los Air Jordan 1 High OG \"Yellow Ochre\" elevan tu estilo casual a nuevas alturas con su inconfundible silueta, la calidad superior de la piel Jordan y un toque de color vibrante. No pierdas la oportunidad de poseer un pedazo de historia y presume de un look icónico. ¡Hazte con ellos ahora!",
     "fechaRegistro": {
       "_seconds": 1752697754,
@@ -963,7 +963,7 @@
     "categoria": "Tenis",
     "modelo": "RETRO HIGH OG CRAFT EN MARFIL",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/823.jpg",
+    "foto": "Galeria/823.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717329,
@@ -988,7 +988,7 @@
     "talla": "25",
     "precio": 1800,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/259.jpg",
+    "foto": "Galeria/259.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752722046,
@@ -1058,7 +1058,7 @@
     "categoria": "Tenis",
     "status": "disponible",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/533.jpg",
+    "foto": "Galeria/533.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717983,
@@ -1130,7 +1130,7 @@
     "porcentajeDescuento": 0,
     "status": "disponible",
     "precioOferta": null,
-    "foto": "https://teniscarmen.github.io/Galeria/539.jpg",
+    "foto": "Galeria/539.jpg",
     "fechaRegistro": {
       "_seconds": 1752716629,
       "_nanoseconds": 968000000
@@ -1153,7 +1153,7 @@
     "material": "Piel",
     "modelo": "AIR FORCE 1 MID ",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/632.jpg",
+    "foto": "Galeria/632.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752718359,
@@ -1180,7 +1180,7 @@
     "material": "Piel",
     "modelo": "PRO STRONG",
     "sku": "531",
-    "foto": "https://teniscarmen.github.io/Galeria/531.jpg",
+    "foto": "Galeria/531.jpg",
     "numeroModelo": "DC7911-062",
     "fechaRegistro": {
       "_seconds": 1752716851,
@@ -1203,7 +1203,7 @@
     "sku": "934",
     "estilo": "Deportivo",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/934.jpg",
+    "foto": "Galeria/934.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717219,
@@ -1252,7 +1252,7 @@
     "tallaTipo": "MX",
     "precio": 1800,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/932.jpg",
+    "foto": "Galeria/932.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752721886,
@@ -1277,7 +1277,7 @@
     "sku": "626",
     "material": "Piel",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/626.jpg",
+    "foto": "Galeria/626.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717899,
@@ -1302,7 +1302,7 @@
     "modelo": "AIR JORDAN 1 HIGH OG “RARE AIR”",
     "status": "disponible",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/821.jpg",
+    "foto": "Galeria/821.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752718285,
@@ -1369,7 +1369,7 @@
     "descripcion": "Domina el campo con los Nike Alpha Huarache 3 Varsity Low 'Black'. Diseñados para el máximo rendimiento con piel duradera y confort superior, estos tenis deportivos te impulsarán a superar tus límites. ¡Siente la potencia y hazte con ellos ahora!\n",
     "estilo": "Deportivo",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/130.jpg",
+    "foto": "Galeria/130.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752721799,
@@ -1415,7 +1415,7 @@
     "precio": 2000,
     "marca": "NIKE",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/211.jpg",
+    "foto": "Galeria/211.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752715756,
@@ -1482,7 +1482,7 @@
     "genero": "Hombre",
     "descripcion": "Eleva tu juego con los **Jordan Max Aura 2**.  Confeccionados en gamuza premium y con el ADN de la leyenda, estos tenis deportivos para hombre te brindan comodidad superior y un estilo inconfundible. ¡Domina la cancha y las calles, ordénalos ahora!\n",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/819.jpg",
+    "foto": "Galeria/819.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717519,
@@ -1594,7 +1594,7 @@
     "descripcion": "**Eleva tu estilo urbano con los legendarios Nike Air Force 1.** Confeccionados en piel premium, estos tenis para hombre te brindan comodidad duradera y un look icónico que nunca pasa de moda. **Domina las calles con la herencia y el confort inigualable de Air Force 1. ¡Consigue los tuyos ahora!**\n",
     "precio": 2800,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/810.jpg",
+    "foto": "Galeria/810.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717575,
@@ -1664,7 +1664,7 @@
     "status": "disponible",
     "descripcion": "Domina la cancha y eleva tu juego con los nuevos Nike GT Jump para hombre. Diseñados para el atleta explosivo, estos tenis deportivos de tela te brindarán la sujeción y la amortiguación que necesitas para saltar más alto y moverte con agilidad. ¡No esperes más, libera tu potencial y conquista la victoria!\n",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/718.jpg",
+    "foto": "Galeria/718.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717792,
@@ -1752,7 +1752,7 @@
     "talla": "26",
     "descripcion": "Domina el diamante con las **Nike Force Zoom Trout 7 Pro**. Diseñadas para el máximo rendimiento, estas botas de béisbol para hombre, con su duradera confección en piel y tecnología Zoom Air, te impulsarán a alcanzar velocidades explosivas y una comodidad superior en cada jugada. ¡Hazte con ellas y conviértete en la leyenda del campo!\n",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/131.jpg",
+    "foto": "Galeria/131.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752722105,
@@ -1819,7 +1819,7 @@
     "talla": "22.5",
     "sku": "135",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/135.jpg",
+    "foto": "Galeria/135.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752722003,
@@ -1979,7 +1979,7 @@
     "descripcion": "Domina la cancha con el estilo explosivo de los NIKE Lebron 19 Hawaii. Diseñados para el rey, estos tenis de tela ofrecen comodidad superior y tracción imparable, llevando tu juego al siguiente nivel con un toque tropical único. ¡No esperes más, siente el poder y la frescura de Hawaii en cada paso!\n",
     "categoria": "Tenis",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/525.jpg",
+    "foto": "Galeria/525.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752715920,
@@ -2048,7 +2048,7 @@
     "sku": "560",
     "precio": 2000,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/560.jpg",
+    "foto": "Galeria/560.jpg",
     "porcentajeDescuento": 0,
     "numeroModelo": "DH2943-001",
     "precioOferta": null,
@@ -2074,7 +2074,7 @@
     "talla": "28",
     "descripcion": "Domina las calles con el estilo inconfundible y la comodidad premium de los Nike Max Aura Sapatilla. Su diseño deportivo, potenciado por la elegancia de la gamuza, te asegura una pisada suave y un look impecable. ¡Eleva tu juego, ordena los tuyos hoy mismo!\n",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/630.jpg",
+    "foto": "Galeria/630.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717473,
@@ -2120,7 +2120,7 @@
     "precio": 2800,
     "tallaTipo": "MX",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/529.jpg",
+    "foto": "Galeria/529.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752717416,
@@ -2166,7 +2166,7 @@
     "sku": "345",
     "categoria": "Tenis",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/345.jpg",
+    "foto": "Galeria/345.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752716775,
@@ -2261,7 +2261,7 @@
       "_seconds": 1752686217,
       "_nanoseconds": 505000000
     },
-    "foto": "https://teniscarmen.github.io/Galeria\n/107.jpg"
+    "foto": "Galeria/107.jpg"
   },
   {
     "id": "r9BsUJsT3fmEHcFAcaUx",
@@ -2405,7 +2405,7 @@
     "descripcion": "**Desata tu estilo urbano con los icónicos Nike Air Force 1.** Fabricados en suave gamuza premium, estos tenis para hombre ofrecen un look casual sofisticado y una comodidad legendaria que te acompañará a donde vayas. ¡Eleva tu juego de zapatillas y haz una declaración de moda audaz con los AF1!\n",
     "precio": 2800,
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/818.jpg",
+    "foto": "Galeria/818.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
       "_seconds": 1752718138,
@@ -2471,7 +2471,7 @@
     "tallaTipo": "MX",
     "status": "disponible",
     "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/589.jpg",
+    "foto": "Galeria/589.jpg",
     "material": "Piel",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
