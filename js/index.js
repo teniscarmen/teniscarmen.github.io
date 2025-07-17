@@ -2432,79 +2432,6 @@ ${comprasHtml}
     );
   }
 
-  async function generateCatalogPDF() {
-    const disponibles = localInventario.filter(
-      (item) => item.status === 'disponible',
-    );
-    if (disponibles.length === 0) {
-      showAlert(
-        'Sin Productos',
-        'No hay artículos disponibles para generar el catálogo.',
-        'info',
-      );
-      return;
-    }
-
-    const grouped = {};
-    disponibles.forEach((item) => {
-      const cat = item.categoria || 'Otros';
-      const gen = item.genero || 'General';
-      if (!grouped[cat]) grouped[cat] = {};
-      if (!grouped[cat][gen]) grouped[cat][gen] = [];
-      grouped[cat][gen].push(item);
-    });
-
-    const today = new Date().toLocaleDateString('es-MX');
-    const headerHtml = `
-      <div style="text-align:center;margin-bottom:1rem;">
-        <img src="logo.png" alt="Logo" style="width:120px;margin:auto;" />
-        <p style="margin:0;font-size:1rem;font-weight:600;">www.tenischidos.xyz</p>
-        <p style="margin:0;font-size:0.9rem;">${today}</p>
-      </div>`;
-
-    let catalogHtml = `
-    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');</style>
-    <div style="font-family:'Inter',sans-serif;padding:1rem;color:#1f2937;">
-    `;
-    Object.keys(grouped).forEach((cat) => {
-      catalogHtml += `<h2 style="font-size:1.3rem;margin-top:1rem;border-bottom:1px solid #e5e7eb;">${cat}</h2>`;
-      const genders = grouped[cat];
-      Object.keys(genders).forEach((gen) => {
-        catalogHtml += `<h3 style="font-size:1.1rem;margin-top:0.5rem;">${gen}</h3><ul style="list-style:none;padding-left:0;">`;
-        genders[gen].forEach((item) => {
-          catalogHtml += `
-          <li style="margin:0 auto 0.7rem;width:80%;background:#fff;border:1px solid #e5e7eb;border-radius:0.75rem;box-shadow:0 1px 2px rgba(0,0,0,0.05);padding:0.75rem;page-break-inside:avoid;">
-            <table style="width:100%;border-collapse:collapse;">
-              <tr>
-                <td style="width:80px;vertical-align:top;">
-                  <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.5rem;" />
-                </td>
-                <td style="font-size:0.9rem;color:#374151;line-height:1.2;vertical-align:top;">
-                  <div style="font-weight:600;">${item.marca} | ${item.modelo} | (SKU:${item.sku || 'N/A'})</div>
-                  <div>N° de Modelo: ${item.numeroModelo || 'N/A'} | Talla: ${item.talla} | Material: ${item.material || 'N/A'} | Estilo: ${item.estilo || 'N/A'}</div>
-                  <div style="font-weight:600;">Precio: ${formatCurrency(item.precio || 0)}</div>
-                </td>
-              </tr>
-            </table>
-          </li>`;
-        });
-        catalogHtml += '</ul>';
-      });
-    });
-    catalogHtml += '</div>';
-
-    await downloadPdfFromHtml(
-      catalogHtml,
-      `Catalogo_${new Date().toLocaleDateString('es-MX')}.pdf`,
-      'portrait',
-      headerHtml,
-    );
-  }
-
-  async function handleDownloadCatalog() {
-    await generateCatalogPDF();
-  }
-
   // --- APP INITIALIZATION ---
   function initializeAppListeners(user) {
     unsubscribeAll();
@@ -3047,9 +2974,6 @@ ${comprasHtml}
         updateFotoLink();
         showModal(document.getElementById('inventarioModal'));
       });
-    document
-      .getElementById('downloadCatalogBtn')
-      .addEventListener('click', handleDownloadCatalog);
     document
       .getElementById('exportClientesBtn')
       .addEventListener('click', () =>
