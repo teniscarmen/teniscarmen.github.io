@@ -77,7 +77,6 @@ function loadInventory() {
       } else {
         allProducts = parsed;
         renderFilters(allProducts);
-        renderCarousel(allProducts);
         applyFilters();
       }
     } catch (err) {
@@ -97,7 +96,6 @@ function loadInventory() {
       localStorage.setItem(INVENTORY_CACHE_KEY, JSON.stringify(allProducts));
       localStorage.setItem(INVENTORY_CACHE_TS_KEY, String(now));
       renderFilters(allProducts);
-      renderCarousel(allProducts);
       applyFilters();
     })
     .catch((err) => {
@@ -148,70 +146,6 @@ function renderFilters(products) {
   }
 }
 
-function renderCarousel(products) {
-  const container = document.getElementById('carouselContainer');
-  const slides = document.getElementById('carouselSlides');
-  slides.innerHTML = '';
-  const valid = products.filter(
-    (p) => p.foto && !p.foto.includes('tenis_default.jpg'),
-  );
-  if (valid.length === 0) {
-    container.classList.add('hidden');
-    return;
-  }
-  container.classList.remove('hidden');
-  valid.forEach((p) => {
-    const slide = document.createElement('div');
-    slide.className = 'cover-slide w-3/4 sm:w-1/2 h-full';
-
-    const img = document.createElement('img');
-    img.src = p.foto;
-    img.alt = p.modelo;
-    img.className = 'w-full h-full object-cover';
-    slide.appendChild(img);
-
-    const info = document.createElement('div');
-    info.className =
-      'absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1';
-    const price = formatCurrency(p.precioOferta ?? p.precio);
-    info.innerHTML = `
-      <p><strong>${p.marca}</strong> ${p.modelo}</p>
-      <p>SKU: ${p.sku || 'N/A'} | Talla: ${p.talla} | Género: ${p.genero || 'N/A'} | Precio: ${price}</p>
-    `;
-    slide.appendChild(info);
-
-    slides.appendChild(slide);
-  });
-  let index = 0;
-  function update() {
-    const elems = slides.children;
-    for (let i = 0; i < elems.length; i++) {
-      const offset = i - index;
-      const abs = Math.abs(offset);
-      const rotate = offset * -45;
-      const translate = offset * 60;
-      const scale = offset === 0 ? 1 : 0.7;
-      const z = 100 - abs;
-      elems[i].style.transform =
-        `translateX(-50%) translateX(${translate}%) rotateY(${rotate}deg) scale(${scale})`;
-      elems[i].style.zIndex = z;
-      elems[i].style.opacity = abs > 3 ? 0 : 1;
-    }
-  }
-  document.getElementById('carouselPrev').onclick = () => {
-    index = (index - 1 + valid.length) % valid.length;
-    update();
-  };
-  document.getElementById('carouselNext').onclick = () => {
-    index = (index + 1) % valid.length;
-    update();
-  };
-  setInterval(() => {
-    index = (index + 1) % valid.length;
-    update();
-  }, 3000);
-  update();
-}
 
 function renderProducts(products) {
   const container = document.getElementById('productsContainer');
