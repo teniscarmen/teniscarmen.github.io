@@ -516,15 +516,10 @@ async function generateCatalogPDF() {
         catalogHtml += `
           <li style="margin:0 auto 0.7rem;width:80%;background:#fff;border:1px solid #e5e7eb;border-radius:0.75rem;box-shadow:0 1px 2px rgba(0,0,0,0.05);padding:0.75rem;page-break-inside:avoid;display:flex;gap:0.75rem;align-items:flex-start;">
             <img src="${item.foto || 'tenis_default.jpg'}" alt="${item.modelo}" style="width:80px;height:80px;object-fit:cover;border-radius:0.5rem;" />
-            <div style="font-size:0.9rem;color:#374151;flex-grow:1;">
-              <div style="font-weight:600;font-size:1rem;color:#111827;margin-bottom:0.25rem;">${item.marca} ${item.modelo}</div>
-              <div style="display:flex;flex-wrap:wrap;gap:0.25rem 1rem;">
-                <span>Talla: ${item.talla}</span>
-                <span>SKU: ${item.sku || 'N/A'}</span>
-                <span>Estilo: ${item.estilo || 'N/A'}</span>
-                <span>Material: ${item.material || 'N/A'}</span>
-              </div>
-              <div style="margin-top:0.5rem;font-weight:bold;color:#1f2937;">${formatCurrency(item.precio || 0)}</div>
+            <div style="font-size:0.9rem;color:#374151;line-height:1.2;">
+              <div style="font-weight:600;">${item.marca} | ${item.modelo} | (SKU:${item.sku || 'N/A'})</div>
+              <div>N° de Modelo: ${item.numeroModelo || 'N/A'} | Talla: ${item.talla} | Material: ${item.material || 'N/A'} | Estilo: ${item.estilo || 'N/A'}</div>
+              <div style="font-weight:600;">Precio: ${formatCurrency(item.precio || 0)}</div>
             </div>
           </li>`;
       });
