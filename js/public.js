@@ -146,7 +146,6 @@ function renderFilters(products) {
   }
 }
 
-
 function renderProducts(products) {
   const container = document.getElementById('productsContainer');
   container.innerHTML = '';
