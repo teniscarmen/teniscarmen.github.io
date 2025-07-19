@@ -150,31 +150,6 @@
     "costo": 20
   },
   {
-    "id": "4EsjD8wrWSoYVwQggu0p",
-    "marca": "NIKE",
-    "talla": "23.5",
-    "costo": 30,
-    "material": "Tela",
-    "categoria": "Tenis",
-    "descripcion": "**Libera tu potencial con los Nike Revolution para mujer.** Diseñados para la comodidad y el rendimiento, estos tenis deportivos de tela te impulsarán a superar tus límites con cada paso. ¡Siente la revolución en tus pies y hazte con los tuyos ahora!\n",
-    "modelo": "REVOLUTION",
-    "genero": "Mujer",
-    "sku": "064",
-    "tallaTipo": "MX",
-    "precio": 1500,
-    "estilo": "Deportivo",
-    "descuentoActivo": true,
-    "foto": "https://teniscarmen.github.io/Galeria/064.jpg",
-    "porcentajeDescuento": 50,
-    "fechaRegistro": {
-      "_seconds": 1752892170,
-      "_nanoseconds": 811000000
-    },
-    "numeroModelo": "",
-    "precioOferta": 750,
-    "status": "vendido"
-  },
-  {
     "id": "4OWnbZ6xpbbpV7ZXYf7q",
     "marca": "NIKE",
     "costo": 40,
@@ -421,51 +396,6 @@
     "genero": "Unisex"
   },
   {
-    "id": "6cIw3xr3JzWdQkZJmG0h",
-    "costo": 60,
-    "modelo": "AIR FORCE 1 SHADOW",
-    "tallaTipo": "MX",
-    "talla": "25",
-    "sku": "933",
-    "precio": 2500,
-    "fechaRegistro": {
-      "_seconds": 1751562546,
-      "_nanoseconds": 383000000
-    },
-    "status": "vendido",
-    "genero": "Mujer",
-    "foto": "https://teniscarmen.github.io/Galeria/933.jpg",
-    "marca": "NIKE",
-    "estilo": "Casual",
-    "categoria": "Tenis",
-    "material": "Piel",
-    "descripcion": "No se pudo generar la descripción."
-  },
-  {
-    "id": "7Gfz9QthYRxwtUPrySwx",
-    "modelo": "BOLSA CANGURERA",
-    "foto": "https://teniscarmen.github.io/Galeria/274.jpg",
-    "precio": 800,
-    "porcentajeDescuento": 0,
-    "categoria": "Accesorios",
-    "tallaTipo": "MX",
-    "material": "Tela",
-    "costo": 20,
-    "marca": "NIKE",
-    "talla": "0",
-    "genero": "Unisex",
-    "precioOferta": null,
-    "estilo": "Deportivo",
-    "sku": "274",
-    "descuentoActivo": false,
-    "descripcion": "Prepárate para elevar tu estilo deportivo con los nuevos Nike Bolsa Cangurera. Diseñados con una comodidad superior y un estilo unisex audaz, estos tenis de tela te impulsarán a conquistar cada paso con un look moderno y funcional. ¡No esperes más y hazte con los tuyos!\n",
-    "status": "vendido",
-    "fechaRegistro": {
-      "_seconds": 1751688912,
-      "_nanoseconds": 538000000
-    }
-  },
-  {
     "id": "7ySmHM9SarNDaz2IOXYd",
     "tallaTipo": "MX",
     "estilo": "Casual",
@@ -666,30 +596,6 @@
     "tallaTipo": "MX"
   },
   {
-    "id": "BpLfqoO799L2Zj52zHSW",
-    "porcentajeDescuento": 0,
-    "descripcion": "**Eleva tu estilo urbano con las icónicas Nike Air Force 1 para mujer.** Confeccionadas en piel premium, estos tenis clásicos te ofrecen comodidad duradera y un look atemporal que complementará cualquier outfit. **Domina las calles con la leyenda. ¡Consigue las tuyas hoy mismo!**\n",
-    "foto": "https://teniscarmen.github.io/Galeria/907.jpg",
-    "categoria": "Tenis",
-    "precio": 2500,
-    "fechaRegistro": {
-      "_seconds": 1751688081,
-      "_nanoseconds": 215000000
-    },
-    "modelo": "AIR FORCE 1",
-    "tallaTipo": "MX",
-    "material": "Piel",
-    "costo": 40,
-    "talla": "23.5",
-    "descuentoActivo": false,
-    "status": "vendido",
-    "marca": "NIKE",
-    "sku": "907",
-    "genero": "Mujer",
-    "estilo": "Casual",
-    "precioOferta": null
-  },
-  {
     "id": "C1CY1q91KOg0PZq2NlI3",
     "sku": "927",
     "modelo": "JORDAN - GORRO",
@@ -761,30 +667,6 @@
     "precioOferta": null
   },
   {
-    "id": "Drk2kMW6IcPoBlEJuh4W",
-    "descuentoActivo": false,
-    "status": "vendido",
-    "precioOferta": null,
-    "foto": "https://teniscarmen.github.io/Galeria/918.jpg",
-    "talla": "24.5",
-    "descripcion": "Eleva tu estilo diario con los icónicos Nike Dunk Low Next Nature para mujer. Fabricados con piel premium y un diseño atemporal, estos tenis te brindan comodidad y un look impecable, mientras contribuyes a un futuro más sostenible. ¡Añádelos a tu carrito y domina las calles con este clásico renovado!\n",
-    "fechaRegistro": {
-      "_seconds": 1751689866,
-      "_nanoseconds": 140000000
-    },
-    "sku": "918",
-    "genero": "Mujer",
-    "estilo": "Casual",
-    "modelo": "DUNK LOW NEXT NATURE",
-    "tallaTipo": "MX",
-    "costo": 40,
-    "precio": 2000,
-    "categoria": "Tenis",
-    "porcentajeDescuento": 0,
-    "material": "Piel",
-    "marca": "NIKE"
-  },
-  {
     "id": "ECgMmjf0l0t0y5OSZ6C9",
     "status": "disponible",
     "descripcion": "Eleva tu juego con los icónicos Jordan Flight. Fabricados en piel premium para una durabilidad y estilo inigualables, estos tenis deportivos para hombre te impulsarán al siguiente nivel en la cancha y en las calles. ¡Siente la leyenda en cada paso y domina tu vuelo!\n",
@@ -808,54 +690,6 @@
     "costo": 70,
     "porcentajeDescuento": 0,
     "marca": "JORDAN"
-  },
-  {
-    "id": "F1klMGysahR4CEH3Okc2",
-    "fechaRegistro": {
-      "_seconds": 1751690920,
-      "_nanoseconds": 66000000
-    },
-    "marca": "NIKE",
-    "costo": 50,
-    "foto": "https://teniscarmen.github.io/Galeria/926.jpg",
-    "precioOferta": null,
-    "estilo": "Casual",
-    "precio": 2000,
-    "descripcion": "Domina el asfalto con el estilo impecable de los NIKE FIELD GENERAL. Fabricados en piel premium para un confort y durabilidad excepcionales, estos tenis casuales para hombre te brindarán un look atemporal y la confianza que necesitas para conquistar tu día a día. ¡No esperes más, eleva tu estilo y hazte con los tuyos ahora!\n",
-    "genero": "Hombre",
-    "categoria": "Tenis",
-    "modelo": "FIELD GENERAL",
-    "sku": "926",
-    "material": "Piel",
-    "tallaTipo": "MX",
-    "porcentajeDescuento": 0,
-    "talla": "30",
-    "descuentoActivo": false,
-    "status": "vendido"
-  },
-  {
-    "id": "FJumAXsQvJ1PX30D3Fjw",
-    "genero": "Hombre",
-    "sku": "910",
-    "tallaTipo": "MX",
-    "estilo": "Casual",
-    "precio": 2800,
-    "foto": "https://teniscarmen.github.io/Galeria/910.jpg",
-    "categoria": "Tenis",
-    "modelo": "AIR JORDAN LOW 1",
-    "talla": "30",
-    "costo": 60,
-    "fechaRegistro": {
-      "_seconds": 1751688839,
-      "_nanoseconds": 670000000
-    },
-    "porcentajeDescuento": 0,
-    "descuentoActivo": false,
-    "status": "vendido",
-    "material": "Piel",
-    "precioOferta": null,
-    "marca": "JORDAN",
-    "descripcion": "Domina el asfalto con las **Air Jordan 1 Low**. Un clásico reinventado que fusiona el legado de Jordan con un estilo casual impecable. Confeccionadas en piel premium para una durabilidad y comodidad superior, estas zapatillas te convertirán en el rey del streetwear. ¡Hazte con un par y eleva tu juego!\n"
   },
   {
     "id": "G8uhyL7n8ypQgBo4osFf",
@@ -933,56 +767,6 @@
     "modelo": "COURT VISION LOW NEXT NATURE"
   },
   {
-    "id": "I14rUcih1goqvqa23ffj",
-    "tallaTipo": "MX",
-    "precio": 1800,
-    "sku": "103",
-    "costo": 30,
-    "genero": "Hombre",
-    "talla": "27.5",
-    "marca": "ADIDAS",
-    "modelo": "SWIFT RUN X",
-    "material": "Tela",
-    "categoria": "Tenis",
-    "descripcion": "Domina las calles con los ADIDAS Swift Run X, el calzado deportivo para hombre que fusiona estilo y confort. Su diseño ligero en tela te brinda la agilidad que necesitas para moverte con libertad, mientras que el inconfundible sello ADIDAS te garantiza un look ganador. ¡No esperes más para experimentar el máximo rendimiento y el mejor estilo urbano!\n",
-    "estilo": "Deportivo",
-    "descuentoActivo": true,
-    "foto": "https://teniscarmen.github.io/Galeria/103.jpg",
-    "porcentajeDescuento": 50,
-    "fechaRegistro": {
-      "_seconds": 1752892139,
-      "_nanoseconds": 918000000
-    },
-    "numeroModelo": "",
-    "precioOferta": 900,
-    "status": "vendido"
-  },
-  {
-    "id": "IZzknNKdwTuoJBK90UwG",
-    "costo": 30,
-    "modelo": "LITE RACER ADAPT 5",
-    "precio": 1900,
-    "sku": "204",
-    "material": "Tela",
-    "genero": "Hombre",
-    "marca": "ADIDAS",
-    "descripcion": "Desata tu potencial con los Adidas Lite Racer Adapt 5. Diseñados para el hombre moderno y activo, estos tenis deportivos de tela te ofrecen la comodidad y el estilo que necesitas para conquistar cada día, sin importar el desafío. ¡Siente la ligereza y prepárate para ir más lejos!\n",
-    "talla": "26.5",
-    "tallaTipo": "MX",
-    "estilo": "Deportivo",
-    "categoria": "Tenis",
-    "descuentoActivo": true,
-    "foto": "https://teniscarmen.github.io/Galeria/204.jpg",
-    "porcentajeDescuento": 50,
-    "fechaRegistro": {
-      "_seconds": 1752892108,
-      "_nanoseconds": 149000000
-    },
-    "numeroModelo": "",
-    "precioOferta": 950,
-    "status": "vendido"
-  },
-  {
     "id": "IhFdMqRCXphZBJ3cC8fB",
     "tallaTipo": "MX",
     "marca": "ADIDAS",
@@ -1054,51 +838,6 @@
     "categoria": "Tenis"
   },
   {
-    "id": "JJiVPOXf27ssFG4HBdRW",
-    "foto": "https://teniscarmen.github.io/Galeria/930.jpg",
-    "sku": "930",
-    "modelo": "GORRA - JORDAN",
-    "marca": "NIKE",
-    "genero": "Unisex",
-    "status": "vendido",
-    "categoria": "Accesorios",
-    "fechaRegistro": {
-      "_seconds": 1751688948,
-      "_nanoseconds": 811000000
-    },
-    "tallaTipo": "MX",
-    "precioOferta": null,
-    "estilo": "Deportivo",
-    "talla": "0",
-    "precio": 600,
-    "porcentajeDescuento": 0,
-    "costo": 20,
-    "descripcion": "Gorra verde militar logo Jordan",
-    "descuentoActivo": false,
-    "material": "Tela"
-  },
-  {
-    "id": "Kp4faST1HMILpTJnb1L2",
-    "genero": "Mujer",
-    "fechaRegistro": {
-      "_seconds": 1751567306,
-      "_nanoseconds": 210000000
-    },
-    "status": "vendido",
-    "foto": "https://teniscarmen.github.io/Galeria/900.jpg",
-    "tallaTipo": "MX",
-    "estilo": "Deportivo",
-    "sku": "900",
-    "costo": 30,
-    "descripcion": "Una versión moderna de un clásico para largas distancias, esta zapatilla envuelta en malla se asienta sobre una burbuja de amortiguación Max Air que brinda comodidad elástica en cada paso.",
-    "talla": "25.5",
-    "marca": "NIKE",
-    "precio": 1700,
-    "categoria": "Tenis",
-    "material": "Tela",
-    "modelo": "AIR MAX NUAXIS"
-  },
-  {
     "id": "KqsGsE1w7h8afk3pdV9x",
     "fechaRegistro": {
       "_seconds": 1752717983,
@@ -1122,30 +861,6 @@
     "porcentajeDescuento": 0,
     "tallaTipo": "MX",
     "sku": "533"
-  },
-  {
-    "id": "Kt8yfuAzpp7CKcTUqEqL",
-    "material": "Piel",
-    "sku": "924",
-    "modelo": "COURT LEGACY NEXT NATURE",
-    "foto": "https://teniscarmen.github.io/Galeria/924.jpg",
-    "descuentoActivo": false,
-    "estilo": "Casual",
-    "marca": "NIKE",
-    "precioOferta": null,
-    "precio": 1800,
-    "status": "vendido",
-    "porcentajeDescuento": 0,
-    "fechaRegistro": {
-      "_seconds": 1751690466,
-      "_nanoseconds": 78000000
-    },
-    "costo": 30,
-    "descripcion": "**NIKE Court Legacy Next Nature: El legado del estilo ahora más sostenible.** Confeccionados en piel premium para un look impecable y una comodidad duradera, estos tenis casuales de NIKE para mujer te harán lucir fabulosa en cada paso. ¡Añade un toque de elegancia atemporal a tu outfit y haz una declaración de estilo consciente!\n",
-    "tallaTipo": "MX",
-    "genero": "Mujer",
-    "categoria": "Tenis",
-    "talla": "24"
   },
   {
     "id": "M8JtWUdvJrQGlumSkaq4",
@@ -1271,30 +986,6 @@
     "descripcion": "Domina el juego con los Nike Hyperdiamond 4 Elite. Fabricados con piel de alta calidad para una durabilidad y comodidad excepcionales, estos tenis deportivos unisex te impulsarán a rendir al máximo en cada movimiento. ¡Experimenta la potencia y el estilo que solo Nike puede ofrecer, consigue los tuyos ahora!\n",
     "porcentajeDescuento": 0,
     "talla": "22"
-  },
-  {
-    "id": "OIJqtoAwgJ0yAh4zlEjv",
-    "foto": "https://teniscarmen.github.io/Galeria/922.jpg",
-    "status": "vendido",
-    "material": "Piel",
-    "talla": "25",
-    "descripcion": "**Eleva tu estilo diario con los Nike Blazer Low Platform para mujer. Confeccionados en piel premium y una suela con plataforma que estiliza tu figura, estos tenis te brindan un look casual y a la moda que no pasará desapercibido. ¡Dale un toque de altura a tu outfit y consigue los tuyos hoy mismo!**\n",
-    "estilo": "Casual",
-    "precio": 1900,
-    "modelo": "BLAZER LOW PLATFORM",
-    "descuentoActivo": false,
-    "genero": "Mujer",
-    "precioOferta": null,
-    "fechaRegistro": {
-      "_seconds": 1751688534,
-      "_nanoseconds": 664000000
-    },
-    "porcentajeDescuento": 0,
-    "categoria": "Tenis",
-    "marca": "NIKE",
-    "sku": "922",
-    "costo": 30,
-    "tallaTipo": "MX"
   },
   {
     "id": "PLJkt9AtwHAXNiDK2LyM",
@@ -1522,27 +1213,6 @@
     "precioOferta": 900
   },
   {
-    "id": "VRBJBSlQ0RusXcY6dERH",
-    "material": "Piel",
-    "modelo": "AIR FORCE 1 LOW",
-    "descripcion": "Tenía blanco paloma azul",
-    "genero": "Mujer",
-    "sku": "902",
-    "marca": "NIKE",
-    "estilo": "Casual",
-    "status": "vendido",
-    "tallaTipo": "MX",
-    "talla": "24",
-    "costo": 40,
-    "precio": 2500,
-    "fechaRegistro": {
-      "_seconds": 1751566591,
-      "_nanoseconds": 170000000
-    },
-    "categoria": "Tenis",
-    "foto": "https://teniscarmen.github.io/Galeria/902.jpg"
-  },
-  {
     "id": "VbT2UmvuWuc5sXU6GOtS",
     "tallaTipo": "MX",
     "descripcion": "Eleva tu juego con los **Jordan Max Aura 2**.  Confeccionados en gamuza premium y con el ADN de la leyenda, estos tenis deportivos para hombre te brindan comodidad superior y un estilo inconfundible. ¡Domina la cancha y las calles, ordénalos ahora!\n",
@@ -1689,51 +1359,6 @@
     "talla": "28.5"
   },
   {
-    "id": "ZnynZrvdAFHMYIWWmEYL",
-    "talla": "0",
-    "descripcion": "**Desata tu espíritu aventurero con los Nike ACG.** Diseñados para la acción y la comodidad, estos tenis deportivos unisex, fabricados con tela resistente, te impulsarán a explorar cualquier terreno con estilo. ¡Consigue los tuyos y prepárate para conquistar la naturaleza!\n",
-    "porcentajeDescuento": 0,
-    "marca": "NIKE",
-    "descuentoActivo": false,
-    "precioOferta": null,
-    "material": "Tela",
-    "tallaTipo": "MX",
-    "sku": "928",
-    "status": "vendido",
-    "fechaRegistro": {
-      "_seconds": 1751687069,
-      "_nanoseconds": 287000000
-    },
-    "foto": "https://teniscarmen.github.io/Galeria/928.jpg",
-    "precio": 600,
-    "estilo": "Deportivo",
-    "costo": 20,
-    "categoria": "Accesorios",
-    "modelo": "GORRO ACG",
-    "genero": "Unisex"
-  },
-  {
-    "id": "aHJuZY2mwF6bBa8Kgca2",
-    "marca": "NIKE",
-    "material": "Piel",
-    "foto": "https://teniscarmen.github.io/Galeria/915.jpg",
-    "genero": "Mujer",
-    "costo": 40,
-    "modelo": "GAMMA FORCE",
-    "precio": 2000,
-    "estilo": "Casual",
-    "fechaRegistro": {
-      "_seconds": 1751566765,
-      "_nanoseconds": 125000000
-    },
-    "tallaTipo": "MX",
-    "status": "vendido",
-    "talla": "25",
-    "categoria": "Tenis",
-    "sku": "915",
-    "descripcion": "Tenis negro paloma blanco y detallen en verde militar."
-  },
-  {
     "id": "bxdnCMS1Coy8pHb4A5cb",
     "estilo": "Deportivo",
     "costo": 60,
@@ -1807,27 +1432,6 @@
     },
     "numeroModelo": "CZ0907-108",
     "precioOferta": null
-  },
-  {
-    "id": "dKTkE95wMe5f41ATweaC",
-    "precio": 2000,
-    "categoria": "Tenis",
-    "tallaTipo": "MX",
-    "estilo": "Casual",
-    "costo": 50,
-    "fechaRegistro": {
-      "_seconds": 1751312645,
-      "_nanoseconds": 127000000
-    },
-    "descripcion": "**Nike Comfort Insole: Dale a tus pies el lujo que merecen.** Estos tenis casuales de piel para mujer te brindarán comodidad superior gracias a su plantilla especial, permitiéndote lucir un estilo impecable sin sacrificar el bienestar. ¡Consigue el equilibrio perfecto entre moda y confort, y camina con confianza cada día!\n",
-    "status": "vendido",
-    "foto": "https://teniscarmen.github.io/Galeria/913.jpg",
-    "sku": "913",
-    "marca": "NIKE",
-    "material": "Piel",
-    "genero": "Mujer",
-    "modelo": "COMFORT INSOLE ",
-    "talla": "24"
   },
   {
     "id": "dUtnIHSlx8x5t6r40vq4",
@@ -1930,30 +1534,6 @@
     "descripcion": "Domina el juego con los Nike Hyperdiamond 4 Elite. Fabricados con piel premium para una durabilidad superior y un ajuste cómodo, estos tenis deportivos unisex te impulsarán a alcanzar tu máximo potencial. ¡Siente la diferencia y hazte con los tuyos ahora!\n"
   },
   {
-    "id": "e8lCNPFx5ZXFt4AtyvgG",
-    "fechaRegistro": {
-      "_seconds": 1751746468,
-      "_nanoseconds": 455000000
-    },
-    "genero": "Unisex",
-    "sku": "931",
-    "modelo": "GORRA JORDAN ",
-    "status": "vendido",
-    "precio": 600,
-    "numeroModelo": "",
-    "precioOferta": null,
-    "costo": 20,
-    "foto": "https://teniscarmen.github.io/Galeria/931.jpg",
-    "material": "Tela",
-    "talla": "0",
-    "estilo": "Deportivo",
-    "porcentajeDescuento": 0,
-    "marca": "NIKE",
-    "categoria": "Accesorios",
-    "descuentoActivo": false,
-    "descripcion": "Eleva tu juego con el estilo inconfundible de los Nike Gorra Jordan.  Estos tenis deportivos unisex, confeccionados en tela para una comodidad y ligereza superiores, te impulsarán a superar tus límites con un look que siempre destaca. ¡Hazte con ellos y domina la cancha, o la calle, con la leyenda de Jordan!\n"
-  },
-  {
     "id": "eVHQqsBCzwBIZCJDRRoZ",
     "marca": "NIKE",
     "material": "Piel",
@@ -1977,30 +1557,6 @@
     },
     "numeroModelo": "DH3158-108",
     "precioOferta": null
-  },
-  {
-    "id": "eaXZgiM521Gjs9uf1TA9",
-    "numeroModelo": "",
-    "descripcion": "Domina las calles y la cancha con los Jordan Stay Loyal 3, el calzado que irradia leyenda. Fabricados con piel premium para una durabilidad imbatible y un estilo inconfundible, estos tenis deportivos te brindan el soporte y la comodidad que necesitas para destacar en cada movimiento. ¡No esperes más para llevar tu juego al siguiente nivel!\n",
-    "precio": 2800,
-    "sku": "909",
-    "material": "Piel",
-    "porcentajeDescuento": 0,
-    "precioOferta": null,
-    "genero": "Hombre",
-    "estilo": "Deportivo",
-    "foto": "https://teniscarmen.github.io/Galeria/909.jpg",
-    "descuentoActivo": false,
-    "categoria": "Tenis",
-    "modelo": "STAY LOYAL 3",
-    "status": "vendido",
-    "fechaRegistro": {
-      "_seconds": 1751744424,
-      "_nanoseconds": 945000000
-    },
-    "marca": "JORDAN",
-    "talla": "30",
-    "costo": 60
   },
   {
     "id": "fZ01Z1OiePtqGEH7N6E8",
@@ -2049,30 +1605,6 @@
     "precioOferta": null
   },
   {
-    "id": "hKhainovqnrnQWC34wtr",
-    "descripcion": "Domina las calles con estilo y confort. Los Nike Field General, diseñados para la mujer moderna, te ofrecen un look casual y audaz con la calidad y el respaldo de Nike. ¡Hazlos tuyos hoy y experimenta la comodidad que te mereces en cada paso!\n",
-    "talla": "25",
-    "foto": "https://teniscarmen.github.io/Galeria/916.jpg",
-    "precioOferta": null,
-    "tallaTipo": "MX",
-    "descuentoActivo": false,
-    "fechaRegistro": {
-      "_seconds": 1751684611,
-      "_nanoseconds": 519000000
-    },
-    "marca": "NIKE",
-    "precio": 2000,
-    "estilo": "Casual",
-    "status": "vendido",
-    "genero": "Mujer",
-    "sku": "916",
-    "modelo": "FIELD GENERAL",
-    "material": "Sintético",
-    "categoria": "Tenis",
-    "porcentajeDescuento": 0,
-    "costo": 50
-  },
-  {
     "id": "itNARQicBaQeGl9FlGcx",
     "numeroModelo": "DQ8344-600",
     "precioOferta": null,
@@ -2096,30 +1628,6 @@
     "estilo": "Deportivo",
     "material": "Tela",
     "talla": "28"
-  },
-  {
-    "id": "j5K9aO7TrRZsxjqurXfT",
-    "precio": 2500,
-    "descuentoActivo": false,
-    "foto": "https://teniscarmen.github.io/Galeria/901.jpg",
-    "descripcion": "**Domina el street style con las icónicas Nike Air Force 1 para mujer.** Confeccionadas en piel premium, estas zapatillas ofrecen un look impecable y una comodidad duradera para que conquistes la ciudad con confianza. ¡Eleva tu estilo casual y haz una declaración audaz con cada paso!\n",
-    "talla": "24",
-    "costo": 40,
-    "material": "Piel",
-    "numeroModelo": "",
-    "estilo": "Casual",
-    "fechaRegistro": {
-      "_seconds": 1751748473,
-      "_nanoseconds": 756000000
-    },
-    "genero": "Mujer",
-    "modelo": "AIR FORCE 1",
-    "sku": "901",
-    "marca": "NIKE",
-    "status": "vendido",
-    "porcentajeDescuento": 0,
-    "categoria": "Tenis",
-    "precioOferta": null
   },
   {
     "id": "klgAIaoYh8a1eU06VFoK",
@@ -2591,31 +2099,6 @@
     },
     "numeroModelo": "128791714",
     "precioOferta": 950
-  },
-  {
-    "id": "y4twgvTKegLuN8CBVkzY",
-    "categoria": "Tenis",
-    "modelo": "PHANTOM",
-    "marca": "NIKE",
-    "estilo": "Deportivo",
-    "talla": "24",
-    "tallaTipo": "MX",
-    "sku": "013",
-    "genero": "Mujer",
-    "costo": 30,
-    "precio": 1400,
-    "descripcion": "Desata tu agilidad y domina el juego con los Nike Phantom para mujer. Diseñados con tela ligera y un ajuste perfecto, estos tenis deportivos te brindan la comodidad y el control que necesitas para superar tus límites. ¡Siente la diferencia en cada movimiento y eleva tu rendimiento al máximo!\n",
-    "material": "Tela",
-    "descuentoActivo": true,
-    "foto": "https://teniscarmen.github.io/Galeria/013.jpg",
-    "porcentajeDescuento": 50,
-    "fechaRegistro": {
-      "_seconds": 1752892192,
-      "_nanoseconds": 625000000
-    },
-    "numeroModelo": "",
-    "precioOferta": 700,
-    "status": "vendido"
   },
   {
     "id": "yp2FPtE2uCS91WOl88ZO",
