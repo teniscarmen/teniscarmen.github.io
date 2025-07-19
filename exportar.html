@@ -58,18 +58,20 @@
         if (!res.ok) throw new Error("Error en la respuesta");
 
         const data = await res.json();
-        inventarioGlobal = data.map((item) => {
-          const sku = String(item.sku || '').toUpperCase();
-          if (!item.foto) {
-            item.foto = `https://teniscarmen.github.io/Galeria/${sku}.jpg`;
-          } else {
-            item.foto = item.foto.replace(
-              /^https?:\/\/[^/]+\/Galeria\//,
-              'https://teniscarmen.github.io/Galeria/',
-            );
-          }
-          return item;
-        });
+        inventarioGlobal = data
+          .filter((item) => item.status === 'disponible')
+          .map((item) => {
+            const sku = String(item.sku || '').toUpperCase();
+            if (!item.foto) {
+              item.foto = `https://teniscarmen.github.io/Galeria/${sku}.jpg`;
+            } else {
+              item.foto = item.foto.replace(
+                /^https?:\/\/[^/]+\/Galeria\//,
+                'https://teniscarmen.github.io/Galeria/',
+              );
+            }
+            return item;
+          });
         salida.textContent = JSON.stringify(inventarioGlobal, null, 2);
       } catch (err) {
         salida.textContent = "❌ Error: " + err.message;
