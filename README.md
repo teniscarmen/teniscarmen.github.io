@@ -6,6 +6,13 @@ Aplicación web para la gestión y venta de tenis, ropa y accesorios. El sitio c
 
 El código JavaScript se encuentra ahora en `js/index.js` como módulo ES.
 
+### Configuración inicial
+
+Copia `js/config.example.js` a `js/config.js` y coloca las credenciales de
+Firebase y Gemini que correspondan a tu entorno de desarrollo. El archivo
+`config.js` está listado en `.gitignore`, por lo que tus llaves no se
+versionarán.
+
 ## Estructura
 
 * `index.html` muestra la galería pública de productos. Desde allí se puede iniciar sesión con Google para acceder al área privada.

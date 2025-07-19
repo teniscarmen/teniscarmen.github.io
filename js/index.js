@@ -1527,8 +1527,7 @@ ${obsHtml}
       document.getElementById('inventarioDescripcion').value =
         item.descripcion || '';
       document.getElementById('inventarioFoto').value =
-        item.foto ||
-        `https://teniscarmen.github.io/Galeria/${item.sku}.jpg`;
+        item.foto || `https://teniscarmen.github.io/Galeria/${item.sku}.jpg`;
       document.getElementById('inventarioDescuentoActivo').checked =
         item.descuentoActivo || false;
       document.getElementById('inventarioPorcentajeDescuento').value =
