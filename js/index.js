@@ -128,16 +128,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     return obj;
   };
 
+  const sortById = (arr) =>
+    arr.slice().sort((a, b) => (a.id && b.id ? a.id.localeCompare(b.id) : 0));
+
+  const normalizeInventory = (inv) => sortById(inv.map(orderObject));
+
   const areInventoriesEqual = (inv1, inv2) =>
-    JSON.stringify(orderObject(inv1)) ===
-    JSON.stringify(orderObject(inv2));
+    JSON.stringify(normalizeInventory(inv1)) ===
+    JSON.stringify(normalizeInventory(inv2));
 
   const checkPublicInventoryOutdated = async () => {
     try {
       const res = await fetch('inventory.json', { cache: 'no-store' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const publicInv = await res.json();
-      const privateInv = localInventario.filter((i) => i.status === 'disponible');
+      const privateInv = localInventario.filter(
+        (i) => i.status === 'disponible',
+      );
       if (!areInventoriesEqual(publicInv, privateInv)) {
         markPublicInventoryOutdated();
       } else {
@@ -151,8 +158,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const updatePublicInventoryBanner = () => {
     const banner = document.getElementById('publicInventoryBanner');
     if (!banner) return;
-    const activeTab = document.querySelector('#tabs .tab-button.active')?.dataset
-      .tab;
+    const activeTab = document.querySelector('#tabs .tab-button.active')
+      ?.dataset.tab;
     const userName = auth.currentUser?.displayName;
     if (
       publicInventoryNeedsUpdate &&
@@ -1796,7 +1803,8 @@ ${obsHtml}
       const div = document.createElement('div');
       div.className =
         'flex justify-between items-center p-2 cursor-pointer hover:bg-gray-100';
-      const finalPrice = item.precioOferta ??
+      const finalPrice =
+        item.precioOferta ??
         (item.descuentoActivo
           ? item.precio * (1 - (item.porcentajeDescuento || 0) / 100)
           : item.precio);
@@ -1811,7 +1819,8 @@ ${obsHtml}
     if (ventaItems.some((p) => p.id === id)) return;
     const prod = allInventario[id];
     if (!prod) return;
-    const defaultPrice = prod.precioOferta ??
+    const defaultPrice =
+      prod.precioOferta ??
       (prod.descuentoActivo
         ? prod.precio * (1 - (prod.porcentajeDescuento || 0) / 100)
         : prod.precio);
