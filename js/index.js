@@ -115,6 +115,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     updatePublicInventoryBanner();
   };
 
+  const orderObject = (obj) => {
+    if (Array.isArray(obj)) return obj.map(orderObject);
+    if (obj && typeof obj === 'object') {
+      return Object.keys(obj)
+        .sort()
+        .reduce((acc, key) => {
+          acc[key] = orderObject(obj[key]);
+          return acc;
+        }, {});
+    }
+    return obj;
+  };
+
+  const areInventoriesEqual = (inv1, inv2) =>
+    JSON.stringify(orderObject(inv1)) ===
+    JSON.stringify(orderObject(inv2));
+
+  const checkPublicInventoryOutdated = async () => {
+    try {
+      const res = await fetch('inventory.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const publicInv = await res.json();
+      const privateInv = localInventario.filter((i) => i.status === 'disponible');
+      if (!areInventoriesEqual(publicInv, privateInv)) {
+        markPublicInventoryOutdated();
+      } else {
+        clearPublicInventoryOutdated();
+      }
+    } catch (err) {
+      console.error('Error checking public inventory:', err);
+    }
+  };
+
   const updatePublicInventoryBanner = () => {
     const banner = document.getElementById('publicInventoryBanner');
     if (!banner) return;
@@ -274,6 +307,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const res = await fetch(inventoryExportEndpoint, { method: 'POST' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       clearPublicInventoryOutdated();
+      await checkPublicInventoryOutdated();
       if (!silent) {
         showAlert(
           'Inventario Actualizado',
@@ -3139,6 +3173,7 @@ ${comprasHtml}
         updateInventoryHeader(localInventario);
         renderInventario();
         renderFinancialSummaries();
+        checkPublicInventoryOutdated();
       },
     );
     const unsubVentas = onSnapshot(
