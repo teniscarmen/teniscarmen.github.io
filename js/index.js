@@ -1796,7 +1796,11 @@ ${obsHtml}
       const div = document.createElement('div');
       div.className =
         'flex justify-between items-center p-2 cursor-pointer hover:bg-gray-100';
-      div.innerHTML = `<span>${item.marca} ${item.modelo} (SKU: ${item.sku || 'N/A'})</span><span>${formatCurrency(item.precio)}</span>`;
+      const finalPrice = item.precioOferta ??
+        (item.descuentoActivo
+          ? item.precio * (1 - (item.porcentajeDescuento || 0) / 100)
+          : item.precio);
+      div.innerHTML = `<span>${item.marca} ${item.modelo} (SKU: ${item.sku || 'N/A'})</span><span>${formatCurrency(finalPrice)}</span>`;
       div.addEventListener('click', () => addProductoAVenta(item.id));
       container.appendChild(div);
     });
@@ -1807,12 +1811,16 @@ ${obsHtml}
     if (ventaItems.some((p) => p.id === id)) return;
     const prod = allInventario[id];
     if (!prod) return;
-    ventaItems.push({ id, precio: prod.precio });
+    const defaultPrice = prod.precioOferta ??
+      (prod.descuentoActivo
+        ? prod.precio * (1 - (prod.porcentajeDescuento || 0) / 100)
+        : prod.precio);
+    ventaItems.push({ id, precio: defaultPrice });
     const container = document.getElementById('ventaItemsContainer');
     const div = document.createElement('div');
     div.dataset.id = id;
     div.className = 'flex items-center justify-between bg-gray-50 p-2 rounded';
-    div.innerHTML = `<span class="text-sm">${prod.marca} ${prod.modelo} (SKU: ${prod.sku || 'N/A'})</span><input type="number" step="0.01" class="venta-item-precio w-24 p-1 border rounded text-right mr-2" value="${prod.precio}"><button type="button" class="remove-item-btn text-red-500"><i class="fas fa-times"></i></button>`;
+    div.innerHTML = `<span class="text-sm">${prod.marca} ${prod.modelo} (SKU: ${prod.sku || 'N/A'})</span><input type="number" step="0.01" class="venta-item-precio w-24 p-1 border rounded text-right mr-2" value="${defaultPrice}"><button type="button" class="remove-item-btn text-red-500"><i class="fas fa-times"></i></button>`;
     div
       .querySelector('.remove-item-btn')
       .addEventListener('click', () => removeProductoDeVenta(id));
