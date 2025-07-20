@@ -99,6 +99,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     return phoneStr;
   };
 
+  const PUBLIC_INV_UPDATE_KEY = 'publicInventoryNeedsUpdate';
+  let publicInventoryNeedsUpdate =
+    localStorage.getItem(PUBLIC_INV_UPDATE_KEY) === '1';
+
+  const markPublicInventoryOutdated = () => {
+    publicInventoryNeedsUpdate = true;
+    localStorage.setItem(PUBLIC_INV_UPDATE_KEY, '1');
+    updatePublicInventoryBanner();
+  };
+
+  const clearPublicInventoryOutdated = () => {
+    publicInventoryNeedsUpdate = false;
+    localStorage.removeItem(PUBLIC_INV_UPDATE_KEY);
+    updatePublicInventoryBanner();
+  };
+
+  const updatePublicInventoryBanner = () => {
+    const banner = document.getElementById('publicInventoryBanner');
+    if (!banner) return;
+    const activeTab = document.querySelector('#tabs .tab-button.active')?.dataset
+      .tab;
+    const userName = auth.currentUser?.displayName;
+    if (
+      publicInventoryNeedsUpdate &&
+      activeTab === 'inventario' &&
+      userName === 'Juan Alfredo Cuellar Piedra'
+    ) {
+      banner.classList.remove('hidden');
+    } else {
+      banner.classList.add('hidden');
+    }
+  };
+
   const exportArrayToCSV = (arr, filename) => {
     if (!Array.isArray(arr) || arr.length === 0) {
       showAlert('Sin datos', 'No hay información para exportar.', 'info');
@@ -240,6 +273,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const res = await fetch(inventoryExportEndpoint, { method: 'POST' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      clearPublicInventoryOutdated();
       if (!silent) {
         showAlert(
           'Inventario Actualizado',
@@ -529,6 +563,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           .addEventListener('click', () => signOut(auth));
         initializeAppListeners(user);
         renderCajaActions(user);
+        updatePublicInventoryBanner();
         appContainer.classList.remove('hidden');
         loginScreen.classList.add('hidden');
       } else {
@@ -1560,7 +1595,7 @@ ${obsHtml}
       async () => {
         try {
           await deleteDoc(doc(db, getSharedCollectionPath('inventario'), id));
-          await updatePublicInventory(true);
+          markPublicInventoryOutdated();
         } catch (error) {
           console.error('Error deleting item:', error);
           showAlert('Error', 'No se pudo eliminar el artículo.', 'error');
@@ -1854,7 +1889,7 @@ ${obsHtml}
             'La venta ha sido eliminada y el tenis ha sido restaurado al inventario.',
             'success',
           );
-          await updatePublicInventory(true);
+          markPublicInventoryOutdated();
         } catch (error) {
           console.error('Error deleting sale: ', error);
           showAlert('Error', 'Ocurrió un error al eliminar la venta.', 'error');
@@ -2450,6 +2485,7 @@ ${comprasHtml}
         .forEach((content) => content.classList.add('hidden'));
       const tabName = button.dataset.tab;
       document.getElementById(`${tabName}-content`).classList.remove('hidden');
+      updatePublicInventoryBanner();
     });
 
     const cortesZContainer = document.getElementById('cortes-z-container');
@@ -2597,7 +2633,7 @@ ${comprasHtml}
             await addDoc(collection(db, path), data);
           }
           hideModal(document.getElementById('inventarioModal'));
-          await updatePublicInventory(true);
+          markPublicInventoryOutdated();
         } catch (error) {
           console.error('Error saving inventory item: ', error);
           showAlert('Error', 'No se pudo guardar el artículo.', 'error');
@@ -2682,7 +2718,7 @@ ${comprasHtml}
           await batch.commit();
           hideModal(document.getElementById('ventaModal'));
           showAlert('Éxito', 'Venta registrada correctamente.', 'success');
-          await updatePublicInventory(true);
+          markPublicInventoryOutdated();
         } catch (error) {
           console.error('Error creating sale: ', error);
           showAlert('Error', 'No se pudo registrar la venta.', 'error');
@@ -3146,6 +3182,7 @@ ${comprasHtml}
       unsubAbonos,
       unsubCortes,
     );
+    updatePublicInventoryBanner();
   }
 
   // Start authentication
