@@ -43,6 +43,22 @@
   <script>
     let inventarioGlobal = [];
 
+    function normalizeTimestamps(obj) {
+      if (Array.isArray(obj)) return obj.map(normalizeTimestamps);
+      if (obj && typeof obj === 'object') {
+        if (
+          typeof obj._seconds === 'number' &&
+          typeof obj._nanoseconds === 'number'
+        ) {
+          return { seconds: obj._seconds, nanoseconds: obj._nanoseconds };
+        }
+        return Object.fromEntries(
+          Object.entries(obj).map(([k, v]) => [k, normalizeTimestamps(v)]),
+        );
+      }
+      return obj;
+    }
+
     async function exportar() {
       const salida = document.getElementById("respuesta");
       salida.textContent = "Cargando...";
@@ -59,6 +75,7 @@
 
         const data = await res.json();
         inventarioGlobal = data
+          .map(normalizeTimestamps)
           .filter((item) => item.status === 'disponible')
           .map((item) => {
             const sku = String(item.sku || '').toUpperCase();
