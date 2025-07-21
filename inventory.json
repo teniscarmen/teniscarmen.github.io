@@ -8,8 +8,8 @@
     "tallaTipo": "MX",
     "marca": "NIKE",
     "fechaRegistro": {
-      "_seconds": 1752716904,
-      "_nanoseconds": 221000000
+      "seconds": 1752716904,
+      "nanoseconds": 221000000
     },
     "modelo": "SB BLAZER MID",
     "categoria": "Tenis",
@@ -27,8 +27,8 @@
   {
     "id": "17y6RUKPPkJQ17WCfwiA",
     "fechaRegistro": {
-      "_seconds": 1752721847,
-      "_nanoseconds": 320000000
+      "seconds": 1752721847,
+      "nanoseconds": 320000000
     },
     "descuentoActivo": false,
     "material": "Piel",
@@ -67,8 +67,8 @@
     "talla": "25",
     "descuentoActivo": false,
     "fechaRegistro": {
-      "_seconds": 1752716732,
-      "_nanoseconds": 533000000
+      "seconds": 1752716732,
+      "nanoseconds": 533000000
     },
     "modelo": "COURT LAGACY NEXT NATURE ",
     "foto": "https://teniscarmen.github.io/Galeria/058.jpg",
@@ -86,8 +86,8 @@
     "material": "Piel",
     "estilo": "Casual",
     "fechaRegistro": {
-      "_seconds": 1752717650,
-      "_nanoseconds": 702000000
+      "seconds": 1752717650,
+      "nanoseconds": 702000000
     },
     "costo": 70,
     "modelo": "AIR FORCE 1 07 LV8",
@@ -118,8 +118,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/044.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888177,
-      "_nanoseconds": 799000000
+      "seconds": 1752888177,
+      "nanoseconds": 799000000
     },
     "numeroModelo": "DQ4712-600",
     "precioOferta": 750
@@ -140,8 +140,8 @@
     "modelo": "FORCE ZOOM TROUT 7 PRO - MEN'S METAL CLEATS SHOES",
     "categoria": "Tenis",
     "fechaRegistro": {
-      "_seconds": 1752721946,
-      "_nanoseconds": 391000000
+      "seconds": 1752721946,
+      "nanoseconds": 391000000
     },
     "porcentajeDescuento": 0,
     "numeroModelo": "CQ7224-101",
@@ -168,8 +168,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/921.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889228,
-      "_nanoseconds": 943000000
+      "seconds": 1752889228,
+      "nanoseconds": 943000000
     },
     "numeroModelo": "DH3161-100",
     "precioOferta": null
@@ -195,8 +195,8 @@
     "precioOferta": null,
     "descripcion": "**Nike SB Shane T: Eleva tu estilo casual con la autenticidad del skateboarding.** Confeccionadas en gamuza premium para una durabilidad excepcional y un look impecable, estas zapatillas unisex te ofrecen comodidad y agarre superior. ¡Domina las calles y expresa tu individualidad con cada paso!",
     "fechaRegistro": {
-      "_seconds": 1752896256,
-      "_nanoseconds": 425000000
+      "seconds": 1752896256,
+      "nanoseconds": 425000000
     }
   },
   {
@@ -204,8 +204,8 @@
     "costo": 50,
     "numeroModelo": "AO1329-060",
     "fechaRegistro": {
-      "_seconds": 1752718224,
-      "_nanoseconds": 127000000
+      "seconds": 1752718224,
+      "nanoseconds": 127000000
     },
     "estilo": "Casual",
     "descuentoActivo": false,
@@ -243,8 +243,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/521.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752890094,
-      "_nanoseconds": 435000000
+      "seconds": 1752890094,
+      "nanoseconds": 435000000
     },
     "numeroModelo": "DR0126-300",
     "precioOferta": null
@@ -268,8 +268,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/815.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889521,
-      "_nanoseconds": 567000000
+      "seconds": 1752889521,
+      "nanoseconds": 567000000
     },
     "numeroModelo": "DV1305-206",
     "precioOferta": null
@@ -286,8 +286,8 @@
     "descuentoActivo": false,
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752718188,
-      "_nanoseconds": 472000000
+      "seconds": 1752718188,
+      "nanoseconds": 472000000
     },
     "material": "Piel",
     "costo": 60,
@@ -304,8 +304,8 @@
     "status": "disponible",
     "descripcion": "Revive la leyenda del baloncesto con los icónicos Nike Air Flight 89 en blanco y azul marino. Fabricados en piel premium para un estilo impecable y confort duradero, estos tenis deportivos para hombre te impulsarán tanto en la cancha como en la calle. ¡Eleva tu juego y haz una declaración audaz con este clásico atemporal!\n",
     "fechaRegistro": {
-      "_seconds": 1752715863,
-      "_nanoseconds": 837000000
+      "seconds": 1752715863,
+      "nanoseconds": 837000000
     },
     "material": "Piel",
     "descuentoActivo": false,
@@ -331,8 +331,8 @@
     "marca": "NIKE",
     "descuentoActivo": false,
     "fechaRegistro": {
-      "_seconds": 1752719255,
-      "_nanoseconds": 735000000
+      "seconds": 1752719255,
+      "nanoseconds": 735000000
     },
     "porcentajeDescuento": 0,
     "precio": 2000,
@@ -368,8 +368,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/925.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889586,
-      "_nanoseconds": 25000000
+      "seconds": 1752889586,
+      "nanoseconds": 25000000
     },
     "numeroModelo": "CD5436-100",
     "precioOferta": null
@@ -387,8 +387,8 @@
     "costo": 20,
     "marca": "NIKE",
     "fechaRegistro": {
-      "_seconds": 1751304803,
-      "_nanoseconds": 762000000
+      "seconds": 1751304803,
+      "nanoseconds": 762000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/656.jpg",
     "material": "Tela",
@@ -414,8 +414,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/914.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889810,
-      "_nanoseconds": 353000000
+      "seconds": 1752889810,
+      "nanoseconds": 353000000
     },
     "numeroModelo": "DX9176-103",
     "precioOferta": null
@@ -430,8 +430,8 @@
     "precio": 1800,
     "foto": "https://teniscarmen.github.io/Galeria/224.jpg",
     "fechaRegistro": {
-      "_seconds": 1752704187,
-      "_nanoseconds": 638000000
+      "seconds": 1752704187,
+      "nanoseconds": 638000000
     },
     "categoria": "Tenis",
     "costo": 50,
@@ -453,8 +453,8 @@
     "costo": 50,
     "numeroModelo": "FJ2245-102",
     "fechaRegistro": {
-      "_seconds": 1752719308,
-      "_nanoseconds": 989000000
+      "seconds": 1752719308,
+      "nanoseconds": 989000000
     },
     "descripcion": "Domina el green con el estilo retro y el confort moderno de los Nike Golf Air Pegasus 89. Fabricados en lujosa gamuza y diseñados para el rendimiento, estos tenis deportivos te brindarán el agarre y la amortiguación que necesitas para un swing impecable. ¡Eleva tu juego y tu estilo con este clásico renovado de Nike!\n",
     "talla": "29",
@@ -489,8 +489,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/095.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888235,
-      "_nanoseconds": 686000000
+      "seconds": 1752888235,
+      "nanoseconds": 686000000
     },
     "numeroModelo": "DC4231-400",
     "precioOferta": 850
@@ -508,8 +508,8 @@
     "precio": 2300,
     "modelo": "CRATER REMIXA",
     "fechaRegistro": {
-      "_seconds": 1752717374,
-      "_nanoseconds": 927000000
+      "seconds": 1752717374,
+      "nanoseconds": 927000000
     },
     "categoria": "Tenis",
     "precioOferta": null,
@@ -539,8 +539,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/917.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889116,
-      "_nanoseconds": 92000000
+      "seconds": 1752889116,
+      "nanoseconds": 92000000
     },
     "numeroModelo": "HJ7673-003",
     "precioOferta": null
@@ -561,8 +561,8 @@
     "precioOferta": null,
     "tallaTipo": "MX",
     "fechaRegistro": {
-      "_seconds": 1752717097,
-      "_nanoseconds": 889000000
+      "seconds": 1752717097,
+      "nanoseconds": 889000000
     },
     "descuentoActivo": false,
     "descripcion": "Domina el diamante con los Nike ALPHA HUARACHE ELITE 3 LOW 'BLACK WHITE'. Diseñados para el máximo rendimiento, su tejido ligero y transpirable te ofrece comodidad y agilidad incomparables, permitiéndote alcanzar tu máximo potencial en cada jugada. ¡Conviértete en leyenda con estos tenis de béisbol!\n",
@@ -580,8 +580,8 @@
     "talla": "27",
     "precioOferta": null,
     "fechaRegistro": {
-      "_seconds": 1752722147,
-      "_nanoseconds": 116000000
+      "seconds": 1752722147,
+      "nanoseconds": 116000000
     },
     "sku": "588",
     "categoria": "Tenis",
@@ -610,8 +610,8 @@
     "material": "Tela",
     "estilo": "Deportivo",
     "fechaRegistro": {
-      "_seconds": 1751305350,
-      "_nanoseconds": 883000000
+      "seconds": 1751305350,
+      "nanoseconds": 883000000
     },
     "marca": "NIKE",
     "genero": "Unisex"
@@ -625,8 +625,8 @@
     "categoria": "Tenis",
     "numeroModelo": "DQ8344-600",
     "fechaRegistro": {
-      "_seconds": 1752718092,
-      "_nanoseconds": 847000000
+      "seconds": 1752718092,
+      "nanoseconds": 847000000
     },
     "descripcion": "Siente el poder y la frescura del verano con los Nike LeBron 19 Bajo Hawái para hombre. Diseñados para un rendimiento explosivo en la cancha y un estilo relajado fuera de ella, estos tenis deportivos de tela te brindarán comodidad y un look impactante inspirado en las playas hawaianas. ¡Domina tu juego y luce increíble con el espíritu de LeBron!\n",
     "estilo": "Deportivo",
@@ -660,8 +660,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/811.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752890187,
-      "_nanoseconds": 404000000
+      "seconds": 1752890187,
+      "nanoseconds": 404000000
     },
     "numeroModelo": "BQ6472-108",
     "precioOferta": null
@@ -677,8 +677,8 @@
     "estilo": "Deportivo",
     "tallaTipo": "MX",
     "fechaRegistro": {
-      "_seconds": 1752717831,
-      "_nanoseconds": 774000000
+      "seconds": 1752717831,
+      "nanoseconds": 774000000
     },
     "genero": "Hombre",
     "numeroModelo": "FB1396-101",
@@ -702,8 +702,8 @@
     "descripcion": "**Revive el estilo clásico con los Nike Retro GTS 97 Gimnasio Rojo.** Un diseño casual en tela que te brinda comodidad y un look icónico para tu día a día. Domina las calles con el inconfundible ADN de Nike y eleva tu outfit al siguiente nivel. ¡No te quedes sin los tuyos!\n",
     "talla": "27",
     "fechaRegistro": {
-      "_seconds": 1752716678,
-      "_nanoseconds": 232000000
+      "seconds": 1752716678,
+      "nanoseconds": 232000000
     },
     "modelo": "RETRO GTS 97 GIMNASIO ROJO",
     "precioOferta": null,
@@ -731,8 +731,8 @@
     "estilo": "Casual",
     "costo": 70,
     "fechaRegistro": {
-      "_seconds": 1752697754,
-      "_nanoseconds": 122000000
+      "seconds": 1752697754,
+      "nanoseconds": 122000000
     },
     "descuentoActivo": false,
     "categoria": "Tenis",
@@ -761,8 +761,8 @@
     "numeroModelo": "DH3158-102",
     "precioOferta": null,
     "fechaRegistro": {
-      "_seconds": 1752894048,
-      "_nanoseconds": 697000000
+      "seconds": 1752894048,
+      "nanoseconds": 697000000
     },
     "modelo": "COURT VISION LOW NEXT NATURE"
   },
@@ -775,8 +775,8 @@
     "costo": 50,
     "status": "disponible",
     "fechaRegistro": {
-      "_seconds": 1751493414,
-      "_nanoseconds": 295000000
+      "seconds": 1751493414,
+      "nanoseconds": 295000000
     },
     "modelo": "RUNFALCON",
     "foto": "https://teniscarmen.github.io/Galeria/034.jpg",
@@ -792,8 +792,8 @@
     "talla": "28",
     "genero": "Hombre",
     "fechaRegistro": {
-      "_seconds": 1752717329,
-      "_nanoseconds": 558000000
+      "seconds": 1752717329,
+      "nanoseconds": 558000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/823.jpg",
     "tallaTipo": "MX",
@@ -832,16 +832,16 @@
     "descuentoActivo": false,
     "status": "disponible",
     "fechaRegistro": {
-      "_seconds": 1752722046,
-      "_nanoseconds": 422000000
+      "seconds": 1752722046,
+      "nanoseconds": 422000000
     },
     "categoria": "Tenis"
   },
   {
     "id": "KqsGsE1w7h8afk3pdV9x",
     "fechaRegistro": {
-      "_seconds": 1752717983,
-      "_nanoseconds": 253000000
+      "seconds": 1752717983,
+      "nanoseconds": 253000000
     },
     "numeroModelo": "DV0790-001",
     "talla": "27.5",
@@ -881,8 +881,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/905.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889933,
-      "_nanoseconds": 136000000
+      "seconds": 1752889933,
+      "nanoseconds": 136000000
     },
     "numeroModelo": "HJ4401-001",
     "precioOferta": null
@@ -903,8 +903,8 @@
     "genero": "Mujer",
     "descuentoActivo": false,
     "fechaRegistro": {
-      "_seconds": 1752716629,
-      "_nanoseconds": 968000000
+      "seconds": 1752716629,
+      "nanoseconds": 968000000
     },
     "material": "Piel",
     "tallaTipo": "MX",
@@ -933,8 +933,8 @@
     "status": "disponible",
     "categoria": "Tenis",
     "fechaRegistro": {
-      "_seconds": 1752718359,
-      "_nanoseconds": 601000000
+      "seconds": 1752718359,
+      "nanoseconds": 601000000
     }
   },
   {
@@ -955,8 +955,8 @@
     "costo": 65,
     "material": "Piel",
     "fechaRegistro": {
-      "_seconds": 1752716851,
-      "_nanoseconds": 112000000
+      "seconds": 1752716851,
+      "nanoseconds": 112000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/531.jpg",
     "porcentajeDescuento": 0,
@@ -971,8 +971,8 @@
     "material": "Piel",
     "precio": 1500,
     "fechaRegistro": {
-      "_seconds": 1752717219,
-      "_nanoseconds": 341000000
+      "seconds": 1752717219,
+      "nanoseconds": 341000000
     },
     "tallaTipo": "MX",
     "genero": "Unisex",
@@ -992,8 +992,8 @@
     "porcentajeDescuento": 0,
     "tallaTipo": "MX",
     "fechaRegistro": {
-      "_seconds": 1752721886,
-      "_nanoseconds": 899000000
+      "seconds": 1752721886,
+      "nanoseconds": 899000000
     },
     "genero": "Hombre",
     "foto": "https://teniscarmen.github.io/Galeria/932.jpg",
@@ -1017,8 +1017,8 @@
     "porcentajeDescuento": 0,
     "tallaTipo": "MX",
     "fechaRegistro": {
-      "_seconds": 1752717899,
-      "_nanoseconds": 894000000
+      "seconds": 1752717899,
+      "nanoseconds": 894000000
     },
     "genero": "Hombre",
     "foto": "https://teniscarmen.github.io/Galeria/626.jpg",
@@ -1052,8 +1052,8 @@
     "estilo": "Casual",
     "marca": "NIKE",
     "fechaRegistro": {
-      "_seconds": 1752718285,
-      "_nanoseconds": 761000000
+      "seconds": 1752718285,
+      "nanoseconds": 761000000
     },
     "talla": "28.5",
     "costo": 50,
@@ -1081,8 +1081,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/093.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888791,
-      "_nanoseconds": 315000000
+      "seconds": 1752888791,
+      "nanoseconds": 315000000
     },
     "numeroModelo": "AQ8022-600",
     "precioOferta": 900
@@ -1106,8 +1106,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/555.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889015,
-      "_nanoseconds": 570000000
+      "seconds": 1752889015,
+      "nanoseconds": 570000000
     },
     "numeroModelo": "FD0731-200",
     "precioOferta": null
@@ -1133,8 +1133,8 @@
     "status": "disponible",
     "categoria": "Tenis",
     "fechaRegistro": {
-      "_seconds": 1752721799,
-      "_nanoseconds": 507000000
+      "seconds": 1752721799,
+      "nanoseconds": 507000000
     }
   },
   {
@@ -1156,8 +1156,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/586.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888566,
-      "_nanoseconds": 643000000
+      "seconds": 1752888566,
+      "nanoseconds": 643000000
     },
     "numeroModelo": "FB1378-001",
     "precioOferta": 950
@@ -1175,8 +1175,8 @@
     "sku": "211",
     "genero": "Hombre",
     "fechaRegistro": {
-      "_seconds": 1752715756,
-      "_nanoseconds": 791000000
+      "seconds": 1752715756,
+      "nanoseconds": 791000000
     },
     "categoria": "Tenis",
     "precioOferta": null,
@@ -1206,8 +1206,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/094.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888856,
-      "_nanoseconds": 703000000
+      "seconds": 1752888856,
+      "nanoseconds": 703000000
     },
     "numeroModelo": "129302426",
     "precioOferta": 900
@@ -1230,8 +1230,8 @@
     "costo": 70,
     "material": "Gamuza",
     "fechaRegistro": {
-      "_seconds": 1752717519,
-      "_nanoseconds": 319000000
+      "seconds": 1752717519,
+      "nanoseconds": 319000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/819.jpg",
     "porcentajeDescuento": 0,
@@ -1257,8 +1257,8 @@
     "numeroModelo": "FV5526-101",
     "precioOferta": null,
     "fechaRegistro": {
-      "_seconds": 1752894205,
-      "_nanoseconds": 627000000
+      "seconds": 1752894205,
+      "nanoseconds": 627000000
     },
     "modelo": "COURT LEGACY LIFT BEIGE"
   },
@@ -1282,8 +1282,8 @@
     "porcentajeDescuento": 0,
     "foto": "https://teniscarmen.github.io/Galeria/804.jpg",
     "fechaRegistro": {
-      "_seconds": 1752889767,
-      "_nanoseconds": 411000000
+      "seconds": 1752889767,
+      "nanoseconds": 411000000
     },
     "numeroModelo": "DX9176-113"
   },
@@ -1294,8 +1294,8 @@
     "material": "Tela",
     "marca": "NIKE",
     "fechaRegistro": {
-      "_seconds": 1751305311,
-      "_nanoseconds": 692000000
+      "seconds": 1751305311,
+      "nanoseconds": 692000000
     },
     "talla": "0",
     "estilo": "Deportivo",
@@ -1327,8 +1327,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/524.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752890031,
-      "_nanoseconds": 406000000
+      "seconds": 1752890031,
+      "nanoseconds": 406000000
     },
     "numeroModelo": "DX2314-200",
     "precioOferta": null
@@ -1342,8 +1342,8 @@
     "status": "disponible",
     "marca": "NIKE",
     "fechaRegistro": {
-      "_seconds": 1752717575,
-      "_nanoseconds": 146000000
+      "seconds": 1752717575,
+      "nanoseconds": 146000000
     },
     "numeroModelo": "HQ4987-010",
     "estilo": "Casual",
@@ -1371,8 +1371,8 @@
     "marca": "NIKE",
     "categoria": "Tenis",
     "fechaRegistro": {
-      "_seconds": 1752717792,
-      "_nanoseconds": 568000000
+      "seconds": 1752717792,
+      "nanoseconds": 568000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/718.jpg",
     "tallaTipo": "MX",
@@ -1403,8 +1403,8 @@
     "numeroModelo": "FV5950-111",
     "precioOferta": null,
     "fechaRegistro": {
-      "_seconds": 1752894842,
-      "_nanoseconds": 991000000
+      "seconds": 1752894842,
+      "nanoseconds": 991000000
     },
     "modelo": "AIR FORCE 1 MID '07 TRIPLE WHITE"
   },
@@ -1427,8 +1427,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/624.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889446,
-      "_nanoseconds": 401000000
+      "seconds": 1752889446,
+      "nanoseconds": 401000000
     },
     "numeroModelo": "CZ0907-108",
     "precioOferta": null
@@ -1453,8 +1453,8 @@
     "genero": "Hombre",
     "descripcion": "Domina el diamante con las **Nike Force Zoom Trout 7 Pro**. Diseñadas para el máximo rendimiento, estas botas de béisbol para hombre, con su duradera confección en piel y tecnología Zoom Air, te impulsarán a alcanzar velocidades explosivas y una comodidad superior en cada jugada. ¡Hazte con ellas y conviértete en la leyenda del campo!",
     "fechaRegistro": {
-      "_seconds": 1752784566,
-      "_nanoseconds": 899000000
+      "seconds": 1752784566,
+      "nanoseconds": 899000000
     },
     "modelo": "FORCE ZOOM TROUT 7 PRO"
   },
@@ -1479,8 +1479,8 @@
     "numeroModelo": "FB1378-604",
     "precioOferta": 1000,
     "fechaRegistro": {
-      "_seconds": 1752888522,
-      "_nanoseconds": 209000000
+      "seconds": 1752888522,
+      "nanoseconds": 209000000
     }
   },
   {
@@ -1503,8 +1503,8 @@
     "numeroModelo": "AO2810-111",
     "precioOferta": null,
     "fechaRegistro": {
-      "_seconds": 1752896031,
-      "_nanoseconds": 44000000
+      "seconds": 1752896031,
+      "nanoseconds": 44000000
     },
     "modelo": "COURT ROYALE AC"
   },
@@ -1526,8 +1526,8 @@
     "material": "Piel",
     "estilo": "Deportivo",
     "fechaRegistro": {
-      "_seconds": 1752722003,
-      "_nanoseconds": 109000000
+      "seconds": 1752722003,
+      "nanoseconds": 109000000
     },
     "talla": "22.5",
     "genero": "Unisex",
@@ -1552,8 +1552,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/703.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752890196,
-      "_nanoseconds": 154000000
+      "seconds": 1752890196,
+      "nanoseconds": 154000000
     },
     "numeroModelo": "DH3158-108",
     "precioOferta": null
@@ -1567,8 +1567,8 @@
     "precio": 500,
     "estilo": "Deportivo",
     "fechaRegistro": {
-      "_seconds": 1751305285,
-      "_nanoseconds": 748000000
+      "seconds": 1751305285,
+      "nanoseconds": 748000000
     },
     "sku": "652",
     "tallaTipo": "MX",
@@ -1598,8 +1598,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/920.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889917,
-      "_nanoseconds": 411000000
+      "seconds": 1752889917,
+      "nanoseconds": 411000000
     },
     "numeroModelo": "HV5246-100",
     "precioOferta": null
@@ -1610,8 +1610,8 @@
     "precioOferta": null,
     "costo": 60,
     "fechaRegistro": {
-      "_seconds": 1752715920,
-      "_nanoseconds": 597000000
+      "seconds": 1752715920,
+      "nanoseconds": 597000000
     },
     "tallaTipo": "MX",
     "modelo": "LEBRON 19 HAWAII",
@@ -1648,8 +1648,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/911.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752890092,
-      "_nanoseconds": 822000000
+      "seconds": 1752890092,
+      "nanoseconds": 822000000
     },
     "numeroModelo": "DM7590-100",
     "precioOferta": null
@@ -1661,8 +1661,8 @@
     "porcentajeDescuento": 0,
     "status": "disponible",
     "fechaRegistro": {
-      "_seconds": 1752719971,
-      "_nanoseconds": 568000000
+      "seconds": 1752719971,
+      "nanoseconds": 568000000
     },
     "categoria": "Tenis",
     "descuentoActivo": false,
@@ -1687,8 +1687,8 @@
     "sku": "630",
     "genero": "Hombre",
     "fechaRegistro": {
-      "_seconds": 1752717473,
-      "_nanoseconds": 475000000
+      "seconds": 1752717473,
+      "nanoseconds": 475000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/630.jpg",
     "talla": "28",
@@ -1723,8 +1723,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/919.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889381,
-      "_nanoseconds": 453000000
+      "seconds": 1752889381,
+      "nanoseconds": 453000000
     },
     "numeroModelo": "CD5434-100",
     "precioOferta": null
@@ -1750,8 +1750,8 @@
     "material": "Piel",
     "numeroModelo": "311046-160",
     "fechaRegistro": {
-      "_seconds": 1752717416,
-      "_nanoseconds": 58000000
+      "seconds": 1752717416,
+      "nanoseconds": 58000000
     }
   },
   {
@@ -1773,8 +1773,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/066.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888301,
-      "_nanoseconds": 770000000
+      "seconds": 1752888301,
+      "nanoseconds": 770000000
     },
     "numeroModelo": "383791-02",
     "precioOferta": 800
@@ -1800,8 +1800,8 @@
     "descuentoActivo": false,
     "modelo": "GT GRAND TAYLOR",
     "fechaRegistro": {
-      "_seconds": 1752716775,
-      "_nanoseconds": 851000000
+      "seconds": 1752716775,
+      "nanoseconds": 851000000
     }
   },
   {
@@ -1823,8 +1823,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/101.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888120,
-      "_nanoseconds": 888000000
+      "seconds": 1752888120,
+      "nanoseconds": 888000000
     },
     "numeroModelo": "864349-602",
     "precioOferta": 1000
@@ -1848,8 +1848,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/350.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888719,
-      "_nanoseconds": 419000000
+      "seconds": 1752888719,
+      "nanoseconds": 419000000
     },
     "numeroModelo": "387764-01",
     "precioOferta": 1100
@@ -1873,8 +1873,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/039.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888664,
-      "_nanoseconds": 500000000
+      "seconds": 1752888664,
+      "nanoseconds": 500000000
     },
     "numeroModelo": "127486716",
     "precioOferta": 850
@@ -1899,8 +1899,8 @@
     "descripcion": "Domina las calles con el estilo effortless de los Nike Daan vander linden. Estos tenis casuales para hombre, confeccionados en tela ligera, ofrecen comodidad y un look impecable para el día a día. ¡Eleva tu outfit con la herencia y calidad que solo Nike puede brindar!\n",
     "foto": "https://teniscarmen.github.io/Galeria/107.jpg",
     "fechaRegistro": {
-      "_seconds": 1752888612,
-      "_nanoseconds": 475000000
+      "seconds": 1752888612,
+      "nanoseconds": 475000000
     },
     "numeroModelo": "CZ5605-200"
   },
@@ -1923,8 +1923,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/616.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889174,
-      "_nanoseconds": 643000000
+      "seconds": 1752889174,
+      "nanoseconds": 643000000
     },
     "numeroModelo": "CT1725-100",
     "precioOferta": null
@@ -1932,8 +1932,8 @@
   {
     "id": "rOoR73zwyuJP335bXzML",
     "fechaRegistro": {
-      "_seconds": 1751305181,
-      "_nanoseconds": 772000000
+      "seconds": 1751305181,
+      "nanoseconds": 772000000
     },
     "foto": "https://teniscarmen.github.io/Galeria/929.jpg",
     "talla": "0",
@@ -1969,8 +1969,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/906.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889864,
-      "_nanoseconds": 734000000
+      "seconds": 1752889864,
+      "nanoseconds": 734000000
     },
     "numeroModelo": "FZ6768-100",
     "precioOferta": null
@@ -1996,8 +1996,8 @@
     "modelo": "NIKE COURT BOROUGH LOW PREMIUM 'ARMORY BLUE'",
     "foto": "https://teniscarmen.github.io/Galeria/575.jpg",
     "fechaRegistro": {
-      "_seconds": 1752781198,
-      "_nanoseconds": 980000000
+      "seconds": 1752781198,
+      "nanoseconds": 980000000
     }
   },
   {
@@ -2019,8 +2019,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/908.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889346,
-      "_nanoseconds": 410000000
+      "seconds": 1752889346,
+      "nanoseconds": 410000000
     },
     "numeroModelo": "CI0919-100",
     "precioOferta": null
@@ -2044,8 +2044,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/807.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889057,
-      "_nanoseconds": 497000000
+      "seconds": 1752889057,
+      "nanoseconds": 497000000
     },
     "numeroModelo": "DV3808-101",
     "precioOferta": null
@@ -2069,8 +2069,8 @@
     "material": "Gamuza",
     "sku": "818",
     "fechaRegistro": {
-      "_seconds": 1752718138,
-      "_nanoseconds": 709000000
+      "seconds": 1752718138,
+      "nanoseconds": 709000000
     },
     "talla": "28",
     "status": "disponible"
@@ -2094,8 +2094,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/049.jpg",
     "porcentajeDescuento": 50,
     "fechaRegistro": {
-      "_seconds": 1752888459,
-      "_nanoseconds": 888000000
+      "seconds": 1752888459,
+      "nanoseconds": 888000000
     },
     "numeroModelo": "128791714",
     "precioOferta": 950
@@ -2111,8 +2111,8 @@
     "sku": "589",
     "marca": "NIKE",
     "fechaRegistro": {
-      "_seconds": 1752717021,
-      "_nanoseconds": 513000000
+      "seconds": 1752717021,
+      "nanoseconds": 513000000
     },
     "tallaTipo": "MX",
     "descripcion": "Domina el terreno de juego con los Nike Alpha Huarache Elite 4 TF Turf. Fabricados en piel para una durabilidad superior y un ajuste perfecto, estos tenis deportivos para hombre te darán la agilidad y el control que necesitas para superar a la competencia. ¡Eleva tu juego y hazte con los tuyos hoy mismo!\n",
@@ -2144,8 +2144,8 @@
     "foto": "https://teniscarmen.github.io/Galeria/801.jpg",
     "porcentajeDescuento": 0,
     "fechaRegistro": {
-      "_seconds": 1752889756,
-      "_nanoseconds": 559000000
+      "seconds": 1752889756,
+      "nanoseconds": 559000000
     },
     "numeroModelo": "DX9176-001",
     "precioOferta": null
