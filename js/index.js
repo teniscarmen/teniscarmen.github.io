@@ -3054,9 +3054,6 @@ ${comprasHtml}
         exportArrayToCSV(allAbonos, 'abonos.csv'),
       );
     document
-      .getElementById('closePublicInventoryBanner')
-      .addEventListener('click', clearPublicInventoryOutdated);
-    document
       .getElementById('backupDbBtn')
       .addEventListener('click', backupDatabase);
     document
