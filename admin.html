@@ -112,10 +112,17 @@
         />
         <div
           id="publicInventoryBanner"
-          class="hidden bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-4 mt-4 rounded"
+          class="hidden relative bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-4 mt-4 rounded"
         >
-          Inventario público desactualizado.
-          <a href="exportar.html" class="underline font-semibold">Actualizar</a>
+          <button
+            id="closePublicInventoryBanner"
+            class="absolute top-1 right-2 text-xl leading-none"
+            aria-label="Cerrar"
+          >
+            &times;
+          </button>
+          <span>Inventario público desactualizado.</span>
+          <a href="exportar.html" class="underline font-semibold ml-1">Actualizar</a>
         </div>
         <div
           class="mt-4 flex flex-col md:flex-row justify-between items-center"
@@ -675,12 +682,6 @@
                     class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
                   >
                     <i class="fas fa-coins mr-2"></i>Abonos
-                  </button>
-                  <button
-                    id="updatePublicInventoryBtn"
-                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg"
-                  >
-                    <i class="fas fa-sync-alt mr-2"></i>Actualizar Inventario Público
                   </button>
                   <button
                     id="backupDbBtn"

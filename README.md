@@ -43,34 +43,16 @@ El script actualizará la colección `inventario` bajo `negocio-tenis/shared_dat
 
 ## Exportar Inventario para la sección pública
 
-El script `export-inventory` genera un archivo `inventory.json` con los productos disponibles. Esta memoria intermedia permite que la página pública funcione sin credenciales de Firebase.
+`inventory.json` funciona como caché para la galería pública. Cuando se detecte
+un movimiento en el inventario privado aparecerá un aviso dentro de la pestaña
+**Inventario**. El encargado debe seguir estos pasos:
 
-```bash
-npm run export-inventory -- path/to/serviceAccount.json
-```
+1. Abrir `exportar.html` y pulsar **Obtener inventario**.
+2. Descargar el archivo con **Descargar JSON**.
+3. Subir `inventory.json` al repositorio.
+4. Cerrar el aviso usando el botón «X».
 
-El archivo generado incluye las fechas de Firestore con las claves
-`seconds` y `nanoseconds` para asegurar que coincidan con la estructura que
-usa la aplicación web.
-
-En producción se puede generar automáticamente mediante una **Cloud Function**.
-Además, en la sección **Finanzas** existe el botón **Actualizar Inventario
-Público** que invoca dicha función manualmente.
-
-### Desplegar `exportInventory`
-
-Este repositorio incluye un ejemplo de Cloud Function en `functions/index.js`
-que genera el inventario y responde con los encabezados CORS necesarios. Para
-habilitarla debes desplegarla en tu proyecto de Firebase:
-
-```bash
-cd functions
-npm install
-firebase deploy --only functions:exportInventory
-```
-
-Al usarla desde `admin.html`, la respuesta incluirá `Access-Control-Allow-Origin`
-para evitar errores de CORS.
+Este procedimiento se repite cada vez que el inventario privado cambia.
 
 
 ### Configurar CORS en Firebase Storage
