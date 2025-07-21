@@ -1,9 +1,5 @@
 // Firebase Imports
-import {
-  firebaseConfig,
-  geminiApiKey,
-  inventoryExportEndpoint,
-} from './config.js';
+import { firebaseConfig, geminiApiKey } from './config.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
 import {
   getAuth,
@@ -309,30 +305,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   };
 
-  const updatePublicInventory = async (silent = false) => {
-    try {
-      const res = await fetch(inventoryExportEndpoint, { method: 'POST' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      clearPublicInventoryOutdated();
-      await checkPublicInventoryOutdated();
-      if (!silent) {
-        showAlert(
-          'Inventario Actualizado',
-          'Se generó el archivo público de inventario.',
-          'success',
-        );
-      }
-    } catch (error) {
-      console.error('Error updating public inventory:', error);
-      if (!silent) {
-        showAlert(
-          'Error',
-          'No se pudo actualizar el inventario público.',
-          'error',
-        );
-      }
-    }
-  };
 
   const fetchImageWithProxy = async (url) => {
     const attempt = async (u) => {
@@ -3082,8 +3054,8 @@ ${comprasHtml}
         exportArrayToCSV(allAbonos, 'abonos.csv'),
       );
     document
-      .getElementById('updatePublicInventoryBtn')
-      .addEventListener('click', updatePublicInventory);
+      .getElementById('closePublicInventoryBanner')
+      .addEventListener('click', clearPublicInventoryOutdated);
     document
       .getElementById('backupDbBtn')
       .addEventListener('click', backupDatabase);
