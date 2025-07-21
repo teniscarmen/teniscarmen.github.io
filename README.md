@@ -49,6 +49,10 @@ El script `export-inventory` genera un archivo `inventory.json` con los producto
 npm run export-inventory -- path/to/serviceAccount.json
 ```
 
+El archivo generado incluye las fechas de Firestore con las claves
+`seconds` y `nanoseconds` para asegurar que coincidan con la estructura que
+usa la aplicación web.
+
 En producción se puede generar automáticamente mediante una **Cloud Function**.
 Además, en la sección **Finanzas** existe el botón **Actualizar Inventario
 Público** que invoca dicha función manualmente.

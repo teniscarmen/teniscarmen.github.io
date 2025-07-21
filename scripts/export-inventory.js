@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { initializeApp, cert } = require('firebase-admin/app');
-const { getFirestore } = require('firebase-admin/firestore');
+const { getFirestore, Timestamp } = require('firebase-admin/firestore');
 
 async function main() {
   const credPath = process.argv[2];
@@ -18,7 +18,23 @@ async function main() {
     .collection('inventario');
 
   const snap = await inventario.where('status', '==', 'disponible').get();
-  const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+
+  const convertTimestamps = (obj) => {
+    if (obj instanceof Timestamp) {
+      return { seconds: obj.seconds, nanoseconds: obj.nanoseconds };
+    }
+    if (Array.isArray(obj)) return obj.map(convertTimestamps);
+    if (obj && typeof obj === 'object') {
+      return Object.fromEntries(
+        Object.entries(obj).map(([k, v]) => [k, convertTimestamps(v)]),
+      );
+    }
+    return obj;
+  };
+
+  const data = snap.docs.map((d) =>
+    convertTimestamps({ id: d.id, ...d.data() }),
+  );
   fs.writeFileSync('inventory.json', JSON.stringify(data, null, 2));
   console.log(`Exported ${data.length} products to inventory.json`);
 }

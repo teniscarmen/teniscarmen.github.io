@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const { Timestamp } = require('firebase-admin/firestore');
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -26,7 +27,23 @@ exports.exportInventory = functions.region('us-central1').https.onRequest(async 
       .collection('inventario')
       .where('status', '==', 'disponible')
       .get();
-    const data = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+    const convertTimestamps = (obj) => {
+      if (obj instanceof Timestamp) {
+        return { seconds: obj.seconds, nanoseconds: obj.nanoseconds };
+      }
+      if (Array.isArray(obj)) return obj.map(convertTimestamps);
+      if (obj && typeof obj === 'object') {
+        return Object.fromEntries(
+          Object.entries(obj).map(([k, v]) => [k, convertTimestamps(v)]),
+        );
+      }
+      return obj;
+    };
+
+    const data = snap.docs.map((d) =>
+      convertTimestamps({ id: d.id, ...d.data() }),
+    );
     res.status(200).json(data);
   } catch (err) {
     console.error('Failed to export inventory', err);
