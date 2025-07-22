@@ -305,7 +305,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   };
 
-
   const fetchImageWithProxy = async (url) => {
     const attempt = async (u) => {
       const res = await fetch(u);
@@ -1431,15 +1430,20 @@ ${obsHtml}
 
     if (ventasLiquidadas.length > 0) {
       const details = document.createElement('details');
-      details.className = 'mt-4';
+      details.className = 'mt-6 border-t border-indigo-200 pt-4';
+
       const summary = document.createElement('summary');
-      summary.className = 'cursor-pointer font-semibold bg-gray-100 p-2 rounded-md';
+      summary.className =
+        'cursor-pointer text-lg font-bold bg-indigo-50 text-indigo-800 px-4 py-2 rounded-md border border-indigo-300 shadow';
       summary.textContent = `Ventas Liquidadas (${ventasLiquidadas.length})`;
+
       const inner = document.createElement('div');
-      inner.className = 'mt-2 space-y-3';
+      inner.className = 'mt-3 space-y-3 pl-4 border-l-4 border-indigo-200';
+
       ventasLiquidadas.forEach((v) => {
         inner.appendChild(createCard(v));
       });
+
       details.appendChild(summary);
       details.appendChild(inner);
       list.appendChild(details);
