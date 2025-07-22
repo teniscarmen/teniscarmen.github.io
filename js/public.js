@@ -119,11 +119,16 @@ function renderCarousel(containerId, products) {
     card.className =
       'carousel-item relative w-40 md:w-48 aspect-square flex-shrink-0 rounded-lg overflow-hidden cursor-pointer';
     const price = formatCurrency(priceValue(p));
+    const line1 = `${p.marca} | ${p.modelo} | ${p.sku || ''}`;
+    const line2 = `${p.genero} | ${p.material} | ${p.talla} | ${price}`;
     card.innerHTML = `
       <img src="${p.foto || 'tenis_default.jpg'}" data-full="${
         p.foto || 'tenis_default.jpg'
       }" data-info="${p.marca} ${p.modelo} - Talla ${p.talla} - ${price}" class="product-img w-full h-full object-cover" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${p.modelo}">
-      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-xs p-1 truncate">${p.marca} ${p.modelo} - ${price}</div>`;
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-[10px] leading-tight p-1">
+        <div class="truncate">${line1}</div>
+        <div class="truncate">${line2}</div>
+      </div>`;
     container.appendChild(card);
   });
   setupCarouselNav(containerId, products.length);
