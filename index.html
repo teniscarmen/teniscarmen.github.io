@@ -40,6 +40,23 @@
       .search-clear-btn:hover {
         color: #374151;
       }
+      .carousel {
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+      }
+      .carousel-item {
+        scroll-snap-align: center;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
   </head>
   <body class="font-[Inter] bg-gray-100 text-gray-800">
@@ -94,47 +111,26 @@
           Catálogo PDF
         </button>
       </div>
-      <div class="flex flex-col md:flex-row gap-2 mb-4 items-stretch">
-        <div class="relative flex-1">
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Buscar por marca, modelo o SKU..."
-            class="w-full p-2 pl-9 pr-9 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          />
-          <i
-            class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-          ></i>
-          <button
-            id="clearSearchInput"
-            class="search-clear-btn hidden"
-            title="Limpiar búsqueda"
-          >
-            <i class="fas fa-times-circle"></i>
-          </button>
-        </div>
-        <select id="sortSelect" class="p-2 border rounded-lg md:w-56 shadow-sm">
-          <option value="">Ordenar por</option>
-          <option value="precio-asc">Precio: Menor a Mayor</option>
-          <option value="precio-desc" selected>Precio: Mayor a Menor</option>
-        </select>
-      </div>
 
-      <div
-        id="categoryFilters"
-        class="flex flex-wrap gap-2 mb-4 overflow-x-auto py-1"
-      >
-        <button
-          data-cat=""
-          class="cat-btn bg-indigo-600 text-white px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        >
-          Todos
-        </button>
-      </div>
-      <div
-        id="productsContainer"
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-      ></div>
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-2">Hombre</h2>
+        <div id="menCarousel" class="carousel no-scrollbar"></div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-2">Mujer</h2>
+        <div id="womenCarousel" class="carousel no-scrollbar"></div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-2">Unisex</h2>
+        <div id="unisexCarousel" class="carousel no-scrollbar"></div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-2">Accesorios</h2>
+        <div id="accessoriesCarousel" class="carousel no-scrollbar"></div>
+      </section>
     </main>
 
     <div
@@ -142,6 +138,7 @@
       class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50"
     >
       <img src="" alt="Vista ampliada" class="max-w-full max-h-full" />
+      <div id="modalInfo" class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-center p-2"></div>
     </div>
 
     <a
@@ -159,6 +156,13 @@
     >
       <i class="fas fa-arrow-up"></i>
     </button>
+
+    <section id="contacto" class="bg-white rounded-xl shadow-2xl p-4 mt-8">
+      <h2 class="text-xl font-bold mb-2">Contacto</h2>
+      <p class="text-justify">
+        ¿Buscas un modelo en especial? Escríbenos por WhatsApp con el modelo, talla y colores que deseas y con gusto lo encontraremos para ti.
+      </p>
+    </section>
 
     <footer class="bg-white text-center p-4 mt-8 shadow-inner">
       <p><strong>WhatsApp:</strong> (449) 195 2828</p>
