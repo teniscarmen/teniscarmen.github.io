@@ -2563,6 +2563,7 @@ ${comprasHtml}
     ].forEach((id) => {
       document.getElementById(id).addEventListener('input', renderInventario);
     });
+    setupClearableSearch('searchInventario', 'clearSearchInventario');
     document
       .getElementById('clearInventoryFilters')
       .addEventListener('click', () => {
@@ -2586,6 +2587,7 @@ ${comprasHtml}
     ].forEach((id) => {
       document.getElementById(id).addEventListener('input', renderVentas);
     });
+    setupClearableSearch('searchVentas', 'clearSearchVentas');
     document
       .getElementById('clearVentasFilters')
       .addEventListener('click', () => {
@@ -2597,6 +2599,15 @@ ${comprasHtml}
         document.getElementById('clearSearchVentas').classList.add('hidden');
         renderVentas();
       });
+
+    document.getElementById('searchClientes').addEventListener('input', () => {
+      const term = document
+        .getElementById('searchClientes')
+        .value.toUpperCase()
+        .trim();
+      renderClientes(localClientes, term);
+    });
+    setupClearableSearch('searchClientes', 'clearSearchClientes');
     document
       .getElementById('startDate')
       .addEventListener('change', renderFinancialSummaries);

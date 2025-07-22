@@ -28,6 +28,18 @@
         border-radius: 0.375rem;
         height: 0.75rem;
       }
+      .search-clear-btn {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .search-clear-btn:hover {
+        color: #374151;
+      }
     </style>
   </head>
   <body class="font-[Inter] bg-gray-100 text-gray-800">
@@ -88,11 +100,18 @@
             id="searchInput"
             type="text"
             placeholder="Buscar por marca, modelo o SKU..."
-            class="w-full p-2 pl-9 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            class="w-full p-2 pl-9 pr-9 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
           <i
             class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
           ></i>
+          <button
+            id="clearSearchInput"
+            class="search-clear-btn hidden"
+            title="Limpiar búsqueda"
+          >
+            <i class="fas fa-times-circle"></i>
+          </button>
         </div>
         <select id="sortSelect" class="p-2 border rounded-lg md:w-56 shadow-sm">
           <option value="">Ordenar por</option>
