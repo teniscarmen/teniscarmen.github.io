@@ -124,7 +124,7 @@ function renderCarousel(containerId, products) {
     card.innerHTML = `
       <img src="${p.foto || 'tenis_default.jpg'}" data-full="${
         p.foto || 'tenis_default.jpg'
-      }" data-info="${p.marca} ${p.modelo} - Talla ${p.talla} - ${price}" class="product-img w-full h-full object-cover" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${p.modelo}">
+      }" data-line1="${line1}" data-line2="${line2}" class="product-img w-full h-full object-cover" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${p.modelo}">
       <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-[10px] leading-tight p-1">
         <div class="truncate">${line1}</div>
         <div class="truncate">${line2}</div>
@@ -228,7 +228,12 @@ document.addEventListener('click', (e) => {
   if (!img) return;
   const modal = document.getElementById('imageModal');
   modal.querySelector('img').src = img.dataset.full;
-  modal.querySelector('#modalInfo').textContent = img.dataset.info || '';
+  const l1 = img.dataset.line1 || '';
+  const l2 = img.dataset.line2 || '';
+  modal.querySelector('#modalInfo').innerHTML = `
+    <div class="truncate">${l1}</div>
+    <div class="truncate">${l2}</div>
+  `;
   modal.classList.remove('hidden');
 });
 
