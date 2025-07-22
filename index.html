@@ -50,6 +50,24 @@
       .carousel-item {
         scroll-snap-align: center;
       }
+      .carousel-wrapper {
+        position: relative;
+      }
+      .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 9999px;
+        padding: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
+      }
+      .carousel-nav:hover {
+        transform: translateY(-50%) scale(1.1);
+        background-color: #e0e7ff;
+      }
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
@@ -114,22 +132,67 @@
 
       <section class="mb-8">
         <h2 class="text-xl font-bold mb-2">Hombre</h2>
-        <div id="menCarousel" class="carousel no-scrollbar"></div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav carousel-prev left-0" data-target="menCarousel">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div id="menCarousel" class="carousel no-scrollbar"></div>
+          <button class="carousel-nav carousel-next right-0" data-target="menCarousel">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </section>
 
       <section class="mb-8">
         <h2 class="text-xl font-bold mb-2">Mujer</h2>
-        <div id="womenCarousel" class="carousel no-scrollbar"></div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav carousel-prev left-0" data-target="womenCarousel">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div id="womenCarousel" class="carousel no-scrollbar"></div>
+          <button class="carousel-nav carousel-next right-0" data-target="womenCarousel">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </section>
 
       <section class="mb-8">
         <h2 class="text-xl font-bold mb-2">Unisex</h2>
-        <div id="unisexCarousel" class="carousel no-scrollbar"></div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav carousel-prev left-0" data-target="unisexCarousel">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div id="unisexCarousel" class="carousel no-scrollbar"></div>
+          <button class="carousel-nav carousel-next right-0" data-target="unisexCarousel">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-xl font-bold mb-2">Ofertas</h2>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav carousel-prev left-0" data-target="offersCarousel">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div id="offersCarousel" class="carousel no-scrollbar"></div>
+          <button class="carousel-nav carousel-next right-0" data-target="offersCarousel">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </section>
 
       <section class="mb-8">
         <h2 class="text-xl font-bold mb-2">Accesorios</h2>
-        <div id="accessoriesCarousel" class="carousel no-scrollbar"></div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav carousel-prev left-0" data-target="accessoriesCarousel">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div id="accessoriesCarousel" class="carousel no-scrollbar"></div>
+          <button class="carousel-nav carousel-next right-0" data-target="accessoriesCarousel">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </section>
     </main>
 
@@ -157,7 +220,7 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <section id="contacto" class="bg-white rounded-xl shadow-2xl p-4 mt-8">
+    <section id="contacto" class="bg-white rounded-xl shadow-2xl p-4 mt-8 mb-4">
       <h2 class="text-xl font-bold mb-2">Contacto</h2>
       <p class="text-justify">
         ¿Buscas un modelo en especial? Escríbenos por WhatsApp con el modelo, talla y colores que deseas y con gusto lo encontraremos para ti.
