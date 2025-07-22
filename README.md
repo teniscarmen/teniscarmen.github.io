@@ -6,20 +6,6 @@ Aplicación web para la gestión y venta de tenis, ropa y accesorios. El sitio c
 
 El código JavaScript se encuentra ahora en `js/index.js` como módulo ES.
 
-## Migración a React
-
-Se añadió un pipeline con **Vite** en el directorio `src/` para ir migrando la
-interfaz a React. Ejecuta lo siguiente para compilar los componentes:
-
-```bash
-cd src
-npm install
-npm run build
-```
-
-Los archivos generados quedan en `react-dist/` y son incluidos desde
-`index.html` y `admin.html`.
-
 ### Configuración inicial
 
 Copia `js/config.example.js` a `js/config.js` y coloca las credenciales de
