@@ -1374,7 +1374,7 @@ ${obsHtml}
       return;
     }
 
-    filteredVentas.forEach((v) => {
+    const createCard = (v) => {
       const cliente = allClientes[v.clienteId];
       const tenis = allInventario[v.tenisId];
       const abonosAcumulados = v.precioPactado - v.saldo;
@@ -1408,19 +1408,42 @@ ${obsHtml}
 </div>
 
 <div class="w-full sm:w-auto flex-shrink-0 flex sm:flex-col justify-end gap-2 pt-2 sm:pt-0 sm:border-l sm:pl-4">
-<button class="addAbonoBtn text-sm text-white font-bold py-2 px-3 rounded-md	 flex items-center justify-center ${v.saldo <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600'}" data-id="${v.id}" ${v.saldo <= 0 ? 'disabled' : ''} title="Abonar"><i class="fas fa-hand-holding-dollar fa-lg"></i></button>
+<button class="addAbonoBtn text-sm text-white font-bold py-2 px-3 rounded-md        flex items-center justify-center ${v.saldo <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600'}" data-id="${v.id}" ${v.saldo <= 0 ? 'disabled' : ''} title="Abonar"><i class="fas fa-hand-holding-dollar fa-lg"></i></button>
 <button class="ticketVentaBtn text-sm text-gray-500 hover:text-teal-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Ticket PDF"><i class="fas fa-file-pdf fa-lg"></i></button>
 <button class="whatsappVentaBtn text-sm text-gray-500 hover:text-green-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Enviar WhatsApp"><i class="fab fa-whatsapp fa-lg"></i></button>
 <button class="editVentaBtn text-sm text-gray-500 hover:text-indigo-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Editar Venta"><i class="fas fa-edit fa-lg"></i></button>
 <button class="deleteVentaBtn text-sm text-gray-500 hover:text-red-600 flex items-center justify-center p-2 rounded-lg hover:bg-gray-100" data-id="${v.id}" title="Eliminar Venta"><i class="fas fa-trash fa-lg"></i></button>
 </div>
 `;
-      list.appendChild(card);
       if (!isOwner) {
         card.querySelector('.editVentaBtn')?.remove();
         card.querySelector('.deleteVentaBtn')?.remove();
       }
+      return card;
+    };
+
+    const ventasConSaldo = filteredVentas.filter((v) => v.saldo > 0);
+    const ventasLiquidadas = filteredVentas.filter((v) => v.saldo <= 0);
+
+    ventasConSaldo.forEach((v) => {
+      list.appendChild(createCard(v));
     });
+
+    if (ventasLiquidadas.length > 0) {
+      const details = document.createElement('details');
+      details.className = 'mt-4';
+      const summary = document.createElement('summary');
+      summary.className = 'cursor-pointer font-semibold bg-gray-100 p-2 rounded-md';
+      summary.textContent = `Ventas Liquidadas (${ventasLiquidadas.length})`;
+      const inner = document.createElement('div');
+      inner.className = 'mt-2 space-y-3';
+      ventasLiquidadas.forEach((v) => {
+        inner.appendChild(createCard(v));
+      });
+      details.appendChild(summary);
+      details.appendChild(inner);
+      list.appendChild(details);
+    }
 
     document
       .querySelectorAll('.addAbonoBtn')
