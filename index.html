@@ -45,9 +45,20 @@
         overflow: hidden;
         gap: 1rem;
         padding-bottom: 1rem;
+        cursor: grab;
       }
       .carousel-item {
         scroll-snap-align: center;
+      }
+      .dragging {
+        cursor: grabbing !important;
+      }
+      .product-img {
+        transition: transform 0.3s;
+      }
+      .carousel-item:hover .product-img {
+        transform: scale(1.3);
+        z-index: 10;
       }
       .carousel-wrapper {
         position: relative;

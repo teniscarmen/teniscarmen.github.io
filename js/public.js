@@ -111,8 +111,40 @@ function startInfiniteScroll(containerId, speed = 0.5) {
   move();
   container.addEventListener('mouseenter', stopLoop);
   container.addEventListener('mouseleave', startLoop);
-  container.addEventListener('touchstart', stopLoop);
+  container.addEventListener('touchstart', stopLoop, { passive: true });
   container.addEventListener('touchend', startLoop);
+  container.addEventListener('mousedown', stopLoop);
+  container.addEventListener('mouseup', startLoop);
+
+  let isDragging = false;
+  let startX = 0;
+  let startScroll = 0;
+
+  const pointerDown = (clientX) => {
+    isDragging = true;
+    startX = clientX;
+    startScroll = container.scrollLeft;
+    container.classList.add('dragging');
+  };
+
+  const pointerMove = (clientX) => {
+    if (!isDragging) return;
+    container.scrollLeft = startScroll - (clientX - startX);
+  };
+
+  const pointerUp = () => {
+    isDragging = false;
+    container.classList.remove('dragging');
+  };
+
+  container.addEventListener('mousedown', (e) => pointerDown(e.clientX));
+  container.addEventListener('mousemove', (e) => pointerMove(e.clientX));
+  container.addEventListener('mouseup', pointerUp);
+  container.addEventListener('mouseleave', pointerUp);
+  container.addEventListener('touchstart', (e) => pointerDown(e.touches[0].clientX), { passive: true });
+  container.addEventListener('touchmove', (e) => pointerMove(e.touches[0].clientX), { passive: true });
+  container.addEventListener('touchend', pointerUp);
+  container.addEventListener('touchcancel', pointerUp);
 }
 
 function renderCarousel(containerId, products) {
