@@ -40,6 +40,27 @@ const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
 // Reduce cache TTL so public inventory refreshes quickly
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
+function setupClearableSearch(inputId, clearBtnId) {
+  const input = document.getElementById(inputId);
+  const clearBtn = document.getElementById(clearBtnId);
+
+  const triggerInputEvent = () => {
+    const event = new Event('input', { bubbles: true, cancelable: true });
+    input.dispatchEvent(event);
+  };
+
+  input.addEventListener('input', () => {
+    clearBtn.classList.toggle('hidden', input.value.trim().length === 0);
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.classList.add('hidden');
+    triggerInputEvent();
+    input.focus();
+  });
+}
+
 function showSkeleton(count = 8) {
   const container = document.getElementById('productsContainer');
   container.innerHTML = '';
@@ -242,6 +263,8 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
   searchTerm = e.target.value;
   applyFilters();
 });
+
+setupClearableSearch('searchInput', 'clearSearchInput');
 
 document.getElementById('sortSelect').addEventListener('change', (e) => {
   sortOrder = e.target.value;
