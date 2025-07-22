@@ -28,58 +28,91 @@ async function signIn() {
 document.getElementById('loginPublicBtn').addEventListener('click', signIn);
 
 let allProducts = [];
-let currentCategory = '';
-let searchTerm = '';
-let sortOrder = 'precio-desc';
-
-// Set default sort selection
-document.getElementById('sortSelect').value = sortOrder;
 
 const INVENTORY_CACHE_KEY = 'inventoryCache';
 const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
 // Reduce cache TTL so public inventory refreshes quickly
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
-function setupClearableSearch(inputId, clearBtnId) {
-  const input = document.getElementById(inputId);
-  const clearBtn = document.getElementById(clearBtnId);
 
-  const triggerInputEvent = () => {
-    const event = new Event('input', { bubbles: true, cancelable: true });
-    input.dispatchEvent(event);
-  };
-
-  input.addEventListener('input', () => {
-    clearBtn.classList.toggle('hidden', input.value.trim().length === 0);
-  });
-
-  clearBtn.addEventListener('click', () => {
-    input.value = '';
-    clearBtn.classList.add('hidden');
-    triggerInputEvent();
-    input.focus();
-  });
-}
-
-function showSkeleton(count = 8) {
-  const container = document.getElementById('productsContainer');
+function showSkeleton(containerId, count = 4) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
   container.innerHTML = '';
   for (let i = 0; i < count; i++) {
     const card = document.createElement('div');
-    card.className =
-      'skeleton-card space-y-2 p-4 rounded-xl shadow animate-pulse';
-    card.innerHTML = `
-      <div class="w-full aspect-square"></div>
-      <div class="h-4 w-3/4"></div>
-      <div class="h-4 w-1/2"></div>
-    `;
+    card.className = 'skeleton-card carousel-item w-40 h-40 p-4 rounded-xl shadow animate-pulse';
+    card.innerHTML = `<div class="w-full aspect-square"></div>`;
     container.appendChild(card);
   }
 }
 
+const priceValue = (p) => {
+  if (p.precioOferta != null) return p.precioOferta;
+  if (p.descuentoActivo)
+    return p.precio * (1 - (p.porcentajeDescuento || 0) / 100);
+  return p.precio;
+};
+
+function renderCarousel(containerId, products) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  if (products.length === 0) {
+    container.innerHTML =
+      '<p class="text-center text-gray-500 w-full">Sin productos</p>';
+    return;
+  }
+  products.forEach((p) => {
+    const card = document.createElement('div');
+    card.className =
+      'carousel-item relative w-40 md:w-48 aspect-square flex-shrink-0 rounded-lg overflow-hidden cursor-pointer';
+    const price = formatCurrency(priceValue(p));
+    card.innerHTML = `
+      <img src="${p.foto || 'tenis_default.jpg'}" data-full="${
+      p.foto || 'tenis_default.jpg'
+    }" data-info="${p.marca} ${p.modelo} - Talla ${p.talla} - ${price}" class="product-img w-full h-full object-cover" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${p.modelo}">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-xs p-1 truncate">${p.marca} ${p.modelo} - ${price}</div>`;
+    container.appendChild(card);
+  });
+}
+
+function renderCarousels() {
+  const groups = {
+    men: allProducts.filter(
+      (p) => p.genero === 'Hombre' && p.categoria !== 'Accesorios',
+    ),
+    women: allProducts.filter(
+      (p) => p.genero === 'Mujer' && p.categoria !== 'Accesorios',
+    ),
+    unisex: allProducts.filter(
+      (p) => p.genero === 'Unisex' && p.categoria !== 'Accesorios',
+    ),
+    accessories: allProducts.filter((p) => p.categoria === 'Accesorios'),
+  };
+
+  const sorter = (a, b) => priceValue(b) - priceValue(a);
+
+  renderCarousel(
+    'menCarousel',
+    groups.men.sort(sorter).slice(0, 6),
+  );
+  renderCarousel(
+    'womenCarousel',
+    groups.women.sort(sorter).slice(0, 6),
+  );
+  renderCarousel(
+    'unisexCarousel',
+    groups.unisex.sort(sorter).slice(0, 6),
+  );
+  renderCarousel(
+    'accessoriesCarousel',
+    groups.accessories.sort(sorter).slice(0, 6),
+  );
+}
+
 function loadInventory() {
-  const container = document.getElementById('productsContainer');
-  showSkeleton();
+  ['menCarousel', 'womenCarousel', 'unisexCarousel', 'accessoriesCarousel'].forEach((id) => showSkeleton(id));
 
   const cached = localStorage.getItem(INVENTORY_CACHE_KEY);
   const cachedTime = localStorage.getItem(INVENTORY_CACHE_TS_KEY);
@@ -97,8 +130,7 @@ function loadInventory() {
         localStorage.removeItem(INVENTORY_CACHE_TS_KEY);
       } else {
         allProducts = parsed;
-        renderFilters(allProducts);
-        applyFilters();
+        renderCarousels();
       }
     } catch (err) {
       console.error('Error leyendo cache de inventario', err);
@@ -116,166 +148,26 @@ function loadInventory() {
       allProducts = data;
       localStorage.setItem(INVENTORY_CACHE_KEY, JSON.stringify(allProducts));
       localStorage.setItem(INVENTORY_CACHE_TS_KEY, String(now));
-      renderFilters(allProducts);
-      applyFilters();
+      renderCarousels();
     })
     .catch((err) => {
       console.error('Error cargando productos', err);
       if (!cached) {
-        container.innerHTML =
-          '<p class="col-span-full text-center text-gray-500">Error cargando productos</p>';
+        ['menCarousel', 'womenCarousel', 'unisexCarousel', 'accessoriesCarousel'].forEach((id) => {
+          const c = document.getElementById(id);
+          if (c) c.innerHTML = '<p class="text-center text-gray-500 w-full">Error cargando productos</p>';
+        });
       }
     });
 }
 
-function renderFilters(products) {
-  const container = document.getElementById('categoryFilters');
-  container.innerHTML = '';
 
-  currentCategory = '';
-
-  const allBtn = document.createElement('button');
-  allBtn.textContent = 'Todos';
-  allBtn.dataset.cat = '';
-  allBtn.className =
-    'cat-btn bg-indigo-600 text-white px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500';
-  container.appendChild(allBtn);
-
-  const categories = Array.from(
-    new Set(products.map((p) => p.categoria || 'Tenis')),
-  );
-  categories.forEach((cat) => {
-    const btn = document.createElement('button');
-    btn.textContent = cat;
-    btn.dataset.cat = cat;
-    btn.className =
-      'cat-btn bg-gray-200 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500';
-    container.appendChild(btn);
-  });
-  if (!container.dataset.listenerAttached) {
-    container.addEventListener('click', (e) => {
-      const btn = e.target.closest('.cat-btn');
-      if (!btn) return;
-      container
-        .querySelectorAll('.cat-btn')
-        .forEach((b) => b.classList.remove('bg-indigo-600', 'text-white'));
-      btn.classList.add('bg-indigo-600', 'text-white');
-      currentCategory = btn.dataset.cat;
-      applyFilters();
-    });
-    container.dataset.listenerAttached = 'true';
-  }
-}
-
-function renderProducts(products) {
-  const container = document.getElementById('productsContainer');
-  container.innerHTML = '';
-  if (products.length === 0) {
-    container.innerHTML =
-      '<p class="col-span-full text-center text-gray-500">Sin productos</p>';
-    return;
-  }
-  products.forEach((p) => {
-    const card = document.createElement('div');
-    card.className =
-      'relative bg-white rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 p-4 flex flex-col';
-    const computedOferta =
-      p.precioOferta ??
-      (p.descuentoActivo
-        ? p.precio * (1 - (p.porcentajeDescuento || 0) / 100)
-        : null);
-    const ribbon =
-      p.descuentoActivo || p.precioOferta
-        ? '<span class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg">Descuento</span>'
-        : '';
-    const priceHtml = computedOferta
-      ? `<p class="text-sm line-through text-gray-400">${formatCurrency(
-          p.precio,
-        )}</p>`
-      : '';
-    const mainPriceHtml = computedOferta
-      ? `${formatCurrency(computedOferta)}`
-      : `${formatCurrency(p.precio)}`;
-    const priceDisplay = formatCurrency(computedOferta ?? p.precio);
-    const waMsg = encodeURIComponent(
-      `Hola, quisiera información sobre la disponibilidad del producto:\nModelo: ${
-        p.modelo
-      }\nMarca: ${p.marca}\nSKU: ${p.sku ?? 'N/A'}\nPrecio: ${priceDisplay}`,
-    );
-    const waLink = `https://wa.me/5214491952828?text=${waMsg}`;
-    card.innerHTML = `
-      ${ribbon}
-      <img src="${
-        p.foto || 'tenis_default.jpg'
-      }" data-full="${p.foto || 'tenis_default.jpg'}" class="product-img w-full aspect-square object-cover rounded cursor-pointer" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${
-        p.modelo
-      }">
-      <h3 class="mt-2 font-semibold">${p.marca} ${p.modelo}</h3>
-      <p class="text-sm text-gray-500">SKU: ${p.sku || 'N/A'}</p>
-      <p class="text-sm text-gray-500">Nº de Modelo: ${p.numeroModelo || 'N/A'}</p>
-      <p class="text-sm text-gray-500">Género: ${p.genero || 'N/A'}</p>
-      <p class="text-sm text-gray-500">Estilo: ${p.estilo || 'N/A'}</p>
-      <p class="text-sm text-gray-500">Talla: ${p.talla}</p>
-      ${priceHtml}
-      <div class="mt-2 flex items-center gap-2">
-        <p class="text-indigo-600 font-bold">${mainPriceHtml}</p>
-        <a href="${waLink}" target="_blank" class="text-green-600 hover:text-green-700" aria-label="Consultar disponibilidad">
-          <i class="fab fa-whatsapp text-2xl"></i>
-        </a>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function applyFilters() {
-  let filtered = allProducts;
-  if (currentCategory) {
-    filtered = filtered.filter(
-      (p) => (p.categoria || 'Tenis') === currentCategory,
-    );
-  }
-  if (searchTerm) {
-    const term = searchTerm.toLowerCase();
-    filtered = filtered.filter(
-      (p) =>
-        `${p.marca} ${p.modelo}`.toLowerCase().includes(term) ||
-        (p.sku || '').toLowerCase().includes(term),
-    );
-  }
-  if (sortOrder === 'precio-asc') {
-    filtered = filtered.slice().sort((a, b) => {
-      const pa = a.precioOferta ?? a.precio;
-      const pb = b.precioOferta ?? b.precio;
-      return pa - pb;
-    });
-  } else if (sortOrder === 'precio-desc') {
-    filtered = filtered.slice().sort((a, b) => {
-      const pa = a.precioOferta ?? a.precio;
-      const pb = b.precioOferta ?? b.precio;
-      return pb - pa;
-    });
-  }
-  renderProducts(filtered);
-}
-
-document.getElementById('searchInput').addEventListener('input', (e) => {
-  searchTerm = e.target.value;
-  applyFilters();
-});
-
-setupClearableSearch('searchInput', 'clearSearchInput');
-
-document.getElementById('sortSelect').addEventListener('change', (e) => {
-  sortOrder = e.target.value;
-  applyFilters();
-});
-
-document.getElementById('productsContainer').addEventListener('click', (e) => {
+document.addEventListener('click', (e) => {
   const img = e.target.closest('.product-img');
   if (!img) return;
   const modal = document.getElementById('imageModal');
   modal.querySelector('img').src = img.dataset.full;
+  modal.querySelector('#modalInfo').textContent = img.dataset.info || '';
   modal.classList.remove('hidden');
 });
 
