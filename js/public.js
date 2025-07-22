@@ -34,14 +34,14 @@ const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTime';
 // Reduce cache TTL so public inventory refreshes quickly
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 
-
 function showSkeleton(containerId, count = 4) {
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = '';
   for (let i = 0; i < count; i++) {
     const card = document.createElement('div');
-    card.className = 'skeleton-card carousel-item w-40 h-40 p-4 rounded-xl shadow animate-pulse';
+    card.className =
+      'skeleton-card carousel-item w-40 h-40 p-4 rounded-xl shadow animate-pulse';
     card.innerHTML = `<div class="w-full aspect-square"></div>`;
     container.appendChild(card);
   }
@@ -53,6 +53,28 @@ const priceValue = (p) => {
     return p.precio * (1 - (p.porcentajeDescuento || 0) / 100);
   return p.precio;
 };
+
+function setupCarouselNav(containerId, itemCount) {
+  const prev = document.querySelector(
+    `[data-target="${containerId}"].carousel-prev`,
+  );
+  const next = document.querySelector(
+    `[data-target="${containerId}"].carousel-next`,
+  );
+  const container = document.getElementById(containerId);
+  if (!prev || !next || !container) return;
+  if (itemCount <= 6) {
+    prev.classList.add('hidden');
+    next.classList.add('hidden');
+  } else {
+    prev.classList.remove('hidden');
+    next.classList.remove('hidden');
+    prev.onclick = () =>
+      container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
+    next.onclick = () =>
+      container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
+  }
+}
 
 function renderCarousel(containerId, products) {
   const container = document.getElementById(containerId);
@@ -70,11 +92,12 @@ function renderCarousel(containerId, products) {
     const price = formatCurrency(priceValue(p));
     card.innerHTML = `
       <img src="${p.foto || 'tenis_default.jpg'}" data-full="${
-      p.foto || 'tenis_default.jpg'
-    }" data-info="${p.marca} ${p.modelo} - Talla ${p.talla} - ${price}" class="product-img w-full h-full object-cover" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${p.modelo}">
+        p.foto || 'tenis_default.jpg'
+      }" data-info="${p.marca} ${p.modelo} - Talla ${p.talla} - ${price}" class="product-img w-full h-full object-cover" onerror="this.onerror=null;this.src='tenis_default.jpg';" alt="${p.modelo}">
       <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-xs p-1 truncate">${p.marca} ${p.modelo} - ${price}</div>`;
     container.appendChild(card);
   });
+  setupCarouselNav(containerId, products.length);
 }
 
 function renderCarousels() {
@@ -88,31 +111,27 @@ function renderCarousels() {
     unisex: allProducts.filter(
       (p) => p.genero === 'Unisex' && p.categoria !== 'Accesorios',
     ),
+    offers: allProducts.filter((p) => p.descuentoActivo),
     accessories: allProducts.filter((p) => p.categoria === 'Accesorios'),
   };
 
   const sorter = (a, b) => priceValue(b) - priceValue(a);
 
-  renderCarousel(
-    'menCarousel',
-    groups.men.sort(sorter).slice(0, 6),
-  );
-  renderCarousel(
-    'womenCarousel',
-    groups.women.sort(sorter).slice(0, 6),
-  );
-  renderCarousel(
-    'unisexCarousel',
-    groups.unisex.sort(sorter).slice(0, 6),
-  );
-  renderCarousel(
-    'accessoriesCarousel',
-    groups.accessories.sort(sorter).slice(0, 6),
-  );
+  renderCarousel('menCarousel', groups.men.sort(sorter));
+  renderCarousel('womenCarousel', groups.women.sort(sorter));
+  renderCarousel('unisexCarousel', groups.unisex.sort(sorter));
+  renderCarousel('offersCarousel', groups.offers.sort(sorter));
+  renderCarousel('accessoriesCarousel', groups.accessories.sort(sorter));
 }
 
 function loadInventory() {
-  ['menCarousel', 'womenCarousel', 'unisexCarousel', 'accessoriesCarousel'].forEach((id) => showSkeleton(id));
+  [
+    'menCarousel',
+    'womenCarousel',
+    'unisexCarousel',
+    'offersCarousel',
+    'accessoriesCarousel',
+  ].forEach((id) => showSkeleton(id));
 
   const cached = localStorage.getItem(INVENTORY_CACHE_KEY);
   const cachedTime = localStorage.getItem(INVENTORY_CACHE_TS_KEY);
@@ -153,14 +172,21 @@ function loadInventory() {
     .catch((err) => {
       console.error('Error cargando productos', err);
       if (!cached) {
-        ['menCarousel', 'womenCarousel', 'unisexCarousel', 'accessoriesCarousel'].forEach((id) => {
+        [
+          'menCarousel',
+          'womenCarousel',
+          'unisexCarousel',
+          'offersCarousel',
+          'accessoriesCarousel',
+        ].forEach((id) => {
           const c = document.getElementById(id);
-          if (c) c.innerHTML = '<p class="text-center text-gray-500 w-full">Error cargando productos</p>';
+          if (c)
+            c.innerHTML =
+              '<p class="text-center text-gray-500 w-full">Error cargando productos</p>';
         });
       }
     });
 }
-
 
 document.addEventListener('click', (e) => {
   const img = e.target.closest('.product-img');
