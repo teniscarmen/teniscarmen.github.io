@@ -24,7 +24,10 @@ export default [
         alert: 'readonly',
         pdfMake: 'readonly',
         htmlToPdfmake: 'readonly',
-        Image: 'readonly'
+        Image: 'readonly',
+        cancelAnimationFrame: 'readonly',
+        requestAnimationFrame: 'readonly',
+        getComputedStyle: 'readonly'
       }
     },
     rules: {}
