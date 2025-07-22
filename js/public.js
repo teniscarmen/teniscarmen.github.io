@@ -77,6 +77,7 @@ function setupCarouselNav(containerId, itemCount) {
 }
 
 const carouselLoops = {};
+const carouselResumeTimers = {};
 
 function startInfiniteScroll(containerId, speed = 0.5) {
   const container = document.getElementById(containerId);
@@ -95,14 +96,23 @@ function startInfiniteScroll(containerId, speed = 0.5) {
     }
     carouselLoops[containerId] = requestAnimationFrame(move);
   };
-  move();
-  container.addEventListener('mouseenter', () => {
-    if (carouselLoops[containerId])
-      cancelAnimationFrame(carouselLoops[containerId]);
-  });
-  container.addEventListener('mouseleave', () => {
+  const startLoop = () => {
+    clearTimeout(carouselResumeTimers[containerId]);
     if (!carouselLoops[containerId]) move();
-  });
+  };
+  const stopLoop = () => {
+    if (carouselLoops[containerId]) {
+      cancelAnimationFrame(carouselLoops[containerId]);
+      carouselLoops[containerId] = null;
+    }
+    clearTimeout(carouselResumeTimers[containerId]);
+    carouselResumeTimers[containerId] = setTimeout(startLoop, 5000);
+  };
+  move();
+  container.addEventListener('mouseenter', stopLoop);
+  container.addEventListener('mouseleave', startLoop);
+  container.addEventListener('touchstart', stopLoop);
+  container.addEventListener('touchend', startLoop);
 }
 
 function renderCarousel(containerId, products) {
