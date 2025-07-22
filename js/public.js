@@ -76,6 +76,35 @@ function setupCarouselNav(containerId, itemCount) {
   }
 }
 
+const carouselLoops = {};
+
+function startInfiniteScroll(containerId, speed = 0.5) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (carouselLoops[containerId]) {
+    cancelAnimationFrame(carouselLoops[containerId]);
+  }
+  const gap = parseFloat(getComputedStyle(container).gap) || 0;
+  const step = speed;
+  const move = () => {
+    container.scrollLeft += step;
+    const first = container.firstElementChild;
+    if (first && container.scrollLeft >= first.offsetWidth + gap) {
+      container.appendChild(first);
+      container.scrollLeft -= first.offsetWidth + gap;
+    }
+    carouselLoops[containerId] = requestAnimationFrame(move);
+  };
+  move();
+  container.addEventListener('mouseenter', () => {
+    if (carouselLoops[containerId])
+      cancelAnimationFrame(carouselLoops[containerId]);
+  });
+  container.addEventListener('mouseleave', () => {
+    if (!carouselLoops[containerId]) move();
+  });
+}
+
 function renderCarousel(containerId, products) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -98,6 +127,7 @@ function renderCarousel(containerId, products) {
     container.appendChild(card);
   });
   setupCarouselNav(containerId, products.length);
+  startInfiniteScroll(containerId);
 }
 
 function renderCarousels() {
