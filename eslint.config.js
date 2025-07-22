@@ -12,6 +12,7 @@ export default [
         window: 'readonly',
         console: 'readonly',
         setTimeout: 'readonly',
+        clearTimeout: 'readonly',
         setInterval: 'readonly',
         Intl: 'readonly',
         Blob: 'readonly',
