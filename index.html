@@ -42,10 +42,12 @@
       }
       .carousel {
         display: flex;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 1rem;
         padding-bottom: 1rem;
         cursor: grab;
+        -webkit-overflow-scrolling: touch;
       }
       .carousel-item {
         scroll-snap-align: center;
