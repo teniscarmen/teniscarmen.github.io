@@ -5,15 +5,12 @@
   "type": "module",
   "scripts": {
     "lint": "eslint js/*.js --config eslint.config.js",
-    "format": "prettier --write js/*.js",
-    "export-inventory": "node scripts/export-inventory.js"
+    "format": "prettier --write js/*.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "eslint": "^8.56.0",
     "prettier": "^3.2.5"
   },
-  "dependencies": {
-    "firebase-admin": "^13.4.0"
-  }
+  "dependencies": {}
 }
