@@ -31,15 +31,7 @@ En la sección de Finanzas encontrarás los botones **Respaldar Base de Datos** 
 
 Es necesario haber iniciado sesión con una cuenta autorizada para realizar estas operaciones. Ten en cuenta que el respaldo solo incluye los documentos de Firestore; no contiene configuraciones de índices ni información de autenticación de Firebase.
 
-## Exportar Inventario para la sección pública
 
-`inventory.json` funciona como caché para la galería pública. Cuando se detecte
-un movimiento en el inventario privado aparecerá un aviso dentro de la pestaña
-**Inventario**. El encargado debe seguir estos pasos:
+## Inventario público
 
-1. Abrir `exportar.html` y pulsar **Obtener inventario**.
-2. Descargar el archivo con **Descargar JSON**.
-3. Subir `inventory.json` al repositorio.
-4. Cerrar el aviso usando el botón «X».
-
-Este procedimiento se repite cada vez que el inventario privado cambia.
+El archivo `inventory.json` funciona como caché para la galería pública. Es necesario actualizarlo manualmente cada vez que cambie el inventario privado.
