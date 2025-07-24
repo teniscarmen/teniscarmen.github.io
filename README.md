@@ -43,29 +43,3 @@ un movimiento en el inventario privado aparecerá un aviso dentro de la pestaña
 4. Cerrar el aviso usando el botón «X».
 
 Este procedimiento se repite cada vez que el inventario privado cambia.
-
-
-### Configurar CORS en Firebase Storage
-
-Si al subir imágenes aparecen errores de CORS como `Response to preflight request doesn't pass access control check`, necesitas permitir tu dominio en el bucket de Firebase Storage.
-
-Crea un archivo `cors.json` con el siguiente contenido y ejecútalo usando `gsutil`:
-
-```json
-[
-  {
-    "origin": ["http://tenischidos.xyz"],
-    "method": ["GET", "POST", "PUT", "DELETE"],
-    "responseHeader": ["Content-Type"],
-    "maxAgeSeconds": 3600
-  }
-]
-```
-
-Luego establece la configuración:
-
-```bash
-gsutil cors set cors.json gs://tenischidos
-```
-
-Tras unos minutos, las solicitudes de subida funcionarán desde tu sitio.
