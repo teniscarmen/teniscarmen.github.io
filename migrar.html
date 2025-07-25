@@ -2,20 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Migración Firestore A ➜ B v1.0.3</title>
+  <title>Migración Firestore A ➜ B v1.0.4</title>
 
-  <!-- Scripts de Firebase con defer -->
-  <script defer src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase scripts: SIN defer y ANTES del script principal -->
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
-  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.0.3)</span></h2>
+  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.0.4)</span></h2>
   <button id="migrarBtn">Iniciar migración</button>
   <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 500px; overflow-y: auto;"></pre>
 
-  <!-- Script principal al final del body -->
-  <script defer>
-    const MIGRADOR_VERSION = "v1.0.3";
+  <!-- Script principal SIN defer, al final del body -->
+  <script>
+    const MIGRADOR_VERSION = "v1.0.4";
     document.title = `Migración Firestore A ➜ B ${MIGRADOR_VERSION}`;
 
     let dbA, dbB;
@@ -92,9 +92,7 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
-    });
+    document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
   </script>
 </body>
 </html>
