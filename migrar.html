@@ -2,20 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Migrar Firestore A ➜ B</title>
+  <title>Migración Firestore COMPLETA A ➜ B</title>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
-  <h2>Migración Firestore: Proyecto A ➜ Proyecto B</h2>
+  <h2>Migración Firestore A ➜ B <span id="version" style="font-size: 0.8em; color: gray;"></span></h2>
   <button id="migrarBtn">Iniciar migración</button>
-  <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 400px; overflow-y: auto;"></pre>
+  <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 500px; overflow-y: auto;"></pre>
 
   <script type="module">
+    // 🔢 Versión del script
+    const MIGRADOR_VERSION = "v1.0.0";
+    document.getElementById("version").textContent = `(${MIGRADOR_VERSION})`;
+
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-app.js";
-    import { getFirestore, collection, doc, getDocs, setDoc, listCollections } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      doc,
+      setDoc,
+      listCollections,
+    } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore.js";
 
     const log = document.getElementById("log");
 
-    // Configuración de Proyecto A (cuenta personal)
+    // Configuración Proyecto A
     const configA = {
       apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
       authDomain: "tenis-1baf2.firebaseapp.com",
@@ -26,7 +37,7 @@
       measurementId: "G-XXEEL6LMND"
     };
 
-    // Configuración de Proyecto B (cuenta propia)
+    // Configuración Proyecto B
     const configB = {
       apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
       authDomain: "tenis-chidos-ags.firebaseapp.com",
@@ -36,39 +47,54 @@
       appId: "1:13324233273:web:d7eb9f5a0e8ed0a4317be8"
     };
 
-    let dbA, dbB;
+    const appA = initializeApp(configA, "appA");
+    const appB = initializeApp(configB, "appB");
 
-    function inicializarAmbas() {
-      const appA = initializeApp(configA, "appA");
-      const appB = initializeApp(configB, "appB");
+    const dbA = getFirestore(appA);
+    const dbB = getFirestore(appB);
 
-      dbA = getFirestore(appA);
-      dbB = getFirestore(appB);
+    function logLinea(texto) {
+      log.textContent += texto + "\n";
+    }
+
+    // Recursivo: colecciones y subcolecciones
+    async function migrarColeccion(path, refA, refB) {
+      const snap = await getDocs(refA);
+      for (const docSnap of snap.docs) {
+        const data = docSnap.data();
+        const docRefB = doc(refB, docSnap.id);
+        await setDoc(docRefB, data);
+        logLinea(`✔ Migrado: ${path}/${docSnap.id}`);
+
+        const subcols = await listCollections(docSnap.ref);
+        for (const subcol of subcols) {
+          const subcolName = subcol.id;
+          const nuevaRuta = `${path}/${docSnap.id}/${subcolName}`;
+          logLinea(`📁 Subcolección: ${nuevaRuta}`);
+          await migrarColeccion(
+            nuevaRuta,
+            collection(docSnap.ref, subcolName),
+            collection(docRefB, subcolName)
+          );
+        }
+      }
     }
 
     async function migrarDatos() {
-      log.textContent = "⏳ Iniciando migración...\n";
+      log.textContent = `🛠 Migrador Firestore ${MIGRADOR_VERSION} iniciado...\n`;
 
       try {
-        inicializarAmbas();
-
         const colecciones = await listCollections(dbA);
 
-        for (const colRef of colecciones) {
-          const colName = colRef.id;
-          log.textContent += `\n📁 Colección: ${colName}`;
-
-          const snapshot = await getDocs(collection(dbA, colName));
-          for (const docSnap of snapshot.docs) {
-            const data = docSnap.data();
-            await setDoc(doc(dbB, colName, docSnap.id), data);
-            log.textContent += `\n   ✔ Copiado: ${colName}/${docSnap.id}`;
-          }
+        for (const col of colecciones) {
+          const colName = col.id;
+          logLinea(`📁 Colección raíz: ${colName}`);
+          await migrarColeccion(colName, collection(dbA, colName), collection(dbB, colName));
         }
 
-        log.textContent += `\n\n✅ Migración completada con éxito.`;
+        logLinea(`\n✅ Migración COMPLETA con éxito. (${MIGRADOR_VERSION})`);
       } catch (error) {
-        log.textContent += `\n❌ Error: ${error.message}`;
+        logLinea(`❌ Error: ${error.message}`);
       }
     }
 
