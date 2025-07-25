@@ -2,92 +2,99 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Migración Firestore A ➜ B v1.0.1</title>
+  <title>Migración Firestore A ➜ B v1.0.2</title>
+
+  <!-- Scripts de Firebase CARGADOS ANTES que el script principal -->
   <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
-  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.0.1)</span></h2>
-  <button onclick="migrarDatos()">Iniciar migración</button>
+  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.0.2)</span></h2>
+  <button id="migrarBtn">Iniciar migración</button>
   <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 500px; overflow-y: auto;"></pre>
 
+  <!-- Script principal cargado DESPUÉS de Firebase -->
   <script>
-    const MIGRADOR_VERSION = "v1.0.1";
-    document.title = `Migración Firestore A ➜ B ${MIGRADOR_VERSION}`;
+    window.onload = function () {
+      const MIGRADOR_VERSION = "v1.0.2";
+      document.title = `Migración Firestore A ➜ B ${MIGRADOR_VERSION}`;
 
-    let dbA, dbB;
+      let dbA, dbB;
 
-    function inicializarFirebase() {
-      const configA = {
-        apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
-        authDomain: "tenis-1baf2.firebaseapp.com",
-        projectId: "tenis-1baf2",
-        storageBucket: "tenis-1baf2.firebasestorage.app",
-        messagingSenderId: "1063958178043",
-        appId: "1:1063958178043:web:01276f257cc083bac1285e",
-        measurementId: "G-XXEEL6LMND"
-      };
+      function inicializarFirebase() {
+        const configA = {
+          apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
+          authDomain: "tenis-1baf2.firebaseapp.com",
+          projectId: "tenis-1baf2",
+          storageBucket: "tenis-1baf2.firebasestorage.app",
+          messagingSenderId: "1063958178043",
+          appId: "1:1063958178043:web:01276f257cc083bac1285e",
+          measurementId: "G-XXEEL6LMND"
+        };
 
-      const configB = {
-        apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
-        authDomain: "tenis-chidos-ags.firebaseapp.com",
-        projectId: "tenis-chidos-ags",
-        storageBucket: "tenis-chidos-ags.firebasestorage.app",
-        messagingSenderId: "13324233273",
-        appId: "1:13324233273:web:d7eb9f5a0e8ed0a4317be8"
-      };
+        const configB = {
+          apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
+          authDomain: "tenis-chidos-ags.firebaseapp.com",
+          projectId: "tenis-chidos-ags",
+          storageBucket: "tenis-chidos-ags.firebasestorage.app",
+          messagingSenderId: "13324233273",
+          appId: "1:13324233273:web:d7eb9f5a0e8ed0a4317be8"
+        };
 
-      const appA = firebase.initializeApp(configA, "appA");
-      const appB = firebase.initializeApp(configB, "appB");
+        const appA = firebase.initializeApp(configA, "appA");
+        const appB = firebase.initializeApp(configB, "appB");
 
-      dbA = firebase.firestore(appA);
-      dbB = firebase.firestore(appB);
-    }
+        dbA = firebase.firestore(appA);
+        dbB = firebase.firestore(appB);
+      }
 
-    function logLinea(texto) {
-      document.getElementById("log").textContent += texto + "\n";
-    }
+      function logLinea(texto) {
+        document.getElementById("log").textContent += texto + "\n";
+      }
 
-    async function migrarColeccion(path, refA, refB) {
-      const snapshot = await refA.get();
-      for (const docSnap of snapshot.docs) {
-        const data = docSnap.data();
-        const refDocB = refB.doc(docSnap.id);
-        await refDocB.set(data);
-        logLinea(`✔ Migrado: ${path}/${docSnap.id}`);
+      async function migrarColeccion(path, refA, refB) {
+        const snapshot = await refA.get();
+        for (const docSnap of snapshot.docs) {
+          const data = docSnap.data();
+          const refDocB = refB.doc(docSnap.id);
+          await refDocB.set(data);
+          logLinea(`✔ Migrado: ${path}/${docSnap.id}`);
 
-        const subcols = await docSnap.ref.listCollections();
-        for (const subcol of subcols) {
-          const subcolName = subcol.id;
-          const nuevaRuta = `${path}/${docSnap.id}/${subcolName}`;
-          logLinea(`📁 Subcolección: ${nuevaRuta}`);
-          await migrarColeccion(
-            nuevaRuta,
-            docSnap.ref.collection(subcolName),
-            refDocB.collection(subcolName)
-          );
+          const subcols = await docSnap.ref.listCollections();
+          for (const subcol of subcols) {
+            const subcolName = subcol.id;
+            const nuevaRuta = `${path}/${docSnap.id}/${subcolName}`;
+            logLinea(`📁 Subcolección: ${nuevaRuta}`);
+            await migrarColeccion(
+              nuevaRuta,
+              docSnap.ref.collection(subcolName),
+              refDocB.collection(subcolName)
+            );
+          }
         }
       }
-    }
 
-    async function migrarDatos() {
-      document.getElementById("log").textContent = `🛠 Migrador Firestore v1.0.1 iniciado...\n`;
+      async function migrarDatos() {
+        document.getElementById("log").textContent = `🛠 Migrador Firestore v${MIGRADOR_VERSION} iniciado...\n`;
 
-      try {
-        inicializarFirebase();
-        const colecciones = await dbA.listCollections();
+        try {
+          inicializarFirebase();
+          const colecciones = await dbA.listCollections();
 
-        for (const col of colecciones) {
-          const colName = col.id;
-          logLinea(`📁 Colección raíz: ${colName}`);
-          await migrarColeccion(colName, dbA.collection(colName), dbB.collection(colName));
+          for (const col of colecciones) {
+            const colName = col.id;
+            logLinea(`📁 Colección raíz: ${colName}`);
+            await migrarColeccion(colName, dbA.collection(colName), dbB.collection(colName));
+          }
+
+          logLinea(`\n✅ Migración COMPLETA con éxito. (${MIGRADOR_VERSION})`);
+        } catch (error) {
+          logLinea(`❌ Error: ${error.message}`);
         }
-
-        logLinea(`\n✅ Migración COMPLETA con éxito. (v1.0.1)`);
-      } catch (error) {
-        logLinea(`❌ Error: ${error.message}`);
       }
-    }
+
+      document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
+    };
   </script>
 </body>
 </html>
