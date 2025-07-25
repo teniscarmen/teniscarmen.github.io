@@ -2,25 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Migración Firestore A ➜ B v1.0.4</title>
+  <title>Migración Firestore A ➜ B v1.1.0</title>
 
-  <!-- Firebase scripts: SIN defer y ANTES del script principal -->
+  <!-- Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-auth-compat.js"></script>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
-  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.0.4)</span></h2>
-  <button id="migrarBtn">Iniciar migración</button>
+  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.1.0)</span></h2>
+
+  <p><strong>Usuario actual:</strong> <span id="usuario">No autenticado</span></p>
+  <button id="loginBtn">🔐 Iniciar sesión con Google</button>
+  <button id="migrarBtn" disabled>🚀 Iniciar migración</button>
+
   <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 500px; overflow-y: auto;"></pre>
 
-  <!-- Script principal SIN defer, al final del body -->
   <script>
-    const MIGRADOR_VERSION = "v1.0.4";
+    const MIGRADOR_VERSION = "v1.1.0";
     document.title = `Migración Firestore A ➜ B ${MIGRADOR_VERSION}`;
 
-    let dbA, dbB;
+    let dbA, dbB, authA, authB, userEmail;
 
     function inicializarFirebase() {
+      // Proyecto A (origen)
       const configA = {
         apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
         authDomain: "tenis-1baf2.firebaseapp.com",
@@ -31,6 +36,7 @@
         measurementId: "G-XXEEL6LMND"
       };
 
+      // Proyecto B (destino)
       const configB = {
         apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
         authDomain: "tenis-chidos-ags.firebaseapp.com",
@@ -45,6 +51,9 @@
 
       dbA = firebase.firestore(appA);
       dbB = firebase.firestore(appB);
+
+      authA = firebase.auth(appA); // autenticamos en A, donde están tus reglas
+      authB = firebase.auth(appB); // opcional, si necesitas también autenticar en B
     }
 
     function logLinea(texto) {
@@ -77,7 +86,6 @@
       document.getElementById("log").textContent = `🛠 Migrador Firestore v${MIGRADOR_VERSION} iniciado...\n`;
 
       try {
-        inicializarFirebase();
         const colecciones = await dbA.listCollections();
 
         for (const col of colecciones) {
@@ -92,7 +100,28 @@
       }
     }
 
-    document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
+    async function login() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      try {
+        const result = await authA.signInWithPopup(provider);
+        const user = result.user;
+        userEmail = user.email;
+        document.getElementById("usuario").textContent = userEmail;
+        document.getElementById("migrarBtn").disabled = false;
+        logLinea(`🔓 Autenticado como: ${userEmail}`);
+      } catch (error) {
+        console.error("Error al autenticar:", error);
+        logLinea(`❌ Error al iniciar sesión: ${error.message}`);
+      }
+    }
+
+    // Inicializar todo al cargar
+    window.onload = function () {
+      inicializarFirebase();
+
+      document.getElementById("loginBtn").addEventListener("click", login);
+      document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
+    };
   </script>
 </body>
 </html>
