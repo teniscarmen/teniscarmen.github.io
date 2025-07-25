@@ -3,74 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <title>Migrador Firestore A ➜ B</title>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
   <h2>Migración Firestore: Proyecto A ➜ Proyecto B</h2>
-  <button onclick="migrarDatos()">Iniciar migración</button>
+  <button id="migrarBtn">Iniciar migración</button>
   <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 400px; overflow-y: auto;"></pre>
 
+  <!-- SCRIPTS DE FIREBASE EN ORDEN CORRECTO -->
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
+
+  <!-- TU SCRIPT SOLO DESPUÉS DE CARGAR FIREBASE -->
   <script>
-    let dbA, dbB;
-
-    function inicializarFirebase() {
-      // Configuración proyecto A
-      const configA = {
-        apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
-        authDomain: "tenis-1baf2.firebaseapp.com",
-        projectId: "tenis-1baf2",
-        storageBucket: "tenis-1baf2.firebasestorage.app",
-        messagingSenderId: "1063958178043",
-        appId: "1:1063958178043:web:01276f257cc083bac1285e",
-        measurementId: "G-XXEEL6LMND"
-      };
-
-      // Configuración proyecto B
-      const configB = {
-        apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
-        authDomain: "tenis-chidos-ags.firebaseapp.com",
-        projectId: "tenis-chidos-ags",
-        storageBucket: "tenis-chidos-ags.firebasestorage.app",
-        messagingSenderId: "13324233273",
-        appId: "1:13324233273:web:d7eb9f5a0e8ed0a4317be8"
-      };
-
-      const appA = firebase.initializeApp(configA, "appA");
-      const appB = firebase.initializeApp(configB, "appB");
-
-      dbA = firebase.firestore(appA);
-      dbB = firebase.firestore(appB);
-    }
-
-    async function migrarDatos() {
+    document.addEventListener("DOMContentLoaded", function () {
       const log = document.getElementById("log");
-      log.textContent = "⏳ Iniciando migración...\n";
+      let dbA, dbB;
 
-      try {
-        // Inicializa las instancias antes de usarlas
-        inicializarFirebase();
+      function inicializarFirebase() {
+        // Config A (cuenta personal)
+        const configA = {
+          apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
+          authDomain: "tenis-1baf2.firebaseapp.com",
+          projectId: "tenis-1baf2",
+          storageBucket: "tenis-1baf2.firebasestorage.app",
+          messagingSenderId: "1063958178043",
+          appId: "1:1063958178043:web:01276f257cc083bac1285e",
+          measurementId: "G-XXEEL6LMND"
+        };
 
-        const colecciones = await dbA.listCollections();
+        // Config B (cuenta propia)
+        const configB = {
+          apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
+          authDomain: "tenis-chidos-ags.firebaseapp.com",
+          projectId: "tenis-chidos-ags",
+          storageBucket: "tenis-chidos-ags.firebasestorage.app",
+          messagingSenderId: "13324233273",
+          appId: "1:13324233273:web:d7eb9f5a0e8ed0a4317be8"
+        };
 
-        for (const col of colecciones) {
-          const colName = col.id;
-          log.textContent += `\n📁 Colección: ${colName}`;
+        const appA = firebase.initializeApp(configA, "appA");
+        const appB = firebase.initializeApp(configB, "appB");
 
-          const snapshot = await dbA.collection(colName).get();
-
-          for (const doc of snapshot.docs) {
-            const data = doc.data();
-            await dbB.collection(colName).doc(doc.id).set(data);
-            log.textContent += `\n   ✔ Copiado: ${colName}/${doc.id}`;
-          }
-        }
-
-        log.textContent += `\n\n✅ Migración completada con éxito.`;
-      } catch (error) {
-        log.textContent += `\n❌ Error: ${error.message}`;
+        dbA = firebase.firestore(appA);
+        dbB = firebase.firestore(appB);
       }
-    }
+
+      async function migrarDatos() {
+        log.textContent = "⏳ Iniciando migración...\n";
+
+        try {
+          inicializarFirebase();
+
+          const colecciones = await dbA.listCollections();
+
+          for (const col of colecciones) {
+            const colName = col.id;
+            log.textContent += `\n📁 Colección: ${colName}`;
+
+            const snapshot = await dbA.collection(colName).get();
+
+            for (const doc of snapshot.docs) {
+              const data = doc.data();
+              await dbB.collection(colName).doc(doc.id).set(data);
+              log.textContent += `\n   ✔ Copiado: ${colName}/${doc.id}`;
+            }
+          }
+
+          log.textContent += `\n\n✅ Migración completada con éxito.`;
+        } catch (error) {
+          log.textContent += `\n❌ Error: ${error.message}`;
+        }
+      }
+
+      document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
+    });
   </script>
 </body>
 </html>
