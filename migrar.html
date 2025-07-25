@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Migración Firestore A ➜ B v1.1.0</title>
+  <title>Migración Firestore A ➜ B v1.1.1</title>
 
   <!-- Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
@@ -10,7 +10,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-auth-compat.js"></script>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
-  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.1.0)</span></h2>
+  <h2>Migración Firestore A ➜ B <span style="font-size: 0.8em; color: gray;">(v1.1.1)</span></h2>
 
   <p><strong>Usuario actual:</strong> <span id="usuario">No autenticado</span></p>
   <button id="loginBtn">🔐 Iniciar sesión con Google</button>
@@ -19,10 +19,10 @@
   <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 500px; overflow-y: auto;"></pre>
 
   <script>
-    const MIGRADOR_VERSION = "v1.1.0";
+    const MIGRADOR_VERSION = "v1.1.1";
     document.title = `Migración Firestore A ➜ B ${MIGRADOR_VERSION}`;
 
-    let dbA, dbB, authA, authB, userEmail;
+    let dbA, dbB, authA, userEmail;
 
     function inicializarFirebase() {
       // Proyecto A (origen)
@@ -32,8 +32,7 @@
         projectId: "tenis-1baf2",
         storageBucket: "tenis-1baf2.firebasestorage.app",
         messagingSenderId: "1063958178043",
-        appId: "1:1063958178043:web:01276f257cc083bac1285e",
-        measurementId: "G-XXEEL6LMND"
+        appId: "1:1063958178043:web:01276f257cc083bac1285e"
       };
 
       // Proyecto B (destino)
@@ -52,12 +51,13 @@
       dbA = firebase.firestore(appA);
       dbB = firebase.firestore(appB);
 
-      authA = firebase.auth(appA); // autenticamos en A, donde están tus reglas
-      authB = firebase.auth(appB); // opcional, si necesitas también autenticar en B
+      authA = firebase.auth(appA);
     }
 
     function logLinea(texto) {
-      document.getElementById("log").textContent += texto + "\n";
+      const log = document.getElementById("log");
+      log.textContent += texto + "\n";
+      log.scrollTop = log.scrollHeight;
     }
 
     async function migrarColeccion(path, refA, refB) {
@@ -110,18 +110,14 @@
         document.getElementById("migrarBtn").disabled = false;
         logLinea(`🔓 Autenticado como: ${userEmail}`);
       } catch (error) {
-        console.error("Error al autenticar:", error);
         logLinea(`❌ Error al iniciar sesión: ${error.message}`);
       }
     }
 
-    // Inicializar todo al cargar
-    window.onload = function () {
-      inicializarFirebase();
-
-      document.getElementById("loginBtn").addEventListener("click", login);
-      document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
-    };
+    // Inicializa Firebase y configura eventos
+    inicializarFirebase();
+    document.getElementById("loginBtn").addEventListener("click", login);
+    document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
   </script>
 </body>
 </html>
