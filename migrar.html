@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Migración Firestore COMPLETA A ➜ B</title>
+  <title>Migración Firestore A ➜ B</title>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
   <h2>Migración Firestore A ➜ B <span id="version" style="font-size: 0.8em; color: gray;"></span></h2>
@@ -10,11 +10,13 @@
   <pre id="log" style="margin-top:20px; background:#f4f4f4; padding:10px; max-height: 500px; overflow-y: auto;"></pre>
 
   <script type="module">
-    // 🔢 Versión del script
-    const MIGRADOR_VERSION = "v1.0.0";
+    // 🔢 Versión del migrador
+    const MIGRADOR_VERSION = "v1.0.1";
     document.getElementById("version").textContent = `(${MIGRADOR_VERSION})`;
+    document.title = `Migración Firestore A ➜ B ${MIGRADOR_VERSION}`;
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-app.js";
+    // ✅ IMPORTS CORRECTOS usando .mjs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-app.mjs";
     import {
       getFirestore,
       collection,
@@ -22,11 +24,11 @@
       doc,
       setDoc,
       listCollections,
-    } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore.mjs";
 
     const log = document.getElementById("log");
 
-    // Configuración Proyecto A
+    // Configuración Proyecto A (cuenta personal)
     const configA = {
       apiKey: "AIzaSyCe_HbdWlApCldi2Rk8uituDIwr_RcjAqE",
       authDomain: "tenis-1baf2.firebaseapp.com",
@@ -37,7 +39,7 @@
       measurementId: "G-XXEEL6LMND"
     };
 
-    // Configuración Proyecto B
+    // Configuración Proyecto B (cuenta propia)
     const configB = {
       apiKey: "AIzaSyABlVZR55dbT8KfuEVbnxhquwWP0VbLBy4",
       authDomain: "tenis-chidos-ags.firebaseapp.com",
@@ -47,17 +49,19 @@
       appId: "1:13324233273:web:d7eb9f5a0e8ed0a4317be8"
     };
 
+    // Inicializar ambas apps
     const appA = initializeApp(configA, "appA");
     const appB = initializeApp(configB, "appB");
 
     const dbA = getFirestore(appA);
     const dbB = getFirestore(appB);
 
+    // Función para imprimir líneas en el log
     function logLinea(texto) {
       log.textContent += texto + "\n";
     }
 
-    // Recursivo: colecciones y subcolecciones
+    // Función recursiva para migrar colecciones y subcolecciones
     async function migrarColeccion(path, refA, refB) {
       const snap = await getDocs(refA);
       for (const docSnap of snap.docs) {
@@ -66,6 +70,7 @@
         await setDoc(docRefB, data);
         logLinea(`✔ Migrado: ${path}/${docSnap.id}`);
 
+        // Subcolecciones recursivas
         const subcols = await listCollections(docSnap.ref);
         for (const subcol of subcols) {
           const subcolName = subcol.id;
@@ -80,6 +85,7 @@
       }
     }
 
+    // Función principal de migración
     async function migrarDatos() {
       log.textContent = `🛠 Migrador Firestore ${MIGRADOR_VERSION} iniciado...\n`;
 
@@ -98,6 +104,7 @@
       }
     }
 
+    // Botón de acción
     document.getElementById("migrarBtn").addEventListener("click", migrarDatos);
   </script>
 </body>
