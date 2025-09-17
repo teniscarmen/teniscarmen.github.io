@@ -15,6 +15,8 @@ const INVENTORY_CACHE_TS_KEY = 'inventoryCacheTimeV2';
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 const RESULTS_PER_PAGE = 12;
 const SUGGESTION_LIMIT = 6;
+const GALERIA_BASE = 'https://teniscarmen.github.io/Galeria/';
+const PLACEHOLDER_IMAGE = 'tenis_default.jpg';
 
 const colorKeywords = {
   negro: 'Negro',
@@ -124,6 +126,238 @@ let decoratedProducts = [];
 let filteredProducts = [];
 let priceBounds = { min: 0, max: 0 };
 let activeProduct = null;
+
+function extractStringsFromValue(value) {
+  if (!value && value !== 0) return [];
+  if (typeof value === 'string' || typeof value === 'number') {
+    const stringValue = String(value).trim();
+    return stringValue ? [stringValue] : [];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => extractStringsFromValue(item));
+  }
+  if (typeof value === 'object') {
+    const preferredKeys = ['url', 'src', 'image', 'foto', 'path', 'thumbnail', 'thumb'];
+    for (const key of preferredKeys) {
+      if (typeof value[key] === 'string' && value[key].trim()) {
+        return [value[key]];
+      }
+    }
+  }
+  return [];
+}
+
+function normalizeImageString(input) {
+  if (input == null) return null;
+  const raw = String(input).trim();
+  if (!raw) return null;
+
+  const withoutQuery = raw.replace(/\\/g, '/').split(/[?#]/)[0].trim();
+  if (!withoutQuery) return null;
+
+  const cleanedPath = withoutQuery
+    .replace(/^(?:https?:)?\/\//i, '')
+    .replace(/^\/+/, '');
+  const path = cleanedPath;
+  const segments = path.split('/').filter(Boolean);
+  if (segments.length === 0) return null;
+  let filename = segments[segments.length - 1];
+  if (!filename) return null;
+  if (filename.toLowerCase() === 'galeria') return null;
+
+  try {
+    filename = decodeURIComponent(filename);
+  } catch (err) {
+    // ignore decode errors and use raw filename
+  }
+
+  filename = filename.trim().replace(/[\\/]+/g, '');
+  if (!filename) return null;
+
+  if (filename.endsWith('.')) filename = filename.slice(0, -1);
+  const dotIndex = filename.lastIndexOf('.');
+  let base = filename;
+  let extension = '';
+  if (dotIndex > 0 && dotIndex < filename.length - 1) {
+    base = filename.slice(0, dotIndex);
+    extension = filename.slice(dotIndex + 1);
+  }
+
+  base = base.trim();
+  extension = extension.trim().toLowerCase();
+  if (!base) return null;
+  if (!extension) extension = 'jpg';
+
+  if (extension === 'jpeg' || extension === 'jpg') {
+    // keep as is
+  } else {
+    extension = extension.toLowerCase();
+  }
+
+  const canonicalFile = `${base}.${extension}`;
+  const lowerCanonical = canonicalFile.toLowerCase();
+  if (lowerCanonical === 'tenis_default.jpg' || lowerCanonical === 'tenis_default.jpeg') {
+    return null;
+  }
+  const encodedFile = encodeURIComponent(canonicalFile);
+  const urls = [`${GALERIA_BASE}${encodedFile}`];
+
+  const fallbackExtensions = new Set();
+  if (extension === 'jpg') {
+    fallbackExtensions.add('jpeg');
+  } else if (extension === 'jpeg') {
+    fallbackExtensions.add('jpg');
+  } else {
+    fallbackExtensions.add('jpg');
+    fallbackExtensions.add('jpeg');
+  }
+
+  fallbackExtensions.forEach((ext) => {
+    const altFile = `${base}.${ext}`;
+    const altUrl = `${GALERIA_BASE}${encodeURIComponent(altFile)}`;
+    if (!urls.includes(altUrl)) {
+      urls.push(altUrl);
+    }
+  });
+
+  return {
+    url: urls[0],
+    urls,
+    fileName: canonicalFile,
+  };
+}
+
+function dedupeInfos(infos) {
+  const seen = new Set();
+  const result = [];
+  infos.forEach((info) => {
+    if (!info) return;
+    if (seen.has(info.url)) return;
+    seen.add(info.url);
+    result.push(info);
+  });
+  return result;
+}
+
+function buildProductImageSources(product) {
+  const galleryValues = [
+    ...extractStringsFromValue(product.images),
+    ...extractStringsFromValue(product.galeria),
+    ...extractStringsFromValue(product.gallery),
+  ];
+  const galleryInfos = dedupeInfos(galleryValues.map(normalizeImageString));
+
+  const priorityValues = [
+    ...extractStringsFromValue(product.images),
+    ...extractStringsFromValue(product.image),
+    ...extractStringsFromValue(product.img),
+    ...extractStringsFromValue(product.photo),
+    ...extractStringsFromValue(product.foto),
+    ...extractStringsFromValue(product.thumbnail),
+    ...extractStringsFromValue(product.thumb),
+  ];
+  const priorityInfos = dedupeInfos(priorityValues.map(normalizeImageString));
+
+  let main = priorityInfos[0] || null;
+  const combined = dedupeInfos([...galleryInfos, ...priorityInfos]);
+  if (!main) {
+    main = combined[0] || null;
+  }
+
+  return {
+    main,
+    gallery: combined,
+  };
+}
+
+function normalizeProductImages(product) {
+  const imageSources = buildProductImageSources(product);
+  const galleryUrls = imageSources.gallery.map((entry) => entry.url);
+  const normalized = {
+    ...product,
+    foto: imageSources.main ? imageSources.main.url : PLACEHOLDER_IMAGE,
+    galeria: galleryUrls,
+    imageSources,
+  };
+  return normalized;
+}
+
+function getProductSku(product) {
+  return product.sku || product.uid || product.id || 'sin-sku';
+}
+
+function getGalleryInfos(product) {
+  if (product.imageSources?.gallery?.length) return product.imageSources.gallery;
+  if (product.imageSources?.main) return [product.imageSources.main];
+  return [];
+}
+
+function setModalMainImage(product, imageInfo) {
+  if (!elements.modalMainImage) return;
+  elements.modalMainImage.alt = `${product.marca || ''} ${product.modelo || ''}`.trim();
+  elements.modalMainImage.loading = 'eager';
+  elements.modalMainImage.decoding = 'async';
+  applyImageWithFallback(elements.modalMainImage, product, imageInfo);
+}
+
+function applyImageWithFallback(img, product, imageInfo) {
+  if (!img) return;
+  const candidates = Array.isArray(imageInfo?.urls) ? imageInfo.urls.filter(Boolean) : [];
+
+  if (img.__fallbackHandler) {
+    img.removeEventListener('error', img.__fallbackHandler);
+  }
+  if (img.__loadHandler) {
+    img.removeEventListener('load', img.__loadHandler);
+  }
+
+  if (!candidates.length) {
+    img.src = PLACEHOLDER_IMAGE;
+    img.__fallbackHandler = null;
+    img.__loadHandler = null;
+    return;
+  }
+
+  let attempt = 0;
+  const skuLabel = getProductSku(product);
+
+  const handleLoad = () => {
+    if (img.__fallbackHandler) {
+      img.removeEventListener('error', img.__fallbackHandler);
+      img.__fallbackHandler = null;
+    }
+    img.__loadHandler = null;
+  };
+
+  const tryNext = () => {
+    if (attempt >= candidates.length) {
+      if (img.__fallbackHandler) {
+        img.removeEventListener('error', img.__fallbackHandler);
+        img.__fallbackHandler = null;
+      }
+      img.__loadHandler = null;
+      img.src = PLACEHOLDER_IMAGE;
+      console.warn('[images] No se encontró imagen en Galeria para SKU', skuLabel, {
+        intentos: candidates,
+      });
+      return;
+    }
+    const nextSrc = candidates[attempt];
+    attempt += 1;
+    if (img.src === nextSrc) return;
+    img.src = nextSrc;
+  };
+
+  const handleError = () => {
+    tryNext();
+  };
+
+  img.__fallbackHandler = handleError;
+  img.__loadHandler = handleLoad;
+  img.addEventListener('error', handleError);
+  img.addEventListener('load', handleLoad, { once: true });
+  tryNext();
+}
 
 const formatCurrency = (amount) =>
   new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(amount || 0);
@@ -319,17 +553,7 @@ function renderSkeleton() {
   }
 }
 
-function optimizeImage(url, width = 800) {
-  if (!url) return 'tenis_default.jpg';
-  try {
-    const sanitized = url.replace(/^https?:\/\//, '');
-    return `https://images.weserv.nl/?url=${sanitized}&w=${width}&output=webp`;
-  } catch (err) {
-    return url;
-  }
-}
-
-function createProductCard(product) {
+function createProductCard(product, globalIndex = 0) {
   const article = document.createElement('article');
   article.className = 'PubCardProduct';
   article.dataset.productId = product.uid;
@@ -348,15 +572,17 @@ function createProductCard(product) {
     badgeStack.appendChild(badge);
   });
   const img = document.createElement('img');
-  img.src = optimizeImage(product.foto || 'tenis_default.jpg', 800);
   img.alt = `${product.marca || ''} ${product.modelo || ''}`.trim();
-  img.loading = 'lazy';
-  img.decoding = 'async';
+  if (typeof globalIndex === 'number' && globalIndex < 8) {
+    img.loading = 'eager';
+    img.decoding = 'async';
+  } else {
+    img.loading = 'lazy';
+    img.decoding = 'async';
+  }
   img.width = 400;
   img.height = 400;
-  img.addEventListener('error', () => {
-    img.src = 'tenis_default.jpg';
-  });
+  applyImageWithFallback(img, product, product.imageSources?.main);
   media.appendChild(img);
   if (badgeStack.children.length) media.appendChild(badgeStack);
 
@@ -444,8 +670,9 @@ function renderProducts() {
     return;
   }
 
-  items.forEach((product) => {
-    elements.productGrid.appendChild(createProductCard(product));
+  items.forEach((product, index) => {
+    const globalIndex = start + index;
+    elements.productGrid.appendChild(createProductCard(product, globalIndex));
   });
   renderPagination();
   updateStructuredData(items);
@@ -790,34 +1017,29 @@ function populateModalSizes(product) {
 function populateModalThumbnails(product) {
   if (!elements.modalThumbnails || !elements.modalMainImage) return;
   elements.modalThumbnails.innerHTML = '';
-  const sources = [product.foto, ...(product.galeria || [])].filter(Boolean);
-  if (!sources.length) sources.push('tenis_default.jpg');
-  sources.forEach((src, index) => {
+  const galleryInfos = getGalleryInfos(product);
+  const sources = galleryInfos.length ? galleryInfos : [null];
+  sources.forEach((info, index) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'pub-modal__thumb';
     button.dataset.active = index === 0 ? 'true' : 'false';
     const img = document.createElement('img');
-    img.src = optimizeImage(src, 400);
     img.alt = `${product.marca || ''} ${product.modelo || ''}`;
     img.loading = 'lazy';
     img.decoding = 'async';
-    img.addEventListener('error', () => {
-      img.src = 'tenis_default.jpg';
-    });
+    applyImageWithFallback(img, product, info);
     button.appendChild(img);
     button.addEventListener('click', () => {
-      elements.modalMainImage.src = optimizeImage(src, 800);
-      elements.modalMainImage.alt = `${product.marca || ''} ${product.modelo || ''}`;
       Array.from(elements.modalThumbnails.children).forEach((child) => {
         child.dataset.active = 'false';
       });
       button.dataset.active = 'true';
+      setModalMainImage(product, info);
     });
     elements.modalThumbnails.appendChild(button);
   });
-  elements.modalMainImage.src = optimizeImage(sources[0], 800);
-  elements.modalMainImage.alt = `${product.marca || ''} ${product.modelo || ''}`;
+  setModalMainImage(product, sources[0]);
 }
 
 function populateRecommendations(product) {
@@ -1046,7 +1268,8 @@ function loadInventory() {
 }
 
 function afterInventoryLoaded(timestamp, data, shouldRefreshCache) {
-  decoratedProducts = data.filter(Boolean).map(decorateProduct);
+  const normalizedProducts = data.filter(Boolean).map(normalizeProductImages);
+  decoratedProducts = normalizedProducts.map(decorateProduct);
   priceBounds = {
     min: Math.min(...decoratedProducts.map((product) => product.price)),
     max: Math.max(...decoratedProducts.map((product) => product.price)),

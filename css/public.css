@@ -604,6 +604,13 @@ body[data-scope="public"] .PubCardProduct__media {
   aspect-ratio: 1 / 1;
 }
 
+body[data-scope="public"] .PubCardProduct__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 body[data-scope="public"] .PubCardProduct__badge-stack {
   position: absolute;
   top: var(--pub-space-3);
@@ -784,6 +791,13 @@ body[data-scope="public"] .pub-modal__media-main {
   aspect-ratio: 1 / 1;
 }
 
+body[data-scope="public"] .pub-modal__media-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 body[data-scope="public"] .pub-modal__thumbs {
   display: flex;
   gap: var(--pub-space-2);
@@ -796,6 +810,13 @@ body[data-scope="public"] .pub-modal__thumb {
   border-radius: var(--pub-radius-md);
   border: 2px solid transparent;
   flex-shrink: 0;
+}
+
+body[data-scope="public"] .pub-modal__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 body[data-scope="public"] .pub-modal__thumb[data-active='true'] {
