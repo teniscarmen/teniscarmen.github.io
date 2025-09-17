@@ -2,262 +2,476 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups" />
+    <title>Tenis Chidos | Sneakers y streetwear verificados</title>
     <meta
       name="description"
-      content="Catálogo en línea con los modelos más recientes de Tenis Chidos"
+      content="Sneakers, streetwear y accesorios 100% verificados. Compra segura, envíos a todo México y asesoría por WhatsApp en minutos."
     />
-    <title>Tenis Chidos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="canonical" href="https://teniscarmen.github.io/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <link rel="stylesheet" href="css/public.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script defer src="js/vendor/html-to-pdfmake.min.js"></script>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <meta property="og:site_name" content="Tenis Chidos" />
+    <meta property="og:title" content="Sneakers y streetwear 100% verificados | Tenis Chidos" />
+    <meta
+      property="og:description"
+      content="Descubre lanzamientos y clásicos verificados. Compra online o pide asesoría por WhatsApp al instante."
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="js/vendor/html-to-pdfmake.min.js"></script>
-    <style>
-      /* Simple skeleton loader */
-      .skeleton-card div {
-        background-color: #e5e7eb;
-        border-radius: 0.375rem;
-        height: 0.75rem;
-      }
-      .search-clear-btn {
-        position: absolute;
-        right: 0.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      .search-clear-btn:hover {
-        color: #374151;
-      }
-      .carousel {
-        display: flex;
-        overflow-x: auto;
-        overflow-y: hidden;
-        gap: 1rem;
-        padding-bottom: 1rem;
-        cursor: grab;
-        -webkit-overflow-scrolling: touch;
-      }
-      .carousel-item {
-        scroll-snap-align: center;
-      }
-      .dragging {
-        cursor: grabbing !important;
-      }
-      .product-img {
-        transition: transform 0.3s;
-      }
-      .carousel-item:hover .product-img {
-        transform: scale(1.3);
-        z-index: 10;
-      }
-      .carousel-wrapper {
-        position: relative;
-      }
-      .carousel-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 9999px;
-        padding: 0.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: transform 0.2s, background-color 0.2s;
-      }
-      .carousel-nav:hover {
-        transform: translateY(-50%) scale(1.1);
-        background-color: #e0e7ff;
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://teniscarmen.github.io/" />
+    <meta property="og:image" content="https://teniscarmen.github.io/banner.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tenis Chidos" />
+    <meta
+      name="twitter:description"
+      content="Sneakers y streetwear 100% verificados. Envíos, cambios fáciles y asesoría por WhatsApp."
+    />
+    <meta name="twitter:image" content="https://teniscarmen.github.io/banner.jpg" />
+    <script>
+      window.PUBLIC_UI_REDESIGN = true;
+    </script>
+    <script id="structuredData" type="application/ld+json"></script>
   </head>
-  <body class="font-[Inter] bg-gray-100 text-gray-800">
-    <header class="bg-white shadow-sm sticky top-0 z-10">
-      <div
-        class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center"
-      >
-        <div class="flex items-center gap-3">
-          <img
-            src="logo.png"
-            alt="Logo"
-            class="w-10 h-10 object-contain"
-            onerror="this.onerror=null;this.src='https://placehold.co/40x40?text=Logo';"
-          />
+  <body data-scope="public">
+    <div class="public-site">
+      <header class="pub-header" data-scrolled="false">
+        <div class="pub-container">
+          <nav class="pub-nav" aria-label="Navegación principal">
+            <a class="pub-brand" href="#inicio">
+              <img
+                src="logo.png"
+                alt="Logotipo Tenis Chidos"
+                class="pub-logo"
+                loading="lazy"
+                decoding="async"
+                onerror="this.onerror=null;this.src='https://placehold.co/48x48?text=TC';"
+              />
+              <span>
+                <strong>Tenis Chidos</strong>
+                <span class="pub-tagline">Sneakers verificados y asesoría experta</span>
+              </span>
+            </a>
+            <div class="pub-nav-links" role="menubar">
+              <a class="pub-nav-link" role="menuitem" href="#catalogo">Catálogo</a>
+              <a class="pub-nav-link" role="menuitem" href="#beneficios">Beneficios</a>
+              <a class="pub-nav-link" role="menuitem" href="#nosotros">Nosotros</a>
+              <a class="pub-nav-link" role="menuitem" href="#faq">Ayuda</a>
+            </div>
+            <div class="pub-nav-actions">
+              <button id="themeToggle" class="pub-theme-toggle" type="button" aria-label="Cambiar tema">
+                <span aria-hidden="true">🌙</span>
+              </button>
+              <button id="downloadCatalogBtn" class="pub-button pub-button--secondary pub-hidden-mobile" type="button">
+                <span aria-hidden="true">📄</span>
+                Catálogo PDF
+              </button>
+              <a
+                id="navWhatsappBtn"
+                class="pub-button pub-button--primary pub-hidden-mobile"
+                href="https://wa.me/5214491952828?text=Hola%20Tenis%20Chidos%2C%20quiero%20asesor%C3%ADa%20personalizada"
+                target="_blank"
+                rel="noopener"
+              >
+                <span aria-hidden="true">💬</span>
+                WhatsApp
+              </a>
+              <button id="loginPublicBtn" class="pub-button pub-button--ghost" type="button">
+                Acceso
+              </button>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main id="inicio">
+        <section class="pub-container" aria-labelledby="heroHeading">
+          <div class="pub-hero" data-animate="fade-up">
+            <div>
+              <span class="pub-hero__badge">Nueva colección FW24 en stock</span>
+              <h1 id="heroHeading">Sneakers y streetwear 100% verificados, asesoría por WhatsApp en minutos.</h1>
+              <p>
+                Encuentra lanzamientos, clásicos y ediciones especiales. Nuestro equipo valida autenticidad, te guía en la talla
+                ideal y coordina envíos express a todo México.
+              </p>
+              <div class="pub-hero__actions">
+                <a class="pub-button pub-button--primary" href="#catalogo" id="heroPrimaryCta">Ver catálogo</a>
+                <a
+                  class="pub-button pub-button--secondary"
+                  href="https://wa.me/5214491952828?text=Hola%20Tenis%20Chidos%2C%20quiero%20un%20recomendado%20para%20mi%20estilo"
+                  target="_blank"
+                  rel="noopener"
+                  id="heroWhatsapp"
+                >
+                  Pedir asesoría por WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-info-banner pub-section" id="beneficios" data-animate="fade-up">
+            <article class="pub-info-item">
+              <span aria-hidden="true">🚚</span>
+              <span>
+                <strong>Envío express nacional</strong>
+                Rastreo en tiempo real y empaques seguros. Gratis en compras mayores a $2,500 MXN.
+              </span>
+            </article>
+            <article class="pub-info-item">
+              <span aria-hidden="true">🛡️</span>
+              <span>
+                <strong>Autenticidad garantizada</strong>
+                Inspección triple y sello Tenis Chidos con opción a certificación independiente.
+              </span>
+            </article>
+            <article class="pub-info-item">
+              <span aria-hidden="true">🔄</span>
+              <span>
+                <strong>Cambios sin estrés</strong>
+                7 días para solicitar cambio de talla o devolución. Soporte humano 24/7.
+              </span>
+            </article>
+          </div>
+
+          <section class="pub-search" aria-labelledby="searchHeading" data-animate="fade-up">
+            <div class="pub-search-bar">
+              <span aria-hidden="true">🔍</span>
+              <label class="sr-only" for="searchInput">Buscar por marca, modelo o talla</label>
+              <input
+                id="searchInput"
+                type="search"
+                name="search"
+                placeholder="Busca por marca, modelo, talla o estilo"
+                autocomplete="off"
+                enterkeyhint="search"
+              />
+              <button id="clearSearch" class="pub-search-clear" type="button">Limpiar</button>
+              <div
+                id="searchSuggestions"
+                class="pub-search-suggestions"
+                role="listbox"
+                aria-expanded="false"
+              ></div>
+            </div>
+            <div class="pub-status" id="searchStatus">Explora +200 modelos disponibles para entrega inmediata.</div>
+          </section>
+        </section>
+
+        <section class="pub-container pub-catalog-layout" id="catalogo" data-animate="fade-up">
+          <div class="pub-filters-shell">
+            <button id="openFilters" class="pub-filter-toggle" type="button" aria-expanded="false">
+              <span aria-hidden="true">🔧</span>
+              Filtros
+            </button>
+            <aside
+              id="filtersPanel"
+              class="pub-filters"
+              data-open="false"
+              aria-label="Filtros de productos"
+              aria-hidden="true"
+            >
+              <div class="pub-filters__header">
+                <h2>Filtrar catálogo</h2>
+                <button id="closeFilters" class="pub-modal__close" type="button" aria-label="Cerrar filtros">✕</button>
+              </div>
+              <div class="pub-filter-group">
+                <h3>Género</h3>
+                <div id="filterGenero" class="pub-filter-options"></div>
+              </div>
+              <div class="pub-filter-group">
+                <h3>Marca</h3>
+                <div id="filterMarca" class="pub-filter-options"></div>
+              </div>
+              <div class="pub-filter-group">
+                <h3>Talla</h3>
+                <div id="filterTalla" class="pub-filter-options"></div>
+              </div>
+              <div class="pub-filter-group">
+                <h3>Tipo</h3>
+                <div id="filterCategoria" class="pub-filter-options"></div>
+              </div>
+              <div class="pub-filter-group">
+                <h3>Color</h3>
+                <div id="filterColor" class="pub-filter-options"></div>
+              </div>
+              <div class="pub-filter-group">
+                <h3>Rango de precios</h3>
+                <div class="pub-price-inputs">
+                  <div>
+                    <label for="priceMin" class="sr-only">Precio mínimo</label>
+                    <input id="priceMin" type="number" min="0" step="50" placeholder="Mín" />
+                  </div>
+                  <div>
+                    <label for="priceMax" class="sr-only">Precio máximo</label>
+                    <input id="priceMax" type="number" min="0" step="50" placeholder="Máx" />
+                  </div>
+                </div>
+              </div>
+              <div class="pub-filter-footer">
+                <button id="resetFilters" class="pub-button pub-button--secondary" type="button">Limpiar</button>
+                <button id="applyFilters" class="pub-button pub-button--primary" type="button">Aplicar</button>
+              </div>
+            </aside>
+          </div>
+
           <div>
-            <h1 class="text-lg font-bold leading-tight">Tenis Chidos</h1>
-            <p class="text-xs text-gray-500 leading-none">
-              Calzado y accesorios
-            </p>
+            <div class="pub-catalog-toolbar">
+              <div id="resultsCount" aria-live="polite">Cargando productos...</div>
+              <div class="pub-catalog-controls">
+                <label class="sr-only" for="sortSelect">Ordenar por</label>
+                <select id="sortSelect" class="pub-sort-select">
+                  <option value="relevance">Ordenar por: Relevancia</option>
+                  <option value="new">Novedades</option>
+                  <option value="priceAsc">Precio: menor a mayor</option>
+                  <option value="priceDesc">Precio: mayor a menor</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="productGrid" class="pub-product-grid" aria-live="polite"></div>
+            <nav id="pagination" class="pub-pagination" aria-label="Paginación de productos"></nav>
+          </div>
+        </section>
+
+        <section class="pub-container pub-section" id="nosotros" data-animate="fade-up">
+          <h2 class="pub-section__title">¿Quiénes somos?</h2>
+          <p class="pub-section__subtitle">
+            Somos un colectivo sneakerhead con base en Aguascalientes. Curamos lanzamientos globales, garantizamos autenticidad y
+            acompañamos cada compra con asesoría humana.
+          </p>
+          <div class="pub-info-banner">
+            <article class="pub-info-item">
+              <span aria-hidden="true">🏪</span>
+              <span>
+                <strong>Showroom privado</strong>
+                Agenda tu visita para probar pares exclusivos con cita previa.
+              </span>
+            </article>
+            <article class="pub-info-item">
+              <span aria-hidden="true">🤝</span>
+              <span>
+                <strong>Compra segura</strong>
+                Contrato digital, opciones de pago con tarjeta y escrow bajo demanda.
+              </span>
+            </article>
+            <article class="pub-info-item">
+              <span aria-hidden="true">📊</span>
+              <span>
+                <strong>Monitoreo de lanzamientos</strong>
+                Alertas personalizadas por talla y marca vía WhatsApp o correo.
+              </span>
+            </article>
+          </div>
+        </section>
+
+        <section class="pub-container pub-section" id="faq" data-animate="fade-up">
+          <h2 class="pub-section__title">Preguntas frecuentes</h2>
+          <p class="pub-section__subtitle">Resolvemos tus dudas más comunes sobre envíos, pagos y garantías.</p>
+          <div class="pub-modal__accordion" id="faqAccordion">
+            <details>
+              <summary>¿Cómo garantizan la autenticidad?</summary>
+              <p>
+                Cada par pasa por inspección física con checklist de 35 puntos, verificación UV y contraste con bases de datos de
+                lanzamientos. Incluimos sello Tenis Chidos y recibo digital.
+              </p>
+            </details>
+            <details>
+              <summary>¿Cuánto tarda el envío?</summary>
+              <p>
+                Enviamos desde Aguascalientes con paquetería express 24-72h. Compartimos número de rastreo y damos seguimiento en
+                WhatsApp hasta la entrega.
+              </p>
+            </details>
+            <details>
+              <summary>¿Puedo cambiar de talla?</summary>
+              <p>
+                Sí, tienes 7 días hábiles para solicitar cambio de talla o devolución. El par debe conservar etiquetas y caja en
+                buen estado.
+              </p>
+            </details>
+            <details>
+              <summary>¿Realizan pedidos especiales?</summary>
+              <p>
+                Claro. Busca el SKU o enlace, compártenos tu presupuesto y lo conseguimos mediante nuestra red de partners
+                verificados.
+              </p>
+            </details>
+          </div>
+        </section>
+      </main>
+
+      <footer class="pub-footer" aria-label="Pie de página">
+        <div class="pub-container pub-footer__grid">
+          <div class="pub-footer__column">
+            <h4>Ayuda</h4>
+            <ul>
+              <li><a href="#faq">Preguntas frecuentes</a></li>
+              <li><a href="#beneficios">Envíos y cambios</a></li>
+              <li><a href="mailto:carmen@tenischidos.xyz">Contacto directo</a></li>
+            </ul>
+          </div>
+          <div class="pub-footer__column">
+            <h4>Políticas</h4>
+            <ul>
+              <li><a href="condiciones_servicio.txt">Términos y condiciones</a></li>
+              <li><a href="politica_privacidad.txt">Aviso de privacidad</a></li>
+              <li><a href="https://www.tenischidos.xyz" rel="noopener">Sitio oficial</a></li>
+            </ul>
+          </div>
+          <div class="pub-footer__column">
+            <h4>Nosotros</h4>
+            <ul>
+              <li>Atención personalizada 24/7</li>
+              <li>Showroom: Aguascalientes, MX</li>
+              <li>Envíos nacionales e internacionales</li>
+            </ul>
+          </div>
+          <div class="pub-footer__column">
+            <h4>Contacto</h4>
+            <ul>
+              <li>WhatsApp: <a href="https://wa.me/5214491952828">+52 1 449 195 2828</a></li>
+              <li>Correo: <a href="mailto:carmen@tenischidos.xyz">carmen@tenischidos.xyz</a></li>
+              <li>Instagram: <a href="https://instagram.com" rel="noopener">@tenischidos</a></li>
+            </ul>
           </div>
         </div>
-        <button
-          id="loginPublicBtn"
-          class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg"
-        >
-          <i class="fab fa-google"></i>
-          Acceso
-        </button>
-      </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto p-4">
-      <section class="relative mb-8">
-        <img
-          src="banner.jpg"
-          alt="Banner"
-          class="w-full rounded-xl shadow"
-          onerror="this.onerror=null;this.src='https://placehold.co/1600x400/334155/e2e8f0?text=banner.jpg';"
-        />
-      </section>
-
-      <section class="bg-white rounded-xl shadow-2xl p-4 mb-4">
-        <p class="text-justify">
-          Nuestros productos están pensados para acompañarte en cada aventura con toda la comodidad y resistencia que buscas.
-          Si quieres adquirirlos, resolver alguna duda ó buscas un modelo en especial, Escríbenos por WhatsApp con el modelo, talla y colores que deseas y con gusto lo encontraremos para ti.
-          envíanos un mensaje y tendrás una atención personalizada.
-        </p>
-      </section>
-      <div class="text-center mb-4">
-        <button id="downloadCatalogBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md inline-flex items-center gap-2">
-          <i class="fas fa-file-pdf"></i>
-          Catálogo PDF
-        </button>
-      </div>
-
-      <section class="mb-8">
-        <h2 class="text-xl font-bold mb-2">Hombre</h2>
-        <div class="carousel-wrapper">
-          <button class="carousel-nav carousel-prev left-0" data-target="menCarousel">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div id="menCarousel" class="carousel no-scrollbar"></div>
-          <button class="carousel-nav carousel-next right-0" data-target="menCarousel">
-            <i class="fas fa-chevron-right"></i>
-          </button>
+        <div class="pub-container pub-footer__legal">
+          <div class="pub-legal-links">
+            <span>© <span id="copyrightYear"></span> Tenis Chidos. Todos los derechos reservados.</span>
+            <span>RFC: TCH920101XX1</span>
+            <span>Horarios: Lun-Dom 9:00-21:00 (CDMX)</span>
+          </div>
         </div>
-      </section>
-
-      <section class="mb-8">
-        <h2 class="text-xl font-bold mb-2">Mujer</h2>
-        <div class="carousel-wrapper">
-          <button class="carousel-nav carousel-prev left-0" data-target="womenCarousel">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div id="womenCarousel" class="carousel no-scrollbar"></div>
-          <button class="carousel-nav carousel-next right-0" data-target="womenCarousel">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <section class="mb-8">
-        <h2 class="text-xl font-bold mb-2">Unisex</h2>
-        <div class="carousel-wrapper">
-          <button class="carousel-nav carousel-prev left-0" data-target="unisexCarousel">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div id="unisexCarousel" class="carousel no-scrollbar"></div>
-          <button class="carousel-nav carousel-next right-0" data-target="unisexCarousel">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <section class="mb-8">
-        <h2 class="text-xl font-bold mb-2">Ofertas</h2>
-        <div class="carousel-wrapper">
-          <button class="carousel-nav carousel-prev left-0" data-target="offersCarousel">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div id="offersCarousel" class="carousel no-scrollbar"></div>
-          <button class="carousel-nav carousel-next right-0" data-target="offersCarousel">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <section class="mb-8">
-        <h2 class="text-xl font-bold mb-2">Accesorios</h2>
-        <div class="carousel-wrapper">
-          <button class="carousel-nav carousel-prev left-0" data-target="accessoriesCarousel">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div id="accessoriesCarousel" class="carousel no-scrollbar"></div>
-          <button class="carousel-nav carousel-next right-0" data-target="accessoriesCarousel">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-    </main>
-
-    <div
-      id="imageModal"
-      class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50"
-    >
-      <img src="" alt="Vista ampliada" class="max-w-full max-h-full" />
-      <div id="modalInfo" class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-center p-2"></div>
+      </footer>
     </div>
 
     <a
-      href="https://wa.me/5214491952828?text=Informaci%C3%B3n%20sobre%20los%20Tenis%20Chidos"
+      class="pub-floating-whatsapp"
+      href="https://wa.me/5214491952828?text=Hola%20Tenis%20Chidos%2C%20quiero%20hablar%20con%20un%20experto"
       target="_blank"
-      class="fixed bottom-20 right-4 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center"
-      aria-label="Información sobre los Tenis Chidos"
+      rel="noopener"
+      aria-label="Abrir WhatsApp"
     >
-      <i class="fab fa-whatsapp text-2xl"></i>
+      <span class="pub-tooltip">Chatea con un experto</span>
+      💬
     </a>
-    <button
-      id="scrollTopBtn"
-      class="fixed bottom-4 right-4 bg-indigo-600 hover:bg-indigo-700 text-white w-14 h-14 rounded-full shadow-2xl hidden flex items-center justify-center"
-      aria-label="Volver Arriba"
+
+    <div class="pub-mobile-whatsapp pub-safe-area" role="presentation">
+      <a
+        class="pub-button pub-button--primary"
+        href="https://wa.me/5214491952828?text=Hola%20Tenis%20Chidos%2C%20vengo%20desde%20la%20web%20m%C3%B3vil"
+        target="_blank"
+        rel="noopener"
+        >Pedir por WhatsApp</a
+      >
+    </div>
+
+    <div
+      id="productModal"
+      class="pub-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="productModalTitle"
+      aria-hidden="true"
     >
-      <i class="fas fa-arrow-up"></i>
-    </button>
+      <div class="pub-modal__dialog" role="document">
+        <div class="pub-modal__media">
+          <figure class="pub-modal__media-main">
+            <img id="modalMainImage" src="" alt="" loading="lazy" decoding="async" />
+          </figure>
+          <div id="modalThumbnails" class="pub-modal__thumbs" role="list"></div>
+        </div>
+        <div class="pub-modal__content">
+          <div class="pub-modal__header">
+            <div>
+              <nav class="pub-breadcrumbs" aria-label="Breadcrumb">
+                <span>Inicio</span>
+                <span>Catálogo</span>
+                <span id="modalBreadcrumb"></span>
+              </nav>
+              <h2 id="productModalTitle" class="pub-modal__title"></h2>
+              <div id="modalRating" class="pub-modal__rating" aria-hidden="true"></div>
+            </div>
+            <button id="closeProductModal" class="pub-modal__close" type="button" aria-label="Cerrar">✕</button>
+          </div>
+          <div class="pub-modal__price">
+            <span id="modalPrice" class="PubCardProduct__price-current"></span>
+            <span id="modalComparePrice" class="PubCardProduct__price-compare"></span>
+            <span id="modalDiscountBadge" class="pub-badge pub-badge--success" hidden>Descuento activo</span>
+          </div>
+          <p id="modalDescription"></p>
+          <div class="pub-modal__sizes" id="modalSizes"></div>
+          <button id="sizeGuideBtn" class="pub-button pub-button--secondary" type="button">
+            Ver guía de tallas
+          </button>
+          <div class="pub-modal__benefits" id="modalBenefits"></div>
+          <div class="PubCardProduct__actions">
+            <button id="addToCartAction" class="pub-button pub-button--primary" type="button">Agregar al carrito</button>
+            <button id="whatsappAction" class="pub-button pub-button--secondary" type="button">
+              Pedir por WhatsApp
+            </button>
+          </div>
+          <div class="pub-modal__accordion">
+            <details open>
+              <summary>Detalles del producto</summary>
+              <p id="modalDetails"></p>
+            </details>
+            <details>
+              <summary>Envíos y cambios</summary>
+              <p>
+                Entregas nacionales 24-72h con rastreo y seguro. Cambios de talla sin costo adicional la primera vez.
+              </p>
+            </details>
+            <details>
+              <summary>Garantía Tenis Chidos</summary>
+              <p>
+                Sello de autenticidad, inspección especializada y garantía de reembolso si detectas alguna inconsistencia.
+              </p>
+            </details>
+          </div>
+          <section class="pub-modal__recommendations" aria-label="También te puede gustar">
+            <h3 class="pub-section__title">También te puede gustar</h3>
+            <div id="modalRecommendations" class="pub-recommendation-grid"></div>
+          </section>
+        </div>
+      </div>
+    </div>
 
-    <section id="contacto" class="max-w-7xl mx-auto bg-white rounded-xl shadow-2xl p-4 mt-8 mb-4">
-      <h2 class="text-xl font-bold mb-2">Contacto</h2>
-      <p class="text-justify">
-        ¿Buscas un modelo en especial? Escríbenos por WhatsApp con el modelo, talla y colores que deseas y con gusto lo encontraremos para ti.
-      </p>
-    </section>
+    <div id="sizeGuideModal" class="pub-modal" role="dialog" aria-modal="true" aria-labelledby="sizeGuideTitle" aria-hidden="true">
+      <div class="pub-modal__dialog" role="document">
+        <div class="pub-modal__header">
+          <h2 id="sizeGuideTitle" class="pub-modal__title">Guía rápida de tallas</h2>
+          <button id="closeSizeGuide" class="pub-modal__close" type="button" aria-label="Cerrar">✕</button>
+        </div>
+        <p>
+          Conversión aproximada para sneakers. Te ayudamos a validar la horma de cada modelo vía WhatsApp antes de cerrar tu
+          compra.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>MX</th>
+              <th>US Hombre</th>
+              <th>US Mujer</th>
+              <th>CM</th>
+            </tr>
+          </thead>
+          <tbody id="sizeGuideTable"></tbody>
+        </table>
+      </div>
+    </div>
 
-    <footer class="bg-white text-center p-4 mt-8 shadow-inner">
-      <p><strong>WhatsApp:</strong> (449) 195 2828</p>
-      <p>
-        <strong>Correo:</strong>
-        <a
-          href="mailto:carmen@tenischidos.xyz"
-          class="text-blue-600 hover:underline"
-          >carmen@tenischidos.xyz</a
-        >
-      </p>
-      <p>
-        <strong>WEB:</strong>
-        <a
-          href="https://www.tenischidos.xyz"
-          class="text-blue-600 hover:underline"
-          >www.tenischidos.xyz</a
-        >
-      </p>
-    </footer>
+    <div id="toast" class="pub-toast" role="status" aria-live="polite"></div>
 
     <script type="module" src="js/public.js"></script>
   </body>

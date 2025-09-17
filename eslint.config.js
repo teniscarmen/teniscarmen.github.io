@@ -28,7 +28,10 @@ export default [
         Image: 'readonly',
         cancelAnimationFrame: 'readonly',
         requestAnimationFrame: 'readonly',
-        getComputedStyle: 'readonly'
+        getComputedStyle: 'readonly',
+        IntersectionObserver: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLInputElement: 'readonly'
       }
     },
     rules: {}
